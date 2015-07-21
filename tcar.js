@@ -9,6 +9,9 @@ const KEY_DOWN = 16777237;
 const KEY_LEFT = 16777234;
 const KEY_RIGHT = 16777236;
 const KEY_C = 241242141424124;
+const KEY_SPACE = 241242143441424124;
+const KEY_DEL = 4032404023241242141424124;
+
 
 const CAMERA_TOPVIEW = 0;
 const CAMERA_HOOD = 1;
@@ -22,7 +25,7 @@ const SPEED_BRAKES = 15;
 
 const ASSET_URL = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcar/";
 
-const SOUND = true;
+const SOUND = false;
 
 var soundAccelerating = SoundCache.getSound(ASSET_URL + "/accelerating.wav");
 var soundDecelerating = SoundCache.getSound(ASSET_URL + "/decelerating.wav");
@@ -44,11 +47,16 @@ CameraHandler = function() {
         Camera.mode = _this.oldCameraMode;
     };
 
-    this.updateCamera = function(carProps) {
+    this.updateCamera = function(updateTime, carProps) {
         if (_this.stance === CAMERA_TOPVIEW) {
-            Camera.position = Vec3.sum(carProps.position,  Vec3.multiplyQbyV(carProps.rotation ,{x: 0, y: 13, z: 13}));
-            //Camera.orientation = carProps.rotation;
+            //Camera.position = Vec3.sum(carProps.position,  Vec3.multiplyQbyV(carProps.rotation ,{x: 0, y: 13, z: 13}));
+            var targetPos = Vec3.sum(carProps.position,  Vec3.multiplyQbyV(carProps.rotation ,{x: 0, y: 13, z: 13}));
+            Camera.position = Vec3.mix(Camera.position, targetPos, updateTime);
+            var previousOrientation = Camera.orientation;
             Camera.lookAt(carProps.position);
+            Camera.orientation = Quat.mix(previousOrientation, Camera.orientation, updateTime);
+            //Camera.orientation = carProps.rotation;
+            //Camera.lookAt(carProps.position);
         } else if (_this.stance === CAMERA_BEHIND_CLOSE) {
             Camera.position = Vec3.sum(carProps.position,  Vec3.multiplyQbyV(carProps.rotation ,{x: 0, y: 2, z: 5}));
             Camera.orientation = carProps.rotation;
@@ -113,6 +121,8 @@ print(JSON.stringify(Entities.getEntityProperties(car)));
 
 var speed = 0;
 var speedI = 0;
+var lastSpeedI = 0;
+var lastAngularVelocityY = 0;
 var planking = false;
 var steeringOffset = 0; // - will be left,  + will be right
 var steeringLeft = false;
@@ -130,7 +140,7 @@ Controller.keyPressEvent.connect(function(event) {
     } else if (event.key == KEY_RIGHT) {
         steeringRight = true;
     }
-    print(JSON.stringify(event));
+    //print(JSON.stringify(event));
 });
 Controller.keyReleaseEvent.connect(function(event) {
     if (event.key == KEY_UP) {
@@ -143,6 +153,8 @@ Controller.keyReleaseEvent.connect(function(event) {
     }
     //print(JSON.stringify(event));
 });
+
+var actionID = false;
 
 Script.update.connect(function(time) {
     var carProps = Entities.getEntityProperties(car);
@@ -167,11 +179,31 @@ Script.update.connect(function(time) {
         speedI = 0;
         soundLoopSwitcher.setSound(soundIdle);
     }
-    cameraHandler.updateCamera(carProps);
-    Entities.editEntity(car, {
-        velocity: Vec3.multiplyQbyV(carProps.rotation ,{x: 0, y: 0, z: -Math.log(1 + speedI, 0.1)}),
-        angularVelocity: {x: 0.0, y: Math.log(1 + speedI, 0.1) * steeringOffset, z: 0.0}
-    });
+   // print(-Math.log(1 + speedI, 0.1));
+    cameraHandler.updateCamera(time, carProps);
+    
+    var newProperties = {};
+    if (speedI !== lastSpeedI) {
+        newProperties.velocity = Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -Math.log(1 + speedI, 0.1)});
+    }
+    
+    var angularVelocityY = Math.log(1 + speedI, 0.1) * steeringOffset;
+    if (angularVelocityY !== lastAngularVelocityY) {
+        // Math.log(1 + speedI, 0.1) * steeringOffset;
+        lastAngularVelocityY = angularVelocityY;
+        newProperties.angularVelocity = {x: 0.0, y: angularVelocityY, z: 0.0};
+    }
+    //newProperties.angularVelocity = {x: 0.0, y: Math.log(1 + speedI, 0.1) * steeringOffset, z: 0.0};
+    
+    if (Object.keys(newProperties).length > 0) {
+        Entities.editEntity(car, newProperties);
+    }
+    /*var actionArgs = {targetPosition: Vec3.sum(carProps, {x: 0, y: 0, z: -Math.log(1 + speedI, 0.1)}), linearTimeScale: 0.1};
+    if (!actionID) {
+        actionID = Entities.addAction("spring", car, actionArgs);
+    } else {
+        Entities.updateAction(car, actionID, actionArgs);
+    }*/
 });
 
 
@@ -234,6 +266,8 @@ Script.scriptEnding.connect(function() {
     Controller.releaseKeyEvents({key: KEY_LEFT});
     Controller.releaseKeyEvents({key: KEY_RIGHT});
     Controller.captureKeyEvents({key: KEY_C});
+    Controller.captureKeyEvents({key: KEY_SPACE});
+    Controller.captureKeyEvents({key: KEY_DEL});
     Audio.playSound(soundShutdown, {
 	  position: MyAvatar.position,
       volume: 0.1
@@ -245,3 +279,5 @@ Controller.captureKeyEvents({key: KEY_DOWN});
 Controller.captureKeyEvents({key: KEY_LEFT});
 Controller.captureKeyEvents({key: KEY_RIGHT});
 Controller.captureKeyEvents({key: KEY_C});
+Controller.captureKeyEvents({key: KEY_SPACE});
+Controller.captureKeyEvents({key: KEY_DEL});
