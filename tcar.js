@@ -8,6 +8,7 @@ const KEY_UP = 16777235;
 const KEY_DOWN = 16777237;
 const KEY_LEFT = 16777234;
 const KEY_RIGHT = 16777236;
+const KEY_C = 241242141424124;
 
 const CAMERA_TOPVIEW = 0;
 const CAMERA_HOOD = 1;
@@ -38,10 +39,21 @@ if (SOUND) {
 
 CameraHandler = function() {
     var _this = this;
-
+    _this.stance = CAMERA_TOPVIEW;
     _this.shutdown = function() {
         Camera.mode = _this.oldCameraMode;
-    }
+    };
+
+    this.updateCamera = function(carProps) {
+        if (_this.stance === CAMERA_TOPVIEW) {
+            Camera.position = Vec3.sum(carProps.position,  Vec3.multiplyQbyV(carProps.rotation ,{x: 0, y: 13, z: 13}));
+            //Camera.orientation = carProps.rotation;
+            Camera.lookAt(carProps.position);
+        } else if (_this.stance === CAMERA_BEHIND_CLOSE) {
+            Camera.position = Vec3.sum(carProps.position,  Vec3.multiplyQbyV(carProps.rotation ,{x: 0, y: 2, z: 5}));
+            Camera.orientation = carProps.rotation;
+        } 
+    };
 
     _this.oldCameraMode = Camera.mode;
     Camera.mode = "independent";    
@@ -155,8 +167,7 @@ Script.update.connect(function(time) {
         speedI = 0;
         soundLoopSwitcher.setSound(soundIdle);
     }
-    Camera.position = Vec3.sum(carProps.position,  Vec3.multiplyQbyV(carProps.rotation ,{x: 0, y: 2, z: 5}));
-    Camera.orientation = carProps.rotation;
+    cameraHandler.updateCamera(carProps);
     Entities.editEntity(car, {
         velocity: Vec3.multiplyQbyV(carProps.rotation ,{x: 0, y: 0, z: -Math.log(1 + speedI, 0.1)}),
         angularVelocity: {x: 0.0, y: Math.log(1 + speedI, 0.1) * steeringOffset, z: 0.0}
@@ -222,6 +233,7 @@ Script.scriptEnding.connect(function() {
     Controller.releaseKeyEvents({key: KEY_DOWN});
     Controller.releaseKeyEvents({key: KEY_LEFT});
     Controller.releaseKeyEvents({key: KEY_RIGHT});
+    Controller.captureKeyEvents({key: KEY_C});
     Audio.playSound(soundShutdown, {
 	  position: MyAvatar.position,
       volume: 0.1
@@ -232,3 +244,4 @@ Controller.captureKeyEvents({key: KEY_UP});
 Controller.captureKeyEvents({key: KEY_DOWN});
 Controller.captureKeyEvents({key: KEY_LEFT});
 Controller.captureKeyEvents({key: KEY_RIGHT});
+Controller.captureKeyEvents({key: KEY_C});
