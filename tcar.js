@@ -1,4 +1,4 @@
-// car script 1.0  Â© thoys 2015
+// car script 1.0 © thoys 2015
 // no refunds
 // Audio effects by Konstantin
 // Models by Judas
@@ -8,9 +8,9 @@ const KEY_UP = 16777235;
 const KEY_DOWN = 16777237;
 const KEY_LEFT = 16777234;
 const KEY_RIGHT = 16777236;
-const KEY_C = 241242141424124;
-const KEY_SPACE = 241242143441424124;
-const KEY_DEL = 4032404023241242141424124;
+const KEY_C = 67;
+const KEY_SPACE = 32;
+const KEY_DEL = 16777223;
 
 
 const CAMERA_TOPVIEW = 0;
@@ -19,6 +19,7 @@ const CAMERA_MIRROR = 2;
 const CAMERA_BEHIND_CLOSE = 3;
 const CAMERA_BEHIND_MEDIUM = 4;
 const CAMERA_BEHIND_FAR = 5;
+const CAMERA_FIXED_WORLD = 6;
 
 const SPEED_FORWARD = 5;
 const SPEED_BRAKES = 15;
@@ -42,25 +43,34 @@ if (SOUND) {
 
 CameraHandler = function() {
     var _this = this;
-    _this.stance = CAMERA_TOPVIEW;
+    _this.cameraList = [CAMERA_TOPVIEW, /*CAMERA_HOOD, */ CAMERA_BEHIND_CLOSE /*, CAMERA_BEHIND_MEDIUM, CAMERA_BEHIND_FAR*/, CAMERA_FIXED_WORLD];
+    _this.stance = CAMERA_FIXED_WORLD;
     _this.shutdown = function() {
         Camera.mode = _this.oldCameraMode;
     };
 
-    this.updateCamera = function(updateTime, carProps) {
+    _this.updateCamera = function(updateTime, carProps) {
         if (_this.stance === CAMERA_TOPVIEW) {
-            //Camera.position = Vec3.sum(carProps.position,  Vec3.multiplyQbyV(carProps.rotation ,{x: 0, y: 13, z: 13}));
-            var targetPos = Vec3.sum(carProps.position,  Vec3.multiplyQbyV(carProps.rotation ,{x: 0, y: 13, z: 13}));
+            var targetPos = Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 13, z: 13}));
             Camera.position = Vec3.mix(Camera.position, targetPos, updateTime);
             var previousOrientation = Camera.orientation;
-            Camera.lookAt(carProps.position);
+            Camera.lookAt(Vec3.sum(carProps.position, {x: 0, y: 2, z: 0}));
             Camera.orientation = Quat.mix(previousOrientation, Camera.orientation, updateTime);
-            //Camera.orientation = carProps.rotation;
-            //Camera.lookAt(carProps.position);
         } else if (_this.stance === CAMERA_BEHIND_CLOSE) {
-            Camera.position = Vec3.sum(carProps.position,  Vec3.multiplyQbyV(carProps.rotation ,{x: 0, y: 2, z: 5}));
+            Camera.position = Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation ,{x: 0, y: 2, z: 5}));
             Camera.orientation = carProps.rotation;
-        } 
+        } else if (_this.stance === CAMERA_FIXED_WORLD) {
+            Camera.position = Vec3.sum(carProps.position, {x: 15, y: 20 + (Vec3.length(carProps.velocity) * 2), z: 0});
+            Camera.lookAt(carProps.position);
+        }
+    };
+
+    _this.nextCamera = function() {
+        _this.stance = _this.cameraList[(_this.cameraList.indexOf(_this.stance) + 1) % _this.cameraList.length];
+    };
+
+    _this.prevCamera = function() {
+        _this.stance = _this.cameraList[(_this.cameraList.indexOf(_this.stance) + (_this.cameraList.length - 1)) % _this.cameraList.length];
     };
 
     _this.oldCameraMode = Camera.mode;
@@ -117,8 +127,6 @@ var car = Entities.addEntity({
     
 });
 
-print(JSON.stringify(Entities.getEntityProperties(car)));
-
 var speed = 0;
 var speedI = 0;
 var lastSpeedI = 0;
@@ -139,8 +147,22 @@ Controller.keyPressEvent.connect(function(event) {
         steeringLeft = true;
     } else if (event.key == KEY_RIGHT) {
         steeringRight = true;
+    } else if (event.key == KEY_C) {
+        cameraHandler.nextCamera();
+    } else if (event.key == KEY_SPACE) {
+        var carProps = Entities.getEntityProperties(car);
+        Entities.addEntity({
+            type: "Model",
+            name: "Rocket",
+            position: Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: - 4})),
+            rotation: Quat.multiply(carProps.rotation, Quat.fromVec3Degrees({x: 270, y: 0, z: 0})),
+            dimensions: {x: 1.25, y: 2.56, z: 1.45},
+            modelURL: "https://dl.dropboxusercontent.com/u/10483952/tcar/rockett.fbx?123",
+            velocity: Vec3.multiplyQbyV(carProps.rotation ,{x: 0, y: 0, z: -10}),
+            damping: 0,
+            lifetime: 5
+        });
     }
-    //print(JSON.stringify(event));
 });
 Controller.keyReleaseEvent.connect(function(event) {
     if (event.key == KEY_UP) {
@@ -151,7 +173,6 @@ Controller.keyReleaseEvent.connect(function(event) {
     } else if (event.key == KEY_RIGHT) {
         steeringRight = false;
     }
-    //print(JSON.stringify(event));
 });
 
 var actionID = false;
@@ -171,7 +192,7 @@ Script.update.connect(function(time) {
     if (steeringRight && steeringOffset > -0.2) {
         steeringOffset -= time;
     }
-    //TODO: automatic turning back of wheels
+    //TODO: (optional) automatic turning back of steering wheel
     
 
     //steeringOffset -= 0.1;
@@ -179,7 +200,7 @@ Script.update.connect(function(time) {
         speedI = 0;
         soundLoopSwitcher.setSound(soundIdle);
     }
-   // print(-Math.log(1 + speedI, 0.1));
+    // print(-Math.log(1 + speedI, 0.1));
     cameraHandler.updateCamera(time, carProps);
     
     var newProperties = {};
