@@ -206,6 +206,7 @@ Script.update.connect(function(time) {
     var newProperties = {};
     if (speedI !== lastSpeedI) {
         newProperties.velocity = Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -Math.log(1 + speedI, 0.1)});
+        newProperties.velocity.y = carProps.velocity.y;
     }
     
     var angularVelocityY = Math.log(1 + speedI, 0.1) * steeringOffset;
