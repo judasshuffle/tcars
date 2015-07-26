@@ -5,33 +5,33 @@
     const WHEEL_LEFT_BACK = 2;
     const WHEEL_RIGHT_BACK = 3;
     const WHEEL_COUNT = 4;
-	
-	const MAX_DEGREES = 360;
 
-    const FRONT_AXLE_POSITION = {x: 0, y: -0.3, z: -2.6};
-    const BACK_AXLE_POSITION = {x: 0, y: -0.3, z: 0.6};
-    const FRONT_AXLE_LENGTH = 2.5;
-    const BACK_AXLE_LENGHT = 2.5;
+    const MAX_DEGREES = 360;
 
     const TIRE_SPIN_MULTIPLIER = 100;
 
-    this.entityID = null;
-    this.properties = null;
+    _this.entityID = null;
+    _this.properties = null;
 
-    this.sound = null;
-    this.wheels = [];
-    this.wheelSpin = 0;
+    _this.frontAxlePos = {x: 0, y: -0.3, z: -2.6};
+    _this.backAxlePos = {x: 0, y: -0.3, z: 0.6};
+    _this.frontAxleLength = 2.5;
+    _this.backAxleLength = 2.5;
+
+    _this.sound = null;
+    _this.wheels = [];
+    _this.wheelSpin = 0;
 
     var getPositionOffset = function(wheelIndex) {
         switch (wheelIndex) {
             case WHEEL_LEFT_FRONT:
-                return Vec3.sum(FRONT_AXLE_POSITION, {x: -FRONT_AXLE_LENGTH / 2});
+                return Vec3.sum(_this.frontAxlePos, {x: -_this.frontAxleLength / 2});
             case WHEEL_RIGHT_FRONT:
-                return Vec3.sum(FRONT_AXLE_POSITION, {x: FRONT_AXLE_LENGTH / 2});
+                return Vec3.sum(_this.frontAxlePos, {x: _this.frontAxleLength / 2});
             case WHEEL_LEFT_BACK:
-                return Vec3.sum(BACK_AXLE_POSITION, {x: -BACK_AXLE_LENGHT / 2});
+                return Vec3.sum(_this.backAxlePos, {x: -_this.backAxleLength / 2});
             case WHEEL_RIGHT_BACK:
-                return Vec3.sum(BACK_AXLE_POSITION, {x: BACK_AXLE_LENGHT / 2});
+                return Vec3.sum(_this.backAxlePos, {x: _this.backAxleLength / 2});
         }
         return {};
     }
@@ -52,10 +52,10 @@
 
     // All callbacks start by updating the properties
     _this.updateProperties = function(entityID) {
-        if (this.entityID === null) {
-            this.entityID = entityID;
+        if (_this.entityID === null) {
+            _this.entityID = entityID;
         }
-        this.properties = Entities.getEntityProperties(this.entityID);
+        _this.properties = Entities.getEntityProperties(_this.entityID);
     }
 
     // Get an entity's user data
@@ -68,7 +68,15 @@
             print("No user data found.");
             return null;
         }
-    }
+    };
+
+    _this.updateFromUserData = function() {
+        var userData = _this.getEntityUserData(_this.entityID);
+        _this.frontAxlePos = userData.frontAxlePos;
+        _this.backAxlePos = userData.backAxlePos;
+        _this.frontAxleLength = userData.frontAxleLength;
+        _this.backAxleLength = userData.backAxleLength;
+    };
  
     // Download sound if needed
     _this.maybeDownloadSound = function() {
@@ -87,6 +95,7 @@
     _this.firstTime = true;
     _this.preload = function(entityID) {
         this.updateProperties(entityID); // All callbacks start by updating the properties
+        _this.updateFromUserData();
         this.maybeDownloadSound();
         if (this.firstTime) {
             this.firstTime = false;
@@ -97,6 +106,7 @@
             Script.update.connect(_this.updateWheels);
         }
     }
+
     _this.unload = function(entityID) {
         print("unloaded" + entityID);
         if (_this.wheels.length > 0) {

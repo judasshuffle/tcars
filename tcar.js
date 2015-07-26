@@ -21,6 +21,12 @@ const STATE_DRIVING = 2;
 const STATE_RACING = 3;
 const STATE_GAMEOVER = 4;
 
+const WHEEL_LEFT_FRONT = 0;
+const WHEEL_RIGHT_FRONT = 1;
+const WHEEL_LEFT_BACK = 2;
+const WHEEL_RIGHT_BACK = 3;
+const WHEEL_COUNT = 4;
+
 const CAMERA_CAR_TOPVIEW = 0;
 const CAMERA_CAR_HOOD = 1;
 const CAMERA_CAR_MIRROR = 2;
@@ -38,12 +44,14 @@ const CAR_SELECTOR_ROT_OFFSET = 10;
 const CAR_SELECTOR_TURN_SPEED = 30;
 const CAR_SELECTOR_ROT_SPEED = 2;
 
+const DEFAULT_REGISTRATION_POINT = {x: 0.5, y: 0.5, z: 0.5};
+
 const START_LOCATION = {pos: {x: 7969.8955078125, y: 7909.921875, z: 7788.82763671875}, rot: {x: 0, y: -0.8411639928817749, z: 0, w: 0.5407801270484924}};
 
-const SPEED_FORWARD = 5;
-const SPEED_BRAKES = 15;
+const SPEED_FORWARD = 500;
+const SPEED_BRAKES = 1015;
 
-const SOUND_FOLDER_URL = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcar/";
+const SOUND_FOLDER_URL = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/";
 
 const SOUND = false;
 
@@ -55,33 +63,63 @@ const ANTIN = -9000;
 const VEHICLES = [
 {
     name: "The red one",
-    modelFile: "Tcarchassis.fbx?v=5",
+    modelFile: "Tcarchassis.fbx",
     dimensions: {x: 2.0, y: 1.5, z: 4.4},
+    registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
+    frontAxlePos: {x: 0, y: -0.3, z: -2.6},
+    backAxlePos: {x: 0, y: -0.3, z: 0.6},
+    frontAxleLength: 2.5,
+    backAxleLength: 2.5
 },
 {
     name: "BBCar",
-    modelFile: "BBCAR.fbx?v=3",
+    modelFile: "BBCAR.fbx",
     dimensions: {x: 2.0, y: 1.5, z: 4.4},
+    registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
+    frontAxlePos: {x: 0, y: -0.3, z: -2.6},
+    backAxlePos: {x: 0, y: -0.3, z: 0.6},
+    frontAxleLength: 2.5,
+    backAxleLength: 2.5
 },
 {
     name: "Wolf car",
-    modelFile: "wolfcar.fbx?123223",
+    modelFile: "wolfcar.fbx",
     dimensions: {x: 4.73, y: 2.26, z: 5.61},
+    registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
+    frontAxlePos: {x: 0, y: -1.6, z: -2.6},
+    backAxlePos: {x: 0, y: -1.6, z: 0.6},
+    frontAxleLength: 2.5,
+    backAxleLength: 2.5
 },
 {
     name: "Cat",
-    modelFile: "cat.fbx?123223",
+    modelFile: "cat.fbx",
     dimensions: {x: 2.0, y: 1.5, z: 4.4},
+    registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
+    frontAxlePos: {x: 0, y: -0.3, z: -2.6},
+    backAxlePos: {x: 0, y: -0.3, z: 0.6},
+    frontAxleLength: 2.5,
+    backAxleLength: 2.5
 },
 {
     name: "Van the Hand",
-    modelFile: "vanthehand.fbx?v=5",
+    modelFile: "vanthehand.fbx",
     dimensions: {x: 4.80, y: 6.74, z: 5.37},
+    registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
+    frontAxlePos: {x: 0, y: -0.3, z: -2.6},
+    backAxlePos: {x: 0, y: -0.3, z: 0.6},
+    frontAxleLength: 2.5,
+    backAxleLength: 2.5
 },
 {
     name: "Shoe",
-    modelFile: "SHOE.fbx?23",
-    dimensions: {x: 2.89, y: 4.35, z: 5.75}
+    modelFile: "SHOE.fbx",
+    dimensions: {x: 2.89, y: 4.35, z: 5.75},
+    registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
+    frontAxlePos: {x: 0, y: -1.65, z: -2.6},
+    backAxlePos: {x: 0, y: -1.65, z: 0.6},
+    frontAxleLength: 2.5,
+    backAxleLength: 2.5
 }
 ];
 
@@ -149,6 +187,61 @@ function mixFloats(float1, float2, mixValue) {
     return float1 + ((float2 - float1) * mixValue);
 }
 
+CarSelectorWheel = function(selectableCar, wheelIndex) {
+    var _this = this;
+    _this.selectableCar = selectableCar;
+    _this.wheelIndex = wheelIndex;
+    var getPositionOffset = function() {
+        switch (_this.wheelIndex) {
+            case WHEEL_LEFT_FRONT:
+                return Vec3.sum(_this.selectableCar.vehicle.frontAxlePos, {x: -_this.selectableCar.vehicle.frontAxleLength / 2});
+            case WHEEL_RIGHT_FRONT:
+                return Vec3.sum(_this.selectableCar.vehicle.frontAxlePos, {x: _this.selectableCar.vehicle.frontAxleLength / 2});
+            case WHEEL_LEFT_BACK:
+                return Vec3.sum(_this.selectableCar.vehicle.backAxlePos, {x: -_this.selectableCar.vehicle.backAxleLength / 2});
+            case WHEEL_RIGHT_BACK:
+                return Vec3.sum(_this.selectableCar.vehicle.backAxlePos, {x: _this.selectableCar.vehicle.backAxleLength / 2});
+        }
+        return {};
+    };
+    var getRotationOffset = function() {
+        switch (_this.wheelIndex) {
+            case WHEEL_LEFT_FRONT:
+          //      return Quat.fromPitchYawRollDegrees(/*_this.wheelSpin % MAX_DEGREES, -_this.properties.angularVelocity.y * 50*/ 0, 0, 180);
+            case WHEEL_LEFT_BACK:
+                return Quat.fromPitchYawRollDegrees(/*_this.wheelSpin % MAX_DEGREES*/ 0, 0, 180);
+            case WHEEL_RIGHT_FRONT:
+           //     return Quat.fromPitchYawRollDegrees(/*MAX_DEGREES - (_this.wheelSpin % MAX_DEGREES), _this.properties.angularVelocity.y * 50*/ 0, 0, 0);
+            case WHEEL_RIGHT_BACK:
+                return Quat.fromPitchYawRollDegrees(/*MAX_DEGREES - (_this.wheelSpin % MAX_DEGREES)*/ 0, 0, 0);
+        }
+        return {};
+    };
+    var vehicleRegPoint = _this.selectableCar.vehicle.registrationPoint;
+    _this.positionOffset = Vec3.sum(getPositionOffset(), {
+        x: ((vehicleRegPoint.x - DEFAULT_REGISTRATION_POINT.x) * 4),
+        y: ((vehicleRegPoint.y - DEFAULT_REGISTRATION_POINT.y) * 4),
+        z: ((vehicleRegPoint.z - DEFAULT_REGISTRATION_POINT.z) * 4)
+    });
+    _this.rotationOffset = getRotationOffset();
+    
+    _this.overlay = Overlays.addOverlay("model", {
+        url: "https://dl.dropboxusercontent.com/u/10483952/tcar/Twheel.fbx",
+        dimensions: 0,
+        //position: wheelPos, dimensions: {x: 0.63, y: 0.99, z:0.99},
+        //rotation: this.properties.rotation
+    });
+
+    _this.update = function(carPosition) {
+      // print(JSON.stringify(carPosition));
+        Overlays.editOverlay(_this.overlay, {position: Vec3.sum(carPosition, Vec3.multiplyQbyV(_this.selectableCar.rotation, _this.positionOffset)), rotation: Quat.multiply(_this.selectableCar.rotation, _this.rotationOffset)});
+    };
+
+    this.cleanup = function() {
+        Overlays.deleteOverlay(_this.overlay);
+    };
+};
+
 CarSelector = function() {
     var _this = this;
     _this.selectedCar = 0;
@@ -163,17 +256,22 @@ CarSelector = function() {
             selectableCar.overlay = Overlays.addOverlay("model", {
                 url: MODEL_FOLDER_URL + selectableCar.vehicle.modelFile + "?v=" + (new Date()).getTime(),
                 position: Vec3.sum(CAR_SELECTOR_CENTER, {x: 0, y: selectableCar.vehicle.dimensions.y / 2, z: 0}),
-                dimensions: selectableCar.vehicle.dimensions
+                dimensions: selectableCar.vehicle.dimensions,
+                visible: true
+                //scale: 0.01///alpha: 0.5
             });
+            selectableCar.wheels = [];
+            for (var j = 0; j < WHEEL_COUNT; j++) {
+                //var wheelPos = Vec3.sum(this.properties.position, Vec3.multiplyQbyV(this.properties.rotation, getPositionOffset(i)));
+                selectableCar.wheels[j] = new CarSelectorWheel(selectableCar, j);
+            }            
             _this.selectableCars.push(selectableCar);
         }
         _this.carTitleOverlay = Overlays.addOverlay("text", {
             x: 200,
             y: 200,
-           // dimensions: selectableCar.vehicle.dimensions
             width: 1000,
             height: 200,
-            text: "THERE IT IS",
             textColor: {red: 0, green: 0, blue: 0},
             alpha: 1,
             backgroundAlpha: 0,
@@ -234,17 +332,24 @@ CarSelector = function() {
                 newProperties.rotation = selectableCar.rotation;
             }
             Overlays.editOverlay(selectableCar.overlay, newProperties);
+            for (var i = 0; i < selectableCar.wheels.length; i++) {
+                selectableCar.wheels[i].update(newProperties.position);
+            }            
         });
     };
 
     _this.cleanup = function() {
         _this.selectableCars.forEach(function(selectableCar, index, object) {
             Overlays.deleteOverlay(selectableCar.overlay);
+            for (var i = 0; i < selectableCar.wheels.length; i++) {
+                selectableCar.wheels[i].cleanup();
+            }  
         });
         Overlays.deleteOverlay(_this.carTitleOverlay);
         _this.selectableCars = [];
     };
 };
+
 SoundLoopSwitcher = function() {
     this.sound = null;
     this.injector = null;
@@ -275,10 +380,8 @@ carSelector.init();
 var cameraHandler = new CameraHandler();
 var soundLoopSwitcher = new SoundLoopSwitcher();
 soundLoopSwitcher.setSound(soundIdle);
+
 // part 0 - the chassis
-
-
-
 var speed = 0;
 var speedI = 0;
 var lastSpeedI = 0;
@@ -311,11 +414,15 @@ function handleDrivingKeyPress(event) {
         Entities.addEntity({
             type: "Model",
             name: "Rocket",
+            shapeType: "sphere",
+            collisionsWillMove: true,
+            ignoreForCollisions: false,
             position: Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: - 4})),
             rotation: Quat.multiply(carProps.rotation, Quat.fromVec3Degrees({x: 270, y: 0, z: 0})),
             dimensions: {x: 1.25, y: 2.56, z: 1.45},
             modelURL: "https://dl.dropboxusercontent.com/u/10483952/tcar/rockett.fbx?123",
             velocity: Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -10}),
+            angularVelocity: Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: 20}),
             damping: 0,
             lifetime: 5
         });
@@ -337,19 +444,25 @@ Controller.keyPressEvent.connect(function(event) {
                 type: "Model",
                 modelURL: MODEL_FOLDER_URL + selectedCar.vehicle.modelFile,
                 shapeType: "box",
-                name: "TCarModel-" + selectedCar.vehicle.name + "?v=" + (new Date()).getTime(),
-                rotation: MyAvatar.orientation,
-                position: Vec3.sum(MyAvatar.position, {x: 2}),
+                name: "TCarModel-" + selectedCar.vehicle.name,
+                rotation: START_LOCATION.rot,//MyAvatar.orientation,
+                position: START_LOCATION.pos,//Vec3.sum(MyAvatar.position, {x: 2}),
                 color: {red: 0, green: 255, blue: 0},
                 dimensions: selectedCar.vehicle.dimensions,
                 collisionsWillMove: true,
                 ignoreForCollisions: false,
                 gravity: {x: 0, y: -9.81, z: 0},
-                script: "https://dl.dropboxusercontent.com/u/14997455/hifi/tcar/tcarEntityScript.js?v=" + (new Date()).getTime(),
+                script: "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/tcarEntityScript.js?v=" + (new Date()).getTime(),
                 density: 4000,
                 damping: 0,
                 angularDamping: 0,
-                registrationPoint: {x: 0.5, y: 0.5, z: 0.8}
+                registrationPoint: selectedCar.vehicle.registrationPoint,
+                userData: JSON.stringify({
+                    frontAxlePos: selectedCar.vehicle.frontAxlePos,
+                    backAxlePos: selectedCar.vehicle.backAxlePos,
+                    frontAxleLength: selectedCar.vehicle.frontAxleLength,
+                    backAxleLength: selectedCar.vehicle.backAxleLength
+                })
                // collisionSoundURL: "https://dl.dropboxusercontent.com/u/14997455/hifi/tcar/collision.wav?v=2"
             });
             state = STATE_DRIVING;
@@ -398,7 +511,7 @@ function updateCar(time) {
     
     var newProperties = {};
     if (speedI !== lastSpeedI) {
-        newProperties.velocity = Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -Math.log(1 + speedI, 0.1)});
+        newProperties.velocity = Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -Math.log(1 + speedI, 0.3)});
         newProperties.velocity.y = carProps.velocity.y;
     }
     
