@@ -161,7 +161,7 @@ CarSelector = function() {
         for (var i = 0; i < VEHICLES.length; i++) {
             var selectableCar = {vehicle: VEHICLES[i], rotation: {x: 0, y: 0, z: 0, w: 1}, currentDegrees: 0};
             selectableCar.overlay = Overlays.addOverlay("model", {
-                url: MODEL_FOLDER_URL + selectableCar.vehicle.modelFile,
+                url: MODEL_FOLDER_URL + selectableCar.vehicle.modelFile + "?v=" + (new Date()).getTime(),
                 position: Vec3.sum(CAR_SELECTOR_CENTER, {x: 0, y: selectableCar.vehicle.dimensions.y / 2, z: 0}),
                 dimensions: selectableCar.vehicle.dimensions
             });
@@ -337,7 +337,7 @@ Controller.keyPressEvent.connect(function(event) {
                 type: "Model",
                 modelURL: MODEL_FOLDER_URL + selectedCar.vehicle.modelFile,
                 shapeType: "box",
-                name: "TCarModel-" + selectedCar.vehicle.name,
+                name: "TCarModel-" + selectedCar.vehicle.name + "?v=" + (new Date()).getTime(),
                 rotation: MyAvatar.orientation,
                 position: Vec3.sum(MyAvatar.position, {x: 2}),
                 color: {red: 0, green: 255, blue: 0},
