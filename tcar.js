@@ -345,7 +345,7 @@ Controller.keyPressEvent.connect(function(event) {
                 collisionsWillMove: true,
                 ignoreForCollisions: false,
                 gravity: {x: 0, y: -9.81, z: 0},
-                script: "https://dl.dropboxusercontent.com/u/14997455/hifi/tcar/tcarEntityScript10.js?v=" + (new Date()).getTime(),
+                script: "https://dl.dropboxusercontent.com/u/14997455/hifi/tcar/tcarEntityScript.js?v=" + (new Date()).getTime(),
                 density: 4000,
                 damping: 0,
                 angularDamping: 0,
