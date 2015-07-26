@@ -184,20 +184,6 @@ CarSelector = function() {
         _this.selectedCar = (_this.selectedCar + (_this.selectableCars.length - 1)) % _this.selectableCars.length;
         _this.updateCarSelectionText();
     };
-/*
-    function mixDegreesTowards(currentRotation, targetRotation, mixValue) {
-        if (mixValue > 1.0) {
-            mixValue = 1.0;
-        }
-        if (((currentRotation - targetRotation) + MAX_DEGREES) > ((targetRotation - currentRotation) + MAX_DEGREES)) {
-            print("LEFT");
-            return "wut";
-        }
-        print("RIGHT")
-
-        return currentRotation + ((targetRotation - currentRotation) * mixValue);
-    }
-*/
 
     _this.updateCarSelectionText = function() {
         _this.setSelectionText(_this.selectableCars[_this.selectedCar].vehicle.name)
