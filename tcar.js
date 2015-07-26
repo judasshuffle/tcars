@@ -31,12 +31,14 @@ const CAMERA_CAR_FIXED_WORLD = 6;
 const CAMERA_CAR_SELECTOR = 7;
 
 const CAR_SELECTOR_CAM_POS = {x: 7942.3974609375, y: 7919.84716796875, z: 7778.14501953125};
-const CAR_SELECTOR_CAM_ROT = {x: -0.030600588768720627, y: 0.9688771367073059, z: 0.18906143307685852, w: 0.15683221817016602};
+//const CAR_SELECTOR_CAM_ROT = {x: -0.030600588768720627, y: 0.9688771367073059, z: 0.18906143307685852, w: 0.15683221817016602};
 const CAR_SELECTOR_CENTER = {x: 7937.99, y: 7913.61, z: 7801.6};
 const CAR_SELECTOR_RADIUS = -9.5;
-const CAR_SELECTOR_ROT_OFFSET = 25;
+const CAR_SELECTOR_ROT_OFFSET = 10;
 const CAR_SELECTOR_TURN_SPEED = 30;
 const CAR_SELECTOR_ROT_SPEED = 2;
+
+const START_LOCATION = {pos: {x: 7969.8955078125, y: 7909.921875, z: 7788.82763671875}, rot: {x: 0, y: -0.8411639928817749, z: 0, w: 0.5407801270484924}};
 
 const SPEED_FORWARD = 5;
 const SPEED_BRAKES = 15;
@@ -62,20 +64,25 @@ const VEHICLES = [
     dimensions: {x: 2.0, y: 1.5, z: 4.4},
 },
 {
-    name: "wolf cAR",
+    name: "Wolf car",
     modelFile: "wolfcar.fbx?123223",
-    dimensions: {x: 2.0, y: 1.5, z: 4.4},
+    dimensions: {x: 4.73, y: 2.26, z: 5.61},
 },
 {
-    name: "cAT",
+    name: "Cat",
     modelFile: "cat.fbx?123223",
     dimensions: {x: 2.0, y: 1.5, z: 4.4},
 },
 {
     name: "Van the Hand",
     modelFile: "vanthehand.fbx?v=5",
-    dimensions: {x: 2.0, y: 1.5, z: 4.4},
+    dimensions: {x: 4.80, y: 6.74, z: 5.37},
 },
+{
+    name: "Shoe",
+    modelFile: "SHOE.fbx?23",
+    dimensions: {x: 2.89, y: 4.35, z: 5.75}
+}
 ];
 
 var car = null;
@@ -119,7 +126,7 @@ CameraHandler = function() {
             Camera.lookAt(carProps.position);
         } else if (_this.stance === CAMERA_CAR_SELECTOR) {
             Camera.position = CAR_SELECTOR_CAM_POS;
-            Camera.orientation = CAR_SELECTOR_CAM_ROT;
+            Camera.lookAt(CAR_SELECTOR_CENTER);
         }
     };
 
@@ -155,7 +162,7 @@ CarSelector = function() {
             var selectableCar = {vehicle: VEHICLES[i], rotation: {x: 0, y: 0, z: 0, w: 1}, currentDegrees: 0};
             selectableCar.overlay = Overlays.addOverlay("model", {
                 url: MODEL_FOLDER_URL + selectableCar.vehicle.modelFile,
-                position: CAR_SELECTOR_CENTER,
+                position: Vec3.sum(CAR_SELECTOR_CENTER, {x: 0, y: selectableCar.vehicle.dimensions.y / 2, z: 0}),
                 dimensions: selectableCar.vehicle.dimensions
             });
             _this.selectableCars.push(selectableCar);
@@ -220,7 +227,7 @@ CarSelector = function() {
         _this.selectableCars.forEach(function(selectableCar, index, object) {
             var rotationOffset = Quat.fromPitchYawRollDegrees(0.0, (index * degreesPerCar) - _this.carouselRot, 0.0);
             var newProperties = {
-                position: Vec3.sum(CAR_SELECTOR_CENTER, Vec3.multiplyQbyV(rotationOffset, radiusOffset))
+                position: Vec3.sum(Vec3.sum(CAR_SELECTOR_CENTER, Vec3.multiplyQbyV(rotationOffset, radiusOffset)), {x: 0, y: selectableCar.vehicle.dimensions.y / 2, z: 0})
             };
             if (index == _this.selectedCar) {
                 selectableCar.rotation = Quat.multiply(selectableCar.rotation, Quat.fromVec3Degrees({x: 0, y: CAR_SELECTOR_TURN_SPEED * time, z: 0}));
@@ -298,7 +305,7 @@ function handleDrivingKeyPress(event) {
     } else if (event.key == KEY_RIGHT) {
         steeringRight = true;
     } else if (event.key == KEY_C) {
-        cameraHandler.nextCamera();
+        event.isShifted ? cameraHandler.prevCamera() : cameraHandler.nextCamera();
     } else if (event.key == KEY_SPACE) {
         var carProps = Entities.getEntityProperties(car);
         Entities.addEntity({
@@ -328,7 +335,7 @@ Controller.keyPressEvent.connect(function(event) {
             var selectedCar = carSelector.selectableCars[carSelector.selectedCar];
             car = Entities.addEntity({
                 type: "Model",
-                modelURL: MODEL_FOLDER_URL + selectedCar.vehicle.modelFile,//"https://dl.dropboxusercontent.com/u/10483952/tcar/Tcarchassis.fbx?v=5",
+                modelURL: MODEL_FOLDER_URL + selectedCar.vehicle.modelFile,
                 shapeType: "box",
                 name: "TCarModel-" + selectedCar.vehicle.name,
                 rotation: MyAvatar.orientation,
