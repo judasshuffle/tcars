@@ -218,17 +218,9 @@ CarSelector = function() {
         currentRotation = normalizeDegrees(currentRotation);
         var leftDistance = normalizeDegrees(currentRotation - targetRotation);
         var rightDistance = normalizeDegrees(targetRotation - currentRotation);
-
-        //var someText = "cur = " + currentRotation + "\ntargetRotation = " + targetRotation + "\nmix = " + mixValue;
-        //console.log(((currentRotation - targetRotation) + MAX_DEGREES) % 360);
-        //console.log(((targetRotation - currentRotation) + MAX_DEGREES) % 360);
         if (leftDistance < rightDistance) {
-            //console.log("LEFT");
-            //_this.setSelectionText("LEFT\n" + someText + "\n" +  (currentRotation - ((currentRotation - targetRotation) * mixValue)));
-            return currentRotation - (leftDistance * mixValue);//- ((currentRotation - targetRotation) * mixValue);
+            return currentRotation - (leftDistance * mixValue);
         }
-        //_this.setSelectionText("RIGHT\n" + someText + "\n" + (currentRotation + ((targetRotation - currentRotation) * mixValue)));
-        //console.log("RIGHT")
         return currentRotation + (rightDistance * mixValue);
     }  
 
@@ -240,11 +232,6 @@ CarSelector = function() {
         _this.carouselRot = mixDegreesTowards(_this.carouselRot, _this.carouselTargetRot, time * CAR_SELECTOR_ROT_SPEED);
 
         _this.selectableCars.forEach(function(selectableCar, index, object) {
-            // var carIndexOffset = (index - _this.selectedCar + _this.selectableCars.length - 1) % _this.selectableCars.length;
-            // var rotationOffset = Quat.fromPitchYawRollDegrees(0.0, (carIndexOffset * degreesPerCar) + CAR_SELECTOR_ROT_OFFSET, 0.0);
-            // selectableCar.targetDegrees = (carIndexOffset * degreesPerCar) + CAR_SELECTOR_ROT_OFFSET;
-            // selectableCar.currentDegrees = mixFloats(selectableCar.currentDegrees, selectableCar.targetDegrees, time * CAR_SELECTOR_ROT_SPEED);
-            // print(index + " " + selectableCar.currentDegrees);
             var rotationOffset = Quat.fromPitchYawRollDegrees(0.0, (index * degreesPerCar) - _this.carouselRot, 0.0);
             var newProperties = {
                 position: Vec3.sum(CAR_SELECTOR_CENTER, Vec3.multiplyQbyV(rotationOffset, radiusOffset))
@@ -410,13 +397,10 @@ function updateCar(time) {
     }
     //TODO: (optional) automatic turning back of steering wheel
     
-
-    //steeringOffset -= 0.1;
     if (speedI < 0) {
         speedI = 0;
         soundLoopSwitcher.setSound(soundIdle);
     }
-    // print(-Math.log(1 + speedI, 0.1));
     cameraHandler.updateCamera(time, carProps);
     
     var newProperties = {};
@@ -427,21 +411,13 @@ function updateCar(time) {
     
     var angularVelocityY = Math.log(1 + speedI, 0.1) * steeringOffset;
     if (angularVelocityY !== lastAngularVelocityY) {
-        // Math.log(1 + speedI, 0.1) * steeringOffset;
         lastAngularVelocityY = angularVelocityY;
         newProperties.angularVelocity = {x: 0.0, y: angularVelocityY, z: 0.0};
     }
-    //newProperties.angularVelocity = {x: 0.0, y: Math.log(1 + speedI, 0.1) * steeringOffset, z: 0.0};
     
     if (Object.keys(newProperties).length > 0) {
         Entities.editEntity(car, newProperties);
     }
-    /*var actionArgs = {targetPosition: Vec3.sum(carProps, {x: 0, y: 0, z: -Math.log(1 + speedI, 0.1)}), linearTimeScale: 0.1};
-    if (!actionID) {
-        actionID = Entities.addAction("spring", car, actionArgs);
-    } else {
-        Entities.updateAction(car, actionID, actionArgs);
-    }*/
 }
 
 Script.update.connect(function(time) {
