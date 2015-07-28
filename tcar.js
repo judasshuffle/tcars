@@ -53,7 +53,7 @@ const SPEED_BRAKES = 1015;
 
 const SOUND_FOLDER_URL = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/";
 
-const SOUND = false;
+const SOUND = true;
 
 const MODEL_FOLDER_URL = "https://dl.dropboxusercontent.com/u/10483952/tcar/";
 
@@ -86,8 +86,8 @@ const VEHICLES = [
     modelFile: "wolfcar.fbx",
     dimensions: {x: 4.73, y: 2.26, z: 5.61},
     registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
-    frontAxlePos: {x: 0, y: -1.6, z: -2.6},
-    backAxlePos: {x: 0, y: -1.6, z: 0.6},
+    frontAxlePos: {x: 0, y: -0.7, z: -2.6},
+    backAxlePos: {x: 0, y: -0.7, z: 0.6},
     frontAxleLength: 2.5,
     backAxleLength: 2.5
 },
