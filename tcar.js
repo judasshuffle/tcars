@@ -1,4 +1,4 @@
-// car script 1.0 © thoys 2015
+// car script 1.0 Â© thoys 2015
 // no refunds
 // Audio effects by Konstantin
 // Models by Judas
@@ -113,14 +113,15 @@ const VEHICLES = [
 },
 {
     name: "Shoe",
-    modelFile: "SHOE.fbx",
-    dimensions: {x: 2.89, y: 4.35, z: 5.75},
-    registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
-    frontAxlePos: {x: 0, y: -1.65, z: -2.6},
-    backAxlePos: {x: 0, y: -1.65, z: 0.6},
+    modelFile: "SHOE1.fbx?",
+    dimensions: {x: 1.89, y: 4.34, z: 5.74},
+    registrationPoint: {x: 0.5, y: 0.4, z: 0.75},
+    frontAxlePos: {x: 0, y: -1.65, z: -3.2},
+    backAxlePos: {x: 0.0, y: -1.65, z: -0.5}, // x is across y is up and down z is forward back.
     frontAxleLength: 2.5,
     backAxleLength: 2.5
-}
+},
+
 ];
 
 var car = null;
