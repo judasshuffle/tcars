@@ -75,9 +75,9 @@ const VEHICLES = [
     name: "BBCar",
     modelFile: "BBCAR.fbx",
     dimensions: {x: 2.0, y: 1.5, z: 4.4},
-    registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
+    registrationPoint: {x: 0.5, y: 0.4, z: 0.8},
     frontAxlePos: {x: 0, y: -0.3, z: -2.6},
-    backAxlePos: {x: 0, y: -0.3, z: 0.6},
+    backAxlePos: {x: 0, y: -0.3, z: 0.2},
     frontAxleLength: 2.5,
     backAxleLength: 2.5
 },
