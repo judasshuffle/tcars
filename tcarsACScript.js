@@ -9,6 +9,8 @@ var elementCount = 0;
 var y = 8103.1005859375;
 var vantagePoint = {"x":8040.73046875,"y":y,"z":7730.63916015625}; //{x: 8000, y: 8000, z: 8000};
 
+for( i in Entities) {print(i)}
+Entities.setPacketsPerSecond(60);
 EntityViewer.setPosition(vantagePoint);
 EntityViewer.setOrientation(Quat.fromPitchYawRollDegrees(0, 0, 0));
 EntityViewer.getBoundaryLevelAdjust(20000);
