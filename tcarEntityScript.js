@@ -1,5 +1,6 @@
 (function() {
     var _this = this;
+    const MODEL_FOLDER_URL = "https://dl.dropboxusercontent.com/u/10483952/tcar/";
     const WHEEL_LEFT_FRONT = 0;
     const WHEEL_RIGHT_FRONT = 1;
     const WHEEL_LEFT_BACK = 2;
@@ -13,6 +14,7 @@
     _this.entityID = null;
     _this.properties = null;
 
+    _this.wheelModel = "Twheel.fbx"
     _this.frontAxlePos = {x: 0, y: -0.3, z: -2.6};
     _this.backAxlePos = {x: 0, y: -0.3, z: 0.6};
     _this.frontAxleLength = 2.5;
@@ -72,6 +74,7 @@
 
     _this.updateFromUserData = function() {
         var userData = _this.getEntityUserData(_this.entityID);
+        _this.wheelModel = userData.wheelModel;
         _this.frontAxlePos = userData.frontAxlePos;
         _this.backAxlePos = userData.backAxlePos;
         _this.frontAxleLength = userData.frontAxleLength;
@@ -101,7 +104,7 @@
             this.firstTime = false;
             for (var i = 0; i < WHEEL_COUNT; i++) {
                 var wheelPos = Vec3.sum(this.properties.position, Vec3.multiplyQbyV(this.properties.rotation, getPositionOffset(i)));
-                _this.wheels[i] = Overlays.addOverlay("model", {url: "https://dl.dropboxusercontent.com/u/10483952/tcar/Twheel.fbx", position: wheelPos, dimensions: {x: 0.63, y: 0.99, z:0.99}, rotation: this.properties.rotation});               
+                _this.wheels[i] = Overlays.addOverlay("model", {url: MODEL_FOLDER_URL + _this.wheelModel, position: wheelPos, dimensions: {x: 0.63, y: 0.99, z:0.99}, rotation: this.properties.rotation});               
             }
             Script.update.connect(_this.updateWheels);
         }

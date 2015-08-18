@@ -64,6 +64,7 @@ const VEHICLES = [
 {
     name: "The collioner",
     modelFile: "carcolission.obj",
+    wheelModel: "Twheel.fbx",
     collisionModel: "carcolission.obj",
     dimensions: {x: 2.33, y: 1.68, z: 2.48},
     registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
@@ -75,6 +76,7 @@ const VEHICLES = [
 {
     name: "The red one",
     modelFile: "Tcarchassis.fbx",
+    wheelModel: "Twheel.fbx",
     dimensions: {x: 2.0, y: 1.5, z: 4.4},
     registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
     frontAxlePos: {x: 0, y: -0.3, z: -2.6},
@@ -85,6 +87,7 @@ const VEHICLES = [
 {
     name: "BBCar",
     modelFile: "BBCAR.fbx",
+    wheelModel: "Twheel.fbx",
     dimensions: {x: 3.21, y: 1.92, z: 4.39},
     registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
     frontAxlePos: {x: 0, y: -0.3, z: -2.6},
@@ -95,6 +98,7 @@ const VEHICLES = [
 {
     name: "Wolf car",
     modelFile: "wolfcar.fbx",
+    wheelModel: "Twheel.fbx",
     dimensions: {x: 4.73, y: 2.26, z: 5.61},
     registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
     frontAxlePos: {x: 0, y: -0.7, z: -2.6},
@@ -105,6 +109,7 @@ const VEHICLES = [
 {
     name: "Cat",
     modelFile: "cat.fbx",
+    wheelModel: "Twheel.fbx",
     dimensions: {x: 3.93, y: 2.73, z: 5.81},
     registrationPoint: {x: 0.5, y: 0.3, z: 0.8},
     frontAxlePos: {x: 0, y: -0.3, z: -3.0},
@@ -115,6 +120,7 @@ const VEHICLES = [
 {
     name: "Van the Hand",
     modelFile: "vanthehand.fbx",
+    wheelModel: "Twheel.fbx",
     dimensions: {x: 4.80, y: 6.74, z: 5.37},
     registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
     frontAxlePos: {x: 0, y: -0.3, z: -2.6},
@@ -125,6 +131,7 @@ const VEHICLES = [
 {
     name: "Shoe",
     modelFile: "SHOE1.fbx",
+    wheelModel: "Twheel.fbx",
     dimensions: {x: 1.89, y: 4.34, z: 5.74},
     registrationPoint: {x: 0.5, y: 0.4, z: 0.75},
     frontAxlePos: {x: 0, y: -1.65, z: -3.2},
@@ -135,6 +142,7 @@ const VEHICLES = [
 {
     name: "Chaircar (BY FRAN)",
     modelFile: "Chaircar.fbx",
+    wheelModel: "Twheel.fbx",
     dimensions: {x: 1.89, y: 4.34, z: 5.74},
     registrationPoint: {x: 0.5, y: 0.4, z: 0.75},
     frontAxlePos: {x: 0, y: -1.65, z: -3.2},
@@ -287,7 +295,7 @@ CarSelectorWheel = function(selectableCar, wheelIndex) {
     _this.rotationOffset = getRotationOffset();
     
     _this.overlay = Overlays.addOverlay("model", {
-        url: "https://dl.dropboxusercontent.com/u/10483952/tcar/Twheel.fbx",
+        url: MODEL_FOLDER_URL + _this.selectableCar.vehicle.wheelModel,
         dimensions: 0,
         //position: wheelPos, dimensions: {x: 0.63, y: 0.99, z:0.99},
         //rotation: this.properties.rotation
@@ -481,7 +489,7 @@ function handleDrivingKeyPress(event) {
             position: Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: - 4})),
             rotation: Quat.multiply(carProps.rotation, Quat.fromVec3Degrees({x: 270, y: 0, z: 0})),
             dimensions: {x: 1.25, y: 2.56, z: 1.45},
-            modelURL: "https://dl.dropboxusercontent.com/u/10483952/tcar/rockett.fbx?123",
+            modelURL: MODEL_FOLDER_URL + "rockett.fbx?123",
             velocity: Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -10}),
             angularVelocity: Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: 20}),
             damping: 0,
@@ -519,6 +527,7 @@ Controller.keyPressEvent.connect(function(event) {
                 angularDamping: 0,
                 registrationPoint: selectedCar.vehicle.registrationPoint,
                 userData: JSON.stringify({
+                    wheelModel: selectedCar.vehicle.wheelModel,
                     frontAxlePos: selectedCar.vehicle.frontAxlePos,
                     backAxlePos: selectedCar.vehicle.backAxlePos,
                     frontAxleLength: selectedCar.vehicle.frontAxleLength,
