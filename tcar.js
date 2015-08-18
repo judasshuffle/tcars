@@ -53,7 +53,7 @@ const SPEED_BRAKES = 1015;
 
 const SOUND_FOLDER_URL = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/";
 
-const SOUND = true;
+const SOUND = false;
 
 const MODEL_FOLDER_URL = "https://dl.dropboxusercontent.com/u/10483952/tcar/";
 
@@ -61,6 +61,17 @@ const MODEL_FOLDER_URL = "https://dl.dropboxusercontent.com/u/10483952/tcar/";
 const ANTIN = -9000;
 
 const VEHICLES = [
+{
+    name: "The collioner",
+    modelFile: "carcolission.obj",
+    collisionModel: "carcolission.obj",
+    dimensions: {x: 2.33, y: 1.68, z: 2.48},
+    registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
+    frontAxlePos: {x: 0, y: -0.3, z: -2.6},
+    backAxlePos: {x: 0, y: -0.3, z: 0.6},
+    frontAxleLength: 2.5,
+    backAxleLength: 2.5
+},
 {
     name: "The red one",
     modelFile: "Tcarchassis.fbx",
@@ -74,8 +85,8 @@ const VEHICLES = [
 {
     name: "BBCar",
     modelFile: "BBCAR.fbx",
-    dimensions: {x: 2.0, y: 1.5, z: 4.4},
-    registrationPoint: {x: 0.5, y: 0.4, z: 0.8},
+    dimensions: {x: 3.21, y: 1.92, z: 4.39},
+    registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
     frontAxlePos: {x: 0, y: -0.3, z: -2.6},
     backAxlePos: {x: 0, y: -0.3, z: 0.2},
     frontAxleLength: 2.5,
@@ -94,7 +105,7 @@ const VEHICLES = [
 {
     name: "Cat",
     modelFile: "cat.fbx",
-    dimensions: {x: 2.0, y: 1.5, z: 4.4},
+    dimensions: {x: 3.93, y: 2.73, z: 5.81},
     registrationPoint: {x: 0.5, y: 0.3, z: 0.8},
     frontAxlePos: {x: 0, y: -0.3, z: -3.0},
     backAxlePos: {x: 0, y: -0.3, z: 0.0},
@@ -113,7 +124,7 @@ const VEHICLES = [
 },
 {
     name: "Shoe",
-    modelFile: "SHOE1.fbx?",
+    modelFile: "SHOE1.fbx",
     dimensions: {x: 1.89, y: 4.34, z: 5.74},
     registrationPoint: {x: 0.5, y: 0.4, z: 0.75},
     frontAxlePos: {x: 0, y: -1.65, z: -3.2},
@@ -121,8 +132,30 @@ const VEHICLES = [
     frontAxleLength: 2.5,
     backAxleLength: 2.5
 },
-
+{
+    name: "Chaircar (BY FRAN)",
+    modelFile: "Chaircar.fbx",
+    dimensions: {x: 1.89, y: 4.34, z: 5.74},
+    registrationPoint: {x: 0.5, y: 0.4, z: 0.75},
+    frontAxlePos: {x: 0, y: -1.65, z: -3.2},
+    backAxlePos: {x: 0.0, y: -1.65, z: -0.5}, // x is across y is up and down z is forward back.
+    frontAxleLength: 2.5,
+    backAxleLength: 2.5
+}
 ];
+
+var zoneInformation = {"rideZone":"School Tables", "seats": [
+{"position":{"x":7938.66455078125,"y":7875.783203125,"z":7870.95166015625}, "rotation":{"x":-0.0000152587890625,"y":-0.0000152587890625,"z":-0.0000152587890625,"w":1}, "scale": 125}
+]};
+
+
+Window.alert("you are in the zone: " +  zoneInformation.rideZone);
+
+var seatInformation = zoneInformation.seats[0];
+
+MyAvatar.scale = seatInformation.scale;
+MyAvatar.position = seatInformation.position;
+MyAvatar.orientation = seatInformation.rotation;
 
 var car = null;
 
@@ -134,12 +167,8 @@ var soundIdle = SoundCache.getSound(SOUND_FOLDER_URL + "/idle.wav");
 var soundShutdown = SoundCache.getSound(SOUND_FOLDER_URL + "/shutdown.wav");
 var soundStarting = SoundCache.getSound(SOUND_FOLDER_URL + "/starting.wav");
 
-if (SOUND) {
-    Audio.playSound(soundStarting, {
-	    position: MyAvatar.position,
-        volume: 0.1
-    });
-}
+var newWindow = new WebWindow("Customize your vehicle", "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/blockly-tcars/index.html", 700,700);
+newWindow.setVisible(true);
 
 CameraHandler = function() {
     var _this = this;
@@ -155,8 +184,8 @@ CameraHandler = function() {
             var targetPos = Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 13, z: 13}));
             Camera.position = Vec3.mix(Camera.position, targetPos, updateTime);
             var previousOrientation = Camera.orientation;
-            Camera.lookAt(Vec3.sum(carProps.position, {x: 0, y: 2, z: 0}));
-            Camera.orientation = Quat.mix(previousOrientation, Camera.orientation, updateTime);
+            Camera.lookAt(Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 2, z: -13})));
+            Camera.orientation = Quat.mix(previousOrientation, Camera.orientation, updateTime * 2);
         } else if (_this.stance === CAMERA_CAR_BEHIND_CLOSE) {
             Camera.position = Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 2, z: 5}));
             Camera.orientation = carProps.rotation;
@@ -180,6 +209,39 @@ CameraHandler = function() {
     _this.oldCameraMode = Camera.mode;
     Camera.mode = "independent";    
 };
+
+SpeedOMeter = function() {
+    var _this = this;
+
+    var getRotation = function() {
+        return Quat.multiply(Camera.orientation, Quat.fromPitchYawRollDegrees(90, 0, 0));
+    };
+
+    var getPosition = function() {
+        return Vec3.sum(Camera.position, Vec3.multiplyQbyV(Camera.orientation, {x: 0, y: 0, z: -1}));
+    };
+
+    _this.update = function(time) {
+        Overlays.editOverlay(_this.overlay, {
+            dimensions: {x: 0.3, y: 0.3, z: 0.3},
+            rotation: getRotation(),
+            position: getPosition()
+        });
+    };
+
+    this.cleanup = function() {
+        Overlays.deleteOverlay(_this.overlay);
+    };
+    
+    _this.overlay = Overlays.addOverlay("model", {
+        url: MODEL_FOLDER_URL + "speedo/dial.fbx?v=3",
+        dimensions: {x: 0.3, y: 0.3, z: 0.3},
+        scale: {x: 0.3, y: 0.3, z: 0.3},
+        rotation: getRotation(),
+        position: getPosition()
+    });
+};
+//var speedOMeter = new SpeedOMeter();
 
 function mixFloats(float1, float2, mixValue) {
     if (mixValue > 1.0) {
@@ -208,13 +270,11 @@ CarSelectorWheel = function(selectableCar, wheelIndex) {
     var getRotationOffset = function() {
         switch (_this.wheelIndex) {
             case WHEEL_LEFT_FRONT:
-          //      return Quat.fromPitchYawRollDegrees(/*_this.wheelSpin % MAX_DEGREES, -_this.properties.angularVelocity.y * 50*/ 0, 0, 180);
             case WHEEL_LEFT_BACK:
-                return Quat.fromPitchYawRollDegrees(/*_this.wheelSpin % MAX_DEGREES*/ 0, 0, 180);
+                return Quat.fromPitchYawRollDegrees(0, 0, 180);
             case WHEEL_RIGHT_FRONT:
-           //     return Quat.fromPitchYawRollDegrees(/*MAX_DEGREES - (_this.wheelSpin % MAX_DEGREES), _this.properties.angularVelocity.y * 50*/ 0, 0, 0);
             case WHEEL_RIGHT_BACK:
-                return Quat.fromPitchYawRollDegrees(/*MAX_DEGREES - (_this.wheelSpin % MAX_DEGREES)*/ 0, 0, 0);
+                return Quat.fromPitchYawRollDegrees(0, 0, 0);
         }
         return {};
     };
@@ -441,9 +501,9 @@ Controller.keyPressEvent.connect(function(event) {
             carSelector.nextCar();
         } else if (event.key == KEY_SPACE) {
             var selectedCar = carSelector.selectableCars[carSelector.selectedCar];
-            car = Entities.addEntity({
+            var newProperties = {
                 type: "Model",
-                modelURL: MODEL_FOLDER_URL + selectedCar.vehicle.modelFile,
+                modelURL: MODEL_FOLDER_URL + selectedCar.vehicle.modelFile + "?v=" + (new Date()).getTime(),
                 shapeType: "box",
                 name: "TCarModel-" + selectedCar.vehicle.name,
                 rotation: START_LOCATION.rot,//MyAvatar.orientation,
@@ -465,7 +525,19 @@ Controller.keyPressEvent.connect(function(event) {
                     backAxleLength: selectedCar.vehicle.backAxleLength
                 })
                // collisionSoundURL: "https://dl.dropboxusercontent.com/u/14997455/hifi/tcar/collision.wav?v=2"
-            });
+            };
+            if (selectedCar.vehicle.collisionModel !== undefined) {
+                newProperties.shapeType = 'compound';
+                newProperties.compoundShapeURL = MODEL_FOLDER_URL + selectedCar.vehicle.collisionModel + "?v=" + (new Date()).getTime(),
+            }
+
+            car = Entities.addEntity(newProperties);
+            if (SOUND) {
+                Audio.playSound(soundStarting, {
+                    position: MyAvatar.position,
+                    volume: 0.1
+                });
+            }
             state = STATE_DRIVING;
             cameraHandler.stance = CAMERA_CAR_FIXED_WORLD;
             carSelector.cleanup();
@@ -486,6 +558,8 @@ Controller.keyReleaseEvent.connect(function(event) {
     }
 });
 
+var timeItWentWithoutMoving = 0;
+
 var actionID = false;
 function updateCar(time) {
     var carProps = Entities.getEntityProperties(car);
@@ -504,13 +578,25 @@ function updateCar(time) {
     }
     //TODO: (optional) automatic turning back of steering wheel
     
+    var newProperties = {};
+    newProperties.ignoreForCollisions = false;
     if (speedI < 0) {
         speedI = 0;
         soundLoopSwitcher.setSound(soundIdle);
+        timeItWentWithoutMoving += time;
+        if (timeItWentWithoutMoving > 5) {
+            var direction = Quat.safeEulerAngles(carProps.rotation).y;
+            newProperties.rotation = Quat.fromPitchYawRollDegrees(0, direction, 0);
+            newProperties.position = Vec3.sum(carProps.position, carProps.dimensions),
+            newProperties.ignoreForCollisions = true;
+            timeItWentWithoutMoving = 0;
+        }
+    } else {
+        timeItWentWithoutMoving = 0;
     }
     cameraHandler.updateCamera(time, carProps);
     
-    var newProperties = {};
+    
     if (speedI !== lastSpeedI) {
         newProperties.velocity = Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -Math.log(1 + speedI, 0.3)});
         newProperties.velocity.y = carProps.velocity.y;
@@ -530,6 +616,7 @@ function updateCar(time) {
 Script.update.connect(function(time) {
     if (isCarDriving()) {
         updateCar(time);
+        speedOMeter.update(time);
     } else if (state == STATE_CAR_SELECTION) {
         cameraHandler.stance = CAMERA_CAR_SELECTOR;
         cameraHandler.updateCamera(time, null);
@@ -537,6 +624,7 @@ Script.update.connect(function(time) {
     }
 });
 
+//Entities
 
 
 
@@ -593,6 +681,7 @@ Script.scriptEnding.connect(function() {
     soundLoopSwitcher.stopSound();
     cameraHandler.shutdown();
     carSelector.cleanup();
+    speedOMeter.cleanup();
     Controller.releaseKeyEvents({key: KEY_UP});
     Controller.releaseKeyEvents({key: KEY_DOWN});
     Controller.releaseKeyEvents({key: KEY_LEFT});
