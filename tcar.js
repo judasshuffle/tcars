@@ -61,16 +61,16 @@ const MODEL_FOLDER_URL = "https://dl.dropboxusercontent.com/u/10483952/tcar/";
 
 const VEHICLES = [
 {
-    name: "The collisioner",
-    modelFile: "carcolission.obj",
-    wheelModel: "Twheel.fbx",
-    collisionModel: "carcolission.obj",
-    dimensions: {x: 2.33, y: 1.68, z: 2.48},
+    name: "Capri",
+    modelFile: "StandardisedCars/Capri.fbx",
+    wheelModel: "StandardisedCars/capriwheelfbx.fbx?v2",
+    dimensions: {x: 0.936, y: 0.778, z: 2.433},
+    wheelDimensions: {x:0.098, y:0.348, Z:0.348},
     registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
-    frontAxlePos: {x: 0, y: -0.3, z: -2.6},
-    backAxlePos: {x: 0, y: -0.3, z: 0.6},
-    frontAxleLength: 2.5,
-    backAxleLength: 2.5
+    frontAxlePos: {x: 0, y: -0.485, z: -2.919},
+    backAxlePos: {x: 0, y: -0.485, z: 0.0},
+    frontAxleLength: 1.65,
+    backAxleLength: 1.65
 },
 {
     name: "The red one",
@@ -149,6 +149,7 @@ const VEHICLES = [
     frontAxleLength: 2.5,
     backAxleLength: 2.5
 }
+
 ];
 
 var zoneInformation = {"rideZone":"School Tables", "seats": [
@@ -298,14 +299,17 @@ CarSelectorWheel = function(selectableCar, wheelIndex) {
     
     _this.overlay = Overlays.addOverlay("model", {
         url: MODEL_FOLDER_URL + _this.selectableCar.vehicle.wheelModel,
-        dimensions: 0,
+        dimensions: 0, // you cannot change the dimensions
         //position: wheelPos, dimensions: {x: 0.63, y: 0.99, z:0.99},
         //rotation: this.properties.rotation
     });
 
     _this.update = function(carPosition) {
       // print(JSON.stringify(carPosition));
-        Overlays.editOverlay(_this.overlay, {position: Vec3.sum(carPosition, Vec3.multiplyQbyV(_this.selectableCar.rotation, _this.positionOffset)), rotation: Quat.multiply(_this.selectableCar.rotation, _this.rotationOffset)});
+        Overlays.editOverlay(_this.overlay, {
+            position: Vec3.sum(carPosition, Vec3.multiplyQbyV(_this.selectableCar.rotation, _this.positionOffset)),
+            rotation: Quat.multiply(_this.selectableCar.rotation, _this.rotationOffset)
+        });
     };
 
     this.cleanup = function() {
@@ -466,6 +470,23 @@ var steeringRight = false;
 function isCarDriving() {
     return state == STATE_DRIVING || state == STATE_RACING;
 }
+function launchMissile(carProps) {
+    Entities.addEntity({
+            type: "Model",
+            name: "Rocket",
+            shapeType: "sphere",
+            collisionsWillMove: true,
+            ignoreForCollisions: false,
+            position: Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: - 4})),
+            rotation: Quat.multiply(carProps.rotation, Quat.fromVec3Degrees({x: 270, y: 0, z: 0})),
+            dimensions: {x: 1.25, y: 2.56, z: 1.45},
+            modelURL: MODEL_FOLDER_URL + "rockett.fbx?123",
+            velocity: Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -10}),
+            angularVelocity: Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: 20}),
+            damping: 0,
+            lifetime: 5
+        });
+}
 
 // part 1 - the engine
 // part 2 - the wheels
@@ -481,22 +502,7 @@ function handleDrivingKeyPress(event) {
     } else if (event.key == KEY_C) {
         event.isShifted ? cameraHandler.prevCamera() : cameraHandler.nextCamera();
     } else if (event.key == KEY_SPACE) {
-        var carProps = Entities.getEntityProperties(car);
-        Entities.addEntity({
-            type: "Model",
-            name: "Rocket",
-            shapeType: "sphere",
-            collisionsWillMove: true,
-            ignoreForCollisions: false,
-            position: Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: - 4})),
-            rotation: Quat.multiply(carProps.rotation, Quat.fromVec3Degrees({x: 270, y: 0, z: 0})),
-            dimensions: {x: 1.25, y: 2.56, z: 1.45},
-            modelURL: MODEL_FOLDER_URL + "rockett.fbx?123",
-            velocity: Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -10}),
-            angularVelocity: Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: 20}),
-            damping: 0,
-            lifetime: 5
-        });
+        launchMissile(Entities.getEntityProperties(car));
     }
 }
 
@@ -688,7 +694,7 @@ Script.update.connect(function(time) {
 // part 14 - handbreak
 
 Script.scriptEnding.connect(function() {
-MyAvatar.scale = 1;
+    MyAvatar.scale = 1;
     Entities.deleteEntity(car);
     soundLoopSwitcher.stopSound();
     cameraHandler.shutdown();
@@ -705,7 +711,6 @@ MyAvatar.scale = 1;
       position: MyAvatar.position,
       volume: 0.1
     });*/
-    
 });
 
 Controller.captureKeyEvents({key: KEY_UP});
