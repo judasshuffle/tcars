@@ -35,6 +35,8 @@ const CAMERA_CAR_BEHIND_MEDIUM = 4;
 const CAMERA_CAR_BEHIND_FAR = 5;
 const CAMERA_CAR_FIXED_WORLD = 6;
 const CAMERA_CAR_SELECTOR = 7;
+const CAMERA_CAR_FROM_USER_AUTOFOCUS = 8;
+const CAMERA_CAR_FROM_USER_HMD = 9;
 
 const CAR_SELECTOR_CAM_POS = {x: 7942.3974609375, y: 7919.84716796875, z: 7778.14501953125};
 //const CAR_SELECTOR_CAM_ROT = {x: -0.030600588768720627, y: 0.9688771367073059, z: 0.18906143307685852, w: 0.15683221817016602};
@@ -57,12 +59,9 @@ const SOUND = false;
 
 const MODEL_FOLDER_URL = "https://dl.dropboxusercontent.com/u/10483952/tcar/";
 
-// unused, useless;
-const ANTIN = -9000;
-
 const VEHICLES = [
 {
-    name: "The collioner",
+    name: "The collisioner",
     modelFile: "carcolission.obj",
     wheelModel: "Twheel.fbx",
     collisionModel: "carcolission.obj",
@@ -157,7 +156,7 @@ var zoneInformation = {"rideZone":"School Tables", "seats": [
 ]};
 
 
-Window.alert("you are in the zone: " +  zoneInformation.rideZone);
+//Window.alert("you are in the zone: " +  zoneInformation.rideZone);
 
 var seatInformation = zoneInformation.seats[0];
 
@@ -175,12 +174,12 @@ var soundIdle = SoundCache.getSound(SOUND_FOLDER_URL + "/idle.wav");
 var soundShutdown = SoundCache.getSound(SOUND_FOLDER_URL + "/shutdown.wav");
 var soundStarting = SoundCache.getSound(SOUND_FOLDER_URL + "/starting.wav");
 
-var newWindow = new WebWindow("Customize your vehicle", "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/blockly-tcars/index.html", 700,700);
-newWindow.setVisible(true);
+//var newWindow = new WebWindow("Customize your vehicle", "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/blockly-tcars/index.html", 700,700);
+//newWindow.setVisible(true);
 
 CameraHandler = function() {
     var _this = this;
-    _this.cameraList = [CAMERA_CAR_TOPVIEW, /*CAMERA_HOOD, */ CAMERA_CAR_BEHIND_CLOSE, /*CAMERA_BEHIND_MEDIUM, CAMERA_BEHIND_FAR, */ CAMERA_CAR_FIXED_WORLD];
+    _this.cameraList = [CAMERA_CAR_FROM_USER_AUTOFOCUS, CAMERA_CAR_TOPVIEW, /*CAMERA_HOOD, */ CAMERA_CAR_BEHIND_CLOSE, /*CAMERA_BEHIND_MEDIUM, CAMERA_BEHIND_FAR, */ CAMERA_CAR_FIXED_WORLD];
     _this.stance = CAMERA_CAR_FIXED_WORLD;
 
     _this.shutdown = function() {
@@ -203,6 +202,9 @@ CameraHandler = function() {
         } else if (_this.stance === CAMERA_CAR_SELECTOR) {
             Camera.position = CAR_SELECTOR_CAM_POS;
             Camera.lookAt(CAR_SELECTOR_CENTER);
+        } else if (_this.stance === CAMERA_CAR_FROM_USER_AUTOFOCUS) {
+            Camera.position = MyAvatar.getEyePosition();//Vec3.mix(Camera.position, targetPos, updateTime);
+            Camera.lookAt(carProps.position);
         }
     };
 
@@ -686,6 +688,7 @@ Script.update.connect(function(time) {
 // part 14 - handbreak
 
 Script.scriptEnding.connect(function() {
+MyAvatar.scale = 1;
     Entities.deleteEntity(car);
     soundLoopSwitcher.stopSound();
     cameraHandler.shutdown();
@@ -698,10 +701,11 @@ Script.scriptEnding.connect(function() {
     Controller.captureKeyEvents({key: KEY_C});
     Controller.captureKeyEvents({key: KEY_SPACE});
     Controller.captureKeyEvents({key: KEY_DEL});
-    Audio.playSound(soundShutdown, {
+   /* Audio.playSound(soundShutdown, {
       position: MyAvatar.position,
       volume: 0.1
-    });
+    });*/
+    
 });
 
 Controller.captureKeyEvents({key: KEY_UP});
