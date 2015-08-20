@@ -23,10 +23,11 @@ Avatar.position = vantagePoint;
 for (i in Entities) { print(i); }
 Entities.setPacketsPerSecond(60);
 EntityViewer.setPosition(vantagePoint);
-EntityViewer.setOrientation({x: 0, y: 0.678913, y: 0, z: 0.734219}); //Quat.fromPitchYawRollDegrees(0, 90, 0));
+EntityViewer.setOrientation(Quat.fromPitchYawRollDegrees(0, 90, 0));
 //EntityViewer.getBoundaryLevelAdjust(20000);
 EntityViewer.queryOctree();
 Avatar.displayName = "Bot initialized";
+
 
 Entities.addingEntity.connect(function(EntityItemID) {
     if (EntityItemID == "{87387ebb-adb8-4f23-b6eb-3c65581bc936}") { 
@@ -35,19 +36,24 @@ Entities.addingEntity.connect(function(EntityItemID) {
     if (Entities.getEntityProperties(EntityItemID).name == "TrackingBox") {
         Avatar.displayName = "TrackingBox found!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
     }
-    print("adding: " + EntityItemID);
+    print("adding: " + EntityItemID + " " + Entities.getEntityProperties(EntityItemID).name);
 });
 
 Entities.deletingEntity.connect(function(EntityItemID) {
   print("deleting: " + EntityItemID);
 });
 //for(i in Entities) { print(i) }
+var i = 0;
 
 function updating(deltaTime) {
  //   EntityViewer.setPosition({x: 8040.73046875, y: y, z: 7730.63916015625});
 //    y -= deltaTime;
     updateAvatarPos();
     EntityViewer.queryOctree();
+    entityID = Entities.findClosestEntity(Avatar.position, 1000);
+    if (entityID) {
+      Avatar.displayName = "nearby: " + Entities.getEntityProperties(entityID).name;
+    }
     var newCount = EntityViewer.getOctreeElementsCount();
     if (newCount !== elementCount) {
         elementCount = newCount;
