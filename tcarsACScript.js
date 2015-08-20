@@ -6,32 +6,35 @@ print("hello world");
 
 var elementCount = 0;
 
-var y = 8103.1005859375;
-var vantagePoint = {x: 8040.73046875, y: y, z: 7730.63916015625}; //{x: 8000, y: 8000, z: 8000};
+var y = 7910.02;
+var vantagePoint = {x: 8060.22, y: y, z: 7708.39}; //{x: 8000, y: 8000, z: 8000};
 
 function updateAvatarPos() {
     Avatar.position = EntityViewer.getPosition();
     Avatar.orientation = EntityViewer.getOrientation();
-    print(JSON.stringify(EntityViewer.getPosition()));
-   // print("hifi://" + Avatar.position.x + "," + Avatar.position.y + "," + Avatar.position.z);
+    //print(JSON.stringify(EntityViewer.getPosition()));
+//    print("hifi://" + Avatar.position.x + "," + Avatar.position.y + "," + Avatar.position.z);
 }
 
-Agent.isAvatar = true;
+Agent.isAvatar = true;//8060.22,7910.02,7708.39/0,0.678913,0,0.734219
+Avatar.scale = 1;// 75;
 Avatar.position = vantagePoint;
 
-for( i in Entities) {print(i)}
+for (i in Entities) { print(i); }
 Entities.setPacketsPerSecond(60);
 EntityViewer.setPosition(vantagePoint);
-EntityViewer.setOrientation(Quat.fromPitchYawRollDegrees(0, 0, 0));
+EntityViewer.setOrientation({x: 0, y: 0.678913, y: 0, z: 0.734219}); //Quat.fromPitchYawRollDegrees(0, 90, 0));
 //EntityViewer.getBoundaryLevelAdjust(20000);
 EntityViewer.queryOctree();
-
+Avatar.displayName = "Bot initialized";
 
 Entities.addingEntity.connect(function(EntityItemID) {
     if (EntityItemID == "{87387ebb-adb8-4f23-b6eb-3c65581bc936}") { 
-        print("FOUND!");
+        Avatar.displayName = "FOUND!";
     }
-    print(Entities.getEntityProperties(EntityItemID).name);
+    if (Entities.getEntityProperties(EntityItemID).name == "TrackingBox") {
+        Avatar.displayName = "TrackingBox found!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+    }
     print("adding: " + EntityItemID);
 });
 
@@ -41,8 +44,8 @@ Entities.deletingEntity.connect(function(EntityItemID) {
 //for(i in Entities) { print(i) }
 
 function updating(deltaTime) {
-    EntityViewer.setPosition({x:8040.73046875, y: y, z: 7730.63916015625});
-    y -= 0.2;
+ //   EntityViewer.setPosition({x: 8040.73046875, y: y, z: 7730.63916015625});
+//    y -= deltaTime;
     updateAvatarPos();
     EntityViewer.queryOctree();
     var newCount = EntityViewer.getOctreeElementsCount();
