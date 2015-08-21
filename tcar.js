@@ -73,6 +73,18 @@ const VEHICLES = [
     backAxleLength: 1.65
 },
 {
+    name: "2Beatle",
+    modelFile: "StandardisedCars/2beatle.fbx",
+    wheelModel: "StandardisedCars/2beatlewheel.fbx?v2",
+    dimensions: {x:  2.113, y:1.872 , z:4.876},
+    wheelDimensions: {x:0.098, y:0.348, Z:0.348},
+    registrationPoint: {x: 0.5, y: 0.45, z: 0.8},
+    frontAxlePos: {x: 0, y: -0.485, z: -3.1},
+    backAxlePos: {x: 0, y: -0.485, z: -0.074},
+    frontAxleLength: 1.45,
+    backAxleLength: 1.45
+},
+{
     name: "The red one",
     modelFile: "Tcarchassis.fbx",
     wheelModel: "Twheel.fbx",
