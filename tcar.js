@@ -97,6 +97,18 @@ const VEHICLES = [
     backAxleLength: 1.45
 },
 {
+    name: "DS",
+    modelFile: "StandardisedCars/Ds.fbx",
+    wheelModel: "StandardisedCars/dswheel.fbx",
+    dimensions: {x: 2.017, y: 1.409, z: 5.602},
+    wheelDimensions: {x:0.098, y:0.348, Z:0.348},
+    registrationPoint: {x: 0.5, y: 0.45, z: 0.8},
+    frontAxlePos: {x: 0, y: -0.3, z: -3.4},
+    backAxlePos: {x: 0, y: -0.3, z: -0.0},
+    frontAxleLength: 1.8,
+    backAxleLength: 1.1
+},
+{
     name: "The red one",
     modelFile: "Tcarchassis.fbx",
     wheelModel: "Twheel.fbx",
