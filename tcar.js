@@ -61,6 +61,18 @@ const MODEL_FOLDER_URL = "https://dl.dropboxusercontent.com/u/10483952/tcar/";
 
 const VEHICLES = [
 {
+    name: "Blues",
+    modelFile: "StandardisedCars/Bluesmobile.fbx",
+    wheelModel: "StandardisedCars/Bluesmobilewheel.fbx",
+    dimensions: {x: 2.017, y: 1.409, z: 5.602},
+    wheelDimensions: {x:0.098, y:0.348, Z:0.348},
+    registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
+    frontAxlePos: {x: 0, y: -0.485, z: -3.2},
+    backAxlePos: {x: 0, y: -0.485, z: -0.3},
+    frontAxleLength: 1.65,
+    backAxleLength: 1.65
+},
+{
     name: "Capri",
     modelFile: "StandardisedCars/Capri.fbx",
     wheelModel: "StandardisedCars/capriwheelfbx.fbx?v2",
