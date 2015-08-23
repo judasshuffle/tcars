@@ -61,10 +61,22 @@ const MODEL_FOLDER_URL = "https://dl.dropboxusercontent.com/u/10483952/tcar/";
 
 const VEHICLES = [
 {
+    name: "2Beatle",
+    modelFile: "StandardisedCars/2beatle.fbx",
+    wheelModel: "StandardisedCars/2beatlewheel.fbx?v2",
+    dimensions: {x:  1.872, y: 2.113, z:4.876},
+    wheelDimensions: {x:0.098, y:0.348, Z:0.348},
+    registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
+    frontAxlePos: {x: 0, y: -0.485, z: -2.919},
+    backAxlePos: {x: 0, y: -0.485, z: 0.0},
+    frontAxleLength: 1.65,
+    backAxleLength: 1.65
+},
+{
     name: "Capri",
     modelFile: "StandardisedCars/Capri.fbx",
     wheelModel: "StandardisedCars/capriwheelfbx.fbx?v2",
-    dimensions: {x: 0.936, y: 0.778, z: 2.433},
+    dimensions: {x: 1.872, y: 1.556, z: 4.866 },
     wheelDimensions: {x:0.098, y:0.348, Z:0.348},
     registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
     frontAxlePos: {x: 0, y: -0.485, z: -2.919},
@@ -633,7 +645,7 @@ function updateCar(time) {
 Script.update.connect(function(time) {
     if (isCarDriving()) {
         updateCar(time);
-        speedOMeter.update(time);
+        //speedOMeter.update(time);
     } else if (state == STATE_CAR_SELECTION) {
         cameraHandler.stance = CAMERA_CAR_SELECTOR;
         cameraHandler.updateCamera(time, null);
