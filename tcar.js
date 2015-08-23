@@ -61,14 +61,14 @@ const MODEL_FOLDER_URL = "https://dl.dropboxusercontent.com/u/10483952/tcar/";
 
 const VEHICLES = [
 {
-    name: "2Beatle",
-    modelFile: "StandardisedCars/2beatle.fbx",
-    wheelModel: "StandardisedCars/2beatlewheel.fbx?v2",
-    dimensions: {x:  1.872, y: 2.113, z:4.876},
+    name: "Blues",
+    modelFile: "StandardisedCars/Bluesmobile.fbx",
+    wheelModel: "StandardisedCars/Bluesmobilewheel.fbx",
+    dimensions: {x: 2.017, y: 1.409, z: 5.602},
     wheelDimensions: {x:0.098, y:0.348, Z:0.348},
     registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
-    frontAxlePos: {x: 0, y: -0.485, z: -2.919},
-    backAxlePos: {x: 0, y: -0.485, z: 0.0},
+    frontAxlePos: {x: 0, y: -0.485, z: -3.2},
+    backAxlePos: {x: 0, y: -0.485, z: -0.3},
     frontAxleLength: 1.65,
     backAxleLength: 1.65
 },
@@ -83,6 +83,30 @@ const VEHICLES = [
     backAxlePos: {x: 0, y: -0.485, z: 0.0},
     frontAxleLength: 1.65,
     backAxleLength: 1.65
+},
+{
+    name: "2Beatle",
+    modelFile: "StandardisedCars/2beatle.fbx",
+    wheelModel: "StandardisedCars/2beatlewheel.fbx?v2",
+    dimensions: {x:  2.113, y:1.872 , z:4.876},
+    wheelDimensions: {x:0.098, y:0.348, Z:0.348},
+    registrationPoint: {x: 0.5, y: 0.45, z: 0.8},
+    frontAxlePos: {x: 0, y: -0.485, z: -3.1},
+    backAxlePos: {x: 0, y: -0.485, z: -0.074},
+    frontAxleLength: 1.45,
+    backAxleLength: 1.45
+},
+{
+    name: "DS",
+    modelFile: "StandardisedCars/Ds.fbx",
+    wheelModel: "StandardisedCars/dswheel.fbx",
+    dimensions: {x: 2.017, y: 1.409, z: 5.602},
+    wheelDimensions: {x:0.098, y:0.348, Z:0.348},
+    registrationPoint: {x: 0.5, y: 0.45, z: 0.8},
+    frontAxlePos: {x: 0, y: -0.3, z: -3.4},
+    backAxlePos: {x: 0, y: -0.3, z: -0.0},
+    frontAxleLength: 1.8,
+    backAxleLength: 1.1
 },
 {
     name: "The red one",
