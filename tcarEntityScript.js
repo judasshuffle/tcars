@@ -7,6 +7,9 @@
     const WHEEL_RIGHT_BACK = 3;
     const WHEEL_COUNT = 4;
 
+    const STEERING_ANGLE_MULTIPLIER = 30;
+    const ONE_EIGHTY = 180;
+
     const MAX_DEGREES = 360;
 
     const TIRE_SPIN_MULTIPLIER = 100;
@@ -41,11 +44,11 @@
     var getRotationOffset = function(wheelIndex) {
         switch (wheelIndex) {
             case WHEEL_LEFT_FRONT:
-                return Quat.fromPitchYawRollDegrees(_this.wheelSpin % MAX_DEGREES, -_this.properties.angularVelocity.y * 50, 180);
+                return Quat.fromPitchYawRollDegrees(_this.wheelSpin % MAX_DEGREES, -_this.properties.angularVelocity.y * STEERING_ANGLE_MULTIPLIER, ONE_EIGHTY);
             case WHEEL_LEFT_BACK:
-                return Quat.fromPitchYawRollDegrees(_this.wheelSpin % MAX_DEGREES, 0, 180);
+                return Quat.fromPitchYawRollDegrees(_this.wheelSpin % MAX_DEGREES, 0, ONE_EIGHTY);
             case WHEEL_RIGHT_FRONT:
-                return Quat.fromPitchYawRollDegrees(MAX_DEGREES - (_this.wheelSpin % MAX_DEGREES), _this.properties.angularVelocity.y * 50, 0);
+                return Quat.fromPitchYawRollDegrees(MAX_DEGREES - (_this.wheelSpin % MAX_DEGREES), _this.properties.angularVelocity.y * STEERING_ANGLE_MULTIPLIER, 0);
             case WHEEL_RIGHT_BACK:
                 return Quat.fromPitchYawRollDegrees(MAX_DEGREES - (_this.wheelSpin % MAX_DEGREES), 0, 0);
         }
