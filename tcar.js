@@ -4,13 +4,7 @@
 // Models by Judas
 // Car tuning by unknown
 
-const KEY_UP = 16777235;
-const KEY_DOWN = 16777237;
-const KEY_LEFT = 16777234;
-const KEY_RIGHT = 16777236;
-const KEY_C = 67;
-const KEY_SPACE = 32;
-const KEY_DEL = 16777223;
+Script.include('libraries/keys.js');
 
 const MAX_DEGREES = 360;
 
@@ -55,7 +49,7 @@ const SPEED_BRAKES = 1015;
 
 const SOUND_FOLDER_URL = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/";
 
-const SOUND = false;
+const SOUND = true;
 
 const MODEL_FOLDER_URL = "https://dl.dropboxusercontent.com/u/10483952/tcar/";
 
@@ -205,7 +199,7 @@ var car = null;
 
 var state = STATE_CAR_SELECTION;
 
-var soundAccelerating = SoundCache.getSound(SOUND_FOLDER_URL + "/accelerating.wav");
+var soundAccelerating = SoundCache.getSound(SOUND_FOLDER_URL + "/capriii2.wav");
 var soundDecelerating = SoundCache.getSound(SOUND_FOLDER_URL + "/decelerating.wav");
 var soundIdle = SoundCache.getSound(SOUND_FOLDER_URL + "/idle.wav");
 var soundShutdown = SoundCache.getSound(SOUND_FOLDER_URL + "/shutdown.wav");
@@ -465,7 +459,9 @@ SoundLoopSwitcher = function() {
     this.sound = null;
     this.injector = null;
     this.setSound = function(sound) {
-        if (!SOUND) { return; }
+        if (!SOUND) {
+            return;
+        }
         if (this.sound !== sound) {
             this.stopSound();
             this.sound = sound;
@@ -528,16 +524,16 @@ function launchMissile(carProps) {
 // part 2 - the wheels
 /// X+  is forward
 function handleDrivingKeyPress(event) {
-    if (event.key == KEY_UP) {
+    if (event.key == KEY.UP) {
         planking = true;
         soundLoopSwitcher.setSound(soundAccelerating);
-    } else if (event.key == KEY_LEFT) {
+    } else if (event.key == KEY.LEFT) {
         steeringLeft = true;
-    } else if (event.key == KEY_RIGHT) {
+    } else if (event.key == KEY.RIGHT) {
         steeringRight = true;
-    } else if (event.key == KEY_C) {
+    } else if (event.key == KEY.C) {
         event.isShifted ? cameraHandler.prevCamera() : cameraHandler.nextCamera();
-    } else if (event.key == KEY_SPACE) {
+    } else if (event.key == KEY.SPACE) {
         launchMissile(Entities.getEntityProperties(car));
     }
 }
@@ -547,11 +543,11 @@ Controller.keyPressEvent.connect(function(event) {
         handleDrivingKeyPress(event);
     }
     if (state == STATE_CAR_SELECTION) {
-        if (event.key == KEY_LEFT) {
+        if (event.key == KEY.LEFT) {
             carSelector.prevCar();
-        } else if (event.key == KEY_RIGHT) {
+        } else if (event.key == KEY.RIGHT) {
             carSelector.nextCar();
-        } else if (event.key == KEY_SPACE) {
+        } else if (event.key == KEY.SPACE) {
             var selectedCar = carSelector.selectableCars[carSelector.selectedCar];
             var newProperties = {
                 type: "Model",
@@ -600,12 +596,12 @@ Controller.keyPressEvent.connect(function(event) {
 
 Controller.keyReleaseEvent.connect(function(event) {
     if (isCarDriving()) {
-        if (event.key == KEY_UP) {
+        if (event.key == KEY.UP) {
              planking = false;
              soundLoopSwitcher.setSound(soundDecelerating);
-        } else if (event.key == KEY_LEFT) {
+        } else if (event.key == KEY.LEFT) {
             steeringLeft = false;
-        } else if (event.key == KEY_RIGHT) {
+        } else if (event.key == KEY.RIGHT) {
             steeringRight = false;
         }
     }
@@ -734,25 +730,25 @@ Script.scriptEnding.connect(function() {
     Entities.deleteEntity(car);
     soundLoopSwitcher.stopSound();
     cameraHandler.shutdown();
+    Controller.releaseKeyEvents({key: KEY.UP});
+    Controller.releaseKeyEvents({key: KEY.DOWN});
+    Controller.releaseKeyEvents({key: KEY.LEFT});
+    Controller.releaseKeyEvents({key: KEY.RIGHT});
+    Controller.captureKeyEvents({key: KEY.C});
+    Controller.captureKeyEvents({key: KEY.SPACE});
+    Controller.captureKeyEvents({key: KEY.DEL});
     carSelector.cleanup();
     speedOMeter.cleanup();
-    Controller.releaseKeyEvents({key: KEY_UP});
-    Controller.releaseKeyEvents({key: KEY_DOWN});
-    Controller.releaseKeyEvents({key: KEY_LEFT});
-    Controller.releaseKeyEvents({key: KEY_RIGHT});
-    Controller.captureKeyEvents({key: KEY_C});
-    Controller.captureKeyEvents({key: KEY_SPACE});
-    Controller.captureKeyEvents({key: KEY_DEL});
    /* Audio.playSound(soundShutdown, {
       position: MyAvatar.position,
       volume: 0.1
     });*/
 });
 
-Controller.captureKeyEvents({key: KEY_UP});
-Controller.captureKeyEvents({key: KEY_DOWN});
-Controller.captureKeyEvents({key: KEY_LEFT});
-Controller.captureKeyEvents({key: KEY_RIGHT});
-Controller.captureKeyEvents({key: KEY_C});
-Controller.captureKeyEvents({key: KEY_SPACE});
-Controller.captureKeyEvents({key: KEY_DEL});
+Controller.captureKeyEvents({key: KEY.UP});
+Controller.captureKeyEvents({key: KEY.DOWN});
+Controller.captureKeyEvents({key: KEY.LEFT});
+Controller.captureKeyEvents({key: KEY.RIGHT});
+Controller.captureKeyEvents({key: KEY.C});
+Controller.captureKeyEvents({key: KEY.SPACE});
+Controller.captureKeyEvents({key: KEY.DEL});
