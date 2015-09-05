@@ -1,7 +1,7 @@
 // car script 1.0 © thoys 2015
 // no refunds
 // Audio effects by Konstantin
-// Models by Judas
+// Models by Judas important code also by judas
 // Car tuning by unknown
 
 Script.include('libraries/keys.js');
