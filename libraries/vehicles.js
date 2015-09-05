@@ -2,6 +2,7 @@ VEHICLES = [
 {
     name: "Blues",
     modelFile: "StandardisedCars/Bluesmobile.fbx",
+	collisionModel: "StandardisedCars/collision2.obj",
     wheelModel: "StandardisedCars/Bluesmobilewheel.fbx",
     dimensions: {x: 2.017, y: 1.409, z: 5.602},
     wheelDimensions: {x:0.098, y:0.348, Z:0.348},
