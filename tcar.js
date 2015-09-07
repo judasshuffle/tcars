@@ -4,66 +4,21 @@
 // Models by Judas important code also by Judas
 // Car tuning by unknown
 
-Script.include('libraries/keys.js');
-Script.include('libraries/vehicles.js');
-Script.include('libraries/tracks.js');
-
-print(TRACKS.length);
-
-const MAX_DEGREES = 360;
-
-// We have different states that the script switches between
-const STATE_TRACK_SELECTION = 0;
-const STATE_CAR_SELECTION = 1;
-const STATE_PITSTOP = 2;
-const STATE_DRIVING = 3;
-const STATE_RACING = 4;
-const STATE_GAMEOVER = 5;
-
-const WHEEL_LEFT_FRONT = 0;
-const WHEEL_RIGHT_FRONT = 1;
-const WHEEL_LEFT_BACK = 2;
-const WHEEL_RIGHT_BACK = 3;
-const WHEEL_COUNT = 4;
-
-const CAMERA_CAR_TOPVIEW = 0;
-const CAMERA_CAR_HOOD = 1;
-const CAMERA_CAR_MIRROR = 2;
-const CAMERA_CAR_BEHIND_CLOSE = 3;
-const CAMERA_CAR_BEHIND_MEDIUM = 4;
-const CAMERA_CAR_BEHIND_FAR = 5;
-const CAMERA_CAR_FIXED_WORLD = 6;
-const CAMERA_CAR_SELECTOR = 7;
-const CAMERA_CAR_FROM_USER_AUTOFOCUS = 8;
-const CAMERA_CAR_FROM_USER_HMD = 9;
-const CAMERA_TRACK_SELECTOR = 10;
-
-const CAR_SELECTOR_CAM_POS = {x: 7942.3974609375, y: 7919.84716796875, z: 7778.14501953125};
-//const CAR_SELECTOR_CAM_ROT = {x: -0.030600588768720627, y: 0.9688771367073059, z: 0.18906143307685852, w: 0.15683221817016602};
-const CAR_SELECTOR_CENTER = {x: 7937.99, y: 7913.61, z: 7801.6};
-const CAR_SELECTOR_RADIUS = -9.5;
-const CAR_SELECTOR_ROT_OFFSET = 10;
-const CAR_SELECTOR_TURN_SPEED = 30;
-const CAR_SELECTOR_ROT_SPEED = 2;
-
-const DEFAULT_REGISTRATION_POINT = {x: 0.5, y: 0.5, z: 0.5};
-
-const START_LOCATION = {pos: {x: 7969.8955078125, y: 7909.921875, z: 7788.82763671875}, rot: {x: 0, y: -0.8411639928817749, z: 0, w: 0.5407801270484924}};
-
-const SPEED_FORWARD = 500;
-const SPEED_BRAKES = 1015;
-
-const SOUND_FOLDER_URL = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/";
-
-const SOUND = true;
-
-const MODEL_FOLDER_URL = "https://dl.dropboxusercontent.com/u/10483952/tcar/";
+Script.include([
+    'libraries/constants.js',
+    'libraries/keys.js',
+    'libraries/vehicles.js',
+    'libraries/tracks.js',
+    'libraries/speedometer.js',
+    'libraries/carSelector.js',
+    'libraries/cameraHandler.js',
+    'libraries/trackSelector.js',
+    'libraries/soundLoopSwitcher.js'
+]);
 
 var zoneInformation = {"rideZone":"School Tables", "seats": [
 {"position":{"x":7938.66455078125,"y":7875.783203125,"z":7870.95166015625}, "rotation":{"x":-0.0000152587890625,"y":-0.0000152587890625,"z":-0.0000152587890625,"w":1}, "scale": 125}
 ]};
-
-//Window.alert("you are in the zone: " +  zoneInformation.rideZone);
 
 var seatInformation = zoneInformation.seats[0];
 
@@ -81,89 +36,13 @@ var soundIdle = SoundCache.getSound(SOUND_FOLDER_URL + "/idle.wav");
 var soundShutdown = SoundCache.getSound(SOUND_FOLDER_URL + "/shutdown.wav");
 var soundStarting = SoundCache.getSound(SOUND_FOLDER_URL + "/starting.wav");
 
+var timeItWentWithoutMoving = 0;
+var actionID = false;
+
 //var newWindow = new WebWindow("Customize your vehicle", "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/blockly-tcars/index.html", 700,700);
 //newWindow.setVisible(true);
 
-CameraHandler = function() {
-    var _this = this;
-    _this.cameraList = [CAMERA_CAR_FROM_USER_AUTOFOCUS, CAMERA_CAR_TOPVIEW, /*CAMERA_HOOD, */ CAMERA_CAR_BEHIND_CLOSE, /*CAMERA_BEHIND_MEDIUM, CAMERA_BEHIND_FAR, */ CAMERA_CAR_FIXED_WORLD];
-    _this.stance = CAMERA_CAR_FIXED_WORLD;
-
-    _this.shutdown = function() {
-        Camera.mode = _this.oldCameraMode;
-    };
-
-    _this.updateCamera = function(updateTime, carProps) {
-        if (_this.stance === CAMERA_CAR_TOPVIEW) {
-            var targetPos = Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 13, z: 13}));
-            Camera.position = Vec3.mix(Camera.position, targetPos, updateTime);
-            var previousOrientation = Camera.orientation;
-            Camera.lookAt(Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 2, z: -13})));
-            Camera.orientation = Quat.mix(previousOrientation, Camera.orientation, updateTime * 2);
-        } else if (_this.stance === CAMERA_CAR_BEHIND_CLOSE) {
-            Camera.position = Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 2, z: 5}));
-            Camera.orientation = carProps.rotation;
-        } else if (_this.stance === CAMERA_CAR_FIXED_WORLD) {
-            Camera.position = Vec3.sum(carProps.position, {x: 15, y: 20 + (Vec3.length(carProps.velocity) * 2), z: 0});
-            Camera.lookAt(carProps.position);
-        } else if (_this.stance === CAMERA_CAR_SELECTOR) {
-            Camera.position = CAR_SELECTOR_CAM_POS;
-            Camera.lookAt(CAR_SELECTOR_CENTER);
-        } else if (_this.stance === CAMERA_TRACK_SELECTOR) {
-            var track = TRACKS[trackSelector.selectedTrack];
-            Camera.position = track.previewPosition;
-            Camera.orientation = track.previewOrientation;
-            //Camera.lookAt(CAR_SELECTOR_CENTER);
-        } else if (_this.stance === CAMERA_CAR_FROM_USER_AUTOFOCUS) {
-            Camera.position = MyAvatar.getEyePosition();//Vec3.mix(Camera.position, targetPos, updateTime);
-            Camera.lookAt(carProps.position);
-        }
-    };
-
-    _this.nextCamera = function() {
-        _this.stance = _this.cameraList[(_this.cameraList.indexOf(_this.stance) + 1) % _this.cameraList.length];
-    };
-
-    _this.prevCamera = function() {
-        _this.stance = _this.cameraList[(_this.cameraList.indexOf(_this.stance) + (_this.cameraList.length - 1)) % _this.cameraList.length];
-    };
-
-    _this.oldCameraMode = Camera.mode;
-    Camera.mode = "independent";    
-};
-
-SpeedOMeter = function() {
-    var _this = this;
-
-    var getRotation = function() {
-        return Quat.multiply(Camera.orientation, Quat.fromPitchYawRollDegrees(90, 0, 0));
-    };
-
-    var getPosition = function() {
-        return Vec3.sum(Camera.position, Vec3.multiplyQbyV(Camera.orientation, {x: 0, y: 0, z: -1}));
-    };
-
-    _this.update = function(time) {
-        Overlays.editOverlay(_this.overlay, {
-            dimensions: {x: 0.3, y: 0.3, z: 0.3},
-            rotation: getRotation(),
-            position: getPosition()
-        });
-    };
-
-    this.cleanup = function() {
-        Overlays.deleteOverlay(_this.overlay);
-    };
-    
-    _this.overlay = Overlays.addOverlay("model", {
-        url: MODEL_FOLDER_URL + "speedo/dial.fbx?v=3",
-        dimensions: {x: 0.3, y: 0.3, z: 0.3},
-        scale: {x: 0.3, y: 0.3, z: 0.3},
-        rotation: getRotation(),
-        position: getPosition()
-    });
-};
-//var speedOMeter = new SpeedOMeter();
+//var speedometer = new Speedometer();
 
 function mixFloats(float1, float2, mixValue) {
     if (mixValue > 1.0) {
@@ -172,306 +51,10 @@ function mixFloats(float1, float2, mixValue) {
     return float1 + ((float2 - float1) * mixValue);
 }
 
-CarSelectorWheel = function(selectableCar, wheelIndex) {
-    var _this = this;
-    _this.selectableCar = selectableCar;
-    _this.wheelIndex = wheelIndex;
-    var getPositionOffset = function() {
-        switch (_this.wheelIndex) {
-            case WHEEL_LEFT_FRONT:
-                return Vec3.sum(_this.selectableCar.vehicle.frontAxlePos, {x: -_this.selectableCar.vehicle.frontAxleLength / 2});
-            case WHEEL_RIGHT_FRONT:
-                return Vec3.sum(_this.selectableCar.vehicle.frontAxlePos, {x: _this.selectableCar.vehicle.frontAxleLength / 2});
-            case WHEEL_LEFT_BACK:
-                return Vec3.sum(_this.selectableCar.vehicle.backAxlePos, {x: -_this.selectableCar.vehicle.backAxleLength / 2});
-            case WHEEL_RIGHT_BACK:
-                return Vec3.sum(_this.selectableCar.vehicle.backAxlePos, {x: _this.selectableCar.vehicle.backAxleLength / 2});
-        }
-        return {};
-    };
-    var getRotationOffset = function() {
-        switch (_this.wheelIndex) {
-            case WHEEL_LEFT_FRONT:
-            case WHEEL_LEFT_BACK:
-                return Quat.fromPitchYawRollDegrees(0, 0, 180);
-            case WHEEL_RIGHT_FRONT:
-            case WHEEL_RIGHT_BACK:
-                return Quat.fromPitchYawRollDegrees(0, 0, 0);
-        }
-        return {};
-    };
-    var vehicleRegPoint = _this.selectableCar.vehicle.registrationPoint;
-    _this.positionOffset = Vec3.sum(getPositionOffset(), {
-        x: ((vehicleRegPoint.x - DEFAULT_REGISTRATION_POINT.x) * 4),
-        y: ((vehicleRegPoint.y - DEFAULT_REGISTRATION_POINT.y) * 4),
-        z: ((vehicleRegPoint.z - DEFAULT_REGISTRATION_POINT.z) * 4)
-    });
-    _this.rotationOffset = getRotationOffset();
-    
-    _this.overlay = Overlays.addOverlay("model", {
-        url: MODEL_FOLDER_URL + _this.selectableCar.vehicle.wheelModel,
-        dimensions: 0, // you cannot change the dimensions
-        //position: wheelPos, dimensions: {x: 0.63, y: 0.99, z:0.99},
-        //rotation: this.properties.rotation
-    });
-
-    _this.update = function(carPosition) {
-      // print(JSON.stringify(carPosition));
-        Overlays.editOverlay(_this.overlay, {
-            position: Vec3.sum(carPosition, Vec3.multiplyQbyV(_this.selectableCar.rotation, _this.positionOffset)),
-            rotation: Quat.multiply(_this.selectableCar.rotation, _this.rotationOffset)
-        });
-    };
-
-    this.cleanup = function() {
-        Overlays.deleteOverlay(_this.overlay);
-    };
-};
-
-CarSelector = function() {
-    var _this = this;
-    _this.selectedCar = 0;
-    _this.selectableCars = [];
-    _this.carouselRot = 0;
-    _this.carouselTargetRot = 0;
-    _this.carTitleOverlay = null;
-    _this.init = function() {
-        print("Car selector initializing...");
-        for (var i = 0; i < VEHICLES.length; i++) {
-            var selectableCar = {vehicle: VEHICLES[i], rotation: {x: 0, y: 0, z: 0, w: 1}, currentDegrees: 0};
-            selectableCar.overlay = Overlays.addOverlay("model", {
-                url: MODEL_FOLDER_URL + selectableCar.vehicle.modelFile + "?v=" + (new Date()).getTime(),
-                position: Vec3.sum(CAR_SELECTOR_CENTER, {x: 0, y: selectableCar.vehicle.dimensions.y / 2, z: 0}),
-                dimensions: selectableCar.vehicle.dimensions,
-                visible: true
-                //scale: 0.01///alpha: 0.5
-            });
-            selectableCar.wheels = [];
-            for (var j = 0; j < WHEEL_COUNT; j++) {
-                //var wheelPos = Vec3.sum(this.properties.position, Vec3.multiplyQbyV(this.properties.rotation, getPositionOffset(i)));
-                selectableCar.wheels[j] = new CarSelectorWheel(selectableCar, j);
-            }            
-            _this.selectableCars.push(selectableCar);
-        }
-        _this.carTitleOverlay = Overlays.addOverlay("text", {
-            x: 200,
-            y: 200,
-            width: 1000,
-            height: 200,
-            textColor: {red: 0, green: 0, blue: 0},
-            alpha: 1,
-            backgroundAlpha: 0,
-            visible: true
-        });
-        _this.updateCarSelectionText();
-    };
-
-    _this.nextCar = function() {
-        _this.selectedCar = (_this.selectedCar + 1) % _this.selectableCars.length;
-        _this.updateCarSelectionText();
-    };
-
-    _this.prevCar = function() {
-        _this.selectedCar = (_this.selectedCar + (_this.selectableCars.length - 1)) % _this.selectableCars.length;
-        _this.updateCarSelectionText();
-    };
-
-    _this.updateCarSelectionText = function() {
-        _this.setSelectionText(_this.selectableCars[_this.selectedCar].vehicle.name)
-    };
-
-    _this.setSelectionText = function(text) {
-        Overlays.editOverlay(_this.carTitleOverlay, {text: text});
-    };
-
-    function normalizeDegrees(degrees) {
-        return (degrees + MAX_DEGREES) % MAX_DEGREES;
-    }
-
-    function mixDegreesTowards(currentRotation, targetRotation, mixValue) {
-        if (mixValue > 1.0) {
-            mixValue = 1.0;
-        }
-        currentRotation = normalizeDegrees(currentRotation);
-        var leftDistance = normalizeDegrees(currentRotation - targetRotation);
-        var rightDistance = normalizeDegrees(targetRotation - currentRotation);
-        if (leftDistance < rightDistance) {
-            return currentRotation - (leftDistance * mixValue);
-        }
-        return currentRotation + (rightDistance * mixValue);
-    }  
-
-    _this.update = function(time) {
-        var radiusOffset = {x: 0, y: 0, z: CAR_SELECTOR_RADIUS};
-        var degreesPerCar = MAX_DEGREES / _this.selectableCars.length;
-
-        _this.carouselTargetRot = (_this.selectedCar * degreesPerCar) + CAR_SELECTOR_ROT_OFFSET;
-        _this.carouselRot = mixDegreesTowards(_this.carouselRot, _this.carouselTargetRot, time * CAR_SELECTOR_ROT_SPEED);
-
-        _this.selectableCars.forEach(function(selectableCar, index, object) {
-            var rotationOffset = Quat.fromPitchYawRollDegrees(0.0, (index * degreesPerCar) - _this.carouselRot, 0.0);
-            var newProperties = {
-                position: Vec3.sum(Vec3.sum(CAR_SELECTOR_CENTER, Vec3.multiplyQbyV(rotationOffset, radiusOffset)), {x: 0, y: selectableCar.vehicle.dimensions.y / 2, z: 0})
-            };
-            if (index == _this.selectedCar) {
-                selectableCar.rotation = Quat.multiply(selectableCar.rotation, Quat.fromVec3Degrees({x: 0, y: CAR_SELECTOR_TURN_SPEED * time, z: 0}));
-                newProperties.rotation = selectableCar.rotation;
-            }
-            Overlays.editOverlay(selectableCar.overlay, newProperties);
-            for (var i = 0; i < selectableCar.wheels.length; i++) {
-                selectableCar.wheels[i].update(newProperties.position);
-            }            
-        });
-    };
-
-    _this.cleanup = function() {
-        _this.selectableCars.forEach(function(selectableCar, index, object) {
-            Overlays.deleteOverlay(selectableCar.overlay);
-            for (var i = 0; i < selectableCar.wheels.length; i++) {
-                selectableCar.wheels[i].cleanup();
-            }  
-        });
-        Overlays.deleteOverlay(_this.carTitleOverlay);
-        _this.selectableCars = [];
-    };
-};
-
-TrackSelector = function() {
-    var _this = this;
-    _this.selectedTrack = 0;
-    _this.trackTitleOverlay = null;
-    _this.init = function() {
-        print("Track selector initializing...");
-       /* for (var i = 0; i < TRACKS.length; i++) {
-            var selectableCar = {vehicle: VEHICLES[i], rotation: {x: 0, y: 0, z: 0, w: 1}, currentDegrees: 0};
-            selectableCar.overlay = Overlays.addOverlay("model", {
-                url: MODEL_FOLDER_URL + selectableCar.vehicle.modelFile + "?v=" + (new Date()).getTime(),
-                position: Vec3.sum(CAR_SELECTOR_CENTER, {x: 0, y: selectableCar.vehicle.dimensions.y / 2, z: 0}),
-                dimensions: selectableCar.vehicle.dimensions,
-                visible: true
-                //scale: 0.01///alpha: 0.5
-            });
-            selectableCar.wheels = [];
-            for (var j = 0; j < WHEEL_COUNT; j++) {
-                //var wheelPos = Vec3.sum(this.properties.position, Vec3.multiplyQbyV(this.properties.rotation, getPositionOffset(i)));
-                selectableCar.wheels[j] = new CarSelectorWheel(selectableCar, j);
-            }            
-            _this.selectableCars.push(selectableCar);
-        }*/
-        _this.trackTitleOverlay = Overlays.addOverlay("text", {
-            x: 200,
-            y: 200,
-            width: 1000,
-            height: 200,
-            textColor: {red: 0, green: 0, blue: 0},
-            alpha: 1,
-            backgroundAlpha: 0,
-            visible: true
-        });
-        _this.updateSelectionText();
-    };
-
-    _this.nextTrack = function() {
-        _this.selectedTrack = (_this.selectedTrack + 1) % TRACKS.length;
-        _this.updateSelectionText();
-    };
-
-    _this.prevTrack = function() {
-        _this.selectedTrack = (_this.selectedTrack + (TRACKS.length - 1)) % TRACKS.length;
-        _this.updateSelectionText();
-    };
-
-    _this.updateSelectionText = function() {
-        _this.setSelectionText(TRACKS[_this.selectedTrack].name)
-    };
-
-    _this.setSelectionText = function(text) {
-        Overlays.editOverlay(_this.trackTitleOverlay, {text: text});
-    };
-
-    _this.update = function(time) {
-        /*
-        var radiusOffset = {x: 0, y: 0, z: CAR_SELECTOR_RADIUS};
-        var degreesPerCar = MAX_DEGREES / _this.selectableCars.length;
-
-        _this.carouselTargetRot = (_this.selectedCar * degreesPerCar) + CAR_SELECTOR_ROT_OFFSET;
-        _this.carouselRot = mixDegreesTowards(_this.carouselRot, _this.carouselTargetRot, time * CAR_SELECTOR_ROT_SPEED);
-
-        _this.selectableCars.forEach(function(selectableCar, index, object) {
-            var rotationOffset = Quat.fromPitchYawRollDegrees(0.0, (index * degreesPerCar) - _this.carouselRot, 0.0);
-            var newProperties = {
-                position: Vec3.sum(Vec3.sum(CAR_SELECTOR_CENTER, Vec3.multiplyQbyV(rotationOffset, radiusOffset)), {x: 0, y: selectableCar.vehicle.dimensions.y / 2, z: 0})
-            };
-            if (index == _this.selectedCar) {
-                selectableCar.rotation = Quat.multiply(selectableCar.rotation, Quat.fromVec3Degrees({x: 0, y: CAR_SELECTOR_TURN_SPEED * time, z: 0}));
-                newProperties.rotation = selectableCar.rotation;
-            }
-            Overlays.editOverlay(selectableCar.overlay, newProperties);
-            for (var i = 0; i < selectableCar.wheels.length; i++) {
-                selectableCar.wheels[i].update(newProperties.position);
-            }            
-        });*/
-    };
-
-    _this.cleanup = function() {
-      /*  _this.selectableCars.forEach(function(selectableCar, index, object) {
-            Overlays.deleteOverlay(selectableCar.overlay);
-            for (var i = 0; i < selectableCar.wheels.length; i++) {
-                selectableCar.wheels[i].cleanup();
-            }  
-        });*/
-        Overlays.deleteOverlay(_this.trackTitleOverlay);
-       // _this.selectableCars = [];
-    };
-};
-
-
-SoundLoopSwitcher = function() {
-    var _this = this;
-    _this.sound = null;
-    _this.injector = null;
-    _this.position = MyAvatar.position;
-    _this.setSound = function(sound) {
-        if (!SOUND) {
-            return;
-        }
-        if (_this.sound !== sound) {
-            _this.stopSound();
-            _this.sound = sound;
-            _this.injector = Audio.playSound(_this.sound, {
-                position: _this.position, //MyAvatar.position,
-                volume: 0.2,
-                loop: true
-            });
-        }
-    };
-
-    _this.stopSound = function() {
-        if (_this.injector !== null) {
-            _this.injector.stop();
-            _this.sound = null;
-            _this.injector = null;
-        }
-    };
-
-    _this.updatePosition = function(newPosition) {
-        if (_this.injector !== null) {
-            var currentOptions = _this.injector.options;
-            currentOptions.position = newPosition;
-            _this.injector.options = currentOptions;
-            //_this.injector.setOptions({position: newPosition});
-            //print(JSON.stringify(_this.injector.getOptions()));
-        }
-        _this.position = newPosition
-    };
-};
-
 var trackSelector = new TrackSelector();
 trackSelector.init();
 
 var carSelector = new CarSelector();
-//carSelector.init();
-
 var cameraHandler = new CameraHandler();
 var soundLoopSwitcher = new SoundLoopSwitcher();
 soundLoopSwitcher.setSound(soundIdle);
@@ -486,30 +69,48 @@ var steeringOffset = 0; // - will be left,  + will be right
 var steeringLeft = false;
 var steeringRight = false;
 
-
 function isCarDriving() {
     return state == STATE_DRIVING || state == STATE_RACING;
 }
-function launchMissile(carProps) {
+
+function launchProjectile(carProps) {
     Entities.addEntity({
-            type: "Model",
-            name: "Rocket",
-            shapeType: "sphere",
-            collisionsWillMove: true,
-            ignoreForCollisions: false,
-            position: Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: - 4})),
-            rotation: Quat.multiply(carProps.rotation, Quat.fromVec3Degrees({x: 270, y: 0, z: 0})),
-            dimensions: {x: 1.25, y: 2.56, z: 1.45},
-            modelURL: MODEL_FOLDER_URL + "rockett.fbx?123",
-            velocity: Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -10}),
-            angularVelocity: Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: 20}),
-            damping: 0,
-            lifetime: 5
-        });
+        type: "Model",
+        name: "Rocket",
+        shapeType: "sphere",
+        density: 8000,
+        collisionsWillMove: true,
+        ignoreForCollisions: false,
+        position: Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -7})),
+        rotation: Quat.multiply(carProps.rotation, Quat.fromVec3Degrees({x: 270, y: 0, z: 0})),
+        dimensions: {x: 1.25, y: 2.56, z: 1.45},
+        modelURL: MODEL_FOLDER_URL + "rockett.fbx?123",
+        velocity: Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -10}),
+        angularVelocity: Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: 20}),
+        damping: 0,
+        lifetime: 5
+    });
+    Entities.addEntity({
+        type: "Light",
+        name: "Rocket",
+        density: 8000,
+        //collisionsWillMove: true,
+        ignoreForCollisions: false,
+        position: Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -7})),
+        rotation: Quat.multiply(carProps.rotation, Quat.fromVec3Degrees({x: 270, y: 0, z: 0})),
+        dimensions: {x: 1.25, y: 2.56, z: 1.45},
+        velocity: Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -10}),
+        angularVelocity: Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: 20}),
+        damping: 0,
+        lifetime: 5,
+        isSpotlight: 0,
+        intensity: 1,
+        exponent: 0,
+        cutoff: 33,
+        color: {red: 242, green: 237, blue: 237}
+    });
 }
 
-// part 1 - the engine
-// part 2 - the wheels
 /// X+  is forward
 function handleDrivingKeyPress(event) {
     if (event.key == KEY.UP) {
@@ -522,7 +123,7 @@ function handleDrivingKeyPress(event) {
     } else if (event.key == KEY.C) {
         event.isShifted ? cameraHandler.prevCamera() : cameraHandler.nextCamera();
     } else if (event.key == KEY.SPACE) {
-        launchMissile(Entities.getEntityProperties(car));
+        launchProjectile(Entities.getEntityProperties(car));
     }
 }
 
@@ -537,6 +138,7 @@ Controller.keyPressEvent.connect(function(event) {
             trackSelector.nextTrack();
         } else if (event.key == KEY.SPACE) {
             carSelector.init();
+            cameraHandler.setCameras(TRACKS[trackSelector.selectedTrack].cameras);
             state = STATE_CAR_SELECTION;
         }
     } else if (state == STATE_CAR_SELECTION) {
@@ -552,15 +154,15 @@ Controller.keyPressEvent.connect(function(event) {
                 modelURL: MODEL_FOLDER_URL + selectedCar.vehicle.modelFile + "?v=" + (new Date()).getTime(),
                 shapeType: "box",
                 name: "TCarModel-" + selectedCar.vehicle.name,
-                position: selectedTrack.startPosition, //START_LOCATION.pos,//Vec3.sum(MyAvatar.position, {x: 2}),
-                rotation: selectedTrack.startOrientation,//START_LOCATION.rot,//MyAvatar.orientation,
+                position: selectedTrack.startPosition,
+                rotation: selectedTrack.startOrientation,
                 color: {red: 0, green: 255, blue: 0},
                 dimensions: selectedCar.vehicle.dimensions,
                 collisionsWillMove: true,
                 ignoreForCollisions: false,
-                gravity: {x: 0, y: -9.81, z: 0},
+                gravity: {x: 0, y: GRAVITY, z: 0},
                 script: "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/tcarEntityScript.js?v=" + (new Date()).getTime(),
-                density: 4000,
+                density: 6000,
                 damping: 0,
                 angularDamping: 0,
                 registrationPoint: selectedCar.vehicle.registrationPoint,
@@ -586,7 +188,7 @@ Controller.keyPressEvent.connect(function(event) {
                 });
             }
             state = STATE_DRIVING;
-            cameraHandler.stance = CAMERA_CAR_FIXED_WORLD;
+            cameraHandler.firstCamera();
             carSelector.cleanup();
         }
     }
@@ -595,8 +197,8 @@ Controller.keyPressEvent.connect(function(event) {
 Controller.keyReleaseEvent.connect(function(event) {
     if (isCarDriving()) {
         if (event.key == KEY.UP) {
-             planking = false;
-             soundLoopSwitcher.setSound(soundDecelerating);
+            planking = false;
+            soundLoopSwitcher.setSound(soundDecelerating);
         } else if (event.key == KEY.LEFT) {
             steeringLeft = false;
         } else if (event.key == KEY.RIGHT) {
@@ -605,9 +207,6 @@ Controller.keyReleaseEvent.connect(function(event) {
     }
 });
 
-var timeItWentWithoutMoving = 0;
-
-var actionID = false;
 function updateCar(time) {
     var carProps = Entities.getEntityProperties(car);
     soundLoopSwitcher.updatePosition(carProps.position);
@@ -624,7 +223,12 @@ function updateCar(time) {
     if (steeringRight && steeringOffset > -0.2) {
         steeringOffset -= time;
     }
-    //TODO: (optional) automatic turning back of steering wheel
+
+    // automatic turning back of steering wheel
+    // non of the steering is pressed, autocenter
+    if (!steeringRight && !steeringLeft) {
+        steeringOffset = 0; // 0 is DIRECT!
+    }
     
     var newProperties = {};
     newProperties.ignoreForCollisions = false;
@@ -664,7 +268,7 @@ function updateCar(time) {
 Script.update.connect(function(time) {
     if (isCarDriving()) {
         updateCar(time);
-        //speedOMeter.update(time);
+        //speedometer.update(time);
     } else if (state == STATE_TRACK_SELECTION) {
         cameraHandler.stance = CAMERA_TRACK_SELECTOR;
         cameraHandler.updateCamera(time, null);
@@ -675,58 +279,6 @@ Script.update.connect(function(time) {
         carSelector.update(time);
     }
 });
-
-//Entities
-
-
-
-// part 3 - the window wipers
-
-
-
-
-// part 4 - the fuel cap
-
-
-
-// part 5 - make sure there is gas (gas station)
-
-
-
-
-// part 6 - car theft
-
-
-
-
-// part 7 - proper camera movement
-
-
-
-
-// part 8 - belt warning lights
-
-
-
-
-
-// part 9 - other lights and sigaret lighter/electric input
-
-
-
-
-// part 10 - doorhandles
-
-
-
-// part 11 - think about part 12
-
-
-
-// part 13 - tail lights
-// part 13.1 - fog lights
-
-// part 14 - handbreak
 
 Script.scriptEnding.connect(function() {
     MyAvatar.scale = 1;
@@ -742,7 +294,7 @@ Script.scriptEnding.connect(function() {
     Controller.captureKeyEvents({key: KEY.DEL});
     carSelector.cleanup();
     trackSelector.cleanup();
-    speedOMeter.cleanup();
+    //speedometer.cleanup();
    /* Audio.playSound(soundShutdown, {
       position: MyAvatar.position,
       volume: 0.1
