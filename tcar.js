@@ -59,7 +59,6 @@ var cameraHandler = new CameraHandler();
 var soundLoopSwitcher = new SoundLoopSwitcher();
 soundLoopSwitcher.setSound(soundIdle);
 
-// part 0 - the chassis
 var speed = 0;
 var speedI = 0;
 var lastSpeedI = 0;
