@@ -1,11 +1,11 @@
-const DEFAULT_COLLISION_MODEL = "StandardisedCars/collision2.obj";
+const DEFAULT_COLLISION_MODEL = "cars/collision2.obj";
 
 VEHICLES = [
 {
     name: "Blues",
-    modelFile: "StandardisedCars/Bluesmobile.fbx",
+    modelFile: "cars/Bluesmobile.fbx",
 	collisionModel: DEFAULT_COLLISION_MODEL,
-    wheelModel: "StandardisedCars/Bluesmobilewheel.fbx",
+    wheelModel: "cars/Bluesmobilewheel.fbx",
     dimensions: {x: 2.017, y: 1.409, z: 5.602},
     wheelDimensions: {x: 0.098, y:0.348, z: 0.348},
     registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
@@ -16,9 +16,9 @@ VEHICLES = [
 },
 {
     name: "Capri",
-    modelFile: "StandardisedCars/Capri.fbx",
+    modelFile: "cars/Capri.fbx",
 	collisionModel: DEFAULT_COLLISION_MODEL,
-    wheelModel: "StandardisedCars/capriwheelfbx.fbx",
+    wheelModel: "cars/capriwheelfbx.fbx",
     dimensions: {x: 1.872, y: 1.556, z: 4.866 },
     wheelDimensions: {x: 0.098, y:0.348, z: 0.348},
     registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
@@ -29,9 +29,9 @@ VEHICLES = [
 },
 {
     name: "2Beatle",
-    modelFile: "StandardisedCars/2beatle.fbx",
+    modelFile: "cars/2beatle.fbx",
 	collisionModel: DEFAULT_COLLISION_MODEL,
-    wheelModel: "StandardisedCars/2beatlewheel.fbx",
+    wheelModel: "cars/2beatlewheel.fbx",
     dimensions: {x:  2.113, y:1.872 , z: 4.876},
     wheelDimensions: {x:0.098, y:0.348, z: 0.348},
     registrationPoint: {x: 0.5, y: 0.45, z: 0.8},
@@ -42,9 +42,9 @@ VEHICLES = [
 },
 {
     name: "DS",
-    modelFile: "StandardisedCars/Ds.fbx",
+    modelFile: "cars/Ds.fbx",
 	collisionModel: DEFAULT_COLLISION_MODEL,
-    wheelModel: "StandardisedCars/dswheel.fbx",
+    wheelModel: "cars/dswheel.fbx",
     dimensions: {x: 2.017, y: 1.409, z: 5.602},
     wheelDimensions: {x:0.098, y:0.348, z:0.348},
     registrationPoint: {x: 0.5, y: 0.45, z: 0.8},
@@ -55,7 +55,7 @@ VEHICLES = [
 },
 {
     name: "The red one",
-    modelFile: "Tcarchassis.fbx",
+    modelFile: "cars/Redcar.fbx",
 	collisionModel: DEFAULT_COLLISION_MODEL,
     wheelModel: "Twheel.fbx",
     dimensions: {x: 2.0, y: 1.5, z: 4.4},
@@ -67,7 +67,7 @@ VEHICLES = [
 },
 {
     name: "BBCar",
-    modelFile: "BBCAR.fbx",
+    modelFile: "cars/BBCAR.fbx",
 	collisionModel: DEFAULT_COLLISION_MODEL,
     wheelModel: "Twheel.fbx",
     dimensions: {x: 3.21, y: 1.92, z: 4.39},
@@ -79,7 +79,7 @@ VEHICLES = [
 },
 {
     name: "Wolf car",
-    modelFile: "wolfcar.fbx",
+    modelFile: "wolf.fbx",
 	collisionModel: DEFAULT_COLLISION_MODEL,
     wheelModel: "Twheel.fbx",
     dimensions: {x: 4.73, y: 2.26, z: 5.61},

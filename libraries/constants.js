@@ -47,4 +47,4 @@ SOUND_FOLDER_URL = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/";
 
 SOUND = true;
 
-MODEL_FOLDER_URL = "http://hifi-external.s3.amazonaws.com/tcars/models/cars/";
+MODEL_FOLDER_URL = "http://hifi-external.s3.amazonaws.com/tcars/models/";
