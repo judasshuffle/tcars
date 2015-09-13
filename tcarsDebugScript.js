@@ -26,12 +26,11 @@ var carScriptButton = toolBar.addTool({
 }, true, false);
 
 Controller.mousePressEvent.connect(function(event) {
-	print("click");
     var clickedOverlay = Overlays.getOverlayAtPoint({x: event.x, y: event.y});
     if (toolBar.clicked(clickedOverlay) === carScriptButton) {
         carScriptEnabled = !carScriptEnabled;
         toolBar.selectTool(carScriptButton, carScriptEnabled);
-        Script.load("https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/tcar.js?v=" + (new Date()).getTime());
+        Script.load("http://hifi-external.s3.amazonaws.com/tcars/scripts/tcar.js?v=" + (new Date()).getTime());
     }
 });
 
