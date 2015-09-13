@@ -13,7 +13,8 @@ Script.include([
     'libraries/carSelector.js',
     'libraries/cameraHandler.js',
     'libraries/trackSelector.js',
-    'libraries/soundLoopSwitcher.js'
+    'libraries/soundLoopSwitcher.js',
+    'libraries/car.js'
 ]);
 
 var zoneInformation = {"rideZone":"School Tables", "seats": [
@@ -56,17 +57,6 @@ trackSelector.init();
 
 var carSelector = new CarSelector();
 var cameraHandler = new CameraHandler();
-var soundLoopSwitcher = new SoundLoopSwitcher();
-soundLoopSwitcher.setSound(soundIdle);
-
-var speed = 0;
-var speedI = 0;
-var lastSpeedI = 0;
-var lastAngularVelocityY = 0;
-var planking = false;
-var steeringOffset = 0; // - will be left,  + will be right
-var steeringLeft = false;
-var steeringRight = false;
 
 function isCarDriving() {
     return state == STATE_DRIVING || state == STATE_RACING;
@@ -113,16 +103,16 @@ function launchProjectile(carProps) {
 /// X+  is forward
 function handleDrivingKeyPress(event) {
     if (event.key == KEY.UP) {
-        planking = true;
-        soundLoopSwitcher.setSound(soundAccelerating);
+        car.planking = true;
+        car.soundLoopSwitcher.setSound(soundAccelerating);
     } else if (event.key == KEY.LEFT) {
-        steeringLeft = true;
+        car.steeringLeft = true;
     } else if (event.key == KEY.RIGHT) {
-        steeringRight = true;
+        car.steeringRight = true;
     } else if (event.key == KEY.C) {
         event.isShifted ? cameraHandler.prevCamera() : cameraHandler.nextCamera();
     } else if (event.key == KEY.SPACE) {
-        launchProjectile(Entities.getEntityProperties(car));
+        launchProjectile(Entities.getEntityProperties(car.entity));
     }
 }
 
@@ -148,44 +138,7 @@ Controller.keyPressEvent.connect(function(event) {
         } else if (event.key == KEY.SPACE) {
             var selectedCar = carSelector.selectableCars[carSelector.selectedCar];
             var selectedTrack = TRACKS[trackSelector.selectedTrack];
-            var newProperties = {
-                type: "Model",
-                modelURL: MODEL_FOLDER_URL + selectedCar.vehicle.modelFile + "?v=" + (new Date()).getTime(),
-                shapeType: "box",
-                name: "TCarModel-" + selectedCar.vehicle.name,
-                position: selectedTrack.startPosition,
-                rotation: selectedTrack.startOrientation,
-                color: {red: 0, green: 255, blue: 0},
-                dimensions: selectedCar.vehicle.dimensions,
-                collisionsWillMove: true,
-                ignoreForCollisions: false,
-                gravity: {x: 0, y: GRAVITY, z: 0},
-                script: "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/tcarEntityScript.js?v=" + (new Date()).getTime(),
-                density: 6000,
-                damping: 0,
-                angularDamping: 0,
-                registrationPoint: selectedCar.vehicle.registrationPoint,
-                userData: JSON.stringify({
-                    wheelModel: selectedCar.vehicle.wheelModel,
-                    frontAxlePos: selectedCar.vehicle.frontAxlePos,
-                    backAxlePos: selectedCar.vehicle.backAxlePos,
-                    frontAxleLength: selectedCar.vehicle.frontAxleLength,
-                    backAxleLength: selectedCar.vehicle.backAxleLength
-                })
-               // collisionSoundURL: "https://dl.dropboxusercontent.com/u/14997455/hifi/tcar/collision.wav?v=2"
-            };
-            if (selectedCar.vehicle.collisionModel !== undefined) {
-                newProperties.shapeType = 'compound';
-                newProperties.compoundShapeURL = MODEL_FOLDER_URL + selectedCar.vehicle.collisionModel + "?v=" + (new Date()).getTime(),
-            }
-
-            car = Entities.addEntity(newProperties);
-            if (SOUND) {
-                Audio.playSound(soundStarting, {
-                    position: MyAvatar.position,
-                    volume: 0.1
-                });
-            }
+            car = new Car(selectedCar.vehicle, selectedTrack.startPosition, selectedTrack.startOrientation);
             state = STATE_DRIVING;
             cameraHandler.firstCamera();
             carSelector.cleanup();
@@ -196,77 +149,21 @@ Controller.keyPressEvent.connect(function(event) {
 Controller.keyReleaseEvent.connect(function(event) {
     if (isCarDriving()) {
         if (event.key == KEY.UP) {
-            planking = false;
-            soundLoopSwitcher.setSound(soundDecelerating);
+            car.planking = false;
+            car.soundLoopSwitcher.setSound(soundDecelerating);
         } else if (event.key == KEY.LEFT) {
-            steeringLeft = false;
+            car.steeringLeft = false;
         } else if (event.key == KEY.RIGHT) {
-            steeringRight = false;
+            car.steeringRight = false;
         }
     }
 });
 
-function updateCar(time) {
-    var carProps = Entities.getEntityProperties(car);
-    soundLoopSwitcher.updatePosition(carProps.position);
-    //MyAvatar.position = carProps.position;
-    if (planking) {
-        speedI += time * SPEED_FORWARD;
-    } else {
-        speedI -= time * SPEED_BRAKES;
-    }
-    //steering
-    if (steeringLeft && steeringOffset < 0.2) {
-        steeringOffset += time;
-    }
-    if (steeringRight && steeringOffset > -0.2) {
-        steeringOffset -= time;
-    }
-
-    // automatic turning back of steering wheel
-    // non of the steering is pressed, autocenter
-    if (!steeringRight && !steeringLeft) {
-        steeringOffset = 0; // 0 is DIRECT!
-    }
-    
-    var newProperties = {};
-    newProperties.ignoreForCollisions = false;
-    if (speedI < 0) {
-        speedI = 0;
-        soundLoopSwitcher.setSound(soundIdle);
-        timeItWentWithoutMoving += time;
-        if (timeItWentWithoutMoving > 5) {
-            var direction = Quat.safeEulerAngles(carProps.rotation).y;
-            newProperties.rotation = Quat.fromPitchYawRollDegrees(0, direction, 0);
-            newProperties.position = Vec3.sum(carProps.position, carProps.dimensions),
-            newProperties.ignoreForCollisions = true;
-            timeItWentWithoutMoving = 0;
-        }
-    } else {
-        timeItWentWithoutMoving = 0;
-    }
-    cameraHandler.updateCamera(time, carProps);
-    
-    
-    if (speedI !== lastSpeedI) {
-        newProperties.velocity = Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -Math.log(1 + speedI, 0.3)});
-        newProperties.velocity.y = carProps.velocity.y;
-    }
-    
-    var angularVelocityY = Math.log(1 + speedI, 0.1) * steeringOffset;
-    if (angularVelocityY !== lastAngularVelocityY) {
-        lastAngularVelocityY = angularVelocityY;
-        newProperties.angularVelocity = {x: 0.0, y: angularVelocityY, z: 0.0};
-    }
-    
-    if (Object.keys(newProperties).length > 0) {
-        Entities.editEntity(car, newProperties);
-    }
-}
-
 Script.update.connect(function(time) {
     if (isCarDriving()) {
-        updateCar(time);
+        car.update(time);
+        var carProps = Entities.getEntityProperties(car.entity);
+        cameraHandler.updateCamera(time, carProps);
         //speedometer.update(time);
     } else if (state == STATE_TRACK_SELECTION) {
         cameraHandler.stance = CAMERA_TRACK_SELECTOR;
@@ -281,7 +178,7 @@ Script.update.connect(function(time) {
 
 Script.scriptEnding.connect(function() {
     MyAvatar.scale = 1;
-    Entities.deleteEntity(car);
+    car.cleanup();
     soundLoopSwitcher.stopSound();
     cameraHandler.shutdown();
     Controller.releaseKeyEvents({key: KEY.UP});
