@@ -1,4 +1,4 @@
-const DEFAULT_COLLISION_MODEL = "cars/collision2.obj";
+const DEFAULT_COLLISION_MODEL = "cars/collision4.obj";
 
 VEHICLES = [
 {

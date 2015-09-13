@@ -34,8 +34,8 @@ Car = function(vehicle, startPosition, startOrientation) {
             ignoreForCollisions: false,
             gravity: {x: 0, y: GRAVITY, z: 0},
             script: "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/tcarEntityScript.js?v=" + (new Date()).getTime(),
-            density: 6000,
-            damping: 0,
+            density: 3000,
+            damping: 0.7,
             angularDamping: 0.7,
             registrationPoint: _this.vehicle.registrationPoint,
             userData: JSON.stringify({
@@ -105,7 +105,7 @@ Car = function(vehicle, startPosition, startOrientation) {
         
         
         if (_this.speedI !== _this.lastSpeedI) {
-            newProperties.velocity = Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -Math.log(1 + _this.speedI, 0.3)});
+            newProperties.velocity = Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -Math.log(1 + _this.speedI, 0.3)  *1.5});
             newProperties.velocity.y = carProps.velocity.y;
         }
         
