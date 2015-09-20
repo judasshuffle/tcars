@@ -1,4 +1,4 @@
-function parseCoordinate(coord) {
+ function parseCoordinate(coord) {
     var formatted = [];
     for (key in coord) {
         formatted.push(key + ': ' + coord[key]);
