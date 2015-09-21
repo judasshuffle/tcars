@@ -5,6 +5,7 @@
   <title>Blocky T.C.a.R.S.</title>
   <script src="google-blockly-8d87f73/blockly_compressed.js"></script>
   <script src="google-blockly-8d87f73/blocks_compressed.js"></script>
+  <script src="google-blockly-8d87f73/javascript_compressed.js"></script>
   <script src="google-blockly-8d87f73/msg/js/en.js"></script>
   <script src="msg/en.js"></script>
   <style type="text/css">
@@ -175,218 +176,11 @@
 </head>
 <body id="content_area">
   <div id="content_blocks" class="content"></div>
+  
 
   <xml id="toolbox" style="display: none">
-    <category id="catLogic">
-      <block type="controls_if"></block>
-      <block type="logic_compare"></block>
-      <block type="logic_operation"></block>
-      <block type="logic_negate"></block>
-      <block type="logic_boolean"></block>
-      <block type="logic_null"></block>
-      <block type="logic_ternary"></block>
-    </category>
-    <category id="catLoops">
-      <block type="controls_repeat_ext">
-        <value name="TIMES">
-          <block type="math_number">
-            <field name="NUM">10</field>
-          </block>
-        </value>
-      </block>
-      <block type="controls_whileUntil"></block>
-      <block type="controls_for">
-        <value name="FROM">
-          <block type="math_number">
-            <field name="NUM">1</field>
-          </block>
-        </value>
-        <value name="TO">
-          <block type="math_number">
-            <field name="NUM">10</field>
-          </block>
-        </value>
-        <value name="BY">
-          <block type="math_number">
-            <field name="NUM">1</field>
-          </block>
-        </value>
-      </block>
-      <block type="controls_forEach"></block>
-      <block type="controls_flow_statements"></block>
-    </category>
-    <category id="catMath">
-      <block type="math_number"></block>
-      <block type="math_arithmetic"></block>
-      <block type="math_single"></block>
-      <block type="math_trig"></block>
-      <block type="math_constant"></block>
-      <block type="math_number_property"></block>
-      <block type="math_change">
-        <value name="DELTA">
-          <block type="math_number">
-            <field name="NUM">1</field>
-          </block>
-        </value>
-      </block>
-      <block type="math_round"></block>
-      <block type="math_on_list"></block>
-      <block type="math_modulo"></block>
-      <block type="math_constrain">
-        <value name="LOW">
-          <block type="math_number">
-            <field name="NUM">1</field>
-          </block>
-        </value>
-        <value name="HIGH">
-          <block type="math_number">
-            <field name="NUM">100</field>
-          </block>
-        </value>
-      </block>
-      <block type="math_random_int">
-        <value name="FROM">
-          <block type="math_number">
-            <field name="NUM">1</field>
-          </block>
-        </value>
-        <value name="TO">
-          <block type="math_number">
-            <field name="NUM">100</field>
-          </block>
-        </value>
-      </block>
-      <block type="math_random_float"></block>
-    </category>
-    <category id="catText">
-      <block type="text"></block>
-      <block type="text_join"></block>
-      <block type="text_append">
-        <value name="TEXT">
-          <block type="text"></block>
-        </value>
-      </block>
-      <block type="text_length"></block>
-      <block type="text_isEmpty"></block>
-      <block type="text_indexOf">
-        <value name="VALUE">
-          <block type="variables_get">
-            <field name="VAR" class="textVar">...</field>
-          </block>
-        </value>
-      </block>
-      <block type="text_charAt">
-        <value name="VALUE">
-          <block type="variables_get">
-            <field name="VAR" class="textVar">...</field>
-          </block>
-        </value>
-      </block>
-      <block type="text_getSubstring">
-        <value name="STRING">
-          <block type="variables_get">
-            <field name="VAR" class="textVar">...</field>
-          </block>
-        </value>
-      </block>
-      <block type="text_changeCase"></block>
-      <block type="text_trim"></block>
-      <block type="text_print"></block>
-      <block type="text_prompt_ext">
-        <value name="TEXT">
-          <block type="text"></block>
-        </value>
-      </block>
-    </category>
-    <category id="catLists">
-      <block type="lists_create_empty"></block>
-      <block type="lists_create_with"></block>
-      <block type="lists_repeat">
-        <value name="NUM">
-          <block type="math_number">
-            <field name="NUM">5</field>
-          </block>
-        </value>
-      </block>
-      <block type="lists_length"></block>
-      <block type="lists_isEmpty"></block>
-      <block type="lists_indexOf">
-        <value name="VALUE">
-          <block type="variables_get">
-            <field name="VAR" class="listVar">...</field>
-          </block>
-        </value>
-      </block>
-      <block type="lists_getIndex">
-        <value name="VALUE">
-          <block type="variables_get">
-            <field name="VAR" class="listVar">...</field>
-          </block>
-        </value>
-      </block>
-      <block type="lists_setIndex">
-        <value name="LIST">
-          <block type="variables_get">
-            <field name="VAR" class="listVar">...</field>
-          </block>
-        </value>
-      </block>
-      <block type="lists_getSublist">
-        <value name="LIST">
-          <block type="variables_get">
-            <field name="VAR" class="listVar">...</field>
-          </block>
-        </value>
-      </block>
-      <block type="lists_split">
-        <value name="DELIM">
-          <block type="text">
-            <field name="TEXT">,</field>
-          </block>
-        </value>
-      </block>
-    </category>
-    <category id="catColour">
-      <block type="colour_picker"></block>
-      <block type="colour_random"></block>
-      <block type="colour_rgb">
-        <value name="RED">
-          <block type="math_number">
-            <field name="NUM">100</field>
-          </block>
-        </value>
-        <value name="GREEN">
-          <block type="math_number">
-            <field name="NUM">50</field>
-          </block>
-        </value>
-        <value name="BLUE">
-          <block type="math_number">
-            <field name="NUM">0</field>
-          </block>
-        </value>
-      </block>
-      <block type="colour_blend">
-        <value name="COLOUR1">
-          <block type="colour_picker">
-            <field name="COLOUR">#ff0000</field>
-          </block>
-        </value>
-        <value name="COLOUR2">
-          <block type="colour_picker">
-            <field name="COLOUR">#3333ff</field>
-          </block>
-        </value>
-        <value name="RATIO">
-          <block type="math_number">
-            <field name="NUM">0.5</field>
-          </block>
-        </value>
-      </block>
-    </category>
-    <sep></sep>
-    <category id="catVariables" custom="VARIABLE"></category>
-    <category id="catFunctions" custom="PROCEDURE"></category>
+    <block type="running"></block>
+    <block type="drive_forwards"></block>
   </xml>
 
   <script type="text/javascript">
@@ -407,6 +201,42 @@
             y: y
         };
     };
+
+    Blockly.Blocks['running'] = {
+      init: function() {
+        this.appendDummyInput().appendField("Car Start");
+        this.setInputsInline(true);
+        this.setNextStatement(true);
+        this.setColour(65);
+        //this.setTooltip('');
+      //  this.setHelpUrl('http://www.example.com/');
+      }
+    };
+
+    Blockly.Blocks['drive_forwards'] = {
+      init: function() {
+        this.appendDummyInput()
+            .appendField("Drive forwards");
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+        this.setColour(210);
+       // this.setTooltip('');
+       // this.setHelpUrl('http://www.example.com/');
+      }
+    };
+
+    Blockly.JavaScript['running'] = function(block) {
+      // TODO: Assemble JavaScript into code variable.
+      var code = '...';
+      return code;
+    };
+
+    Blockly.JavaScript['drive_forwards'] = function(block) {
+      // TODO: Assemble JavaScript into code variable.
+      var code = '...';
+      return code;
+    };
+
     var workspace = Blockly.inject('content_blocks', {
         grid: {
             spacing: 25,
@@ -417,6 +247,7 @@
         media: 'google-blockly-8d87f73/media/',
         toolbox: document.getElementById('toolbox')
     });
+
     var container = document.getElementById('content_area');
     var onresize = function(e) {
         var bBox = getBBox_(container);
@@ -428,11 +259,13 @@
         el.style.width = bBox.width + 'px';
         el.style.width = (2 * bBox.width - el.offsetWidth) + 'px';
     };
-      var categories = ['catLogic', 'catLoops', 'catMath', 'catText', 'catLists',
-                    'catColour', 'catVariables', 'catFunctions'];
-      for (var i = 0, cat; cat = categories[i]; i++) {
-        document.getElementById(cat).setAttribute('name', MSG[cat]);
-      }
+
+    var rootBlock = Blockly.Block.obtain(workspace, 'running');
+    rootBlock.initSvg();
+    rootBlock.render();
+    rootBlock.setMovable(false);
+    rootBlock.setDeletable(false);
+
     window.addEventListener('resize', onresize, false);
     onresize();
   </script>
