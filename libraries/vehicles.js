@@ -115,7 +115,7 @@ VEHICLES = [
 },
 {
     name: "Shoe",
-    modelFile: "SHOE1.fbx",
+    modelFile: "cars/Shoecar.fbx",
 	collisionModel: DEFAULT_COLLISION_MODEL,
     wheelModel: "cars/Twheel.fbx",
     dimensions: {x: 1.89, y: 4.34, z: 5.74},

@@ -82,7 +82,9 @@ TrackSelector = function() {
                 selectableCar.wheels[i].cleanup();
             }  
         });*/
+        print('cleaning up trackSelector');
         Overlays.deleteOverlay(_this.trackTitleOverlay);
+        print('cleaned up trackSelector');
        // _this.selectableCars = [];
     };
 };

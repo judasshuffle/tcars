@@ -50,7 +50,9 @@ CarSelectorWheel = function(selectableCar, wheelIndex) {
     };
 
     this.cleanup = function() {
+        print('cleaning up CarSelector');
         Overlays.deleteOverlay(_this.overlay);
+        print('Try selecting a car now! Muahahahaha!')
     };
 };
 

@@ -177,19 +177,22 @@ Script.update.connect(function(time) {
 });
 
 Script.scriptEnding.connect(function() {
+    print('TCars script closing...')
     MyAvatar.scale = 1;
-    car.cleanup();
-    soundLoopSwitcher.stopSound();
+    if (car !== null) {
+        car.cleanup();
+    }
     cameraHandler.shutdown();
     Controller.releaseKeyEvents({key: KEY.UP});
     Controller.releaseKeyEvents({key: KEY.DOWN});
     Controller.releaseKeyEvents({key: KEY.LEFT});
     Controller.releaseKeyEvents({key: KEY.RIGHT});
-    Controller.captureKeyEvents({key: KEY.C});
-    Controller.captureKeyEvents({key: KEY.SPACE});
-    Controller.captureKeyEvents({key: KEY.DEL});
+    Controller.releaseKeyEvents({key: KEY.C});
+    Controller.releaseKeyEvents({key: KEY.SPACE});
+    Controller.releaseKeyEvents({key: KEY.DEL});
     carSelector.cleanup();
     trackSelector.cleanup();
+    print('TCars script finished closing!')
     //speedometer.cleanup();
    /* Audio.playSound(soundShutdown, {
       position: MyAvatar.position,

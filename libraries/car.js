@@ -121,8 +121,10 @@ Car = function(vehicle, startPosition, startOrientation) {
     };
 
     _this.cleanup = function() {
+        print('Cleaning up a Car.')
         Entities.deleteEntity(_this.entity);
         _this.soundLoopSwitcher.stopSound();
+        print('The car has been impounded.')
     };
 
     _this.init();

@@ -4,8 +4,10 @@ CameraHandler = function() {
     _this.stance = CAMERA_CAR_FIXED_WORLD;
 
     _this.shutdown = function() {
+        print('shutting down CameraHandler');
         Camera.mode = _this.oldCameraMode;
         MyAvatar.audioListenerMode = _this.oldAudioListenerMode;
+        print('CameraHandler was scoped and fired at, did it die?');
     };
 
     _this.updateCamera = function(updateTime, carProps) {
