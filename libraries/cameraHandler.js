@@ -5,6 +5,7 @@ CameraHandler = function() {
 
     _this.shutdown = function() {
         Camera.mode = _this.oldCameraMode;
+        MyAvatar.audioListenerMode = _this.oldAudioListenerMode;
     };
 
     _this.updateCamera = function(updateTime, carProps) {
@@ -35,8 +36,8 @@ CameraHandler = function() {
     };
 
     _this.setCameras = function(cameraList) {
-         _this.cameraList = cameraList;
-         _this.firstCamera();
+        _this.cameraList = cameraList;
+        _this.firstCamera();
     };
 
     _this.nextCamera = function() {
@@ -52,5 +53,7 @@ CameraHandler = function() {
     }
 
     _this.oldCameraMode = Camera.mode;
-    Camera.mode = "independent";    
+    _this.oldAudioListenerMode = MyAvatar.audioListenerMode;
+    Camera.mode = "independent";
+    MyAvatar.audioListenerMode = MyAvatar.FROM_CAMERA;
 };
