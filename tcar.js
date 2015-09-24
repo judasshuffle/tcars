@@ -126,6 +126,7 @@ Controller.keyPressEvent.connect(function(event) {
         } else if (event.key == KEY.RIGHT) {
             trackSelector.nextTrack();
         } else if (event.key == KEY.SPACE) {
+            trackSelector.hide();
             carSelector.init();
             cameraHandler.setCameras(TRACKS[trackSelector.selectedTrack].cameras);
             state = STATE_CAR_SELECTION;
