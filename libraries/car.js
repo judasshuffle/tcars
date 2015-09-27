@@ -1,4 +1,4 @@
-Car = function(vehicle, startPosition, startOrientation) {
+Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
     var _this = this;
     _this.vehicle = vehicle;
     _this.speed = 0;
@@ -10,6 +10,7 @@ Car = function(vehicle, startPosition, startOrientation) {
     _this.steeringLeft = false;
     _this.steeringRight = false;
     _this.entity = null;
+    _this.speedMultiplier = speedMultiplier !== undefined ? speedMultiplier : 1.0;
 
     var soundAccelerating = SoundCache.getSound(SOUND_FOLDER_URL + "/capriii2.wav");
     var soundDecelerating = SoundCache.getSound(SOUND_FOLDER_URL + "/decelerating.wav");
@@ -105,7 +106,7 @@ Car = function(vehicle, startPosition, startOrientation) {
         
         
         if (_this.speedI !== _this.lastSpeedI) {
-            newProperties.velocity = Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -Math.log(1 + _this.speedI, 0.3)  *3});
+            newProperties.velocity = Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -Math.log(1 + _this.speedI, 0.3) * _this.speedMultiplier});
             newProperties.velocity.y = carProps.velocity.y;
         }
         

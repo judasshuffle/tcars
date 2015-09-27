@@ -1,6 +1,6 @@
 (function() {
     var _this = this;
-    const MODEL_FOLDER_URL = "https://dl.dropboxusercontent.com/u/10483952/tcar/";
+    const MODEL_FOLDER_URL = "http://hifi-external.s3.amazonaws.com/tcars/models/";// "https://dl.dropboxusercontent.com/u/10483952/tcar/";
     const WHEEL_LEFT_FRONT = 0;
     const WHEEL_RIGHT_FRONT = 1;
     const WHEEL_LEFT_BACK = 2;
@@ -26,6 +26,8 @@
     _this.sound = null;
     _this.wheels = [];
     _this.wheelSpin = 0;
+
+    _this.lastTime = +new Date;
 
     var getPositionOffset = function(wheelIndex) {
         switch (wheelIndex) {
@@ -107,9 +109,20 @@
             this.firstTime = false;
             for (var i = 0; i < WHEEL_COUNT; i++) {
                 var wheelPos = Vec3.sum(this.properties.position, Vec3.multiplyQbyV(this.properties.rotation, getPositionOffset(i)));
-                _this.wheels[i] = Overlays.addOverlay("model", {url: MODEL_FOLDER_URL + _this.wheelModel, position: wheelPos, dimensions: {x: 0.63, y: 0.99, z:0.99}, rotation: this.properties.rotation});               
+                _this.wheels[i] = Overlays.addOverlay("model", {
+                    url: MODEL_FOLDER_URL + _this.wheelModel,
+                   // position: wheelPos,
+                    dimensions: 0// {x: 0.63, y: 0.99, z:0.99},
+                   // rotation: this.properties.rotation
+                });
             }
-            Script.update.connect(_this.updateWheels);
+            /*var framesPerSecond = 30;
+            var second = 1000; // a second is 1000 ms
+            var timerTimeout = second / framesPerSecond;
+            Script.setInterval(function() {
+                _this.updateWheels(timerTimeout);
+            }, timerTimeout);
+            //Script.update.connect(_this.updateWheels);*/
         }
     }
 
@@ -122,11 +135,21 @@
         }
     };
 
-    _this.updateWheels = function(time) {
+    _this.updateWheels = function() {
+        var now = +new Date;
+        var time = (now - _this.lastTime) / 1000.0;
+        _this.lastTime = now;
+       // print(time);
+
         _this.updateProperties();
         _this.wheelSpin += Vec3.length(_this.properties.velocity) * time * TIRE_SPIN_MULTIPLIER;
         for (var i = 0; i < _this.wheels.length; i++) {
-            Overlays.editOverlay(_this.wheels[i], {position: Vec3.sum(_this.properties.position, Vec3.multiplyQbyV(_this.properties.rotation, getPositionOffset(i))), rotation: Quat.multiply(_this.properties.rotation, getRotationOffset(i))});
+            var newWheelProps = {
+                position: Vec3.sum(_this.properties.position, Vec3.multiplyQbyV(_this.properties.rotation, getPositionOffset(i))),
+                rotation: Quat.multiply(_this.properties.rotation, getRotationOffset(i))
+            };
+           // print("wheel " + i + " new props = " + JSON.stringify(newWheelProps));
+            Overlays.editOverlay(_this.wheels[i], newWheelProps);
         }
     };
 
