@@ -53,6 +53,40 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
             newProperties.compoundShapeURL = MODEL_FOLDER_URL + _this.vehicle.collisionModel;// + "?v=" + (new Date()).getTime(),
         }
 
+        // Loaned this code from the flashlight script:
+        _this.spotlight = Entities.addEntity({
+            type: "Light",
+            isSpotlight: true,
+            dimensions: {
+                x: 2,
+                y: 2,
+                z: 20
+            },
+            color: {
+                red: 255,
+                green: 255,
+                blue: 255
+            },
+            intensity: 2,
+            exponent: 0.3,
+            cutoff: 20
+        });
+        _this.glowLight = Entities.addEntity({
+            type: "Light",
+            dimensions: {
+                x: 0.25,
+                y: 0.25,
+                z: 0.25
+            },
+            isSpotlight: false,
+            color: {
+                red: 255,
+                green: 255,
+                blue: 255
+            },
+            exponent: 0,
+            cutoff: 90, // in degrees
+        });
         _this.entity = Entities.addEntity(newProperties);
         if (SOUND) {
             Audio.playSound(soundStarting, {
@@ -119,11 +153,21 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
         if (Object.keys(newProperties).length > 0) {
             Entities.editEntity(_this.entity, newProperties);
         }
+        Entities.editEntity(_this.spotlight, {
+            position: carProps.position,
+            rotation: carProps.rotation
+        });
+        Entities.editEntity(_this.glowLight, {
+            position: carProps.position,
+            rotation: carProps.rotation
+        });
     };
 
     _this.cleanup = function() {
         print('Cleaning up a Car.')
         Entities.deleteEntity(_this.entity);
+        Entities.deleteEntity(_this.spotlight);
+        Entities.deleteEntity(_this.glowLight);
         _this.soundLoopSwitcher.stopSound();
         print('The car has been impounded.')
     };

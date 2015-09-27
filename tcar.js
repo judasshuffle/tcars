@@ -17,15 +17,37 @@ Script.include([
     'libraries/car.js'
 ]);
 
-var zoneInformation = {"rideZone":"School Tables", "seats": [
-{"position":{"x":7938.66455078125,"y":7875.783203125,"z":7870.95166015625}, "rotation":{"x":-0.0000152587890625,"y":-0.0000152587890625,"z":-0.0000152587890625,"w":1}, "scale": 125}
-]};
+// list of tracked cars
+var trackedCars = [];
 
-var seatInformation = zoneInformation.seats[0];
+//var zoneInformation = {"rideZone":"School Tables", "seats": [
+//{"position":{"x":7938.66455078125,"y":7875.783203125,"z":7870.95166015625}, "rotation":{"x":-0.0000152587890625,"y":-0.0000152587890625,"z":-0.0000152587890625,"w":1}, "scale": 125}
+//]};
+
+/*var seatInformation = zoneInformation.seats[0];
 
 MyAvatar.scale = seatInformation.scale;
 MyAvatar.position = seatInformation.position;
 MyAvatar.orientation = seatInformation.rotation;
+*/
+AvatarSeater = function() {
+    var _this = this;
+    _this.originalPosition = MyAvatar.position;
+    _this.originalOrientation = MyAvatar.orientation;
+    _this.originalScale = MyAvatar.scale;
+    _this.setSeat = function(seat) {
+        MyAvatar.position = seat.position;
+        MyAvatar.orientation = seat.rotation;
+        MyAvatar.scale = seat.scale;
+    };
+    _this.cleanup = function() {
+        MyAvatar.position = _this.originalPosition;
+        MyAvatar.orientation = _this.originalOrientation;
+        MyAvatar.scale = _this.originalScale;
+    };
+};
+
+var avatarSeater = new AvatarSeater();
 
 var car = null;
 
@@ -139,7 +161,9 @@ Controller.keyPressEvent.connect(function(event) {
         } else if (event.key == KEY.SPACE) {
             var selectedCar = carSelector.selectableCars[carSelector.selectedCar];
             var selectedTrack = TRACKS[trackSelector.selectedTrack];
+            avatarSeater.setSeat(selectedTrack.seats[0])
             car = new Car(selectedCar.vehicle, selectedTrack.startPosition, selectedTrack.startOrientation);
+            trackedCars.push(car.entity);
             state = STATE_DRIVING;
             cameraHandler.firstCamera();
             carSelector.cleanup();
@@ -175,11 +199,15 @@ Script.update.connect(function(time) {
         cameraHandler.updateCamera(time, null);
         carSelector.update(time);
     }
+    for (var i in trackedCars) {
+        Entities.callEntityMethod(trackedCars[i], "updateWheels");
+      //  print("updated wheels of " + trackedCars[i]);
+    }
 });
 
 Script.scriptEnding.connect(function() {
-    print('TCars script closing...')
-    MyAvatar.scale = 1;
+    print('TCars script closing...');
+    avatarSeater.cleanup();
     if (car !== null) {
         car.cleanup();
     }
