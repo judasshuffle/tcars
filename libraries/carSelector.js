@@ -1,4 +1,4 @@
-CarSelectorWheel = function(selectableCar, wheelIndex) {
+/*CarSelectorWheel = function(selectableCar, wheelIndex) {
     var _this = this;
     _this.selectableCar = selectableCar;
     _this.wheelIndex = wheelIndex;
@@ -54,7 +54,7 @@ CarSelectorWheel = function(selectableCar, wheelIndex) {
         Overlays.deleteOverlay(_this.overlay);
         print('Try selecting a car now! Muahahahaha!')
     };
-};
+};*/
 
 CarSelector = function() {
     var _this = this;
@@ -68,17 +68,17 @@ CarSelector = function() {
         for (var i = 0; i < VEHICLES.length; i++) {
             var selectableCar = {vehicle: VEHICLES[i], rotation: {x: 0, y: 0, z: 0, w: 1}, currentDegrees: 0};
             selectableCar.overlay = Overlays.addOverlay("model", {
-                url: MODEL_FOLDER_URL + selectableCar.vehicle.modelFile + "?v=" + (new Date()).getTime(),
+                url: MODEL_FOLDER_URL + selectableCar.vehicle.selectormodel + "?v=" + (new Date()).getTime(),
                 position: Vec3.sum(CAR_SELECTOR_CENTER, {x: 0, y: selectableCar.vehicle.dimensions.y / 2, z: 0}),
                 dimensions: selectableCar.vehicle.dimensions,
                 visible: true
                 //scale: 0.01///alpha: 0.5
             });
-            selectableCar.wheels = [];
+            /*selectableCar.wheels = [];
             for (var j = 0; j < WHEEL_COUNT; j++) {
                 //var wheelPos = Vec3.sum(this.properties.position, Vec3.multiplyQbyV(this.properties.rotation, getPositionOffset(i)));
                 selectableCar.wheels[j] = new CarSelectorWheel(selectableCar, j);
-            }            
+            } */           
             _this.selectableCars.push(selectableCar);
         }
         _this.carTitleOverlay = Overlays.addOverlay("text", {
@@ -146,18 +146,18 @@ CarSelector = function() {
                 newProperties.rotation = selectableCar.rotation;
             }
             Overlays.editOverlay(selectableCar.overlay, newProperties);
-            for (var i = 0; i < selectableCar.wheels.length; i++) {
+          /*  for (var i = 0; i < selectableCar.wheels.length; i++) {
                 selectableCar.wheels[i].update(newProperties.position);
-            }            
+            }            */
         });
     };
 
     _this.cleanup = function() {
         _this.selectableCars.forEach(function(selectableCar, index, object) {
             Overlays.deleteOverlay(selectableCar.overlay);
-            for (var i = 0; i < selectableCar.wheels.length; i++) {
+            /*for (var i = 0; i < selectableCar.wheels.length; i++) {
                 selectableCar.wheels[i].cleanup();
-            }  
+            } */ 
         });
         Overlays.deleteOverlay(_this.carTitleOverlay);
         _this.selectableCars = [];
