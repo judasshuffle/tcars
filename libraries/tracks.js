@@ -35,7 +35,7 @@ TRACKS = [
         {
             position: {x: 7184.60107421875, y: 8033.275390625, z: 8160.1328125},
             rotation: {x: -0.0000152587890625, y: -0.0000152587890625, z: -0.0000152587890625, w: 1},
-            scale: 125.0
+            scale: 10.0
         }
     ],
     cameras: [CAMERA_CAR_TOPVIEW, CAMERA_CAR_BEHIND_CLOSE],
