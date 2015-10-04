@@ -36,8 +36,8 @@ CameraHandler = function() {
             Camera.lookAt(CAR_SELECTOR_CENTER);
         } else if (_this.stance === CAMERA_TRACK_SELECTOR) {
             var track = TRACKS[trackSelector.selectedTrack];
-            Camera.position = track.previewPosition;
-            Camera.orientation = track.previewOrientation;
+            Camera.position = Vec3.sum(track.previewPosition, HMD.position);
+            Camera.orientation = Quat.multiply(track.previewOrientation, HMD.orientation);
             //Camera.lookAt(CAR_SELECTOR_CENTER);
         } else if (_this.stance === CAMERA_CAR_FROM_USER_AUTOFOCUS) {
             Camera.position = MyAvatar.getEyePosition();//Vec3.mix(Camera.position, targetPos, updateTime);
