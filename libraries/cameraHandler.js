@@ -25,8 +25,8 @@ CameraHandler = function() {
             var targetPos = Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 13, z: 13}));
             _this.position = Vec3.mix(Camera.position, targetPos, updateTime);
             //var previousOrientation = Camera.orientation;
-            Camera.lookAt(Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 2, z: -13})));
-            _this.orientation = Quat.mix(_this.orientation, Camera.orientation, updateTime * 2);
+            //Camera.lookAt(Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 2, z: -13})));
+            _this.orientation = Quat.mix(_this.orientation, Quat.lookAtSimple(_this.position, Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 2, z: -13}))), updateTime * 2);
         } else if (_this.stance === CAMERA_CAR_BEHIND_CLOSE) {
             _this.position = Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 2, z: 5}));
             _this.orientation = Quat.multiply(carProps.rotation, HMD.orientation);
