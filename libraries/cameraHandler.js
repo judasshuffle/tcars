@@ -20,36 +20,43 @@ CameraHandler = function() {
         print('CameraHandler was scoped and fired at, did it die?');
     };
 
+    var cameraLookAt = function(cameraPos, lookAtPos) {
+        var lookAtRaw = Quat.lookAt(cameraPos, lookAtPos, WORLD_UP_DIRECTION);
+        lookAtRaw.w = -lookAtRaw.w;
+        return lookAtRaw;
+    }
+
     _this.updateCamera = function(updateTime, carProps) {
+        var applyHMDOffsets = true;
         if (_this.stance === CAMERA_CAR_TOPVIEW) {
             var targetPos = Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 13, z: 13}));
-            _this.position = Vec3.mix(Camera.position, targetPos, updateTime);
-            //var previousOrientation = Camera.orientation;
-            //Camera.lookAt(Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 2, z: -13})));
-            _this.orientation = Quat.mix(_this.orientation, Quat.lookAtSimple(_this.position, Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 2, z: -13}))), updateTime * 2);
+            _this.position = Vec3.mix(_this.position, targetPos, updateTime);
+            _this.orientation = Quat.mix(_this.orientation, cameraLookAt(_this.position, carProps.position), updateTime * 2);
         } else if (_this.stance === CAMERA_CAR_BEHIND_CLOSE) {
             _this.position = Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 2, z: 5}));
-            _this.orientation = Quat.multiply(carProps.rotation, HMD.orientation);
+            _this.orientation = carProps.rotation;
         } else if (_this.stance === CAMERA_CAR_FIXED_WORLD) {
             _this.position = Vec3.sum(carProps.position, {x: 15, y: 20 + (Vec3.length(carProps.velocity) * 2), z: 0});
-            Camera.lookAt(carProps.position);
-            _this.orientation = Camera.orientation;
+            _this.orientation = cameraLookAt(_this.position, carProps.position);
         } else if (_this.stance === CAMERA_CAR_SELECTOR) {
             _this.position = CAR_SELECTOR_CAM_POS;
-            Camera.lookAt(CAR_SELECTOR_CENTER);
-            _this.orientation = Camera.orientation;
+            _this.orientation = cameraLookAt(_this.position, CAR_SELECTOR_CENTER);
         } else if (_this.stance === CAMERA_TRACK_SELECTOR) {
             var track = TRACKS[trackSelector.selectedTrack];
-            _this.position = Vec3.sum(track.previewPosition, HMD.position);
-            _this.orientation = Quat.multiply(track.previewOrientation, HMD.orientation);
-            //Camera.lookAt(CAR_SELECTOR_CENTER);
+            _this.position = track.previewPosition;
+            _this.orientation = track.previewOrientation;
         } else if (_this.stance === CAMERA_CAR_FROM_USER_AUTOFOCUS) {
-            _this.position = MyAvatar.getEyePosition();//Vec3.mix(Camera.position, targetPos, updateTime);
-            Camera.lookAt(carProps.position);
-            _this.orientation = Camera.orientation;
+            _this.position = MyAvatar.getEyePosition();
+            _this.orientation = cameraLookAt(_this.position, carProps.position);
+            applyHMDOffsets = false; // do not apply the HMD here, since it already effects the avatar
         }
-        Camera.position = Vec3.sum(_this.position, HMD.position);
-        Camera.orientation = Quat.multiply(_this.orientation, HMD.orientation);
+        if (applyHMDOffsets) {
+            Camera.position = Vec3.sum(_this.position, HMD.position);
+            Camera.orientation = Quat.multiply(_this.orientation, HMD.orientation);
+            return;
+        }
+        Camera.position = _this.position;
+        Camera.orientation = _this.orientation;
     };
 
     _this.setCameras = function(cameraList) {
