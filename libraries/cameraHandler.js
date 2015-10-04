@@ -3,6 +3,14 @@ CameraHandler = function() {
     _this.cameraList = [CAMERA_CAR_FROM_USER_AUTOFOCUS, CAMERA_CAR_TOPVIEW, /*CAMERA_HOOD, */ CAMERA_CAR_BEHIND_CLOSE, /*CAMERA_BEHIND_MEDIUM, CAMERA_BEHIND_FAR, */ CAMERA_CAR_FIXED_WORLD];
     _this.stance = CAMERA_CAR_FIXED_WORLD;
 
+    if (HMD.orientation === undefined) {
+        HMD.orientation = {x: 0, y: 0, z: 0, w: 1};
+    }
+
+    if (HMD.position === undefined) {
+        HMD.position = {x: 0, y: 0, z: 0};
+    }
+
     _this.shutdown = function() {
         print('shutting down CameraHandler');
         Camera.mode = _this.oldCameraMode;
@@ -19,7 +27,7 @@ CameraHandler = function() {
             Camera.orientation = Quat.mix(previousOrientation, Camera.orientation, updateTime * 2);
         } else if (_this.stance === CAMERA_CAR_BEHIND_CLOSE) {
             Camera.position = Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 2, z: 5}));
-            Camera.orientation = carProps.rotation;
+            Camera.orientation = Quat.multiply(carProps.rotation, HMD.orientation);
         } else if (_this.stance === CAMERA_CAR_FIXED_WORLD) {
             Camera.position = Vec3.sum(carProps.position, {x: 15, y: 20 + (Vec3.length(carProps.velocity) * 2), z: 0});
             Camera.lookAt(carProps.position);
