@@ -49,7 +49,7 @@ CameraHandler = function() {
             _this.orientation = Camera.orientation;
         }
         Camera.position = Vec3.sum(_this.position, HMD.position);
-        Camera.orientation = Vec3.sum(_this.orientation, HMD.orientation);
+        Camera.orientation = Quat.multiply(_this.orientation, HMD.orientation);
     };
 
     _this.setCameras = function(cameraList) {
