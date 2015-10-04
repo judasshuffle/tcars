@@ -2,6 +2,8 @@ MAX_DEGREES = 360;
 
 GRAVITY = -9.81;
 
+WORLD_UP_DIRECTION = {x: 0, y: 1, z: 0};
+
 // We have different states that the script switches between
 STATE_TRACK_SELECTION = 0;
 STATE_CAR_SELECTION = 1;
@@ -45,6 +47,6 @@ SPEED_BRAKES = 1015;
 
 SOUND_FOLDER_URL = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/";
 
-SOUND = true;
+SOUND = false;
 
 MODEL_FOLDER_URL = "http://hifi-external.s3.amazonaws.com/tcars/models/";
