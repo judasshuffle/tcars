@@ -40,7 +40,7 @@ CameraHandler = function() {
         if (_this.stance === CAMERA_CAR_TOPVIEW) {
             var targetPos = Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 13, z: 13}));
             _this.position = Vec3.mix(_this.position, targetPos, updateTime);
-            _this.orientation = Quat.mix(_this.orientation, cameraLookAt(_this.position, carProps.position), updateTime * 2);
+            _this.orientation = Quat.mix(_this.orientation, cameraLookAt(_this.position, carProps.position), updateTime * 4);
         } else if (_this.stance === CAMERA_CAR_BEHIND_CLOSE) {
             _this.position = Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 2, z: 5}));
             _this.orientation = carProps.rotation;
