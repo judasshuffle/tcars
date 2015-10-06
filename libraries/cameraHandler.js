@@ -1,3 +1,12 @@
+//  TCars/library/cameraHandler.js
+//
+//  This library is responsible for the camera handling in the TCars project.
+//  From follow cam till track selection view. This library will bring you the vision!
+//
+//  Distributed under the Apache License, Version 2.0.
+//  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
+//
+
 CameraHandler = function() {
     var _this = this;
     _this.cameraList = [CAMERA_CAR_FROM_USER_AUTOFOCUS, CAMERA_CAR_TOPVIEW, /*CAMERA_HOOD, */ CAMERA_CAR_BEHIND_CLOSE, /*CAMERA_BEHIND_MEDIUM, CAMERA_BEHIND_FAR, */ CAMERA_CAR_FIXED_WORLD];
@@ -51,8 +60,8 @@ CameraHandler = function() {
             applyHMDOffsets = false; // do not apply the HMD here, since it already effects the avatar
         }
         if (applyHMDOffsets) {
-            Camera.position = Vec3.sum(_this.position, HMD.position);
-            Camera.orientation = Quat.multiply(_this.orientation, HMD.orientation);
+            Camera.position = Vec3.sum(_this.position, Vec3.subtract(HMD.position, MyAvatar.position));
+            Camera.orientation = Quat.multiply(_this.orientation, Quat.multiply(Quat.inverse(MyAvatar.orientation), HMD.orientation));
             return;
         }
         Camera.position = _this.position;
