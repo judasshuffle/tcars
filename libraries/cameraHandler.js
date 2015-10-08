@@ -59,7 +59,7 @@ CameraHandler = function() {
             _this.orientation = cameraLookAt(_this.position, carProps.position);
             applyHMDOffsets = false; // do not apply the HMD here, since it already effects the avatar
         }
-        if (applyHMDOffsets) {
+        if (HMD.active && applyHMDOffsets) {
             Camera.position = Vec3.sum(_this.position, Vec3.subtract(HMD.position, MyAvatar.position));
             Camera.orientation = Quat.multiply(_this.orientation, Quat.multiply(Quat.inverse(MyAvatar.orientation), HMD.orientation));
             return;
