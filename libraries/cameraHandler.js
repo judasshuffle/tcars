@@ -36,7 +36,7 @@ CameraHandler = function() {
     }
 
     _this.updateCamera = function(updateTime, carProps) {
-        var applyHMDOffsets = true;
+        var applyHMDOffsets = HMD.active;
         if (_this.stance === CAMERA_CAR_TOPVIEW) {
             var targetPos = Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 13, z: 13}));
             _this.position = Vec3.mix(_this.position, targetPos, updateTime);
@@ -59,7 +59,7 @@ CameraHandler = function() {
             _this.orientation = cameraLookAt(_this.position, carProps.position);
             applyHMDOffsets = false; // do not apply the HMD here, since it already effects the avatar
         }
-        if (HMD.active && applyHMDOffsets) {
+        if (applyHMDOffsets) {
             Camera.position = Vec3.sum(_this.position, Vec3.subtract(HMD.position, MyAvatar.position));
             Camera.orientation = Quat.multiply(_this.orientation, Quat.multiply(Quat.inverse(MyAvatar.orientation), HMD.orientation));
             return;
