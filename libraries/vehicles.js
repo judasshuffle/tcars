@@ -1,7 +1,7 @@
 const DEFAULT_COLLISION_MODEL = "cars/collision4.obj";
 
-VEHICLES = [
-{
+VEHICLES = {
+"BLUES": {
     name: "Blues",
     modelFile: "cars/Bluesmobile.fbx",
     collisionModel: DEFAULT_COLLISION_MODEL,
@@ -15,7 +15,7 @@ VEHICLES = [
     frontAxleLength: 1.65,
     backAxleLength: 1.65
 },
-{
+"CAPRI": {
     name: "Capri",
     modelFile: "cars/capri.fbx",
     collisionModel: DEFAULT_COLLISION_MODEL,
@@ -29,7 +29,7 @@ VEHICLES = [
     frontAxleLength: 1.65,
     backAxleLength: 1.65
 },
-{
+"TORINO": {
     name: "Torino",
     modelFile: "cars/Torino.fbx",
     collisionModel: DEFAULT_COLLISION_MODEL,
@@ -43,7 +43,7 @@ VEHICLES = [
     frontAxleLength: 1.65,
     backAxleLength: 1.65
 },
-{
+"2BEATLE": {
     name: "2Beatle",
     modelFile: "cars/2beatle.fbx",
     collisionModel: DEFAULT_COLLISION_MODEL,
@@ -57,7 +57,7 @@ VEHICLES = [
     frontAxleLength: 1.45,
     backAxleLength: 1.45
 },
-{
+"DS": {
     name: "DS",
     modelFile: "cars/Ds.fbx",
     collisionModel: DEFAULT_COLLISION_MODEL,
@@ -71,7 +71,7 @@ VEHICLES = [
     frontAxleLength: 1.8,
     backAxleLength: 1.1
 },
-{
+"TESTCAR": {
     name: "The red one",
     modelFile: "cars/Redcar.fbx",
     collisionModel: DEFAULT_COLLISION_MODEL,
@@ -84,7 +84,7 @@ VEHICLES = [
     frontAxleLength: 2.5,
     backAxleLength: 2.5
 },
-{
+"BBCAR": {
     name: "BBCar",
     modelFile: "cars/BBCAR.fbx",
     collisionModel: DEFAULT_COLLISION_MODEL,
@@ -97,7 +97,7 @@ VEHICLES = [
     frontAxleLength: 2.5,
     backAxleLength: 2.5
 },
-{
+"WOLF": {
     name: "Wolf car",
     modelFile: "cars/Wolf.fbx",
     collisionModel: DEFAULT_COLLISION_MODEL,
@@ -110,7 +110,7 @@ VEHICLES = [
     frontAxleLength: 2.5,
     backAxleLength: 2.5
 },
-{
+"CAT": {
     name: "Cat",
     modelFile: "cars/Cat.fbx",
     collisionModel: DEFAULT_COLLISION_MODEL,
@@ -123,7 +123,7 @@ VEHICLES = [
     frontAxleLength: 2.5,
     backAxleLength: 2.5
 },
-{
+"HANDVAN": {
     name: "Van the Hand",
     modelFile: "cars/Vanthehand.fbx",
     collisionModel: DEFAULT_COLLISION_MODEL,
@@ -136,7 +136,7 @@ VEHICLES = [
     frontAxleLength: 2.5,
     backAxleLength: 2.5
 },
-{
+"SHOE": {
     name: "Shoe",
     modelFile: "cars/Shoecar.fbx",
     collisionModel: DEFAULT_COLLISION_MODEL,
@@ -149,7 +149,7 @@ VEHICLES = [
     frontAxleLength: 2.5,
     backAxleLength: 2.5
 },
-{
+"CHAIR": {
     name: "Chaircar (BY FRAN)",
     modelFile: "cars/chair.fbx",
     collisionModel: DEFAULT_COLLISION_MODEL,
@@ -161,5 +161,18 @@ VEHICLES = [
     backAxlePos: {x: 0.0, y: -1.65, z: -0.5}, // x is across y is up and down z is forward back.
     frontAxleLength: 2.5,
     backAxleLength: 2.5
+},
+"SPACE": {
+    name: "Spaceship",
+    modelFile: "cars/spaceship.fbx",
+    collisionModel: DEFAULT_COLLISION_MODEL,
+    wheelModel: "cars/Twheel.fbx",
+    selectormodel: "cars/spaceship.fbx",
+    dimensions: {x: 1.89, y: 4.34, z: 5.74},
+    registrationPoint: {x: 0.5, y: 0.4, z: 0.75},
+    frontAxlePos: {x: 0, y: -1.65, z: -3.2},
+    backAxlePos: {x: 0.0, y: -1.65, z: -0.5}, // x is across y is up and down z is forward back.
+    frontAxleLength: 2.5,
+    backAxleLength: 2.5
 }
-];
+};

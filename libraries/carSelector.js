@@ -63,23 +63,25 @@ CarSelector = function() {
     _this.carouselRot = 0;
     _this.carouselTargetRot = 0;
     _this.carTitleOverlay = null;
-    _this.init = function() {
+    _this.init = function(allowedVehicles) {
         print("Car selector initializing...");
-        for (var i = 0; i < VEHICLES.length; i++) {
-            var selectableCar = {vehicle: VEHICLES[i], rotation: {x: 0, y: 0, z: 0, w: 1}, currentDegrees: 0};
-            selectableCar.overlay = Overlays.addOverlay("model", {
-                url: MODEL_FOLDER_URL + selectableCar.vehicle.selectormodel + "?v=" + (new Date()).getTime(),
-                position: Vec3.sum(CAR_SELECTOR_CENTER, {x: 0, y: selectableCar.vehicle.dimensions.y / 2, z: 0}),
-                dimensions: selectableCar.vehicle.dimensions,
-                visible: true
-                //scale: 0.01///alpha: 0.5
-            });
-            /*selectableCar.wheels = [];
-            for (var j = 0; j < WHEEL_COUNT; j++) {
-                //var wheelPos = Vec3.sum(this.properties.position, Vec3.multiplyQbyV(this.properties.rotation, getPositionOffset(i)));
-                selectableCar.wheels[j] = new CarSelectorWheel(selectableCar, j);
-            } */           
-            _this.selectableCars.push(selectableCar);
+        for (var vehicleKey in VEHICLES) {
+            if (VEHICLES.hasOwnProperty(vehicleKey) && allowedVehicles.indexOf(vehicleKey) !== -1) {
+                var selectableCar = {vehicle: VEHICLES[vehicleKey], rotation: {x: 0, y: 0, z: 0, w: 1}, currentDegrees: 0};
+                selectableCar.overlay = Overlays.addOverlay("model", {
+                    url: MODEL_FOLDER_URL + selectableCar.vehicle.selectormodel + "?v=" + (new Date()).getTime(),
+                    position: Vec3.sum(CAR_SELECTOR_CENTER, {x: 0, y: selectableCar.vehicle.dimensions.y / 2, z: 0}),
+                    dimensions: selectableCar.vehicle.dimensions,
+                    visible: true
+                    //scale: 0.01///alpha: 0.5
+                });
+                /*selectableCar.wheels = [];
+                for (var j = 0; j < WHEEL_COUNT; j++) {
+                    //var wheelPos = Vec3.sum(this.properties.position, Vec3.multiplyQbyV(this.properties.rotation, getPositionOffset(i)));
+                    selectableCar.wheels[j] = new CarSelectorWheel(selectableCar, j);
+                } */           
+                _this.selectableCars.push(selectableCar);
+            }
         }
         _this.carTitleOverlay = Overlays.addOverlay("text", {
             x: 200,

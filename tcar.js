@@ -149,7 +149,7 @@ Controller.keyPressEvent.connect(function(event) {
             trackSelector.nextTrack();
         } else if (event.key == KEY.SPACE) {
             trackSelector.hide();
-            carSelector.init();
+            carSelector.init(TRACKS[trackSelector.selectedTrack].vehicles);
             cameraHandler.setCameras(TRACKS[trackSelector.selectedTrack].cameras);
             state = STATE_CAR_SELECTION;
         }
