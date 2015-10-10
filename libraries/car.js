@@ -122,7 +122,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
         
         var newProperties = {};
         newProperties.ignoreForCollisions = false;
-        if (_this.speedI < 0) {
+        /*if (_this.speedI < 0) {
             _this.speedI = 0;
             _this.soundLoopSwitcher.setSound(soundIdle);
             _this.timeItWentWithoutMoving += time;
@@ -135,7 +135,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
             }
         } else {
             _this.timeItWentWithoutMoving = 0;
-        }
+        }*/
         //cameraHandler.updateCamera(time, carProps);
         
         
@@ -161,6 +161,19 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
             position: carProps.position,
             rotation: carProps.rotation
         });
+    };
+
+    _this.reset = function() {
+        var carProps = Entities.getEntityProperties(_this.entity);
+        var direction = Quat.safeEulerAngles(carProps.rotation).y;
+        Entities.editEntity(_this.entity, {
+            rotation: Quat.fromPitchYawRollDegrees(0, direction, 0),
+            position: Vec3.sum(carProps.position, carProps.dimensions),
+            ignoreForCollisions: true
+        });
+        //newProperties.rotation = Quat.fromPitchYawRollDegrees(0, direction, 0);
+        //newProperties.position = Vec3.sum(carProps.position, carProps.dimensions),
+        //newProperties.ignoreForCollisions = true;
     };
 
     _this.cleanup = function() {

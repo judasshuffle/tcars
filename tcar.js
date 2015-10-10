@@ -133,6 +133,8 @@ function handleDrivingKeyPress(event) {
         car.steeringRight = true;
     } else if (event.key == KEY.C) {
         event.isShifted ? cameraHandler.prevCamera() : cameraHandler.nextCamera();
+    } else if (event.key == KEY.R) {
+        car.reset();
     } else if (event.key == KEY.SPACE) {
         launchProjectile(Entities.getEntityProperties(car.entity));
     }
