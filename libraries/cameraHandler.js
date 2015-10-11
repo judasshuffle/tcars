@@ -33,7 +33,7 @@ CameraHandler = function() {
         var lookAtRaw = Quat.lookAt(cameraPos, lookAtPos, WORLD_UP_DIRECTION);
         lookAtRaw.w = -lookAtRaw.w;
         return lookAtRaw;
-    }
+    };
 
     _this.updateCamera = function(updateTime, carProps) {
         var applyHMDOffsets = HMD.active;
@@ -58,6 +58,9 @@ CameraHandler = function() {
             _this.position = MyAvatar.getEyePosition();
             _this.orientation = cameraLookAt(_this.position, carProps.position);
             applyHMDOffsets = false; // do not apply the HMD here, since it already effects the avatar
+        } else if (_this.stance === CAMERA_CAR_INSIDE) {
+            _this.position = Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0.5, z: 0}));
+            _this.orientation = carProps.rotation;
         }
         if (applyHMDOffsets) {
             Camera.position = Vec3.sum(_this.position, Vec3.subtract(HMD.position, MyAvatar.position));
@@ -83,6 +86,10 @@ CameraHandler = function() {
 
     _this.firstCamera = function() {
         _this.stance = _this.cameraList[0];
+    };
+
+    _this.lastCamera = function() {
+        _this.stance = _this.cameraList[_this.cameraList.length - 1];
     };
 
     _this.oldCameraMode = Camera.mode;
