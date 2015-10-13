@@ -110,9 +110,9 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
         _this.soundLoopSwitcher.updatePosition(carProps.position);
         //MyAvatar.position = carProps.position;
         if (_this.accelerating) {
-            _this.speedI += time * SPEED_FORWARD;
+            _this.speedI = SPEED_FORWARD;// += time * SPEED_FORWARD;
         } else {
-            _this.speedI -= time * SPEED_BRAKES;
+            _this.speedI = 0; //-= time * SPEED_BRAKES;
         }
         //steering
         if (_this.steeringLeft && _this.steeringOffset < 0.2) {
