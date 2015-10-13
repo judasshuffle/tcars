@@ -155,7 +155,7 @@ VEHICLES = {
     collisionModel: DEFAULT_COLLISION_MODEL,
     wheelModel: "cars/Twheel.fbx",
     selectormodel: "carswithwheels/chair.fbx",
-    dimensions: {x: 1.89, y: 4.34, z: 5.74},
+    dimensions: {x:3.016, y:2.474, z: 5.443},
     registrationPoint: {x: 0.5, y: 0.4, z: 0.75},
     frontAxlePos: {x: 0, y: -1.65, z: -3.2},
     backAxlePos: {x: 0.0, y: -1.65, z: -0.5}, // x is across y is up and down z is forward back.
@@ -168,7 +168,7 @@ VEHICLES = {
     collisionModel: DEFAULT_COLLISION_MODEL,
     wheelModel: "cars/Twheel.fbx",
     selectormodel: "cars/spaceship.fbx",
-    dimensions: {x: 1.89, y: 4.34, z: 5.74},
+    dimensions: {x:3.016 , y: 2.474, z:5.443},
     registrationPoint: {x: 0.5, y: 0.4, z: 0.75},
     frontAxlePos: {x: 0, y: -1.65, z: -3.2},
     backAxlePos: {x: 0.0, y: -1.65, z: -0.5}, // x is across y is up and down z is forward back.
