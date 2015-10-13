@@ -129,7 +129,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
         }
         
         var newProperties = {};
-        newProperties.ignoreForCollisions = false;
+        //newProperties.ignoreForCollisions = false;
         /*if (_this.speedI < 0) {
             _this.speedI = 0;
             _this.soundLoopSwitcher.setSound(soundIdle);
