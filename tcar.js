@@ -35,11 +35,13 @@ AvatarSeater = function() {
     _this.originalPosition = MyAvatar.position;
     _this.originalOrientation = MyAvatar.orientation;
     _this.originalScale = MyAvatar.scale;
+
     _this.setSeat = function(seat) {
         MyAvatar.position = seat.position;
         MyAvatar.orientation = seat.rotation;
         MyAvatar.scale = seat.scale;
     };
+
     _this.cleanup = function() {
         MyAvatar.position = _this.originalPosition;
         MyAvatar.orientation = _this.originalOrientation;
@@ -207,6 +209,24 @@ Script.update.connect(function(time) {
     }
 });
 
+const VEHICLE_MODEL_PREFIX = "TCarModel-";
+
+Entities.addingEntity.connect(function(EntityItemID) {
+    print("bla");
+    if (trackedCars.indexOf(EntityItemID) !== -1) {
+        return;
+    }
+    var properties = Entities.getEntityProperties(EntityItemID);
+    if (properties.name.substring(0, VEHICLE_MODEL_PREFIX.length) === VEHICLE_MODEL_PREFIX) {
+        trackedCars.push(EntityItemID);
+    }
+});
+
+Entities.deletingEntity.connect(function(EntityItemID) {
+    
+});
+
+
 Script.scriptEnding.connect(function() {
     print('TCars script closing...');
     avatarSeater.cleanup();
@@ -219,6 +239,7 @@ Script.scriptEnding.connect(function() {
     Controller.releaseKeyEvents({key: KEY.LEFT});
     Controller.releaseKeyEvents({key: KEY.RIGHT});
     Controller.releaseKeyEvents({key: KEY.C});
+    Controller.releaseKeyEvents({key: KEY.R});
     Controller.releaseKeyEvents({key: KEY.SPACE});
     Controller.releaseKeyEvents({key: KEY.DEL});
     carSelector.cleanup();
@@ -236,5 +257,6 @@ Controller.captureKeyEvents({key: KEY.DOWN});
 Controller.captureKeyEvents({key: KEY.LEFT});
 Controller.captureKeyEvents({key: KEY.RIGHT});
 Controller.captureKeyEvents({key: KEY.C});
+Controller.captureKeyEvents({key: KEY.R});
 Controller.captureKeyEvents({key: KEY.SPACE});
 Controller.captureKeyEvents({key: KEY.DEL});

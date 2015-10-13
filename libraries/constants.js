@@ -51,6 +51,11 @@ SPEED_BRAKES = 1015;
 
 SOUND_FOLDER_URL = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/";
 
-SOUND = false;
+SOUND = true;
 
 MODEL_FOLDER_URL = "http://hifi-external.s3.amazonaws.com/tcars/models/";
+
+TRACK_ZONE_SEARCH_DISTANCE = 2000; // search distance of trackzones (in meters)
+HALF_UNIT = 0.5;
+
+MAX_PLAYERS = 4;

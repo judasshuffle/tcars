@@ -161,14 +161,14 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
         if (Object.keys(newProperties).length > 0) {
             Entities.editEntity(_this.entity, newProperties);
         }
-        Entities.editEntity(_this.spotlight, {
+        /*Entities.editEntity(_this.spotlight, {
             position: carProps.position,
             rotation: carProps.rotation
         });
         Entities.editEntity(_this.glowLight, {
             position: carProps.position,
             rotation: carProps.rotation
-        });
+        });*/
     };
 
     _this.reset = function() {
