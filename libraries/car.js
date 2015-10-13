@@ -1,3 +1,11 @@
+//  TCars/library/car.js
+//
+//  The car class for creating the vehicles in TCars
+//
+//  Distributed under the Apache License, Version 2.0.
+//  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
+//
+
 Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
     var _this = this;
     _this.vehicle = vehicle;
@@ -5,7 +13,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
     _this.speedI = 0;
     _this.lastSpeedI = 0;
     _this.lastAngularVelocityY = 0;
-    _this.planking = false;
+    _this.accelerating = false;
     _this.steeringOffset = 0; // - will be left,  + will be right
     _this.steeringLeft = false;
     _this.steeringRight = false;
@@ -101,7 +109,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
         var carProps = Entities.getEntityProperties(_this.entity);
         _this.soundLoopSwitcher.updatePosition(carProps.position);
         //MyAvatar.position = carProps.position;
-        if (_this.planking) {
+        if (_this.accelerating) {
             _this.speedI += time * SPEED_FORWARD;
         } else {
             _this.speedI -= time * SPEED_BRAKES;

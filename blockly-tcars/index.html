@@ -176,13 +176,10 @@
 </head>
 <body id="content_area">
   <div id="content_blocks" class="content"></div>
-  
-
   <xml id="toolbox" style="display: none">
     <block type="running"></block>
     <block type="drive_forwards"></block>
   </xml>
-
   <script type="text/javascript">
     var getBBox_ = function(element) {
         var height = element.offsetHeight;
@@ -209,19 +206,18 @@
         this.setNextStatement(true);
         this.setColour(65);
         //this.setTooltip('');
-      //  this.setHelpUrl('http://www.example.com/');
+        //this.setHelpUrl('http://www.example.com/');
       }
     };
 
     Blockly.Blocks['drive_forwards'] = {
       init: function() {
-        this.appendDummyInput()
-            .appendField("Drive forwards");
+        this.appendDummyInput().appendField("Drive forwards");
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setColour(210);
-       // this.setTooltip('');
-       // this.setHelpUrl('http://www.example.com/');
+        //this.setTooltip('');
+        //this.setHelpUrl('http://www.example.com/');
       }
     };
 

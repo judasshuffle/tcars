@@ -15,11 +15,11 @@ CameraHandler = function() {
     _this.orientation = Camera.orientation;
 
     if (HMD.orientation === undefined) {
-        HMD.orientation = {x: 0, y: 0, z: 0, w: 1};
+        HMD.orientation = ZERO_ROTATION;
     }
 
     if (HMD.position === undefined) {
-        HMD.position = {x: 0, y: 0, z: 0};
+        HMD.position = ZERO_POSITION;
     }
 
     _this.shutdown = function() {

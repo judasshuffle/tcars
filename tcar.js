@@ -125,7 +125,7 @@ function launchProjectile(carProps) {
 /// X+  is forward
 function handleDrivingKeyPress(event) {
     if (event.key == KEY.UP) {
-        car.planking = true;
+        car.accelerating = true;
         car.soundLoopSwitcher.setSound(soundAccelerating);
     } else if (event.key == KEY.LEFT) {
         car.steeringLeft = true;
@@ -176,7 +176,7 @@ Controller.keyPressEvent.connect(function(event) {
 Controller.keyReleaseEvent.connect(function(event) {
     if (isCarDriving()) {
         if (event.key == KEY.UP) {
-            car.planking = false;
+            car.accelerating = false;
             car.soundLoopSwitcher.setSound(soundDecelerating);
         } else if (event.key == KEY.LEFT) {
             car.steeringLeft = false;

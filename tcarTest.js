@@ -4,6 +4,8 @@
 // Models by Judas VERY important code also by Judas
 // Car tuning by unknown
 
+const TCARS_BLOCKLY_URL = 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/blockly-tcars/carTest.html';
+
 Script.include([
     'libraries/constants.js',
     'libraries/wkeys.js',
@@ -13,14 +15,51 @@ Script.include([
     'libraries/car.js'
 ]);
 
+var newWindow = new WebWindow("Script your vehicle", TCARS_BLOCKLY_URL, 700, 700);
+newWindow.setVisible(true);
+newWindow.eventBridge.webEventReceived.connect(function(data) {
+    data = JSON.parse(data);
+    switch (data.action) {
+        case 'ping':
+           // Window.alert('pong');
+            break;
+        case 'run':
+            Window.alert(data.script);
+            break;
+
+      /*  case 'loaded':
+            _this.sendData({action: 'load', options: _this.plankyStack.options.getJSON()})
+            break;
+        case 'value-change':
+            _this.plankyStack.onValueChanged(data.option, data.value);
+            break;
+        case 'factory-reset':
+            _this.plankyStack.options.factoryReset();
+            _this.sendData({action: 'load', options: _this.plankyStack.options.getJSON()})
+            break;
+        case 'save-default':
+            _this.plankyStack.options.save();
+            break;
+        case 'cleanup':
+            _this.plankyStack.deRez();
+            break;
+        default:
+            Window.alert('[planky] unknown action ' + data.action);*/
+    }
+});
+newWindow.eventBridge.emitScriptEvent(JSON.stringify({action: "hello"}));
+
+
+
+/*
 var vehicles = [
-    new Car(VEHICLES[0], {x: 3086.9853515625, y: 9032.83203125, z: 2905.2724609375}, {x: 0, y: -0.9435096979141235, z: 0, w: 0.33134496212005615}),new Car(VEHICLES[0], {x: 3086.9853515625, y: 9032.83203125, z: 2905.2724609375}, {x: 0, y: -0.9435096979141235, z: 0, w: 0.33134496212005615}),new Car(VEHICLES[0], {x: 3086.9853515625, y: 9032.83203125, z: 2905.2724609375}, {x: 0, y: -0.9435096979141235, z: 0, w: 0.33134496212005615}),new Car(VEHICLES[0], {x: 3086.9853515625, y: 9032.83203125, z: 2905.2724609375}, {x: 0, y: -0.9435096979141235, z: 0, w: 0.33134496212005615}),
-    new Car(VEHICLES[0], {x: 3086.9853515625, y: 9032.83203125, z: 2905.2724609375}, {x: 0, y: -0.9435096979141235, z: 0, w: 0.33134496212005615}),new Car(VEHICLES[0], {x: 3086.9853515625, y: 9032.83203125, z: 2905.2724609375}, {x: 0, y: -0.9435096979141235, z: 0, w: 0.33134496212005615}),new Car(VEHICLES[0], {x: 3086.9853515625, y: 9032.83203125, z: 2905.2724609375}, {x: 0, y: -0.9435096979141235, z: 0, w: 0.33134496212005615}),new Car(VEHICLES[0], {x: 3086.9853515625, y: 9032.83203125, z: 2905.2724609375}, {x: 0, y: -0.9435096979141235, z: 0, w: 0.33134496212005615}),
-    new Car(VEHICLES[0], {x: 3086.9853515625, y: 9032.83203125, z: 2905.2724609375}, {x: 0, y: -0.9435096979141235, z: 0, w: 0.33134496212005615}),new Car(VEHICLES[0], {x: 3086.9853515625, y: 9032.83203125, z: 2905.2724609375}, {x: 0, y: -0.9435096979141235, z: 0, w: 0.33134496212005615}),new Car(VEHICLES[0], {x: 3086.9853515625, y: 9032.83203125, z: 2905.2724609375}, {x: 0, y: -0.9435096979141235, z: 0, w: 0.33134496212005615}),new Car(VEHICLES[0], {x: 3086.9853515625, y: 9032.83203125, z: 2905.2724609375}, {x: 0, y: -0.9435096979141235, z: 0, w: 0.33134496212005615}),
+    new Car(VEHICLES[0], {x: 3086.9853515625, y: 9032.83203125, z: 2905.2724609375}, {x: 0, y: -0.9435096979141235, z: 0, w: 0.33134496212005615}),
+    new Car(VEHICLES[0], {x: 3086.9853515625, y: 9032.83203125, z: 2905.2724609375}, {x: 0, y: -0.9435096979141235, z: 0, w: 0.33134496212005615}),
+    new Car(VEHICLES[0], {x: 3086.9853515625, y: 9032.83203125, z: 2905.2724609375}, {x: 0, y: -0.9435096979141235, z: 0, w: 0.33134496212005615}),
 ];
 
 for (var vehicle in vehicles) {
-    vehicles[vehicle].planking = true;
+    vehicles[vehicle].accelerating = true;
 }
 
 Script.update.connect(function(time) {
@@ -34,3 +73,4 @@ Script.scriptEnding.connect(function() {
         vehicles[vehicle].cleanup();
     }
 });
+*/
