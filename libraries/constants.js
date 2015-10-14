@@ -51,7 +51,7 @@ SPEED_BRAKES = 1015;
 
 SOUND_FOLDER_URL = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/";
 
-SOUND = true;
+SOUND = false;
 
 MODEL_FOLDER_URL = "http://hifi-external.s3.amazonaws.com/tcars/models/";
 
