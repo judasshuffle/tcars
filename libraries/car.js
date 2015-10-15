@@ -35,7 +35,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
             modelURL: MODEL_FOLDER_URL + _this.vehicle.modelFile, // + "?v=" + (new Date()).getTime(),
             shapeType: "box",
             name: "TCarModel-" + _this.vehicle.name,
-            position: startPosition,
+            position: Vec3.sum(startPosition, {y: _this.vehicle.dimensions.y / 2}),
             rotation: startOrientation,
             color: {red: 0, green: 255, blue: 0},
             dimensions: _this.vehicle.dimensions,
