@@ -174,5 +174,18 @@ VEHICLES = {
     backAxlePos: {x: 0.0, y: -1.65, z: -0.5}, // x is across y is up and down z is forward back.
     frontAxleLength: 2.5,
     backAxleLength: 2.5
+},
+"SPACE2": {
+    name: "Spaceship Hyperloop",
+    modelFile: "cars/spaceship2.fbx",
+    collisionModel: DEFAULT_COLLISION_MODEL,
+    wheelModel: "cars/Twheel.fbx",
+    selectormodel: "cars/spaceship2.fbx",
+    dimensions: {x: 6.70, y: 2.96, z: 9.49},
+    registrationPoint: {x: 0.5, y: 0.4, z: 0.75},
+    frontAxlePos: {x: 0, y: -1.65, z: -3.2},
+    backAxlePos: {x: 0.0, y: -1.65, z: -0.5}, // x is across y is up and down z is forward back.
+    frontAxleLength: 2.5,
+    backAxleLength: 2.5
 }
 };

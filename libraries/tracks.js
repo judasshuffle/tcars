@@ -72,7 +72,7 @@ TRACKS = [
             scale: 10.0
         }
     ],
-    vehicles: ["CHAIR", "SPACE"],
+    vehicles: ["CHAIR", "SPACE", "SPACE2"],
     cameras: [CAMERA_CAR_INSIDE, CAMERA_CAR_TOPVIEW, CAMERA_CAR_BEHIND_CLOSE],
     startPosition: {x: 2997.06396484375, y: 9015.869140625, z: 3086.4697265625},
     startOrientation: {x: 0, y: 0.6923482418060303, z: 0, w: 0.7215635180473328},
