@@ -36,7 +36,7 @@ VEHICLES = {
     wheelModel: "cars/Twheel.fbx",
     selectormodel: "carswithwheels/torino.fbx",
     dimensions: {x: 1.872, y: 1.556, z: 4.866 },
-    wheelDimensions: {x: 0.098, y:0.348, z: 0.348},
+    wheelDimensions: {x: 0.098, y: 0.348, z: 0.348},
     registrationPoint: {x: 0.5, y: 0.5, z: 0.8},
     frontAxlePos: {x: 0, y: -0.485, z: -2.919},
     backAxlePos: {x: 0, y: -0.485, z: 0.0},
@@ -86,7 +86,7 @@ VEHICLES = {
 },
 "BBCAR": {
     name: "BBCar",
-    modelFile: "cars/BBCAR.fbx",
+    modelFile: "cars/BBCar.fbx",
     collisionModel: DEFAULT_COLLISION_MODEL,
     wheelModel: "cars/Twheel.fbx",
     selectormodel: "carswithwheels/bb.fbx",
