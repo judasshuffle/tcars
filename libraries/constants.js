@@ -59,3 +59,5 @@ TRACK_ZONE_SEARCH_DISTANCE = 2000; // search distance of trackzones (in meters)
 HALF_UNIT = 0.5;
 
 MAX_PLAYERS = 4;
+
+VEHICLE_MODEL_PREFIX = "TCarModel-";

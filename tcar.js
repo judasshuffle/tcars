@@ -17,19 +17,7 @@ Script.include([
     'libraries/car.js'
 ]);
 
-// list of tracked cars
-//var trackedCars = [];
 
-//var zoneInformation = {"rideZone":"School Tables", "seats": [
-//{"position":{"x":7938.66455078125,"y":7875.783203125,"z":7870.95166015625}, "rotation":{"x":-0.0000152587890625,"y":-0.0000152587890625,"z":-0.0000152587890625,"w":1}, "scale": 125}
-//]};
-
-/*var seatInformation = zoneInformation.seats[0];
-
-MyAvatar.scale = seatInformation.scale;
-MyAvatar.position = seatInformation.position;
-MyAvatar.orientation = seatInformation.rotation;
-*/
 AvatarSeater = function() {
     var _this = this;
     _this.originalPosition = MyAvatar.position;
@@ -167,7 +155,6 @@ Controller.keyPressEvent.connect(function(event) {
             var selectedTrack = TRACKS[trackSelector.selectedTrack];
             avatarSeater.setSeat(selectedTrack.seats[0])
             car = new Car(selectedCar.vehicle, selectedTrack.startPosition, selectedTrack.startOrientation);
-       //     trackedCars.push(car.entity);
             state = STATE_DRIVING;
             cameraHandler.firstCamera();
             carSelector.cleanup();
@@ -213,26 +200,6 @@ Script.update.connect(function(time) {
         }
     }
 });
-
-const VEHICLE_MODEL_PREFIX = "TCarModel-";
-/*
-Entities.addingEntity.connect(function(EntityItemID) {
-    if (trackedCars.indexOf(EntityItemID) !== -1) {
-        return;
-    }
-    var properties = Entities.getEntityProperties(EntityItemID);
-    if (properties.name.substring(0, VEHICLE_MODEL_PREFIX.length) === VEHICLE_MODEL_PREFIX) {
-        trackedCars.push(EntityItemID);
-    }
-});
-
-Entities.deletingEntity.connect(function(EntityItemID) {
-    var index = trackedCars.indexOf(EntityItemID);
-    if (index !== -1) {
-        trackedCars.splice(index, 1);
-    }
-});
-*/
 
 Script.scriptEnding.connect(function() {
     print('TCars script closing...');
