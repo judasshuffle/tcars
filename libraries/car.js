@@ -112,7 +112,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
         if (_this.accelerating) {
             _this.speedI += time * SPEED_FORWARD;
         } else {
-            _this.speedI -= time * SPEED_BRAKES;
+            _this.speedI = Math.max(0, _this.speedI - time * SPEED_BRAKES);
         }
         //steering
         if (_this.steeringLeft && _this.steeringOffset < 0.2) {
@@ -161,14 +161,14 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
         if (Object.keys(newProperties).length > 0) {
             Entities.editEntity(_this.entity, newProperties);
         }
-        /*Entities.editEntity(_this.spotlight, {
+        Entities.editEntity(_this.spotlight, {
             position: carProps.position,
             rotation: carProps.rotation
         });
         Entities.editEntity(_this.glowLight, {
             position: carProps.position,
             rotation: carProps.rotation
-        });*/
+        });
     };
 
     _this.reset = function() {
