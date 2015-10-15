@@ -66,9 +66,9 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
             type: "Light",
             isSpotlight: true,
             dimensions: {
-                x: 20,
-                y: 20,
-                z: 20
+                x: 40,
+                y: 40,
+                z: 40
             },
             color: {
                 red: 255,
