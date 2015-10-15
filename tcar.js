@@ -18,7 +18,7 @@ Script.include([
 ]);
 
 // list of tracked cars
-var trackedCars = [];
+//var trackedCars = [];
 
 //var zoneInformation = {"rideZone":"School Tables", "seats": [
 //{"position":{"x":7938.66455078125,"y":7875.783203125,"z":7870.95166015625}, "rotation":{"x":-0.0000152587890625,"y":-0.0000152587890625,"z":-0.0000152587890625,"w":1}, "scale": 125}
@@ -167,7 +167,7 @@ Controller.keyPressEvent.connect(function(event) {
             var selectedTrack = TRACKS[trackSelector.selectedTrack];
             avatarSeater.setSeat(selectedTrack.seats[0])
             car = new Car(selectedCar.vehicle, selectedTrack.startPosition, selectedTrack.startOrientation);
-            trackedCars.push(car.entity);
+       //     trackedCars.push(car.entity);
             state = STATE_DRIVING;
             cameraHandler.firstCamera();
             carSelector.cleanup();
@@ -203,16 +203,20 @@ Script.update.connect(function(time) {
         cameraHandler.updateCamera(time, null);
         carSelector.update(time);
     }
-    for (var i in trackedCars) {
-        Entities.callEntityMethod(trackedCars[i], "updateWheels");
-      //  print("updated wheels of " + trackedCars[i]);
+    //for (var i in trackedCars) {
+    var entities = Entities.findEntities(Camera.position, 100);
+    for (key in entities) {
+        entityItemID = entities[key];
+        var properties = Entities.getEntityProperties(entityItemID);
+        if (properties.name.substring(0, VEHICLE_MODEL_PREFIX.length) === VEHICLE_MODEL_PREFIX) {
+            Entities.callEntityMethod(entityItemID, "updateWheels");
+        }
     }
 });
 
 const VEHICLE_MODEL_PREFIX = "TCarModel-";
-
+/*
 Entities.addingEntity.connect(function(EntityItemID) {
-    print("bla");
     if (trackedCars.indexOf(EntityItemID) !== -1) {
         return;
     }
@@ -223,9 +227,12 @@ Entities.addingEntity.connect(function(EntityItemID) {
 });
 
 Entities.deletingEntity.connect(function(EntityItemID) {
-    
+    var index = trackedCars.indexOf(EntityItemID);
+    if (index !== -1) {
+        trackedCars.splice(index, 1);
+    }
 });
-
+*/
 
 Script.scriptEnding.connect(function() {
     print('TCars script closing...');

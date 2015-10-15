@@ -129,6 +129,9 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
         }
         
         var newProperties = {};
+        if (carProps.ignoreForCollisions) {
+            newProperties.ignoreForCollisions = false;
+        }
         //newProperties.ignoreForCollisions = false;
         /*if (_this.speedI < 0) {
             _this.speedI = 0;
