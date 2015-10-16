@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Blocky T.C.a.R.S.</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="google-blockly-8d87f73/blockly_compressed.js"></script>
   <script src="google-blockly-8d87f73/blocks_compressed.js"></script>
   <script src="google-blockly-8d87f73/javascript_compressed.js"></script>
@@ -172,98 +173,228 @@
     .run {
       background-position: -42px 0px;
     }
+    #run_button {
+      position: absolute;
+      bottom: 5px;
+      left: 5px;
+    }
   </style>
 </head>
 <body id="content_area">
-  <div id="content_blocks" class="content"></div>
-  <xml id="toolbox" style="display: none">
-    <block type="running"></block>
-    <block type="drive_forwards"></block>
-  </xml>
-  <script type="text/javascript">
-    var getBBox_ = function(element) {
-        var height = element.offsetHeight;
-        var width = element.offsetWidth;
-        var x = 0;
-        var y = 0;
-        do {
-            x += element.offsetLeft;
-            y += element.offsetTop;
-            element = element.offsetParent;
-        } while (element);
-        return {
-            height: height,
-            width: width,
-            x: x,
-            y: y
+    <div id="content_blocks" class="content"></div>
+    <button id="run_button">RUN</button>
+    <xml id="toolbox" style="display: none">
+        <block type="change_car_model"></block>
+        <block type="drive_forwards"></block>
+        <block type="turn_left"></block>
+        <block type="turn_right"></block>
+        <block type="fire_projectile"></block>
+    </xml>
+
+    <script type="text/javascript">
+        function sendWebEvent(data) {
+          EventBridge.emitWebEvent(JSON.stringify(data));
+        }
+
+        var getBBox_ = function(element) {
+            var height = element.offsetHeight;
+            var width = element.offsetWidth;
+            var x = 0;
+            var y = 0;
+            do {
+                x += element.offsetLeft;
+                y += element.offsetTop;
+                element = element.offsetParent;
+            } while (element);
+            return {
+                height: height,
+                width: width,
+                x: x,
+                y: y
+            };
         };
-    };
 
-    Blockly.Blocks['running'] = {
-      init: function() {
-        this.appendDummyInput().appendField("Car Start");
-        this.setInputsInline(true);
-        this.setNextStatement(true);
-        this.setColour(65);
-        //this.setTooltip('');
-        //this.setHelpUrl('http://www.example.com/');
-      }
-    };
+        Blockly.Blocks['running'] = {
+            init: function() {
+                this.appendDummyInput().appendField("Car Start");
+                this.setInputsInline(true);
+                this.setNextStatement(true);
+                this.setColour(65);
+                //this.setTooltip('');
+                //  this.setHelpUrl('http://www.example.com/');
+            }
+        };
 
-    Blockly.Blocks['drive_forwards'] = {
-      init: function() {
-        this.appendDummyInput().appendField("Drive forwards");
-        this.setPreviousStatement(true);
-        this.setNextStatement(true);
-        this.setColour(210);
-        //this.setTooltip('');
-        //this.setHelpUrl('http://www.example.com/');
-      }
-    };
+        Blockly.Blocks['space_pressed'] = {
+            init: function() {
+                this.appendDummyInput().appendField("Space_Pressed");
+                this.setInputsInline(true);
+                this.setNextStatement(true);
+                this.setColour(65);
+                //this.setTooltip('');
+                //  this.setHelpUrl('http://www.example.com/');
+            }
+        };        
 
-    Blockly.JavaScript['running'] = function(block) {
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      return code;
-    };
+        Blockly.Blocks['change_car_model'] = {
+          init: function() {
+            this.appendDummyInput().appendField("SELECT CAR")
+                .appendField(new Blockly.FieldDropdown([
+                  ["Testcar", "Testcar"],
+                  ["BB Car", "BBCar"],
+                  ["Cat", "Cat"],
+                  ["Spaceship", "Spaceship"],
+                  ["Capri", "Capri"],
+                  ["Beatle", "Beatle"],
+                  ["Wolf", "Wolf"],
+                  ["DS", "DS"],
+                  ["Torino", "Torino"],
+                  ["Vanthehand", "Vanthehand"],
+                  ["Blues", "Blues"],
+                  ["Chair", "Chair"],
+                  ["Shoe", "Shoe"]]), "CAR_SELECTOR");
+            this.setPreviousStatement(true);
+            this.setNextStatement(true);
+            this.setColour(210);
+            //this.setTooltip('');
+            //this.setHelpUrl('http://www.example.com/');
+          }
+        };
 
-    Blockly.JavaScript['drive_forwards'] = function(block) {
-      // TODO: Assemble JavaScript into code variable.
-      var code = '...';
-      return code;
-    };
+        Blockly.Blocks['drive_forwards'] = {
+          init: function() {
+            this.appendDummyInput().appendField("Drive forwards");
+            this.setPreviousStatement(true);
+            this.setNextStatement(true);
+            this.setColour(210);
+           // this.setTooltip('');
+           // this.setHelpUrl('http://www.example.com/');
+          }
+        };
 
-    var workspace = Blockly.inject('content_blocks', {
-        grid: {
-            spacing: 25,
-            length: 3,
-            colour: '#ccc',
-            snap: true
-        },
-        media: 'google-blockly-8d87f73/media/',
-        toolbox: document.getElementById('toolbox')
-    });
+        Blockly.Blocks['turn_left'] = {
+          init: function() {
+            this.appendDummyInput().appendField("Turn left");
+            this.setPreviousStatement(true);
+            this.setNextStatement(true);
+            this.setColour(210);
+           // this.setTooltip('');
+           // this.setHelpUrl('http://www.example.com/');
+          }
+        };
 
-    var container = document.getElementById('content_area');
-    var onresize = function(e) {
-        var bBox = getBBox_(container);
-        var el = document.getElementById('content_blocks');
-        el.style.top = bBox.y + 'px';
-        el.style.left = bBox.x + 'px';
-        el.style.height = bBox.height + 'px';
-        el.style.height = (2 * bBox.height - el.offsetHeight) + 'px';
-        el.style.width = bBox.width + 'px';
-        el.style.width = (2 * bBox.width - el.offsetWidth) + 'px';
-    };
+        Blockly.Blocks['turn_right'] = {
+            init: function() {
+                this.appendDummyInput().appendField("Turn right");
+                this.setPreviousStatement(true);
+                this.setNextStatement(true);
+                this.setColour(210);
+                // this.setTooltip('');
+                // this.setHelpUrl('http://www.example.com/');
+            }
+        };
 
-    var rootBlock = Blockly.Block.obtain(workspace, 'running');
-    rootBlock.initSvg();
-    rootBlock.render();
-    rootBlock.setMovable(false);
-    rootBlock.setDeletable(false);
+        Blockly.Blocks['fire_projectile'] = {
+            init: function() {
+                this.appendDummyInput().appendField("Fire projectile!");
+                this.setPreviousStatement(true);
+                this.setNextStatement(true);
+                this.setColour(210);
+                // this.setTooltip('');
+                // this.setHelpUrl('http://www.example.com/');
+            }
+        };
 
-    window.addEventListener('resize', onresize, false);
-    onresize();
+        Blockly.JavaScript['running'] = function(block) {
+            var code = 'car.start()';
+            return code;
+        };
+
+        Blockly.JavaScript['space_pressed'] = function(block) {
+            var code = '';
+            return code;
+        };
+
+        Blockly.JavaScript['change_car_model'] = function(block) {
+            var dropdown_name = block.getFieldValue('CAR_SELECTOR');
+            var code = 'car.changeModel("' +  dropdown_name + '");';
+            return code;
+        };
+
+        Blockly.JavaScript['drive_forwards'] = function(block) {
+            var code = 'car.forward();';
+            return code;
+        };
+
+        Blockly.JavaScript['turn_left'] = function(block) {
+            var code = 'car.turn_left();';
+            return code;
+        };
+
+        Blockly.JavaScript['turn_right'] = function(block) {
+            var code = 'car.turn_right();';
+            return code;
+        };
+
+        Blockly.JavaScript['fire_projectile'] = function(block) {
+            var code = 'launchProjectile(Entities.getEntityProperties(car.entity));';
+            return code;
+        };
+
+        var workspace = Blockly.inject('content_blocks', {
+            grid: {
+                spacing: 25,
+                length: 3,
+                colour: '#ccc',
+                snap: true
+            },
+            media: 'google-blockly-8d87f73/media/',
+            toolbox: document.getElementById('toolbox')
+        });
+
+        var container = document.getElementById('content_area');
+        var onresize = function(e) {
+            var bBox = getBBox_(container);
+            var el = document.getElementById('content_blocks');
+            el.style.top = bBox.y + 'px';
+            el.style.left = bBox.x + 'px';
+            el.style.height = bBox.height + 'px';
+            el.style.height = (2 * bBox.height - el.offsetHeight) - 40 + 'px';
+            el.style.width = bBox.width + 'px';
+            el.style.width = (2 * bBox.width - el.offsetWidth) + 'px';
+        };
+
+      /*  var rootBlock = Blockly.Block.obtain(workspace, 'running');
+        rootBlock.initSvg();
+        rootBlock.render();
+        rootBlock.setMovable(false);
+        rootBlock.setDeletable(false);
+*/
+        var rootBlock2 = Blockly.Block.obtain(workspace, 'space_pressed');
+        rootBlock2.initSvg();
+        rootBlock2.render();
+        rootBlock2.setMovable(false);
+        rootBlock2.setDeletable(false);
+        rootBlock2.moveBy(150, 0);
+        window.addEventListener('resize', onresize, false);
+        onresize();
+
+        $('#run_button').on('click', function() {
+            var code = Blockly.JavaScript.workspaceToCode(workspace);
+            sendWebEvent({action: 'run', script: code});
+        });
+
+        if (window.EventBridge !== undefined) {
+            EventBridge.scriptEventReceived.connect(function(data) {
+                data = JSON.parse(data);
+               // if (data.action == 'load') {
+               //     $.each(data.options, function(option, value) {
+               //         properties[option].setValue(value);
+               //     });
+               // }
+            });
+        }
+        sendWebEvent({action: 'ping'});
   </script>
 </body>
 </html>

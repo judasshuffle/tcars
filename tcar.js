@@ -52,10 +52,30 @@ var soundStarting = SoundCache.getSound(SOUND_FOLDER_URL + "/starting.wav");
 var timeItWentWithoutMoving = 0;
 var actionID = false;
 
-//var newWindow = new WebWindow("Customize your vehicle", "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/blockly-tcars/index.html", 700,700);
-//newWindow.setVisible(true);
+var spacebarBlockly = 'Window.alert("You have not made a blockly script for this button yet!");'
+
+var newWindow = new WebWindow("Customize your vehicle", "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/blockly-tcars/index.html", 700,700);
+newWindow.setVisible(true);
+newWindow.eventBridge.webEventReceived.connect(function(data) {
+    data = JSON.parse(data);
+    switch (data.action) {
+        case 'ping':
+           // Window.alert('pong');
+            break;
+        case 'run':
+            Window.alert(data.script);
+            spacebarBlockly = data.script;
+            break;
+    }
+});
 
 //var speedometer = new Speedometer();
+
+
+
+function doSpaceBarBlockly() {
+    eval(spacebarBlockly);
+}
 
 function mixFloats(float1, float2, mixValue) {
     if (mixValue > 1.0) {
@@ -126,7 +146,8 @@ function handleDrivingKeyPress(event) {
     } else if (event.key == KEY.R) {
         car.reset();
     } else if (event.key == KEY.SPACE) {
-        launchProjectile(Entities.getEntityProperties(car.entity));
+        //launchProjectile(Entities.getEntityProperties(car.entity));
+        doSpaceBarBlockly();
     }
 }
 
