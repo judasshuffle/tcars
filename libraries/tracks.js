@@ -42,7 +42,7 @@ TRACKS = [
     ],
     vehicles: ["BLUES", "CAPRI", "TORINO", "2BEATLE", "DS", "TESTCAR", "BBCAR", "WOLF", "CAT", "HANDVAN", "SHOE", "CHAIR", "SPACE"],
     cameras: [CAMERA_CAR_TOPVIEW, CAMERA_CAR_BEHIND_CLOSE],
-    startPosition: { x: 8686.42, y:9298.34, z:0.943259},
+    startPosition: { x: 7111.21044921875, y: 7993.75341796875, z: 8112.84814453125},
     startOrientation: { x: 0, y:-0.332059, z: -0.09435316920280457, w: 0.030636562034487724},
     previewPosition: { x: 7083.22021484375, y: 8086.4462890625, z: 7968.5087890625},
     previewOrientation: { x: -0.04983579367399216, y: -0.9489744901657104, z: -0.24321390688419342, w: 0.19444981217384338}
