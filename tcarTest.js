@@ -26,25 +26,6 @@ newWindow.eventBridge.webEventReceived.connect(function(data) {
         case 'run':
             Window.alert(data.script);
             break;
-
-      /*  case 'loaded':
-            _this.sendData({action: 'load', options: _this.plankyStack.options.getJSON()})
-            break;
-        case 'value-change':
-            _this.plankyStack.onValueChanged(data.option, data.value);
-            break;
-        case 'factory-reset':
-            _this.plankyStack.options.factoryReset();
-            _this.sendData({action: 'load', options: _this.plankyStack.options.getJSON()})
-            break;
-        case 'save-default':
-            _this.plankyStack.options.save();
-            break;
-        case 'cleanup':
-            _this.plankyStack.deRez();
-            break;
-        default:
-            Window.alert('[planky] unknown action ' + data.action);*/
     }
 });
 newWindow.eventBridge.emitScriptEvent(JSON.stringify({action: "hello"}));
