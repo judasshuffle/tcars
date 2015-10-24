@@ -1,4 +1,11 @@
-// Definition of all keys used in T.C.a.R.S.
+//  TCars/library/keys.js
+//
+//  Definition of all keys used in TCars
+//
+//  Distributed under the Apache License, Version 2.0.
+//  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
+//
+
 KEY = {
     UP: 16777235,
     DOWN: 16777237,

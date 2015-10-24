@@ -1,3 +1,11 @@
+//  TCars/library/speedometer.js
+//
+//  Creates a speedometer with a moving dial (currently not ready)
+//
+//  Distributed under the Apache License, Version 2.0.
+//  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
+//
+
 Speedometer = function() {
     var _this = this;
 
