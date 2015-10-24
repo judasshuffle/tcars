@@ -22,3 +22,4 @@ formatCoordinate('startOrientation', MyAvatar.orientation) + COORD_POSTFIX +
 formatCoordinate('previewPosition', Camera.position) + COORD_POSTFIX +
 formatCoordinate('previewOrientation', Camera.orientation) + COORD_POSTFIX
 )
+Script.stop();
