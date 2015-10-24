@@ -106,7 +106,7 @@ function launchProjectile(carProps) {
         rotation: Quat.multiply(carProps.rotation, Quat.fromVec3Degrees({x: 270, y: 0, z: 0})),
         dimensions: {x: 1.25, y: 2.56, z: 1.45},
         modelURL: MODEL_FOLDER_URL + "rockett.fbx?123",
-        velocity: Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -10}),
+        velocity: Vec3.sum(carProps.velocity, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -10})),
         angularVelocity: Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: 20}),
         damping: 0,
         lifetime: 5
