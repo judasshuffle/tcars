@@ -1,3 +1,11 @@
+//  TCars/library/tracks.js
+//
+//  The tracks in TCars and their properties.
+//
+//  Distributed under the Apache License, Version 2.0.
+//  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
+//
+
 TRACKS = [
 {
     name: "School Classroom",
@@ -26,8 +34,8 @@ TRACKS = [
     ],
     vehicles: ["BLUES", "CAPRI", "TORINO", "2BEATLE", "DS", "TESTCAR", "BBCAR", "WOLF", "CAT", "HANDVAN", "SHOE", "CHAIR", "SPACE"],
     cameras: [CAMERA_CAR_FIXED_WORLD, CAMERA_CAR_FROM_USER_AUTOFOCUS, CAMERA_CAR_TOPVIEW, CAMERA_CAR_BEHIND_CLOSE],
-    startPosition: { x: 1951.934814453125, y: 2503.8193359375, z: 2521.34033203125},
-    startOrientation: { x: -0.30281969904899597, y: -0.08970281481742859, z: -0.028642157092690468, w: 0.9483845233917236},
+    startPosition: {x: 2046.289794921875, y: 1888.758056640625, z: 2073.35205078125},
+    startOrientation: {x: 0, y: -0.7429486513137817, z: 0, w: 0.669348418712616},
     previewPosition: { x: 1951.934814453125, y: 2503.8193359375, z: 2521.34033203125},
     previewOrientation: { x: -0.30281969904899597, y: -0.08970281481742859, z: -0.028642157092690468, w: 0.9483845233917236}
 },
@@ -43,7 +51,7 @@ TRACKS = [
     vehicles: ["BLUES", "CAPRI", "TORINO", "2BEATLE", "DS", "TESTCAR", "BBCAR", "WOLF", "CAT", "HANDVAN", "SHOE", "CHAIR", "SPACE"],
     cameras: [CAMERA_CAR_TOPVIEW, CAMERA_CAR_BEHIND_CLOSE],
     startPosition: { x: 7111.21044921875, y: 7993.75341796875, z: 8112.84814453125},
-    startOrientation: { x: 0, y:-0.332059, z: -0.09435316920280457, w: 0.030636562034487724},
+    startOrientation: { x: -0.002904998604208231, y: -0.9950630068778992, z: -0.09435316920280457, w: 0.030636562034487724},
     previewPosition: { x: 7083.22021484375, y: 8086.4462890625, z: 7968.5087890625},
     previewOrientation: { x: -0.04983579367399216, y: -0.9489744901657104, z: -0.24321390688419342, w: 0.19444981217384338}
 },
