@@ -134,12 +134,12 @@ function launchProjectile(carProps) {
 
 /// X+  is forward
 function handleDrivingKeyPress(event) {
-    if (event.key == KEY.UP) {
+    if (event.key == KEY.UP || event.key == KEY.W) {
         car.accelerating = true;
         car.soundLoopSwitcher.setSound(soundAccelerating);
-    } else if (event.key == KEY.LEFT) {
+    } else if (event.key == KEY.LEFT || event.key == KEY.A) {
         car.steeringLeft = true;
-    } else if (event.key == KEY.RIGHT) {
+    } else if (event.key == KEY.RIGHT || event.key == KEY.D) {
         car.steeringRight = true;
     } else if (event.key == KEY.C) {
         event.isShifted ? cameraHandler.prevCamera() : cameraHandler.nextCamera();
@@ -156,9 +156,9 @@ Controller.keyPressEvent.connect(function(event) {
         handleDrivingKeyPress(event);
     }
     if (state === STATE_TRACK_SELECTION) {
-        if (event.key == KEY.LEFT) {
+        if (event.key == KEY.LEFT || event.key == KEY.A) {
             trackSelector.prevTrack();
-        } else if (event.key == KEY.RIGHT) {
+        } else if (event.key == KEY.RIGHT || event.key == KEY.D) {
             trackSelector.nextTrack();
         } else if (event.key == KEY.SPACE) {
             trackSelector.hide();
@@ -167,9 +167,9 @@ Controller.keyPressEvent.connect(function(event) {
             state = STATE_CAR_SELECTION;
         }
     } else if (state == STATE_CAR_SELECTION) {
-        if (event.key == KEY.LEFT) {
+        if (event.key == KEY.LEFT || event.key == KEY.A) {
             carSelector.prevCar();
-        } else if (event.key == KEY.RIGHT) {
+        } else if (event.key == KEY.RIGHT || event.key == KEY.D) {
             carSelector.nextCar();
         } else if (event.key == KEY.SPACE) {
             var selectedCar = carSelector.selectableCars[carSelector.selectedCar];
@@ -185,12 +185,12 @@ Controller.keyPressEvent.connect(function(event) {
 
 Controller.keyReleaseEvent.connect(function(event) {
     if (isCarDriving()) {
-        if (event.key == KEY.UP) {
+        if (event.key == KEY.UP || event.key == KEY.W) {
             car.accelerating = false;
             car.soundLoopSwitcher.setSound(soundDecelerating);
-        } else if (event.key == KEY.LEFT) {
+        } else if (event.key == KEY.LEFT || event.key == KEY.A) {
             car.steeringLeft = false;
-        } else if (event.key == KEY.RIGHT) {
+        } else if (event.key == KEY.RIGHT || event.key == KEY.D) {
             car.steeringRight = false;
         }
     }
@@ -233,6 +233,10 @@ Script.scriptEnding.connect(function() {
     Controller.releaseKeyEvents({key: KEY.DOWN});
     Controller.releaseKeyEvents({key: KEY.LEFT});
     Controller.releaseKeyEvents({key: KEY.RIGHT});
+    Controller.releaseKeyEvents({key: KEY.W});
+    Controller.releaseKeyEvents({key: KEY.A});
+    Controller.releaseKeyEvents({key: KEY.S});
+    Controller.releaseKeyEvents({key: KEY.D});
     Controller.releaseKeyEvents({key: KEY.C});
     Controller.releaseKeyEvents({key: KEY.R});
     Controller.releaseKeyEvents({key: KEY.SPACE});
@@ -251,6 +255,10 @@ Controller.captureKeyEvents({key: KEY.UP});
 Controller.captureKeyEvents({key: KEY.DOWN});
 Controller.captureKeyEvents({key: KEY.LEFT});
 Controller.captureKeyEvents({key: KEY.RIGHT});
+Controller.captureKeyEvents({key: KEY.W});
+Controller.captureKeyEvents({key: KEY.A});
+Controller.captureKeyEvents({key: KEY.S});
+Controller.captureKeyEvents({key: KEY.D});
 Controller.captureKeyEvents({key: KEY.C});
 Controller.captureKeyEvents({key: KEY.R});
 Controller.captureKeyEvents({key: KEY.SPACE});
