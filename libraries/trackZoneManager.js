@@ -54,6 +54,12 @@ TrackZoneManager = function () {
             position: position,
             dimensions: dimensions
         };
+        if (entityProperties !== undefined) {
+            for (property in entityProperties) {
+                newProperties[property] = entityProperties[property];
+            }
+        }
+
         print("adding: " + JSON.stringify(newProperties));
         return Entities.addEntity(newProperties);
     };
@@ -61,12 +67,8 @@ TrackZoneManager = function () {
     _this.importTrack = function(position, json) {
         try {
             var trackZoneData = JSON.parse(json);
-            // TODO: add existing zone properties here:
-            var newTrackZoneEntity = _this.createTrack(trackZoneData.name, position, TRACK_ZONE_DIMENSIONS);
-            print ("result " + newTrackZoneEntity);
-            print ("here after newTrackZoneEntity");
+            var newTrackZoneEntity = _this.createTrack(trackZoneData.name, position, TRACK_ZONE_DIMENSIONS, trackZoneData.zoneProperties);
             for (var i = 0; i < trackZoneData.entities.length; i++) {
-                print("bla" + i);
                 var properties = trackZoneData.entities[i];
                 var newProperties = {};
                 for (property in properties) {
@@ -75,7 +77,7 @@ TrackZoneManager = function () {
                     }
                     newProperties[property] = properties[property];
                 }
-                newProperties.position = Vec3.sum(position, properties.position);
+                newProperties.position = Vec3.sum(position, properties.localPosition);
                 Entities.addEntity(newProperties);
             }
 

@@ -33,7 +33,7 @@ TrackZone = function(trackZoneEntityID) {
 
     var wantedProperties = {
         "all": ["rotation", "dimensions", "name", "userData", "type"],
-        "Zone": [],
+        "Zone": ["keyLightColor", "stageSunModelEnabled", "keyLightDirection", "shapeType", "keyLightIntensity", "stage", "backgroundMode"],
         "Light": [],
         "Sphere": [],
         "Box": [],
@@ -115,15 +115,26 @@ TrackZone = function(trackZoneEntityID) {
         }
         return checkpoints;
     };
+
     /**
      * Shows a Window with the exported TrackJSON
      */
     _this.exportTrack = function() {
         // do export voodoo Show JSON in window
+        var zoneProperties = {};
+        var properties = getZoneProperties();
+        for (property in properties) {
+            if ((wantedProperties["all"].indexOf(property) !== -1 || wantedProperties["Zone"].indexOf(property) !== -1) && property !== "dimensions") {
+                zoneProperties[property] = properties[property];
+                continue;
+            }
+        }
+
         return {
             name: _this.getName(),
             entities: _this.getEntityPropertySet(),
-        }
+            zoneProperties: zoneProperties
+        };
     };
 
     _this.getEntityPropertySet = function() {
@@ -163,6 +174,7 @@ TrackZone = function(trackZoneEntityID) {
         var zoneProperties = getZoneProperties();
         var corner = Vec3.subtract(zoneProperties.position, Vec3.multiply(zoneProperties.dimensions, HALF_UNIT));
         var entities = Entities.findEntitiesInBox(corner, zoneProperties.dimensions);
+        _this.trackEntities = [];
         for (key in entities) {
             var entity = entities[key];
             if (entity !== _this.trackZoneEntityID) {
@@ -170,7 +182,6 @@ TrackZone = function(trackZoneEntityID) {
                 if (properties.name.substring(0, VEHICLE_MODEL_PREFIX.length) === VEHICLE_MODEL_PREFIX) {
                     continue; //skip vehicles
                 }
-
 
                 _this.trackEntities.push(entity);
                 print("pushing entity to zone..");
