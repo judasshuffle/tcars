@@ -177,7 +177,7 @@ VEHICLES = {
     wheelModel: "cars/Twheel.fbx",
     selectormodel: "cars/spaceship.fbx",
     dimensions: {x:3.016 , y: 2.474, z:5.443},
-    registrationPoint: {x: 0.5, y: 0.4, z: 0.75},
+    registrationPoint: {x: 0.5, y: 0.4, z: 0.5},
     frontAxlePos: {x: 0, y: -1.65, z: -3.2},
     backAxlePos: {x: 0.0, y: -1.65, z: -0.5}, // x is across y is up and down z is forward back.
     frontAxleLength: 2.5,
