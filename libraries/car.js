@@ -29,14 +29,14 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
     // Every vehicle will have their own sound-player
     _this.soundLoopSwitcher = new SoundLoopSwitcher();
 
-    _this.init = function() {
+    var getNewCarProperties = function(spawnPosition, spawnRotation) {
         var newProperties = {
             type: "Model",
             modelURL: MODEL_FOLDER_URL + _this.vehicle.modelFile, // + "?v=" + (new Date()).getTime(),
             shapeType: "box",
-            name: "TCarModel-" + _this.vehicle.name,
-            position: Vec3.sum(startPosition, {y: _this.vehicle.dimensions.y / 2}),
-            rotation: startOrientation,
+            name: VEHICLE_MODEL_PREFIX + _this.vehicle.name,
+            position: Vec3.sum(spawnPosition, {y: _this.vehicle.dimensions.y / 2}),
+            rotation: spawnRotation,
             color: {red: 0, green: 255, blue: 0},
             dimensions: _this.vehicle.dimensions,
             collisionsWillMove: true,
@@ -46,6 +46,10 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
             density: 3000,
             damping: 0.7,
             angularDamping: 0.7,
+            //Test settings (falls better, slides too much)
+            //damping: 0.02,
+            //angularDamping: 0.5,
+            //friction: 0.001,
             registrationPoint: _this.vehicle.registrationPoint,
             userData: JSON.stringify({
                 wheelModel: _this.vehicle.wheelModel,
@@ -60,7 +64,10 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
             newProperties.shapeType = 'compound';
             newProperties.compoundShapeURL = MODEL_FOLDER_URL + _this.vehicle.collisionModel;// + "?v=" + (new Date()).getTime(),
         }
+        return newProperties;     
+    };
 
+    _this.init = function() {
         // Loaned this code from the flashlight script:
         _this.spotlight = Entities.addEntity({
             type: "Light",
@@ -95,7 +102,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
             exponent: 0,
             cutoff: 90, // in degrees
         });
-        _this.entity = Entities.addEntity(newProperties);
+        _this.entity = Entities.addEntity(getNewCarProperties(startPosition, startOrientation));
         if (SOUND) {
             Audio.playSound(soundStarting, {
                 position: MyAvatar.position,
@@ -151,6 +158,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
         
         
         if (_this.speedI !== _this.lastSpeedI) {
+            _this.lastSpeedI = _this.speedI;
             newProperties.velocity = Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -Math.log(1 + _this.speedI, 0.3) * _this.speedMultiplier});
             newProperties.velocity.y = carProps.velocity.y;
         }
@@ -175,13 +183,20 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
     };
 
     _this.reset = function() {
+        _this.speed = 0;
+        _this.speedI = 0;
+        _this.lastSpeedI = 0;
+        _this.lastAngularVelocityY = 0;
+
         var carProps = Entities.getEntityProperties(_this.entity);
         var direction = Quat.safeEulerAngles(carProps.rotation).y;
-        Entities.editEntity(_this.entity, {
-            rotation: Quat.fromPitchYawRollDegrees(0, direction, 0),
-            position: Vec3.sum(carProps.position, carProps.dimensions),
-            ignoreForCollisions: true
-        });
+        Entities.deleteEntity(_this.entity);
+        _this.entity = Entities.addEntity(getNewCarProperties(Vec3.sum(carProps.position, {x: 0, y: carProps.dimensions.y, z: 0}, Quat.fromPitchYawRollDegrees(0, direction, 0))));
+        //Entities.editEntity(_this.entity, {
+        //    rotation: Quat.fromPitchYawRollDegrees(0, direction, 0),
+        //    position: Vec3.sum(carProps.position, {x: 0, y: carProps.dimensions.y, z: 0}),
+        //    ignoreForCollisions: true
+        //});
         //newProperties.rotation = Quat.fromPitchYawRollDegrees(0, direction, 0);
         //newProperties.position = Vec3.sum(carProps.position, carProps.dimensions),
         //newProperties.ignoreForCollisions = true;
@@ -193,7 +208,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
         Entities.deleteEntity(_this.spotlight);
         Entities.deleteEntity(_this.glowLight);
         _this.soundLoopSwitcher.stopSound();
-        print('The car has been impounded.')
+        print('Finished cleaning up a Car.')
     };
 
     _this.init();
