@@ -191,7 +191,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
         var carProps = Entities.getEntityProperties(_this.entity);
         var direction = Quat.safeEulerAngles(carProps.rotation).y;
         Entities.deleteEntity(_this.entity);
-        _this.entity = Entities.addEntity(getNewCarProperties(Vec3.sum(carProps.position, {x: 0, y: carProps.dimensions.y, z: 0}, Quat.fromPitchYawRollDegrees(0, direction, 0))));
+        _this.entity = Entities.addEntity(getNewCarProperties(Vec3.sum(carProps.position, {x: 0, y: carProps.dimensions.y, z: 0}), Quat.fromPitchYawRollDegrees(0, direction, 0)));
         //Entities.editEntity(_this.entity, {
         //    rotation: Quat.fromPitchYawRollDegrees(0, direction, 0),
         //    position: Vec3.sum(carProps.position, {x: 0, y: carProps.dimensions.y, z: 0}),
