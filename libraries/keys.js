@@ -17,6 +17,7 @@ KEY = {
     D: 68,
     C: 67,
     R: 82,
+    B: 66,
     SPACE: 32,
     DEL: 16777223
 };
@@ -32,6 +33,7 @@ ALL_KEYS = [
     KEY.D,
     KEY.C,
     KEY.R,
+    KEY.B,
     KEY.SPACE,
     KEY.DEL
 ];

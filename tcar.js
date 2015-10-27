@@ -55,7 +55,6 @@ var actionID = false;
 var spacebarBlockly = 'Window.alert("You have not made a blockly script for this button yet!");'
 
 var newWindow = new WebWindow("Customize your vehicle", "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/blockly-tcars/index.html", 700,700);
-newWindow.setVisible(true);
 newWindow.eventBridge.webEventReceived.connect(function(data) {
     data = JSON.parse(data);
     switch (data.action) {
@@ -145,6 +144,8 @@ function handleDrivingKeyPress(event) {
         event.isShifted ? cameraHandler.prevCamera() : cameraHandler.nextCamera();
     } else if (event.key == KEY.R) {
         car.reset();
+    } else if (event.key == KEY.B) {
+        newWindow.setVisible(true);
     } else if (event.key == KEY.SPACE) {
         //launchProjectile(Entities.getEntityProperties(car.entity));
         doSpaceBarBlockly();
