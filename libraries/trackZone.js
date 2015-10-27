@@ -29,12 +29,13 @@ TrackZone = function(trackZoneEntityID) {
     // Is the TrackZone fully loaded?
     _this.loaded = false;
     
+    //TODO: physical respawnable entities need userdata that tells us that they are such    
     _this.trackEntities = [];
 
     var wantedProperties = {
         "all": ["rotation", "dimensions", "name", "userData", "type"],
         "Zone": ["keyLightColor", "stageSunModelEnabled", "keyLightDirection", "shapeType", "keyLightIntensity", "stage", "backgroundMode"],
-        "Light": [],
+        "Light": [], //TODO: find light properties
         "Sphere": [],
         "Box": [],
         "Model": ["modelURL", "compoundShapeURL", "shapeType"]
@@ -99,7 +100,7 @@ TrackZone = function(trackZoneEntityID) {
     };
 
     _this.getPosition = function() {
-        return getZoneProperties().name;
+        return getZoneProperties().position;
     };
 
     _this.isLoaded = function() {
@@ -115,6 +116,16 @@ TrackZone = function(trackZoneEntityID) {
         }
         return checkpoints;
     };
+
+    /**
+     * Checkpoint Charlie
+     */
+    _this.insertCheckpoint = function(position, rotation, dimensions) {
+        // checkpoint!
+        var checkpoints = _this.getCheckPoints();
+        checkpoints.push({position: position, rotation: rotation, dimensions: dimensions});
+    };
+
 
     /**
      * Shows a Window with the exported TrackJSON
@@ -162,13 +173,6 @@ TrackZone = function(trackZoneEntityID) {
         return result;
     };
 
-    /**
-     * Checkpoint Charlie
-     */
-    _this.insertCheckpoint = function(position, rotation, dimensions) {
-        // checkpoint!
-    };
-
     _this.updateFromZone = function() {
         // Read zone userData here
         var zoneProperties = getZoneProperties();
@@ -184,7 +188,6 @@ TrackZone = function(trackZoneEntityID) {
                 }
 
                 _this.trackEntities.push(entity);
-                print("pushing entity to zone..");
             }
         }
         _this.loaded = true;

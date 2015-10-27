@@ -14,7 +14,7 @@ TrackZoneEditingTools = function() {
     var trackZoneManager = new TrackZoneManager();
 
     _this.selectClosestTrack = function() {
-        trackZoneManager.selectNearestTrackZone();
+        trackZoneManager.selectNearestTrackZone(Camera.position);
     };
 
     _this.exportTrack = function() {
@@ -25,9 +25,10 @@ TrackZoneEditingTools = function() {
             switch (data.action) {
                 case 'page_loaded':
                     trackZoneManager.refreshNearbyTracks(MyAvatar.position);
+                    _this.selectClosestTrack();
                     exportWindows.eventBridge.emitScriptEvent(JSON.stringify({
                         action: "export",
-                        data: trackZoneManager.trackZones[Object.keys(trackZoneManager.trackZones)[0]].exportTrack()
+                        data: trackZoneManager.getSelectedTrackZone().exportTrack()
                     }));
                     break;
             }

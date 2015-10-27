@@ -14,7 +14,6 @@ TrackZoneManager = function () {
         if (properties.type === "Zone") {
             try {
                 var zoneUserData = JSON.parse(properties.userData);
-                //print(zoneUserData);
                 return (zoneUserData.TCars !== undefined && zoneUserData.TCars.type === "track");
             } catch (e) {
                 print(e);
@@ -26,7 +25,7 @@ TrackZoneManager = function () {
 
     _this.getSelectedTrackZone = function() {
         if (_this.trackZones[selectedTrackZone] !== undefined) {
-            return selectedTrackZone;
+            return _this.trackZones[selectedTrackZone];
         }
         return null;
     };
@@ -41,7 +40,8 @@ TrackZoneManager = function () {
                 closestTrackZoneID = trackZoneID;
             }
         }
-        return closestTrackZoneID;
+        selectedTrackZone = closestTrackZoneID;
+        return selectedTrackZone;
     };
 
     _this.createTrack = function(name, position, dimensions, entityProperties) {
