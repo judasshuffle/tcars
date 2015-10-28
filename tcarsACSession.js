@@ -3,22 +3,7 @@
 const PORT = 18001;
 
 // this has to match with the ACTION object in the participant script
-const ACTION = {
-    JOIN_REQUEST:           1,
-    JOIN_REQUEST_ACCEPTED:  2,
-    UPDATE:                 3,
-    MESSAGE:                4,
-    PLAYER_JOIN:            5,
-    PLAYER_LEFT:            6,
-    GAME_STATE:             7,
-    SPECTATE:               8
-    //START_HIDING:           7,
-    //COUNTING:               8,
-    //START_SEEKING:          9,
-    //GAMEOVER:               10,
-    //PING_PLAYER:            11,
-    //FOUND:                  12
-};
+
 
 const GAME_STATE = {
     WAITING:            1,

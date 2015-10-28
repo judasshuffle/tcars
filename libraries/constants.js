@@ -70,3 +70,29 @@ HALF_UNIT = 0.5;
 MAX_PLAYERS = 4;
 
 VEHICLE_MODEL_PREFIX = "TCarModel-";
+
+// Packet types for connection with lobby AC
+LOBBY_ACTION = {
+    REGISTER_SESSION_REQUEST:   1,
+    REGISTER_SESSION_REPLY:     2,
+    SESSION_INFORMATION_UPDATE: 3,
+    PLAYER_SESSIONS_REQUEST:    4,
+    PLAYER_SESSIONS_REPLY:      5
+};
+
+SESSION_ACTION = {
+    JOIN_REQUEST: 	1,
+    JOIN_REPLY:     2,
+    UPDATE:         3,
+    MESSAGE:        4,
+    PLAYER_JOIN:    5,
+    PLAYER_LEFT:    6,
+    GAME_STATE:     7,
+    SPECTATE:       8
+    //START_HIDING:           7,
+    //COUNTING:               8,
+    //START_SEEKING:          9,
+    //GAMEOVER:               10,
+    //PING_PLAYER:            11,
+    //FOUND:                  12
+};

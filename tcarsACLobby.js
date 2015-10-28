@@ -1,12 +1,7 @@
 const PORT = 18000;
+const SESSION_PORTS_START = 18001;
+const SESSION_PORTS_MAX_COUNT = 100;
 
-const LOBBY_ACTION = {
-    REGISTER_SESSION_REQUEST:   1,
-    REGISTER_SESSION_REPLY:     2,
-    SESSION_INFORMATION_UPDATE: 3,
-    PLAYER_SESSIONS_REQUEST:    4,
-    PLAYER_SESSIONS_REPLY:      5
-};
 
 
 // The clients are stored in this object.
@@ -23,6 +18,10 @@ function findClientByWebSocket(socket) {
         }
     }
     return null;
+}
+
+function getFreeSessionPort() {
+
 }
 
 function sendToAllActiveClients(data, exceptSocket) {
