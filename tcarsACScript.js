@@ -1,7 +1,3 @@
-// Here you can put a script that will be run by an assignment-client (AC)
-// For examples, please go to http://public.highfidelity.io/scripts
-// The directory named acScripts contains assignment-client specific scripts you can try.
-
 // TODO: make another assignment-client that manages all sessions
 
 const PORT = 40105;
@@ -124,23 +120,29 @@ const SCRIPTS_PATH = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/";
 Script.include([
     SCRIPTS_PATH + "libraries/constants.js",
     SCRIPTS_PATH + "libraries/trackZone.js",
-    SCRIPTS_PATH + "libraries/trackZoneManager.js"
+    SCRIPTS_PATH + "libraries/trackZoneManager.js",
+    SCRIPTS_PATH + "libraries/tracks.js"
 ]);
 
 const SESSION_AREA_SIZE = 2000; // size in square meters
 
 var sessionArea = {center: {x: -8000, y: -8000, z: -8000}, dimensions: {x: SESSION_AREA_SIZE, y: SESSION_AREA_SIZE, z: SESSION_AREA_SIZE}};
 
-print("hello world");
+//print("¡¡!¡!¡!¡!¡?¿?¿!¡!¡hello worldH");
 
 var elementCount = 0;
 
 vantagePoint = sessionArea.center;//Vec3.sum(sessionArea)
 
-var testTrackJSON = "{\"name\":\"space zone\",\"entities\":[{\"type\":\"Light\",\"dimensions\":{\"x\":300,\"y\":300,\"z\":300},\"rotation\":{\"x\":-0.0000152587890625,\"y\":-0.0000152587890625,\"z\":-0.0000152587890625,\"w\":1},\"userData\":\"\",\"name\":\"\",\"localPosition\":{\"x\":68.165771484375,\"y\":-75.216796875,\"z\":30.14013671875}},{\"type\":\"Light\",\"dimensions\":{\"x\":300,\"y\":300,\"z\":300},\"rotation\":{\"x\":-0.0000152587890625,\"y\":-0.0000152587890625,\"z\":-0.0000152587890625,\"w\":1},\"userData\":\"\",\"name\":\"\",\"localPosition\":{\"x\":1.01025390625,\"y\":-75.216796875,\"z\":40.308837890625}},{\"type\":\"Model\",\"dimensions\":{\"x\":327.0225830078125,\"y\":205.71221923828125,\"z\":312.3404846191406},\"rotation\":{\"x\":-0.0000152587890625,\"y\":-0.0000152587890625,\"z\":-0.0000152587890625,\"w\":1},\"userData\":\"{}\",\"name\":\"\",\"modelURL\":\"http://hifi-external.s3.amazonaws.com/tcars/models/tracks/Space/spacetrack.fbx\",\"shapeType\":\"compound\",\"compoundShapeURL\":\"http://hifi-external.s3.amazonaws.com/tcars/models/tracks/Space/tubecollision.obj\",\"localPosition\":{\"x\":5.006103515625,\"y\":-100.009765625,\"z\":6.899658203125}},{\"type\":\"Light\",\"dimensions\":{\"x\":13.680805206298828,\"y\":13.680805206298828,\"z\":40},\"rotation\":{\"x\":-0.038651108741760254,\"y\":0.7578088045120239,\"z\":0.049271345138549805,\"w\":0.6494392156600952},\"userData\":\"\",\"name\":\"\",\"localPosition\":{\"x\":-19.175048828125,\"y\":-88.7265625,\"z\":93.1845703125}},{\"type\":\"Light\",\"dimensions\":{\"x\":0.25,\"y\":0.25,\"z\":0.25},\"rotation\":{\"x\":-0.038651108741760254,\"y\":0.7578088045120239,\"z\":0.049271345138549805,\"w\":0.6494392156600952},\"userData\":\"\",\"name\":\"\",\"localPosition\":{\"x\":-19.175048828125,\"y\":-88.7265625,\"z\":93.1845703125}},{\"type\":\"Model\",\"dimensions\":{\"x\":3.0162997245788574,\"y\":2.4744372367858887,\"z\":5.443283557891846},\"rotation\":{\"x\":-0.0000152587890625,\"y\":-0.7071488499641418,\"z\":-0.0000152587890625,\"w\":0.7070878744125366},\"userData\":\"\",\"name\":\"\",\"modelURL\":\"http://hifi-external.s3.amazonaws.com/tcars/models/cars/spaceship.fbx?v37\",\"shapeType\":\"none\",\"compoundShapeURL\":\"\",\"localPosition\":{\"x\":0.997802734375,\"y\":-84.357421875,\"z\":96.674560546875}},{\"type\":\"Light\",\"dimensions\":{\"x\":0.25,\"y\":0.25,\"z\":0.25},\"rotation\":{\"x\":0.4773784875869751,\"y\":0.534904956817627,\"z\":-0.45067518949508667,\"w\":0.531822681427002},\"userData\":\"\",\"name\":\"\",\"localPosition\":{\"x\":4.084228515625,\"y\":-84.73828125,\"z\":93.841064453125}}],\"zoneProperties\":{\"type\":\"Zone\",\"rotation\":{\"x\":-0.0000152587890625,\"y\":-0.0000152587890625,\"z\":-0.0000152587890625,\"w\":1},\"userData\":\"{\\n    \\\"ProceduralEntity\\\": {\\n        \\\"shaderUrl\\\": \\\"http://hifi-external.s3.amazonaws.com/tcars/models/tracks/shaders/space.fs?v7\\\"\\n    },\\n    \\\"TCars\\\": {\\n            \\\"type\\\": \\\"track\\\"\\n     }\\n}\",\"name\":\"space zone\",\"shapeType\":\"box\",\"keyLightColor\":{\"red\":255,\"green\":255,\"blue\":255},\"keyLightIntensity\":1,\"keyLightDirection\":{\"x\":0,\"y\":-1,\"z\":0},\"backgroundMode\":\"skybox\",\"stage\":{\"sunModelEnabled\":0,\"latitude\":37.777000427246094,\"longitude\":122.40699768066406,\"altitude\":0.029999999329447746,\"day\":60,\"hour\":12,\"automaticHourDay\":0}}}";
+var req = new XMLHttpRequest();
+req.open("GET", "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/trackzones/spacetrack.json", false);
+req.send();
+//var lines = req.response.split("\n");
+
+var testTrackJSON = req.response; //"{\"name\":\"space zone\",\"entities\":[{\"type\":\"Light\",\"dimensions\":{\"x\":300,\"y\":300,\"z\":300},\"rotation\":{\"x\":-0.0000152587890625,\"y\":-0.0000152587890625,\"z\":-0.0000152587890625,\"w\":1},\"userData\":\"\",\"name\":\"\",\"localPosition\":{\"x\":68.165771484375,\"y\":-75.216796875,\"z\":30.14013671875}},{\"type\":\"Light\",\"dimensions\":{\"x\":300,\"y\":300,\"z\":300},\"rotation\":{\"x\":-0.0000152587890625,\"y\":-0.0000152587890625,\"z\":-0.0000152587890625,\"w\":1},\"userData\":\"\",\"name\":\"\",\"localPosition\":{\"x\":1.01025390625,\"y\":-75.216796875,\"z\":40.308837890625}},{\"type\":\"Model\",\"dimensions\":{\"x\":327.0225830078125,\"y\":205.71221923828125,\"z\":312.3404846191406},\"rotation\":{\"x\":-0.0000152587890625,\"y\":-0.0000152587890625,\"z\":-0.0000152587890625,\"w\":1},\"userData\":\"{}\",\"name\":\"\",\"modelURL\":\"http://hifi-external.s3.amazonaws.com/tcars/models/tracks/Space/spacetrack.fbx\",\"shapeType\":\"compound\",\"compoundShapeURL\":\"http://hifi-external.s3.amazonaws.com/tcars/models/tracks/Space/tubecollision.obj\",\"localPosition\":{\"x\":5.006103515625,\"y\":-100.009765625,\"z\":6.899658203125}},{\"type\":\"Light\",\"dimensions\":{\"x\":13.680805206298828,\"y\":13.680805206298828,\"z\":40},\"rotation\":{\"x\":-0.038651108741760254,\"y\":0.7578088045120239,\"z\":0.049271345138549805,\"w\":0.6494392156600952},\"userData\":\"\",\"name\":\"\",\"localPosition\":{\"x\":-19.175048828125,\"y\":-88.7265625,\"z\":93.1845703125}},{\"type\":\"Light\",\"dimensions\":{\"x\":0.25,\"y\":0.25,\"z\":0.25},\"rotation\":{\"x\":-0.038651108741760254,\"y\":0.7578088045120239,\"z\":0.049271345138549805,\"w\":0.6494392156600952},\"userData\":\"\",\"name\":\"\",\"localPosition\":{\"x\":-19.175048828125,\"y\":-88.7265625,\"z\":93.1845703125}},{\"type\":\"Model\",\"dimensions\":{\"x\":3.0162997245788574,\"y\":2.4744372367858887,\"z\":5.443283557891846},\"rotation\":{\"x\":-0.0000152587890625,\"y\":-0.7071488499641418,\"z\":-0.0000152587890625,\"w\":0.7070878744125366},\"userData\":\"\",\"name\":\"\",\"modelURL\":\"http://hifi-external.s3.amazonaws.com/tcars/models/cars/spaceship.fbx?v37\",\"shapeType\":\"none\",\"compoundShapeURL\":\"\",\"localPosition\":{\"x\":0.997802734375,\"y\":-84.357421875,\"z\":96.674560546875}},{\"type\":\"Light\",\"dimensions\":{\"x\":0.25,\"y\":0.25,\"z\":0.25},\"rotation\":{\"x\":0.4773784875869751,\"y\":0.534904956817627,\"z\":-0.45067518949508667,\"w\":0.531822681427002},\"userData\":\"\",\"name\":\"\",\"localPosition\":{\"x\":4.084228515625,\"y\":-84.73828125,\"z\":93.841064453125}}],\"zoneProperties\":{\"type\":\"Zone\",\"rotation\":{\"x\":-0.0000152587890625,\"y\":-0.0000152587890625,\"z\":-0.0000152587890625,\"w\":1},\"userData\":\"{\\n    \\\"ProceduralEntity\\\": {\\n        \\\"shaderUrl\\\": \\\"http://hifi-external.s3.amazonaws.com/tcars/models/tracks/shaders/space.fs?v7\\\"\\n    },\\n    \\\"TCars\\\": {\\n            \\\"type\\\": \\\"track\\\"\\n     }\\n}\",\"name\":\"space zone\",\"shapeType\":\"box\",\"keyLightColor\":{\"red\":255,\"green\":255,\"blue\":255},\"keyLightIntensity\":1,\"keyLightDirection\":{\"x\":0,\"y\":-1,\"z\":0},\"backgroundMode\":\"skybox\",\"stage\":{\"sunModelEnabled\":0,\"latitude\":37.777000427246094,\"longitude\":122.40699768066406,\"altitude\":0.029999999329447746,\"day\":60,\"hour\":12,\"automaticHourDay\":0}}}";
 
 var trackZoneManager = new TrackZoneManager();
-//trackZoneManager.importTrack(vantagePoint, testTrackJSON);
+trackZoneManager.importTrack(vantagePoint, testTrackJSON);
 
 
 //var y = 7910.02;
