@@ -72,9 +72,12 @@ var prevPoint = null;
 9031,7
 */
 
+points.reverse();
+
 var cubes = [];
 var TRACKOFFSET = {x: 3006, y: 9057, z: 2999.76};
-for (var i = 0; i < points.length; i++) {
+
+for (var i = 0; i < 0 /*points.length*/; i++) {
     point = points[i];
     MyAvatar.position = Vec3.sum(TRACKOFFSET, point);
     cubes.push(Overlays.addOverlay("cube", {
@@ -119,10 +122,10 @@ Script.setInterval(function() {
     pointB = Vec3.sum(TRACKOFFSET, points[nextPosition]);
     MyAvatar.position = pointA;
     MyAvatar.orientation = rotateBetween(pointB, pointA);
-    currentPos = (currentPos + 1) % cubes.length;
-    nextPosition = (currentPos + 1) % cubes.length;
+    currentPos = (currentPos + 1) % points.length;
+    nextPosition = (currentPos + 1) % points.length;
     
-}, 50);
+}, 200);
 
 
 //Script.stop();
