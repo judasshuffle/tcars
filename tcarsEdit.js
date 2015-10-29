@@ -1,5 +1,3 @@
-// TODO: export a zone
-
 // IMPORT track, JSON
 
 Script.include([
