@@ -41,9 +41,9 @@ var avatarSeater = new AvatarSeater();
 
 var car = null;
 
-var state = STATE_TRACK_SELECTION;
+var state = STATE.TRACK_SELECTION;
 
-var soundAccelerating = SoundCache.getSound(SOUND_FOLDER_URL + "enginenoise1.wav");
+var soundAccelerating = SoundCache.getSound(SOUND_FOLDER_URL + "enginenoise2.wav");
 var soundDecelerating = SoundCache.getSound(SOUND_FOLDER_URL + "decelerating.wav");
 var soundIdle = SoundCache.getSound(SOUND_FOLDER_URL + "idle.wav");
 var soundShutdown = SoundCache.getSound(SOUND_FOLDER_URL + "shutdown.wav");
@@ -90,7 +90,7 @@ var carSelector = new CarSelector();
 var cameraHandler = new CameraHandler();
 
 function isCarDriving() {
-    return state == STATE_DRIVING || state == STATE_RACING;
+    return state == STATE.DRIVING || state == STATE.RACING;
 }
 
 function launchProjectile(carProps) {
@@ -156,7 +156,7 @@ Controller.keyPressEvent.connect(function(event) {
     if (isCarDriving()) {
         handleDrivingKeyPress(event);
     }
-    if (state === STATE_TRACK_SELECTION) {
+    if (state === STATE.TRACK_SELECTION) {
         if (event.key == KEY.LEFT || event.key == KEY.A) {
             trackSelector.prevTrack();
         } else if (event.key == KEY.RIGHT || event.key == KEY.D) {
@@ -165,9 +165,9 @@ Controller.keyPressEvent.connect(function(event) {
             trackSelector.hide();
             carSelector.init(TRACKS[trackSelector.selectedTrack].vehicles);
             cameraHandler.setCameras(TRACKS[trackSelector.selectedTrack].cameras);
-            state = STATE_CAR_SELECTION;
+            state = STATE.CAR_SELECTION;
         }
-    } else if (state == STATE_CAR_SELECTION) {
+    } else if (state == STATE.CAR_SELECTION) {
         if (event.key == KEY.LEFT || event.key == KEY.A) {
             carSelector.prevCar();
         } else if (event.key == KEY.RIGHT || event.key == KEY.D) {
@@ -177,7 +177,7 @@ Controller.keyPressEvent.connect(function(event) {
             var selectedTrack = TRACKS[trackSelector.selectedTrack];
             avatarSeater.setSeat(selectedTrack.seats[0])
             car = new Car(selectedCar.vehicle, selectedTrack.startPosition, selectedTrack.startOrientation);
-            state = STATE_DRIVING;
+            state = STATE.DRIVING;
             cameraHandler.firstCamera();
             carSelector.cleanup();
         }
@@ -203,11 +203,11 @@ Script.update.connect(function(time) {
         var carProps = Entities.getEntityProperties(car.entity);
         cameraHandler.updateCamera(time, carProps);
         //speedometer.update(time);
-    } else if (state == STATE_TRACK_SELECTION) {
+    } else if (state == STATE.TRACK_SELECTION) {
         cameraHandler.stance = CAMERA_TRACK_SELECTOR;
         cameraHandler.updateCamera(time, null);
         trackSelector.update(time);
-    } else if (state == STATE_CAR_SELECTION) {
+    } else if (state == STATE.CAR_SELECTION) {
         cameraHandler.stance = CAMERA_CAR_SELECTOR;
         cameraHandler.updateCamera(time, null);
         carSelector.update(time);

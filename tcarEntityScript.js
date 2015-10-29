@@ -89,7 +89,7 @@
     // Download sound if needed
     _this.maybeDownloadSound = function() {
         if (this.sound === null) {
-            this.sound = SoundCache.getSound("https://dl.dropboxusercontent.com/u/14997455/hifi/tcar/collision.wav?v=2");
+            this.sound = SoundCache.getSound("http://hifi-external.s3.amazonaws.com/tcars/sounds/collision.wav");
         }
     }
 
@@ -154,18 +154,14 @@
     };
 
     _this.clickDownOnEntity = function(entityID, mouseEvent) {
-      //  this.preload(entityID); // TODO : remove
-        this.updateProperties(entityID); // All callbacks start by updating the properties
-        //this.grab(mouseEvent);
+        this.updateProperties(entityID);
         this.playSound();
     };
 
     _this.holdingClickOnEntity = function(entityID, mouseEvent) {
-        this.updateProperties(entityID); // All callbacks start by updating the properties
-        //this.move(mouseEvent);
+        this.updateProperties(entityID);
     };
     _this.clickReleaseOnEntity = function(entityID, mouseEvent) {
-        this.updateProperties(entityID); // All callbacks start by updating the properties
-        //this.release(mouseEvent);
+        this.updateProperties(entityID);
     };
 })
