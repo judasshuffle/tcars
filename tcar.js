@@ -230,18 +230,9 @@ Script.scriptEnding.connect(function() {
         car.cleanup();
     }
     cameraHandler.shutdown();
-    Controller.releaseKeyEvents({key: KEY.UP});
-    Controller.releaseKeyEvents({key: KEY.DOWN});
-    Controller.releaseKeyEvents({key: KEY.LEFT});
-    Controller.releaseKeyEvents({key: KEY.RIGHT});
-    Controller.releaseKeyEvents({key: KEY.W});
-    Controller.releaseKeyEvents({key: KEY.A});
-    Controller.releaseKeyEvents({key: KEY.S});
-    Controller.releaseKeyEvents({key: KEY.D});
-    Controller.releaseKeyEvents({key: KEY.C});
-    Controller.releaseKeyEvents({key: KEY.R});
-    Controller.releaseKeyEvents({key: KEY.SPACE});
-    Controller.releaseKeyEvents({key: KEY.DEL});
+    for (var i = 0; i < ALL_KEYS.length; i++) {
+        Controller.releaseKeyEvents({key: ALL_KEYS[i]});
+    }
     carSelector.cleanup();
     trackSelector.cleanup();
     print('TCars script finished closing!')
@@ -252,15 +243,6 @@ Script.scriptEnding.connect(function() {
     });*/
 });
 
-Controller.captureKeyEvents({key: KEY.UP});
-Controller.captureKeyEvents({key: KEY.DOWN});
-Controller.captureKeyEvents({key: KEY.LEFT});
-Controller.captureKeyEvents({key: KEY.RIGHT});
-Controller.captureKeyEvents({key: KEY.W});
-Controller.captureKeyEvents({key: KEY.A});
-Controller.captureKeyEvents({key: KEY.S});
-Controller.captureKeyEvents({key: KEY.D});
-Controller.captureKeyEvents({key: KEY.C});
-Controller.captureKeyEvents({key: KEY.R});
-Controller.captureKeyEvents({key: KEY.SPACE});
-Controller.captureKeyEvents({key: KEY.DEL});
+for (var i = 0; i < ALL_KEYS.length; i++) {
+    Controller.captureKeyEvents({key: ALL_KEYS[i]});
+}
