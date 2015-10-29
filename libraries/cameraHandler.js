@@ -48,8 +48,8 @@ CameraHandler = function() {
             _this.position = Vec3.sum(carProps.position, {x: 15, y: 20 + (Vec3.length(carProps.velocity) * 2), z: 0});
             _this.orientation = cameraLookAt(_this.position, carProps.position);
         } else if (_this.stance === CAMERA.CAR_SELECTOR) {
-            _this.position = CAR_SELECTOR_CAM_POS;
-            _this.orientation = cameraLookAt(_this.position, CAR_SELECTOR_CENTER);
+            _this.position = CAR_SELECTOR.CAM_POS;
+            _this.orientation = cameraLookAt(_this.position, CAR_SELECTOR.CENTER);
         } else if (_this.stance === CAMERA.TRACK_SELECTOR) {
             var track = TRACKS[trackSelector.selectedTrack];
             _this.position = track.previewPosition;
