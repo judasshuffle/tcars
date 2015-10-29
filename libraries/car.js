@@ -139,6 +139,10 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
         if (carProps.ignoreForCollisions) {
             newProperties.ignoreForCollisions = false;
         }
+
+        if (_this.speedI === 0) {
+            _this.soundLoopSwitcher.setSound(soundIdle);
+        }
         //newProperties.ignoreForCollisions = false;
         /*if (_this.speedI < 0) {
             _this.speedI = 0;
