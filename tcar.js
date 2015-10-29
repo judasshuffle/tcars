@@ -43,11 +43,11 @@ var car = null;
 
 var state = STATE_TRACK_SELECTION;
 
-var soundAccelerating = SoundCache.getSound(SOUND_FOLDER_URL + "/capriii2.wav");
-var soundDecelerating = SoundCache.getSound(SOUND_FOLDER_URL + "/decelerating.wav");
-var soundIdle = SoundCache.getSound(SOUND_FOLDER_URL + "/idle.wav");
-var soundShutdown = SoundCache.getSound(SOUND_FOLDER_URL + "/shutdown.wav");
-var soundStarting = SoundCache.getSound(SOUND_FOLDER_URL + "/starting.wav");
+var soundAccelerating = SoundCache.getSound(SOUND_FOLDER_URL + "enginenoise1.wav");
+var soundDecelerating = SoundCache.getSound(SOUND_FOLDER_URL + "decelerating.wav");
+var soundIdle = SoundCache.getSound(SOUND_FOLDER_URL + "idle.wav");
+var soundShutdown = SoundCache.getSound(SOUND_FOLDER_URL + "shutdown.wav");
+var soundStarting = SoundCache.getSound(SOUND_FOLDER_URL + "starting.wav");
 
 var timeItWentWithoutMoving = 0;
 var actionID = false;

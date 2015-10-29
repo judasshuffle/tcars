@@ -20,11 +20,11 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
     _this.entity = null;
     _this.speedMultiplier = speedMultiplier !== undefined ? speedMultiplier : 1.0;
 
-    var soundAccelerating = SoundCache.getSound(SOUND_FOLDER_URL + "/capriii2.wav");
-    var soundDecelerating = SoundCache.getSound(SOUND_FOLDER_URL + "/decelerating.wav");
-    var soundIdle = SoundCache.getSound(SOUND_FOLDER_URL + "/idle.wav");
-    var soundShutdown = SoundCache.getSound(SOUND_FOLDER_URL + "/shutdown.wav");
-    var soundStarting = SoundCache.getSound(SOUND_FOLDER_URL + "/starting.wav");
+    var soundAccelerating = SoundCache.getSound(SOUND_FOLDER_URL + "capriii2.wav");
+    var soundDecelerating = SoundCache.getSound(SOUND_FOLDER_URL + "decelerating.wav");
+    var soundIdle = SoundCache.getSound(SOUND_FOLDER_URL + "idle.wav");
+    var soundShutdown = SoundCache.getSound(SOUND_FOLDER_URL + "shutdown.wav");
+    var soundStarting = SoundCache.getSound(SOUND_FOLDER_URL + "starting.wav");
 
     // Every vehicle will have their own sound-player
     _this.soundLoopSwitcher = new SoundLoopSwitcher();
