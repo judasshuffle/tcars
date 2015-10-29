@@ -73,10 +73,18 @@ ClientManager = function(port) {
                 _this.onClientAction.call(this, newClientID, data.action, data);
             }
         };
+        newClient.onerror = function(event) {
+            print("error");
+            if (_this.onClientDisconnect !== undefined) {
+                _this.onClientDisconnect.call(this, newClientID);
+            }
+            delete clients[newClientID];
+        };
         newClient.onclose = function(event) {
             if (_this.onClientDisconnect !== undefined) {
                 _this.onClientDisconnect.call(this, newClientID);
             }
+            delete clients[newClientID];
         };
         if (_this.onClientConnect !== undefined) {
             _this.onClientConnect.call(this, newClientID);

@@ -2,12 +2,98 @@ const PORT = 18000;
 const SESSION_PORTS_START = 18001;
 const SESSION_PORTS_MAX_COUNT = 100;
 
+const SESSION_AREA_START = {
+    x: -16000,
+    y: -16000,
+    z: -16000
+};
+
+const SESSION_AREA_END = {
+    x: 16000,
+    y: 16000,
+    z: 16000
+};
+
+const SESSION_AREA_SIZE = 2000; 
+
+const SESSION_AREA_SAFEZONES = [
+    {
+        start: {x: -SESSION_AREA_SIZE, y: -SESSION_AREA_SIZE, z: -SESSION_AREA_SIZE},
+        end: {x: SESSION_AREA_SIZE, y: SESSION_AREA_SIZE, z: SESSION_AREA_SIZE}
+    }
+]
+
+
+const SESSION_AREA_DIMENSIONS = {
+    x: SESSION_AREA_SIZE,
+    y: SESSION_AREA_SIZE,
+    z: SESSION_AREA_SIZE
+}
+
 const SCRIPTS_PATH = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/";
 
 Script.include([
     SCRIPTS_PATH + "libraries/constants.js",
     SCRIPTS_PATH + "libraries/clientManager.js"
 ]);
+
+function maxBlocksDimension(dimension) {
+    return Math.floor(Math.abs(SESSION_AREA_START[dimension] - SESSION_AREA_END[dimension]) / SESSION_AREA_DIMENSIONS[dimension]);
+}
+
+// get blocks positions from specific dimensions
+function getBlocksFromDimensions(area) {
+    var blocks = [];
+    for (var x = area.start.x; x < area.end.x; x += SESSION_AREA_DIMENSIONS.x) {
+        for (var y = area.start.y; y < area.end.y; y += SESSION_AREA_DIMENSIONS.y) {
+            for (var z = area.start.z; z < area.end.z; z += SESSION_AREA_DIMENSIONS.z) {
+                blocks.push({
+                    x: Math.floor(Math.abs(SESSION_AREA_START.x - x) / SESSION_AREA_DIMENSIONS.x),
+                    y: Math.floor(Math.abs(SESSION_AREA_START.y - y) / SESSION_AREA_DIMENSIONS.y),
+                    z: Math.floor(Math.abs(SESSION_AREA_START.z - z) / SESSION_AREA_DIMENSIONS.z),
+                });
+            }
+        }
+    }
+    return blocks;
+}
+
+function getFreeSessionBlock() {
+    var maxX = maxBlocksDimension('x');
+    var maxY = maxBlocksDimension('y');
+    var maxZ = maxBlocksDimension('z');
+    var occupiedBlocks = [];
+    for (var i = 0; i < SESSION_AREA_SAFEZONES.length; i++) {
+        occupiedBlocks.push(getBlocksFromDimensions(SESSION_AREA_SAFEZONES[i]));
+    }
+    print(JSON.stringify(occupiedBlocks));
+    clientManager.doForAllClients(function(clientID, client) {
+        if (client.sessionBlock !== undefined) {
+            occupiedBlocks.push(client.sessionBlock);
+        }
+    });
+
+    var bestPosition = undefined;
+    var bestDistance = 0;
+    for (var x = 0; x < maxX; x++) {
+        for (var y = 0; y < maxY; y++) {
+            for (var z = 0; z < maxZ; z++) {
+                var closestDistance = Number.MAX_VALUE;
+                for (var i = 0; i < occupiedBlocks.length; i++) {
+                    var blockDistance = Vec3.distance({x: x, y: y, z: z}, occupiedBlocks[i]);
+                    if (blockDistance < closestDistance) {
+                        closestDistance = blockDistance;
+                    }
+                }
+                if (bestDistance < closestDistance) {
+                    bestDistance = closestDistance;
+                    bestPosition = {x: x, y: y, z: z};
+                }
+            }
+        }
+    }
+    return bestPosition;
+}
 
 function getFreeSessionPort() {
     var takenPorts = [];
@@ -42,11 +128,17 @@ clientManager.onClientAction = function(clientID, action, data) {
             var sessionPort = getFreeSessionPort();
             if (sessionPort !== -1) {
                 // set session port if a free one was available
-                clientManager.getClient(clientID).sessionPort = getFreeSessionPort();
+                clientManager.getClient(clientID).sessionPort = sessionPort;
+            }
+            var sessionBlock = getFreeSessionBlock();
+            if (sessionBlock !== undefined) {
+                // set session port if a free one was available
+                clientManager.getClient(clientID).sessionBlock = sessionBlock;
             }
             clientManager.send(clientID, {
                 action: LOBBY_ACTION.REGISTER_SESSION_REPLY,
-                port: sessionPort
+                port: sessionPort,
+                block: sessionBlock
             });
             break;
         case LOBBY_ACTION.SESSION_INFORMATION_UPDATE:
