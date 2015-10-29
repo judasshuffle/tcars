@@ -52,14 +52,12 @@ ZERO_POSITION = {x: 0, y: 0, z: 0};
 
 DEFAULT_REGISTRATION_POINT = {x: 0.5, y: 0.5, z: 0.5};
 
-START_LOCATION = {pos: {x: 7969.8955078125, y: 7909.921875, z: 7788.82763671875}, rot: {x: 0, y: -0.8411639928817749, z: 0, w: 0.5407801270484924}};
-
 SPEED_FORWARD = 500;
 SPEED_BRAKES = 1015;
 
-SOUND_FOLDER_URL = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/";
+SOUND_FOLDER_URL = "http://hifi-external.s3.amazonaws.com/tcars/sounds/";
 
-SOUND = false;
+SOUND = true;
 
 MODEL_FOLDER_URL = "http://hifi-external.s3.amazonaws.com/tcars/models/";
 
@@ -88,11 +86,17 @@ SESSION_ACTION = {
     PLAYER_JOIN:    5,
     PLAYER_LEFT:    6,
     GAME_STATE:     7,
-    SPECTATE:       8
-    //START_HIDING:           7,
-    //COUNTING:               8,
-    //START_SEEKING:          9,
-    //GAMEOVER:               10,
-    //PING_PLAYER:            11,
-    //FOUND:                  12
+    PING:           8,
+    VOTE:           9
+};
+
+// Session state
+SESSION_STATE = {
+    INITIAL:            1,
+    VOTE_TRACK:         2,
+    LOADING:            3,
+    COUNT_DOWN:         4,
+    RACE:               5
+    //TODO: Another state after race or restart?
+
 };
