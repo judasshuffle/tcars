@@ -78,7 +78,7 @@ CarSelector = function() {
                 var selectableCar = {vehicle: VEHICLES[vehicleKey], rotation: {x: 0, y: 0, z: 0, w: 1}, currentDegrees: 0};
                 selectableCar.overlay = Overlays.addOverlay("model", {
                     url: MODEL_FOLDER_URL + selectableCar.vehicle.selectormodel + "?v=" + (new Date()).getTime(),
-                    position: Vec3.sum(CAR_SELECTOR_CENTER, {x: 0, y: selectableCar.vehicle.dimensions.y / 2, z: 0}),
+                    position: Vec3.sum(CAR_SELECTOR.CENTER, {x: 0, y: selectableCar.vehicle.dimensions.y / 2, z: 0}),
                     dimensions: selectableCar.vehicle.dimensions,
                     visible: true
                     //scale: 0.01///alpha: 0.5
@@ -140,19 +140,19 @@ CarSelector = function() {
     }  
 
     _this.update = function(time) {
-        var radiusOffset = {x: 0, y: 0, z: CAR_SELECTOR_RADIUS};
+        var radiusOffset = {x: 0, y: 0, z: CAR_SELECTOR.RADIUS};
         var degreesPerCar = MAX_DEGREES / _this.selectableCars.length;
 
-        _this.carouselTargetRot = (_this.selectedCar * degreesPerCar) + CAR_SELECTOR_ROT_OFFSET;
-        _this.carouselRot = mixDegreesTowards(_this.carouselRot, _this.carouselTargetRot, time * CAR_SELECTOR_ROT_SPEED);
+        _this.carouselTargetRot = (_this.selectedCar * degreesPerCar) + CAR_SELECTOR.ROT_OFFSET;
+        _this.carouselRot = mixDegreesTowards(_this.carouselRot, _this.carouselTargetRot, time * CAR_SELECTOR.ROT_SPEED);
 
         _this.selectableCars.forEach(function(selectableCar, index, object) {
             var rotationOffset = Quat.fromPitchYawRollDegrees(0.0, (index * degreesPerCar) - _this.carouselRot, 0.0);
             var newProperties = {
-                position: Vec3.sum(Vec3.sum(CAR_SELECTOR_CENTER, Vec3.multiplyQbyV(rotationOffset, radiusOffset)), {x: 0, y: selectableCar.vehicle.dimensions.y / 2, z: 0})
+                position: Vec3.sum(Vec3.sum(CAR_SELECTOR.CENTER, Vec3.multiplyQbyV(rotationOffset, radiusOffset)), {x: 0, y: selectableCar.vehicle.dimensions.y / 2, z: 0})
             };
             if (index == _this.selectedCar) {
-                selectableCar.rotation = Quat.multiply(selectableCar.rotation, Quat.fromVec3Degrees({x: 0, y: CAR_SELECTOR_TURN_SPEED * time, z: 0}));
+                selectableCar.rotation = Quat.multiply(selectableCar.rotation, Quat.fromVec3Degrees({x: 0, y: CAR_SELECTOR.TURN_SPEED * time, z: 0}));
                 newProperties.rotation = selectableCar.rotation;
             }
             Overlays.editOverlay(selectableCar.overlay, newProperties);
