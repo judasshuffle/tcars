@@ -204,11 +204,11 @@ Script.update.connect(function(time) {
         cameraHandler.updateCamera(time, carProps);
         //speedometer.update(time);
     } else if (state == STATE.TRACK_SELECTION) {
-        cameraHandler.stance = CAMERA_TRACK_SELECTOR;
+        cameraHandler.stance = CAMERA.TRACK_SELECTOR;
         cameraHandler.updateCamera(time, null);
         trackSelector.update(time);
     } else if (state == STATE.CAR_SELECTION) {
-        cameraHandler.stance = CAMERA_CAR_SELECTOR;
+        cameraHandler.stance = CAMERA.CAR_SELECTOR;
         cameraHandler.updateCamera(time, null);
         carSelector.update(time);
     }
