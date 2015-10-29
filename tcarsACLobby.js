@@ -46,7 +46,7 @@ clientManager.onClientAction = function(clientID, action, data) {
             }
             clientManager.send(clientID, {
                 action: LOBBY_ACTION.REGISTER_SESSION_REPLY,
-                port: getFreeSessionPort()
+                port: sessionPort
             });
             break;
         case LOBBY_ACTION.SESSION_INFORMATION_UPDATE:
