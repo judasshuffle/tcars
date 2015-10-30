@@ -66,7 +66,6 @@ function getFreeSessionBlock() {
     for (var i = 0; i < SESSION_AREA_SAFEZONES.length; i++) {
         occupiedBlocks.push(getBlocksFromDimensions(SESSION_AREA_SAFEZONES[i]));
     }
-    print(JSON.stringify(occupiedBlocks));
     clientManager.doForAllClients(function(clientID, client) {
         if (client.sessionBlock !== undefined) {
             occupiedBlocks.push(client.sessionBlock);
@@ -135,10 +134,15 @@ clientManager.onClientAction = function(clientID, action, data) {
                 // set session port if a free one was available
                 clientManager.getClient(clientID).sessionBlock = sessionBlock;
             }
+            var worldBlockCorner = Vec3.sum(Vec3.multiplyVbyV(sessionBlock, SESSION_AREA_DIMENSIONS), SESSION_AREA_START);
+            var worldBlockCenter = Vec3.sum(worldBlockCorner, Vec3.multiply(SESSION_AREA_DIMENSIONS, 0.5));
             clientManager.send(clientID, {
                 action: LOBBY_ACTION.REGISTER_SESSION_REPLY,
                 port: sessionPort,
-                block: sessionBlock
+                block: {
+                    center: worldBlockCenter,
+                    dimensions: SESSION_AREA_DIMENSIONS
+                }
             });
             break;
         case LOBBY_ACTION.SESSION_INFORMATION_UPDATE:
