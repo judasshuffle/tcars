@@ -35,10 +35,10 @@ TrackZone = function(trackZoneEntityID) {
     var wantedProperties = {
         "all": ["rotation", "dimensions", "name", "userData", "type"],
         "Zone": ["keyLightColor", "stageSunModelEnabled", "keyLightDirection", "shapeType", "keyLightIntensity", "stage", "backgroundMode"],
-        "Light": [], //TODO: find light properties
-        "Sphere": [],
-        "Box": [],
-        "Model": ["modelURL", "compoundShapeURL", "shapeType"]
+        "Light": ["isSpotlight", "color", "intensity", "exponent", "cutoff"],
+        "Sphere": ["gravity", "color", "density", "damping", "angularDamping", "restitution", "friction"],
+        "Box": ["gravity", "color", "density", "damping", "angularDamping", "restitution", "friction"],
+        "Model": ["gravity", "modelURL", "compoundShapeURL", "shapeType", "density", "damping", "angularDamping", "restitution", "friction"]
     };
 
     /**
