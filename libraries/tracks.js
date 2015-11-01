@@ -22,6 +22,7 @@ TRACKS = [
     startOrientation: {x: 0, y: -0.8411639928817749, z: 0, w: 0.5407801270484924},
     previewPosition: {x: -8.665946960449219, y: 1.948462724685669, z: 5.54997444152832},
     previewOrientation: {x: -0.016121888533234596, y: 0.6953659057617188, z: 0.015607025474309921, w: 0.7183054685592651},
+    trackJSON: "school.json"
 },
 {
     name: "School Classroom (new)",
@@ -38,6 +39,7 @@ TRACKS = [
     startOrientation: {x: 0, y: -0.7429486513137817, z: 0, w: 0.669348418712616},
     previewPosition: {x: -8.547079086303711, y: 1.9484647512435913, z: 1.88816499710083},
     previewOrientation: {x: -0.016121888533234596, y: 0.6953659057617188, z: 0.015607025474309921, w: 0.7183054685592651},
+    trackJSON: "school-new.json"
 },
 {
     name: "Street Track",
@@ -54,6 +56,7 @@ TRACKS = [
     startOrientation: { x: -0.002904998604208231, y: -0.9950630068778992, z: -0.09435316920280457, w: 0.030636562034487724},
     previewPosition: {x: -8.34484577178955, y: 1.9537969827651978, z: -1.680985927581787},
     previewOrientation: {x: -0.0030006752349436283, y: 0.707954466342926, z: 0.003007936989888549, w: 0.7062453031539917},
+    trackJSON: "street.json"
 },
 {
     name: "Toy Track",
@@ -70,6 +73,7 @@ TRACKS = [
     startOrientation: {x: -0.332059, y: 0, z: 0, w: 0.943259},
     previewPosition: {x: -7.89496374130249, y: 2.093385696411133, z: -9.421926498413086},
     previewOrientation: {x: -0.016021521762013435, y: 0.6992429494857788, z: 0.01567869260907173, w: 0.7145325541496277},
+    trackJSON: "toy.json"
 },
 {
     name: "Space Track",
@@ -86,6 +90,6 @@ TRACKS = [
     startOrientation: {x: 0, y: 0.6923482418060303, z: 0, w: 0.7215635180473328},
     previewPosition: {x: -7.653191089630127, y: 2.104630470275879, z: -9.134285926818848},
     previewOrientation: {x: -0.01589319296181202, y: 0.7050438523292542, z: 0.01580876298248768, w: 0.7088093161582947},
-    trackJSON: "spacetrack.json"
+    trackJSON: "space.json"
 }
 ];
