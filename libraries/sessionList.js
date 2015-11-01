@@ -2,6 +2,9 @@ SessionList = function(overlayProperties, lobbyWSLink) {
     var _this = this;
     //_this.maxMessages = maxMessages;
     //_this.messages = [];
+
+    
+    
     _this.overlay = Overlays.addOverlay("text", overlayProperties);
     //_this.title = title;
 
