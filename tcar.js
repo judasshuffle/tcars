@@ -212,7 +212,6 @@ Script.update.connect(function(time) {
         cameraHandler.updateCamera(time, null);
         carSelector.update(time);
     }
-    //for (var i in trackedCars) {
     var entities = Entities.findEntities(Camera.position, 100);
     for (key in entities) {
         entityItemID = entities[key];

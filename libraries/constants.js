@@ -69,6 +69,8 @@ SOUND = true;
 
 MODEL_FOLDER_URL = "http://hifi-external.s3.amazonaws.com/tcars/models/";
 
+TRACK_ZONE_FOLDER_URL = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/trackzones/";
+
 TRACK_ZONE_DIMENSIONS = {x: 2000, y: 2000, z: 2000};
 TRACK_ZONE_SEARCH_DISTANCE = 2000; // search distance of trackzones (in meters)
 HALF_UNIT = 0.5;
@@ -76,6 +78,11 @@ HALF_UNIT = 0.5;
 MAX_PLAYERS = 4;
 
 VEHICLE_MODEL_PREFIX = "TCarModel-";
+
+ROLE = {
+    PLAYER: 1,
+    SPECTATOR: 2
+};
 
 // Packet types for connection with lobby AC
 LOBBY_ACTION = {
