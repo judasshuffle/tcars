@@ -33,7 +33,7 @@ TrackZone = function(trackZoneEntityID) {
     _this.trackEntities = [];
 
     var wantedProperties = {
-        "all": ["rotation", "dimensions", "name", "userData", "type"],
+        "all": ["rotation", "dimensions", "name", "userData", "type", "visible"],
         "Zone": ["keyLight", "skybox", "shapeType", "stage", "backgroundMode"],
         "Light": ["isSpotlight", "color", "intensity", "exponent", "cutoff"],
         "Sphere": ["gravity", "color", "density", "damping", "angularDamping", "restitution", "friction"],
