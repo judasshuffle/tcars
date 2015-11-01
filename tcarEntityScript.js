@@ -1,6 +1,6 @@
 (function() {
     var _this = this;
-    const MODEL_FOLDER_URL = "http://hifi-external.s3.amazonaws.com/tcars/models/";// "https://dl.dropboxusercontent.com/u/10483952/tcar/";
+    const MODEL_FOLDER_URL = "http://hifi-external.s3.amazonaws.com/tcars/models/";
     const WHEEL_LEFT_FRONT = 0;
     const WHEEL_RIGHT_FRONT = 1;
     const WHEEL_LEFT_BACK = 2;
