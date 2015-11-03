@@ -471,62 +471,6 @@
             }
         },
         {
-            "type": "Zone",
-            "dimensions": {
-                "x": 1000,
-                "y": 1000,
-                "z": 1000
-            },
-            "rotation": {
-                "x": -0.0000152587890625,
-                "y": -0.0000152587890625,
-                "z": -0.0000152587890625,
-                "w": 1
-            },
-            "visible": 1,
-            "userData": "{\n    \"TCars\": {\n            \"type\": \"track\"\n     }\n}",
-            "name": "SchoolTrack",
-            "shapeType": "box",
-            "keyLight": {
-                "color": {
-                    "red": 255,
-                    "green": 255,
-                    "blue": 255
-                },
-                "intensity": 1,
-                "ambientIntensity": 0.5,
-                "direction": {
-                    "x": 0,
-                    "y": -1,
-                    "z": 0
-                },
-                "ambientUrl": ""
-            },
-            "backgroundMode": "skybox",
-            "stage": {
-                "sunModelEnabled": 0,
-                "latitude": 37.777000427246094,
-                "longitude": 122.40699768066406,
-                "altitude": 0.029999999329447746,
-                "day": 60,
-                "hour": 12,
-                "automaticHourDay": 0
-            },
-            "skybox": {
-                "color": {
-                    "red": 0,
-                    "green": 0,
-                    "blue": 0
-                },
-                "url": ""
-            },
-            "localPosition": {
-                "x": 649.63720703125,
-                "y": -223.1865234375,
-                "z": -603.80517578125
-            }
-        },
-        {
             "type": "Light",
             "dimensions": {
                 "x": 25,
@@ -6649,76 +6593,6 @@
         {
             "type": "Model",
             "dimensions": {
-                "x": 0.5009775161743164,
-                "y": 0.5254911780357361,
-                "z": 0.5009775161743164
-            },
-            "rotation": {
-                "x": -0.0000152587890625,
-                "y": -0.0000152587890625,
-                "z": -0.0000152587890625,
-                "w": 1
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "visible": 1,
-            "userData": "{\n    \"TCars\": {\n        \"type\": \"collidable\"\n    }\n}",
-            "name": "",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/cardboardbox.fbx",
-            "shapeType": "none",
-            "compoundShapeURL": "",
-            "localPosition": {
-                "x": -14.6484375,
-                "y": -146.154296875,
-                "z": 40.205078125
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 0.5009775161743164,
-                "y": 0.5254911780357361,
-                "z": 0.5009775161743164
-            },
-            "rotation": {
-                "x": -0.0000457763671875,
-                "y": 0.08711373805999756,
-                "z": -0.0000152587890625,
-                "w": 0.996185302734375
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "visible": 1,
-            "userData": "{\n    \"TCars\": {\n        \"type\": \"collidable\"\n    }\n}",
-            "name": "",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/cardboardbox.fbx",
-            "shapeType": "none",
-            "compoundShapeURL": "",
-            "localPosition": {
-                "x": -14.9462890625,
-                "y": -145.6259765625,
-                "z": 40.15283203125
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
                 "x": 3.930800199508667,
                 "y": 0.29802268743515015,
                 "z": 5.218038082122803
@@ -7040,6 +6914,76 @@
                 "x": 1.14892578125,
                 "y": -143.48486328125,
                 "z": -58.04443359375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 0.9385407567024231,
+                "y": 0.9123994708061218,
+                "z": 0.9332096576690674
+            },
+            "rotation": {
+                "x": -0.08906692266464233,
+                "y": -0.44960707426071167,
+                "z": -0.32957959175109863,
+                "w": 0.8254368305206299
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/hificrate.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": 3.19970703125,
+                "y": -130.62451171875,
+                "z": -132.33642578125
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 0.9385407567024231,
+                "y": 0.9123994708061218,
+                "z": 0.9332096576690674
+            },
+            "rotation": {
+                "x": 0.2764781713485718,
+                "y": -0.5342031121253967,
+                "z": 0.20204472541809082,
+                "w": 0.772884726524353
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/hificrate.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": 26.1201171875,
+                "y": -135.58349609375,
+                "z": -181.3369140625
             }
         },
         {
@@ -8220,41 +8164,6 @@
             },
             "rotation": {
                 "x": -0.0000152587890625,
-                "y": -0.0000152587890625,
-                "z": -0.0000152587890625,
-                "w": 1
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "visible": 1,
-            "userData": "{\n    \"TCars\": {\n        \"type\": \"collidable\"\n    }\n}",
-            "name": "",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/cardboardbox.fbx",
-            "shapeType": "none",
-            "compoundShapeURL": "",
-            "localPosition": {
-                "x": 8.51806640625,
-                "y": -146.2236328125,
-                "z": -48.9638671875
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 0.6792001724243164,
-                "y": 0.7124345898628235,
-                "z": 0.6792001724243164
-            },
-            "rotation": {
-                "x": -0.0000152587890625,
                 "y": 0.34200048446655273,
                 "z": -0.0000152587890625,
                 "w": 0.9396657943725586
@@ -8279,6 +8188,41 @@
                 "x": 9.01904296875,
                 "y": -146.23583984375,
                 "z": -49.89208984375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 0.6792001724243164,
+                "y": 0.7124345898628235,
+                "z": 0.6792001724243164
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "{\n    \"TCars\": {\n        \"type\": \"collidable\"\n    }\n}",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/cardboardbox.fbx",
+            "shapeType": "none",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": 8.51806640625,
+                "y": -146.2236328125,
+                "z": -48.9638671875
             }
         },
         {
