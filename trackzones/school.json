@@ -24,6 +24,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "invisible classroom floor",
             "color": {
@@ -60,6 +61,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "",
             "modelURL": "https://dl.dropboxusercontent.com/u/96759331/fbx/collision_track.obj",
@@ -74,9 +76,9 @@
         {
             "type": "Zone",
             "dimensions": {
-                "x": 1000,
-                "y": 2000,
-                "z": 1000
+                "x": 500,
+                "y": 500,
+                "z": 500
             },
             "rotation": {
                 "x": -0.0000152587890625,
@@ -84,9 +86,25 @@
                 "z": -0.0000152587890625,
                 "w": 1
             },
+            "visible": 1,
             "userData": "{\n    \"TCars\": {\n            \"type\": \"track\"\n     }\n}",
             "name": "streettrackzone",
             "shapeType": "box",
+            "keyLight": {
+                "color": {
+                    "red": 245,
+                    "green": 15,
+                    "blue": 26
+                },
+                "intensity": 1,
+                "ambientIntensity": 0.6000000238418579,
+                "direction": {
+                    "x": 0,
+                    "y": -1,
+                    "z": 0
+                },
+                "ambientUrl": ""
+            },
             "backgroundMode": "skybox",
             "stage": {
                 "sunModelEnabled": 0,
@@ -96,6 +114,14 @@
                 "day": 32,
                 "hour": 13,
                 "automaticHourDay": 0
+            },
+            "skybox": {
+                "color": {
+                    "red": 209,
+                    "green": 86,
+                    "blue": 86
+                },
+                "url": "https://hifi-public.s3.amazonaws.com/images/SkyboxTextures/FullMoon1024Compressed.jpg"
             },
             "localPosition": {
                 "x": -660.7001953125,
@@ -126,6 +152,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "TABLES AND STUFF",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/test.fbx",
@@ -160,6 +187,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "Table1",
             "color": {
@@ -196,6 +224,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "Table2",
             "color": {
@@ -232,6 +261,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "small chalkboard12",
             "color": {
@@ -268,6 +298,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "driverseat",
             "color": {
@@ -304,6 +335,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "driverseat",
             "color": {
@@ -340,6 +372,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "Table3",
             "color": {
@@ -376,6 +409,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "Table4",
             "color": {
@@ -412,6 +446,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "bookcollider1",
             "color": {
@@ -448,6 +483,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "bookcollider2",
             "color": {
@@ -484,6 +520,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
@@ -518,6 +555,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "driverseat",
             "color": {
@@ -544,6 +582,7 @@
                 "z": 0.22023344039916992,
                 "w": 0.061753273010253906
             },
+            "visible": 1,
             "userData": "",
             "name": "",
             "color": {
@@ -584,6 +623,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "",
             "color": {
@@ -620,6 +660,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "",
             "color": {
@@ -656,6 +697,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "ruler going to 1st table",
             "color": {
@@ -692,6 +734,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "ruler going to 1st table",
             "color": {
@@ -728,6 +771,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "bookcollider3",
             "color": {
@@ -764,6 +808,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "Ruler 1 Loose",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
@@ -798,6 +843,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "Ruler 1 Loose",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
@@ -832,6 +878,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "Ruler 1 Loose",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
@@ -866,6 +913,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "FranBook",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chalkboardfran.fbx",
@@ -900,6 +948,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "driverseat",
             "color": {
@@ -936,6 +985,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "Ruler 1 Loose",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
@@ -960,6 +1010,7 @@
                 "z": -0.0000152587890625,
                 "w": 1
             },
+            "visible": 1,
             "userData": "",
             "name": "traffic light light",
             "color": {
@@ -990,6 +1041,7 @@
                 "z": 0.0000457763671875,
                 "w": 0.5187609195709229
             },
+            "visible": 1,
             "userData": "",
             "name": "",
             "color": {
@@ -1030,6 +1082,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "ruler 3",
             "color": {
@@ -1066,6 +1119,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "pencil case side 1",
             "color": {
@@ -1102,6 +1156,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "pencil case side 3",
             "color": {
@@ -1138,6 +1193,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "pencil case side 4",
             "color": {
@@ -1174,6 +1230,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chalkboardfran.fbx",
@@ -1208,6 +1265,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "pencil case side 2",
             "color": {
@@ -1244,6 +1302,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/chequeredflag/CHEQUEREDFLAG.fbx",
@@ -1268,6 +1327,7 @@
                 "z": 0.0000457763671875,
                 "w": 0.5023727416992188
             },
+            "visible": 1,
             "userData": "",
             "name": "",
             "color": {
@@ -1298,6 +1358,7 @@
                 "z": -0.0000152587890625,
                 "w": 1
             },
+            "visible": 1,
             "userData": "",
             "name": "",
             "color": {
@@ -1323,11 +1384,43 @@
                 "z": 0.25
             },
             "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.8549477458000183,
+                "z": 0.0000457763671875,
+                "w": 0.5187609195709229
+            },
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 255,
+                "green": 255,
+                "blue": 255
+            },
+            "isSpotlight": 0,
+            "intensity": 1,
+            "exponent": 0,
+            "cutoff": 90,
+            "localPosition": {
+                "x": 144.26611328125,
+                "y": -5.8505859375,
+                "z": 268.48095703125
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 0.25,
+                "y": 0.25,
+                "z": 0.25
+            },
+            "rotation": {
                 "x": -0.0000762939453125,
                 "y": -0.8646524548530579,
                 "z": 0.0000457763671875,
                 "w": 0.5023727416992188
             },
+            "visible": 1,
             "userData": "",
             "name": "",
             "color": {
@@ -1368,6 +1461,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/pencilsharpne.fbx",
@@ -1402,6 +1496,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 0,
             "userData": "",
             "name": "bottle",
             "color": {
@@ -1428,6 +1523,7 @@
                 "z": 0.09251546859741211,
                 "w": -0.06651407480239868
             },
+            "visible": 1,
             "userData": "",
             "name": "",
             "color": {
@@ -1458,6 +1554,7 @@
                 "z": 0.09251546859741211,
                 "w": -0.06651407480239868
             },
+            "visible": 1,
             "userData": "",
             "name": "",
             "color": {
@@ -1498,6 +1595,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "",
             "color": {
@@ -1534,6 +1632,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
@@ -1568,6 +1667,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
@@ -1602,6 +1702,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
@@ -1636,6 +1737,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
@@ -1645,6 +1747,37 @@
                 "x": 159.75927734375,
                 "y": -59.25732421875,
                 "z": 348.068359375
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 0.25,
+                "y": 0.25,
+                "z": 0.25
+            },
+            "rotation": {
+                "x": 0.0011749267578125,
+                "y": 0.8555886745452881,
+                "z": -0.0001678466796875,
+                "w": 0.5176317691802979
+            },
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
+            "isSpotlight": 0,
+            "intensity": 1,
+            "exponent": 0,
+            "cutoff": 90,
+            "localPosition": {
+                "x": 129.7666015625,
+                "y": -99.68115234375,
+                "z": 387.9091796875
             }
         },
         {
@@ -1670,6 +1803,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "Ruler 1 Loose",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
@@ -1704,6 +1838,7 @@
             "friction": 0,
             "density": 1000,
             "angularDamping": 1,
+            "visible": 1,
             "userData": "",
             "name": "",
             "color": {
@@ -1740,6 +1875,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": 1,
             "userData": "",
             "name": "",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/Instructions/trackselect.fbx?v2",
@@ -1764,6 +1900,7 @@
                 "z": -0.5976501107215881,
                 "w": 0.7046463489532471
             },
+            "visible": 1,
             "userData": "",
             "name": "",
             "color": {
@@ -1790,9 +1927,25 @@
             "z": -0.0000152587890625,
             "w": 1
         },
+        "visible": 1,
         "userData": "{\n    \"TCars\": {\n            \"type\": \"track\"\n     }\n}",
         "name": "SchoolTrack",
         "shapeType": "box",
+        "keyLight": {
+            "color": {
+                "red": 255,
+                "green": 255,
+                "blue": 255
+            },
+            "intensity": 1,
+            "ambientIntensity": 0.5,
+            "direction": {
+                "x": 0,
+                "y": -1,
+                "z": 0
+            },
+            "ambientUrl": ""
+        },
         "backgroundMode": "skybox",
         "stage": {
             "sunModelEnabled": 0,
@@ -1802,6 +1955,14 @@
             "day": 60,
             "hour": 12,
             "automaticHourDay": 0
+        },
+        "skybox": {
+            "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
+            "url": ""
         }
     }
 }
