@@ -9,10 +9,6 @@
 
 var carScriptEnabled = false;
 
-Script.scriptLoaded.connect(function(scriptName)) {
-    print("loaded" + scriptName);
-});
-
 Script.include("https://raw.githubusercontent.com/highfidelity/hifi/master/examples/libraries/toolBars.js");
 
 var toolBar = null;
