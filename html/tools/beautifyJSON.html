@@ -10,9 +10,7 @@
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
 function beautifyJSON() {
-    
     $('#input_json').val(JSON.stringify(JSON.parse($('#input_json').val()), null, 4) + "\n");
-    //sendWebEvent({action: "import_json", data: $('#import_json').val()});
 }
 </script>
 </head>
@@ -22,7 +20,7 @@ function beautifyJSON() {
         <textarea id="input_json"></textarea>
     </div>
     <div>
-        <button onclick="beautifyJSON()" >Beautify JSON</button>
+        <button onclick="beautifyJSON()">Beautify JSON</button>
     </div>
 </body>
 </html>
