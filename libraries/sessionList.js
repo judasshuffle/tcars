@@ -1,28 +1,190 @@
-SessionList = function(overlayProperties, lobbyWSLink) {
+//  TCars/libraries/sessionList.js
+//
+//  Creates a session list containing all sessions from the lobby
+//
+//  Distributed under the Apache License, Version 2.0.
+//  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
+//
+
+
+SessionList = function(properties, lobbyWSLink) {
     var _this = this;
-    //_this.maxMessages = maxMessages;
-    //_this.messages = [];
+    var sessions = [];
+    var columns = {};
 
-    
-    
-    _this.overlay = Overlays.addOverlay("text", overlayProperties);
-    //_this.title = title;
-
-    // Append a message to the MessageViewer.
-    _this.append = function(text) {
-        _this.messages.push(text);//_this.messages.unshift(text);
-        if (_this.messages.length > _this.maxMessages) {
-            _this.messages.shift(); //_this.messages.pop();
-        }
-        Overlays.editOverlay(_this.overlay, {text: "SessionList"});
+    var COLUMNS = {
+        NUM: 0,
+        STATE: 1,
+        TRACK: 2,
+        PLAYERS: 3,
+        SPECATORS: 4,
+        COLUMN_COUNT: 5
     };
 
-    _this.refreshSessions = function() {
+    var COLUMN_POS = {};
+    COLUMN_POS[COLUMNS.NUM] = 0.0;
+    COLUMN_POS[COLUMNS.STATE] = 0.1;
+    COLUMN_POS[COLUMNS.TRACK] = 0.3;
+    COLUMN_POS[COLUMNS.PLAYERS] = 0.6;
+    COLUMN_POS[COLUMNS.SPECATORS] = 0.8;
 
+    var TITLE_HEIGHT = 22;
+
+    var HEADER_HEIGHT = 20;
+    var HEADER_COLOR = {red: 20, blue: 20, red: 20};
+
+    var ROW_HEIGHT = 20;
+
+    var size = properties.size !== undefined ? properties.size : {width: 800, height: 600};
+
+    var getColumnPos = function(column) {
+        return Math.floor(size.width * COLUMN_POS[column]);    
+    };
+    var getColumnWidth = function(column) {
+        var nextColumn = column + 1;
+        var right = (nextColumn < COLUMNS.COLUMN_COUNT) ? getColumnPos(nextColumn) : size.width;
+        return right - getColumnPos(column);
+    };
+
+    var position = properties.position !== undefined ? properties.position : {
+        x: (Window.innerWidth / 2) - (size.width / 2),
+        y: (Window.innerHeight / 2) - (size.height / 2)
+    };
+    
+    var createColumn = function(column, text) {
+        if (columns[column]) {
+            Overlays.deleteOverlay(columns[column]);
+        }
+        columns[column] = Overlays.addOverlay("text", {
+            x: position.x + getColumnPos(column),
+            y: position.y + TITLE_HEIGHT,
+            width: getColumnWidth(column),
+            height: HEADER_HEIGHT,
+            backgroundColor: HEADER_COLOR,
+            text: text
+        });
+    };
+
+    var Session = function(sessionList, index, session, rect) {
+        var _this = this;
+
+        var sessionList = sessionList;
+
+        var sessionInfo = session.info;
+        var sessionPort = session.port;
+
+        var columns = {};
+
+        var getBackgroundColor = function() {
+            return ((index % 2) === 0) ? {red: 120, green: 120, blue: 120} : {red: 150, green: 150, blue: 150};
+        };
+
+        var createColumn = function(column, text) {
+            if (columns[column]) {
+                Overlays.deleteOverlay(columns[column]);
+            }
+            columns[column] = Overlays.addOverlay("text", {
+                x: rect.x + getColumnPos(column),
+                y: rect.y + TITLE_HEIGHT,
+                width: getColumnWidth(column),
+                height: ROW_HEIGHT,
+                backgroundColor: getBackgroundColor(),
+                text: text 
+            });
+        };
+
+        _this.containsOverlay = function(overlay) {
+            for (column in columns) {
+                if (columns[column] === overlay) {
+                    return true;
+                }
+            }
+            return false;
+        };
+
+        _this.getTrackName = function() {
+            var trackID = sessionInfo.trackID;
+            if (trackID === -1) {
+                return "(no track selected)";
+            }
+            return TRACKS[trackID].name;
+        };
+
+        createColumn(COLUMNS.NUM, parseInt(index) + 1);
+        createColumn(COLUMNS.STATE, sessionInfo.state);
+        createColumn(COLUMNS.TRACK, _this.getTrackName());
+        createColumn(COLUMNS.PLAYERS, sessionInfo.players + " / " + MAX_PLAYERS);
+        createColumn(COLUMNS.SPECATORS, sessionInfo.spectators + " / " + MAX_SPECTATORS);
+
+        _this.cleanup = function() {
+            for (column in columns) {
+                Overlays.deleteOverlay(columns[column]);
+            }
+        };
+    };
+
+    var clearSessions = function() {
+        for (var i in sessions) {
+            sessions[i].cleanup();
+        }
+        sessions = [];
+    };
+
+    var refreshSessions = function() {
+        var lobbySocket = new WebSocket(lobbyWSLink);
+        lobbySocket.onopen = function(event) {
+            lobbySocket.send(JSON.stringify({
+                action: LOBBY_ACTION.PLAYER_SESSIONS_REQUEST
+            }));
+        };
+
+        lobbySocket.onmessage = function(event) {
+            var data = JSON.parse(event.data);
+            switch (data.action) {
+                case LOBBY_ACTION.PLAYER_SESSIONS_REPLY:
+                    clearSessions();
+                    for (var i in data.sessions) {
+                        sessions.push(new Session(_this, i, data.sessions[i], {x: position.x, y: position.y + TITLE_HEIGHT + HEADER_HEIGHT + (i * ROW_HEIGHT), h: ROW_HEIGHT, w: size.width}));
+                    }
+                    break;
+            }
+            lobbySocket.close();
+        };
+    };
+
+    _this.init = function() {
+        _this.overlay = Overlays.addOverlay("text", {
+            text: "SESSION LIST",
+            x: position.x,
+            y: position.y,
+            width: size.width,
+            height: size.height
+        });
+        createColumn(COLUMNS.NUM, "#");
+        createColumn(COLUMNS.STATE, "Status");
+        createColumn(COLUMNS.TRACK, "Track");
+        createColumn(COLUMNS.PLAYERS, "Players");
+        createColumn(COLUMNS.SPECATORS, "Spectators");
+        refreshSessions();
+    };
+
+    _this.handleClickEvent = function(x, y) {
+        var clickedOverlay = Overlays.getOverlayAtPoint({x: x, y: y});
+        for (var i in sessions) {
+            if (sessions[i].containsOverlay(clickedOverlay)) {
+                Window.alert("Clicked " + i);
+                return true;
+            }
+        }
+        return false;
     };
     
     // Remove the overlay.
     _this.cleanup = function() {
+        clearSessions();
+        for (column in columns) {
+            Overlays.deleteOverlay(columns[column]);
+        }
         Overlays.deleteOverlay(_this.overlay);
     };
 };

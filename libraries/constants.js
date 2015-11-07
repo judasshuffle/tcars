@@ -14,12 +14,13 @@ WORLD_UP_DIRECTION = {x: 0, y: 1, z: 0};
 
 // We have different states that the script switches between
 STATE = {
-    TRACK_SELECTION: 0,
-    CAR_SELECTION: 1,
-    PITSTOP: 2,
-    DRIVING: 3,
-    RACING: 4,
-    GAMEOVER: 5
+    LOBBY: 0,
+    TRACK_SELECTION: 1,
+    CAR_SELECTION: 2,
+    PITSTOP: 3,
+    DRIVING: 4,
+    RACING: 5,
+    GAMEOVER: 6
 };
 
 WHEEL = {
@@ -56,7 +57,6 @@ CAR_SELECTOR = {
 };
 
 ZERO_ROTATION = {x: 0, y: 0, z: 0, w: 1};
-ZERO_POSITION = {x: 0, y: 0, z: 0};
 
 DEFAULT_REGISTRATION_POINT = {x: 0.5, y: 0.5, z: 0.5};
 
@@ -76,6 +76,7 @@ TRACK_ZONE_SEARCH_DISTANCE = 2000; // search distance of trackzones (in meters)
 HALF_UNIT = 0.5;
 
 MAX_PLAYERS = 4;
+MAX_SPECTATORS = 4;
 
 VEHICLE_MODEL_PREFIX = "TCarModel-";
 

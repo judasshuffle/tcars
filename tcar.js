@@ -1,53 +1,33 @@
-// car script 1.0.2 © thoys 2015
-// no refunds
-// Audio effects by Konstantin
-// Models by Judas VERY important code also by Judas
-// Car tuning by unknown
+//  TCars/tcar.js
+//
+//  The main script to run TCars as a client
+//
+//  Distributed under the Apache License, Version 2.0.
+//  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
+//
 
 Script.include([
     'libraries/constants.js',
     'libraries/keys.js',
     'libraries/vehicles.js',
     'libraries/tracks.js',
+    'libraries/sessionList.js',
     'libraries/speedometer.js',
     'libraries/carSelector.js',
+    'libraries/avatarSeater.js',
     'libraries/cameraHandler.js',
     'libraries/trackSelector.js',
     'libraries/soundLoopSwitcher.js',
     'libraries/car.js'
 ]);
 
-
-AvatarSeater = function() {
-    var _this = this;
-    _this.originalPosition = MyAvatar.position;
-    _this.originalOrientation = MyAvatar.orientation;
-    _this.originalScale = MyAvatar.scale;
-
-    _this.setSeat = function(seat) {
-        MyAvatar.position = seat.position;
-        MyAvatar.orientation = seat.rotation;
-        MyAvatar.scale = seat.scale;
-    };
-
-    _this.cleanup = function() {
-        MyAvatar.position = _this.originalPosition;
-        MyAvatar.orientation = _this.originalOrientation;
-        MyAvatar.scale = _this.originalScale;
-    };
-};
-
+var sessionList = new SessionList({}, 'ws://no-ip.thoysvps.nl:18000');
+sessionList.init();
 var avatarSeater = new AvatarSeater();
-
+var keyCapturer = new KeyCapturer();
 var car = null;
 
-var state = STATE.TRACK_SELECTION;
-
-var soundAccelerating = SoundCache.getSound(SOUND_FOLDER_URL + "enginenoise2.wav");
-var soundDecelerating = SoundCache.getSound(SOUND_FOLDER_URL + "decelerating.wav");
-var soundIdle = SoundCache.getSound(SOUND_FOLDER_URL + "idle.wav");
-var soundShutdown = SoundCache.getSound(SOUND_FOLDER_URL + "shutdown.wav");
-var soundStarting = SoundCache.getSound(SOUND_FOLDER_URL + "starting.wav");
+var state = STATE.LOBBY;
 
 var timeItWentWithoutMoving = 0;
 var actionID = false;
@@ -68,10 +48,6 @@ newWindow.eventBridge.webEventReceived.connect(function(data) {
     }
 });
 
-//var speedometer = new Speedometer();
-
-
-
 function doSpaceBarBlockly() {
     eval(spacebarBlockly);
 }
@@ -84,7 +60,7 @@ function mixFloats(float1, float2, mixValue) {
 }
 
 var trackSelector = new TrackSelector();
-trackSelector.init();
+//trackSelector.init();
 
 var carSelector = new CarSelector();
 var cameraHandler = new CameraHandler();
@@ -131,11 +107,11 @@ function launchProjectile(carProps) {
     });
 }
 
-/// X+  is forward
 function handleDrivingKeyPress(event) {
     if (event.key == KEY.UP || event.key == KEY.W) {
         car.accelerating = true;
-        car.soundLoopSwitcher.setSound(soundAccelerating);
+    } else if (event.key == KEY.DOWN || event.key == KEY.S) {
+        car.reversing = true;
     } else if (event.key == KEY.LEFT || event.key == KEY.A) {
         car.steeringLeft = true;
     } else if (event.key == KEY.RIGHT || event.key == KEY.D) {
@@ -151,6 +127,12 @@ function handleDrivingKeyPress(event) {
         doSpaceBarBlockly();
     }
 }
+
+Controller.mousePressEvent.connect(function(event) {
+    if (sessionList.handleClickEvent(event.x, event.y)) {
+        return true;
+    }
+});
 
 Controller.keyPressEvent.connect(function(event) {
     if (isCarDriving()) {
@@ -188,7 +170,8 @@ Controller.keyReleaseEvent.connect(function(event) {
     if (isCarDriving()) {
         if (event.key == KEY.UP || event.key == KEY.W) {
             car.accelerating = false;
-            car.soundLoopSwitcher.setSound(soundDecelerating);
+        } else if (event.key == KEY.DOWN || event.key == KEY.S) {
+            car.reversing = false;
         } else if (event.key == KEY.LEFT || event.key == KEY.A) {
             car.steeringLeft = false;
         } else if (event.key == KEY.RIGHT || event.key == KEY.D) {
@@ -196,6 +179,7 @@ Controller.keyReleaseEvent.connect(function(event) {
         }
     }
 });
+
 
 Script.update.connect(function(time) {
     if (isCarDriving()) {
@@ -229,19 +213,10 @@ Script.scriptEnding.connect(function() {
         car.cleanup();
     }
     cameraHandler.shutdown();
-    for (var i = 0; i < ALL_KEYS.length; i++) {
-        Controller.releaseKeyEvents({key: ALL_KEYS[i]});
-    }
+    keyCapturer.releaseKeys();
     carSelector.cleanup();
     trackSelector.cleanup();
+    sessionList.cleanup();
     print('TCars script finished closing!')
     //speedometer.cleanup();
-   /* Audio.playSound(soundShutdown, {
-      position: MyAvatar.position,
-      volume: 0.1
-    });*/
 });
-
-for (var i = 0; i < ALL_KEYS.length; i++) {
-    Controller.captureKeyEvents({key: ALL_KEYS[i]});
-}

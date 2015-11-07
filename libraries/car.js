@@ -14,13 +14,14 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
     _this.lastSpeedI = 0;
     _this.lastAngularVelocityY = 0;
     _this.accelerating = false;
+    _this.reversing = false;
     _this.steeringOffset = 0; // - will be left,  + will be right
     _this.steeringLeft = false;
     _this.steeringRight = false;
     _this.entity = null;
     _this.speedMultiplier = speedMultiplier !== undefined ? speedMultiplier : 1.0;
 
-    var soundAccelerating = SoundCache.getSound(SOUND_FOLDER_URL + "capriii2.wav");
+    var soundAccelerating = SoundCache.getSound(SOUND_FOLDER_URL + "enginenoise2.wav");
     var soundDecelerating = SoundCache.getSound(SOUND_FOLDER_URL + "decelerating.wav");
     var soundIdle = SoundCache.getSound(SOUND_FOLDER_URL + "idle.wav");
     var soundShutdown = SoundCache.getSound(SOUND_FOLDER_URL + "shutdown.wav");
@@ -117,9 +118,13 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
         _this.soundLoopSwitcher.updatePosition(carProps.position);
         //MyAvatar.position = carProps.position;
         if (_this.accelerating) {
+            car.soundLoopSwitcher.setSound(soundAccelerating);
             _this.speedI += time * SPEED_FORWARD;
         } else {
             _this.speedI = Math.max(0, _this.speedI - time * SPEED_BRAKES);
+            if (_this.speedI > 0) {
+                car.soundLoopSwitcher.setSound(soundDecelerating);
+            }
         }
         //steering
         if (_this.steeringLeft && _this.steeringOffset < 0.2) {
@@ -208,6 +213,10 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
 
     _this.cleanup = function() {
         print('Cleaning up a Car.')
+        Audio.playSound(soundShutdown, {
+            position: Entities.getEntityProperties(_this.entity).position,
+            volume: 0.1
+        });
         Entities.deleteEntity(_this.entity);
         Entities.deleteEntity(_this.spotlight);
         Entities.deleteEntity(_this.glowLight);

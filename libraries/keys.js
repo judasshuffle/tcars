@@ -37,3 +37,30 @@ ALL_KEYS = [
     KEY.SPACE,
     KEY.DEL
 ];
+
+KeyCapturer = function() {
+    var _this = this;
+    var keysCaptured = false;
+
+    _this.areKeysCaptured = function() {
+        return keysCaptured;
+    };
+
+    _this.captureKeys = function() {
+        if (!keysCaptured) {
+            for (var i = 0; i < ALL_KEYS.length; i++) {
+                Controller.captureKeyEvents({key: ALL_KEYS[i]});
+            }
+            keysCaptured = true;
+        }
+    };
+
+    _this.releaseKeys = function() {
+        if (keysCaptured) {
+            for (var i = 0; i < ALL_KEYS.length; i++) {
+                Controller.releaseKeyEvents({key: ALL_KEYS[i]});
+            }
+            keysCaptured = false;
+        }
+    };
+}

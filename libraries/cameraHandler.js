@@ -10,23 +10,36 @@
 CameraHandler = function() {
     var _this = this;
     _this.cameraList = [CAMERA.CAR_FROM_USER_AUTOFOCUS, CAMERA.CAR_TOPVIEW, /*CAMERA.HOOD, */ CAMERA.CAR_BEHIND_CLOSE, /*CAMERA.BEHIND_MEDIUM, CAMERA.BEHIND_FAR, */ CAMERA.CAR_FIXED_WORLD];
-    _this.stance = CAMERA.CAR_FIXED_WORLD;
-    _this.position = Camera.position;
-    _this.orientation = Camera.orientation;
 
-    if (HMD.orientation === undefined) {
-        HMD.orientation = ZERO_ROTATION;
+    var initiated = false;
+
+    _this.isInitiated = function() {
+        return initiated;
     }
 
-    if (HMD.position === undefined) {
-        HMD.position = ZERO_POSITION;
-    }
+    _this.init = function() {
+        if (initiated) {
+            return;
+        }
+        initiated = true;
+        _this.stance = CAMERA.CAR_FIXED_WORLD;
+        _this.position = Camera.position;
+        _this.orientation = Camera.orientation;
+        _this.oldCameraMode = Camera.mode;
+        _this.oldAudioListenerMode = MyAvatar.audioListenerMode;
+        Camera.mode = "independent";
+        MyAvatar.audioListenerMode = MyAvatar.FROM_CAMERA;
+    };
 
     _this.shutdown = function() {
+        if (!initiated){
+            return;
+        }
         print('shutting down CameraHandler');
         Camera.mode = _this.oldCameraMode;
         MyAvatar.audioListenerMode = _this.oldAudioListenerMode;
         print('CameraHandler was scoped and fired at, did it die?');
+        initiated = false;
     };
 
     var cameraLookAt = function(cameraPos, lookAtPos) {
@@ -91,9 +104,4 @@ CameraHandler = function() {
     _this.lastCamera = function() {
         _this.stance = _this.cameraList[_this.cameraList.length - 1];
     };
-
-    _this.oldCameraMode = Camera.mode;
-    _this.oldAudioListenerMode = MyAvatar.audioListenerMode;
-    Camera.mode = "independent";
-    MyAvatar.audioListenerMode = MyAvatar.FROM_CAMERA;
 };

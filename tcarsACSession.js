@@ -157,7 +157,12 @@ var Session = function(port, block) {
     _this.sendSessionInfo = function() {
         lobbySocket.send(JSON.stringify({
             action: LOBBY_ACTION.SESSION_INFORMATION_UPDATE,
-            sessionInfo: {state: state, trackID: trackID, players: numPlayers(), spectators: numSpectators()}
+            sessionInfo: {
+                state: state,
+                trackID: trackID,
+                players: numPlayers(),
+                spectators: numSpectators()
+            }
         }));
     };
 
@@ -259,7 +264,7 @@ var Session = function(port, block) {
         //print(EntityViewer.getVoxelSizeScale() + " " + EntityViewer.getBoundaryLevelAdjust() + " " + EntityViewer.getMaxPacketsPerSecond());
     }
 
-
+    _this.sendSessionInfo();
 };
 
 lobbySocket.onopen = function(event) {

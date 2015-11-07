@@ -1,7 +1,17 @@
-// Copyright © 2015 TCaRS - Thijs Wenker
-// This script initializes and closes the car script
+//  TCars/tcarsDebugScript.js
+//
+//  This script initializes and closes the car script
+//
+//  Distributed under the Apache License, Version 2.0.
+//  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
+//
+
 
 var carScriptEnabled = false;
+
+Script.scriptLoaded.connect(function(scriptName)) {
+    print("loaded" + scriptName);
+});
 
 Script.include("https://raw.githubusercontent.com/highfidelity/hifi/master/examples/libraries/toolBars.js");
 
@@ -50,3 +60,9 @@ Controller.mousePressEvent.connect(function(event) {
         toolBar.selectTool(carScriptButton, carScriptEnabled);
     }
 });
+
+Script.scriptEnding.connect(function() {
+    toolBar.cleanup();
+});
+
+
