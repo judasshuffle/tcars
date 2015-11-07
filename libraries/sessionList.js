@@ -7,10 +7,14 @@
 //
 
 
-SessionList = function(properties, lobbyWSLink) {
+SessionList = function(properties, lobbyHostName, lobbyPort) {
     var _this = this;
     var sessions = [];
     var columns = {};
+
+    var createWSLink = function(port) {
+        return 'ws://' + lobbyHostName + ':' + port;
+    }
 
     var COLUMNS = {
         NUM: 0,
@@ -24,7 +28,7 @@ SessionList = function(properties, lobbyWSLink) {
     var COLUMN_POS = {};
     COLUMN_POS[COLUMNS.NUM] = 0.0;
     COLUMN_POS[COLUMNS.STATE] = 0.1;
-    COLUMN_POS[COLUMNS.TRACK] = 0.3;
+    COLUMN_POS[COLUMNS.TRACK] = 0.35;
     COLUMN_POS[COLUMNS.PLAYERS] = 0.6;
     COLUMN_POS[COLUMNS.SPECATORS] = 0.8;
 
@@ -93,6 +97,18 @@ SessionList = function(properties, lobbyWSLink) {
             });
         };
 
+        _this.getSessionInfo = function() {
+            return sessionInfo;
+        };
+
+        _this.getSessionPort = function() {
+            return sessionPort;
+        };
+
+        _this.getWSURL = function() {
+            return createWSLink(sessionPort);
+        };
+
         _this.containsOverlay = function(overlay) {
             for (column in columns) {
                 if (columns[column] === overlay) {
@@ -111,7 +127,7 @@ SessionList = function(properties, lobbyWSLink) {
         };
 
         createColumn(COLUMNS.NUM, parseInt(index) + 1);
-        createColumn(COLUMNS.STATE, sessionInfo.state);
+        createColumn(COLUMNS.STATE, SESSION_STATE_TEXT[parseInt(sessionInfo.state)]);
         createColumn(COLUMNS.TRACK, _this.getTrackName());
         createColumn(COLUMNS.PLAYERS, sessionInfo.players + " / " + MAX_PLAYERS);
         createColumn(COLUMNS.SPECATORS, sessionInfo.spectators + " / " + MAX_SPECTATORS);
@@ -131,7 +147,7 @@ SessionList = function(properties, lobbyWSLink) {
     };
 
     var refreshSessions = function() {
-        var lobbySocket = new WebSocket(lobbyWSLink);
+        var lobbySocket = new WebSocket(createWSLink(lobbyPort));
         lobbySocket.onopen = function(event) {
             lobbySocket.send(JSON.stringify({
                 action: LOBBY_ACTION.PLAYER_SESSIONS_REQUEST
@@ -145,9 +161,11 @@ SessionList = function(properties, lobbyWSLink) {
                     clearSessions();
                     for (var i in data.sessions) {
                         sessions.push(new Session(_this, i, data.sessions[i], {x: position.x, y: position.y + TITLE_HEIGHT + HEADER_HEIGHT + (i * ROW_HEIGHT), h: ROW_HEIGHT, w: size.width}));
+                        print('push')
                     }
                     break;
             }
+            print('close')
             lobbySocket.close();
         };
     };
@@ -168,15 +186,29 @@ SessionList = function(properties, lobbyWSLink) {
         refreshSessions();
     };
 
+    // returns selected session
+    // onSessionSelected(sessionWSURL, sessionInfo)
+    _this.onSessionSelected = undefined;
+
     _this.handleClickEvent = function(x, y) {
         var clickedOverlay = Overlays.getOverlayAtPoint({x: x, y: y});
         for (var i in sessions) {
             if (sessions[i].containsOverlay(clickedOverlay)) {
-                Window.alert("Clicked " + i);
+                if (_this.onSessionSelected !== undefined) {
+                    _this.onSessionSelected.call(this, sessions[i].getWSURL(), sessions[i].getSessionInfo())
+                }
                 return true;
             }
         }
         return false;
+    };
+
+    _this.hide = function() {
+        //TODO: write code to hide sessionList
+    };
+
+    _this.show = function() {
+
     };
     
     // Remove the overlay.

@@ -21,7 +21,11 @@ Script.include([
     'libraries/car.js'
 ]);
 
-var sessionList = new SessionList({}, 'ws://no-ip.thoysvps.nl:18000');
+var sessionList = new SessionList({}, 'no-ip.thoysvps.nl', 18000);
+sessionList.onSessionSelected = function(sessionPort, sessionInfo) {
+    Window.alert('connecting to port: ' + sessionPort);
+    sessionList.hide();
+};
 sessionList.init();
 var avatarSeater = new AvatarSeater();
 var keyCapturer = new KeyCapturer();
