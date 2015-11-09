@@ -21,9 +21,60 @@ Script.include([
     'libraries/car.js'
 ]);
 
+SessionClient = function() {
+    var _this = this;
+    var socket = null;
+    var sessionInfo = null;
+
+    _this.joinSession = function(WSURL, sessionInfo) {
+        if (socket !== null) {
+            if (socket.readyState !== socket.OPEN) {
+                socket.close();
+            }
+        }
+        socket = new WebSocket(WSURL);
+        socket.onmessage = function(event) {
+            var data = JSON.parse(event.data);
+            switch (data.action) {
+                case SESSION_ACTION.JOIN_REPLY:
+                    
+                    break;
+    //JOIN_REQUEST:   1,
+    //JOIN_REPLY:     2,
+    //UPDATE:         3,
+    //MESSAGE:        4,
+    //PLAYER_JOIN:    5,
+    //PLAYER_LEFT:    6,
+    //GAME_STATE:     7,
+    //PING:           8,
+    //VOTE:           9                
+                //case LOBBY_ACTION.REGISTER_SESSION_REPLY:
+                //    new Session(parseInt(data.port), data.block);
+                //    break;
+            }
+        };
+        socket.onopen = function() {
+            socket.send(JSON.stringify({
+                action: SESSION_ACTION.JOIN_REQUEST,
+                data: {
+
+                }
+            }));
+        };
+        socket.onclose = function() {
+            //TODO: do the disconnect things
+
+            socket = null;
+        }
+    };
+
+}
+
+var sessionClient = new SessionClient();
+
 var sessionList = new SessionList({}, 'no-ip.thoysvps.nl', 18000);
-sessionList.onSessionSelected = function(sessionPort, sessionInfo) {
-    Window.alert('connecting to port: ' + sessionPort);
+sessionList.onSessionSelected = function(sessionWSURL, sessionInfo) {
+    sessionClient.joinSession(sessionWSURL);
     sessionList.hide();
 };
 sessionList.init();

@@ -152,7 +152,7 @@ var Session = function(port, block) {
         EntityViewer.setOrientation(Quat.fromPitchYawRollDegrees(0, 90, 0));
         EntityViewer.setKeyholeRadius(Vec3.distance(Vec3.multiply(block.dimensions, 0.5), {}));
         EntityViewer.queryOctree();
-    }
+    };
 
     _this.sendSessionInfo = function() {
         lobbySocket.send(JSON.stringify({
@@ -244,7 +244,7 @@ var Session = function(port, block) {
 
     //var elementCount = 0;
     function updating(deltaTime) {
-        if (!RACING ) { 
+        if (!RACING) { 
             return;
         }
      //   EntityViewer.setPosition({x: 8040.73046875, y: y, z: 7730.63916015625});

@@ -6,15 +6,15 @@
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
 //
 
-
 SessionList = function(properties, lobbyHostName, lobbyPort) {
     var _this = this;
     var sessions = [];
     var columns = {};
+    var visible = true;
 
     var createWSLink = function(port) {
         return 'ws://' + lobbyHostName + ':' + port;
-    }
+    };
 
     var COLUMNS = {
         NUM: 0,
@@ -65,17 +65,20 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
             width: getColumnWidth(column),
             height: HEADER_HEIGHT,
             backgroundColor: HEADER_COLOR,
-            text: text
+            text: text,
+            visible: visible
         });
     };
 
-    var Session = function(sessionList, index, session, rect) {
+    var Session = function(sessionList, index, session, rect, visible) {
         var _this = this;
 
         var sessionList = sessionList;
 
         var sessionInfo = session.info;
         var sessionPort = session.port;
+
+        var visible = visible;
 
         var columns = {};
 
@@ -93,7 +96,8 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
                 width: getColumnWidth(column),
                 height: ROW_HEIGHT,
                 backgroundColor: getBackgroundColor(),
-                text: text 
+                text: text,
+                visible: visible
             });
         };
 
@@ -124,6 +128,31 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
                 return "(no track selected)";
             }
             return TRACKS[trackID].name;
+        };
+
+        var setVisibility = function(newVisible) {
+            for (column in columns) {
+                Overlays.editOverlay(columns[column], {visible: newVisible});
+            }
+            visible = newVisible;
+        };
+
+        _this.hide = function() {
+            if (!visible) {
+                // already hidden.
+                return;
+            }
+
+            setVisibility(false);
+        };
+
+        _this.show = function() {
+            if (!visible) {
+                // already shown.
+                return;
+            }
+            
+            setVisibility(true);
         };
 
         createColumn(COLUMNS.NUM, parseInt(index) + 1);
@@ -160,12 +189,10 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
                 case LOBBY_ACTION.PLAYER_SESSIONS_REPLY:
                     clearSessions();
                     for (var i in data.sessions) {
-                        sessions.push(new Session(_this, i, data.sessions[i], {x: position.x, y: position.y + TITLE_HEIGHT + HEADER_HEIGHT + (i * ROW_HEIGHT), h: ROW_HEIGHT, w: size.width}));
-                        print('push')
+                        sessions.push(new Session(_this, i, data.sessions[i], {x: position.x, y: position.y + TITLE_HEIGHT + HEADER_HEIGHT + (i * ROW_HEIGHT), h: ROW_HEIGHT, w: size.width}, visible));
                     }
                     break;
             }
-            print('close')
             lobbySocket.close();
         };
     };
@@ -176,7 +203,8 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
             x: position.x,
             y: position.y,
             width: size.width,
-            height: size.height
+            height: size.height,
+            visible: visible
         });
         createColumn(COLUMNS.NUM, "#");
         createColumn(COLUMNS.STATE, "Status");
@@ -191,6 +219,9 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
     _this.onSessionSelected = undefined;
 
     _this.handleClickEvent = function(x, y) {
+        if (!visible) {
+            return false;
+        }
         var clickedOverlay = Overlays.getOverlayAtPoint({x: x, y: y});
         for (var i in sessions) {
             if (sessions[i].containsOverlay(clickedOverlay)) {
@@ -203,12 +234,36 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
         return false;
     };
 
+    var setVisibility = function(newVisible) {
+        for (column in columns) {
+            Overlays.editOverlay(columns[column], {visible: newVisible});
+        }
+        Overlays.editOverlay(_this.overlay, {visible: newVisible});
+        visible = newVisible;
+    };
+
     _this.hide = function() {
-        //TODO: write code to hide sessionList
+        if (!visible) {
+            // already hidden.
+            return;
+        }
+        for (var i in sessions) {
+            sessions[i].hide();
+        }
+
+        visible = false;
     };
 
     _this.show = function() {
+        if (!visible) {
+            // already shown.
+            return;
+        }
+        for (var i in sessions) {
+            sessions[i].show();
+        }
 
+        visible = true;
     };
     
     // Remove the overlay.

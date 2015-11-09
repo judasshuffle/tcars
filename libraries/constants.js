@@ -95,7 +95,7 @@ LOBBY_ACTION = {
 };
 
 SESSION_ACTION = {
-    JOIN_REQUEST: 	1,
+    JOIN_REQUEST:   1,
     JOIN_REPLY:     2,
     UPDATE:         3,
     MESSAGE:        4,
