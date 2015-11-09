@@ -147,7 +147,7 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
         };
 
         _this.show = function() {
-            if (!visible) {
+            if (visible) {
                 // already shown.
                 return;
             }
@@ -254,7 +254,7 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
     };
 
     _this.show = function() {
-        if (!visible) {
+        if (visible) {
             // already shown.
             return;
         }
