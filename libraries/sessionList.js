@@ -250,8 +250,7 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
         for (var i in sessions) {
             sessions[i].hide();
         }
-
-        visible = false;
+        setVisibility(false);
     };
 
     _this.show = function() {
@@ -262,8 +261,7 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
         for (var i in sessions) {
             sessions[i].show();
         }
-
-        visible = true;
+        setVisibility(true);
     };
     
     // Remove the overlay.
