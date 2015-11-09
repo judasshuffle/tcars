@@ -44,6 +44,7 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
     var getColumnPos = function(column) {
         return Math.floor(size.width * COLUMN_POS[column]);    
     };
+
     var getColumnWidth = function(column) {
         var nextColumn = column + 1;
         var right = (nextColumn < COLUMNS.COLUMN_COUNT) ? getColumnPos(nextColumn) : size.width;
@@ -206,6 +207,14 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
             height: size.height,
             visible: visible
         });
+        _this.refreshButton = Overlays.addOverlay("text", {
+            text: "Refresh",
+            x: position.x + (size.width - 120),
+            y: position.y,
+            width: 120,
+            height: 20,
+            visible: visible
+        });
         createColumn(COLUMNS.NUM, "#");
         createColumn(COLUMNS.STATE, "Status");
         createColumn(COLUMNS.TRACK, "Track");
@@ -231,6 +240,10 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
                 return true;
             }
         }
+        if (clickedOverlay === _this.refreshButton) {
+            refreshSessions();
+            return true;
+        }
         return false;
     };
 
@@ -238,6 +251,7 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
         for (column in columns) {
             Overlays.editOverlay(columns[column], {visible: newVisible});
         }
+        Overlays.editOverlay(_this.refreshButton, {visible: newVisible});
         Overlays.editOverlay(_this.overlay, {visible: newVisible});
         visible = newVisible;
     };
@@ -270,6 +284,7 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
         for (column in columns) {
             Overlays.deleteOverlay(columns[column]);
         }
+        Overlays.deleteOverlay(_this.refreshButton);
         Overlays.deleteOverlay(_this.overlay);
     };
 };
