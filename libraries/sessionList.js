@@ -199,7 +199,7 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
 
     _this.init = function() {
         _this.overlay = Overlays.addOverlay("text", {
-            text: "SESSION LIST",
+            text: "TCARS - SESSION LIST",
             x: position.x,
             y: position.y,
             width: size.width,
