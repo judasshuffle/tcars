@@ -21,20 +21,20 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
     _this.entity = null;
     _this.speedMultiplier = speedMultiplier !== undefined ? speedMultiplier : 1.0;
 
-    var soundAccelerating = SoundCache.getSound(SOUND_FOLDER_URL + "enginenoise2.wav");
-    var soundDecelerating = SoundCache.getSound(SOUND_FOLDER_URL + "decelerating.wav");
-    var soundIdle = SoundCache.getSound(SOUND_FOLDER_URL + "idle.wav");
-    var soundShutdown = SoundCache.getSound(SOUND_FOLDER_URL + "shutdown.wav");
-    var soundStarting = SoundCache.getSound(SOUND_FOLDER_URL + "starting.wav");
+    var soundAccelerating = SoundCache.getSound(SOUND_FOLDER_URL + 'enginenoise2.wav');
+    var soundDecelerating = SoundCache.getSound(SOUND_FOLDER_URL + 'decelerating.wav');
+    var soundIdle = SoundCache.getSound(SOUND_FOLDER_URL + 'idle.wav');
+    var soundShutdown = SoundCache.getSound(SOUND_FOLDER_URL + 'shutdown.wav');
+    var soundStarting = SoundCache.getSound(SOUND_FOLDER_URL + 'starting.wav');
 
     // Every vehicle will have their own sound-player
     _this.soundLoopSwitcher = new SoundLoopSwitcher();
 
     var getNewCarProperties = function(spawnPosition, spawnRotation) {
         var newProperties = {
-            type: "Model",
+            type: 'Model',
             modelURL: MODEL_FOLDER_URL + _this.vehicle.modelFile, // + "?v=" + (new Date()).getTime(),
-            shapeType: "box",
+            shapeType: 'box',
             name: VEHICLE_MODEL_PREFIX + _this.vehicle.name,
             position: Vec3.sum(spawnPosition, {y: _this.vehicle.dimensions.y / 2}),
             rotation: spawnRotation,
@@ -43,7 +43,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
             collisionsWillMove: true,
             ignoreForCollisions: false,
             gravity: {x: 0, y: GRAVITY, z: 0},
-            script: "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/tcarEntityScript.js?v=" + (new Date()).getTime(),
+            script: 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/tcarEntityScript.js?v=' + (new Date()).getTime(),
             density: 3000,
             damping: 0.7,
             angularDamping: 0.7,
@@ -71,7 +71,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
     _this.init = function() {
         // Loaned this code from the flashlight script:
         _this.spotlight = Entities.addEntity({
-            type: "Light",
+            type: 'Light',
             isSpotlight: true,
             dimensions: {
                 x: 40,
@@ -88,7 +88,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier) {
             cutoff: 20
         });
         _this.glowLight = Entities.addEntity({
-            type: "Light",
+            type: 'Light',
             dimensions: {
                 x: 0.25,
                 y: 0.25,

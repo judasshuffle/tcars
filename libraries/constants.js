@@ -103,7 +103,8 @@ SESSION_ACTION = {
     PLAYER_LEFT:    6,
     GAME_STATE:     7,
     PING:           8,
-    VOTE:           9
+    PONG:           9,
+    VOTE:           10
 };
 
 // Session state
@@ -114,7 +115,6 @@ SESSION_STATE = {
     COUNT_DOWN:         4,
     RACE:               5
     //TODO: Another state after race or restart?
-
 };
 
 SESSION_STATE_TEXT = {};

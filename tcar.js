@@ -12,6 +12,7 @@ Script.include([
     'libraries/vehicles.js',
     'libraries/tracks.js',
     'libraries/sessionList.js',
+    'libraries/sessionClient.js',
     'libraries/speedometer.js',
     'libraries/carSelector.js',
     'libraries/avatarSeater.js',
@@ -21,75 +22,26 @@ Script.include([
     'libraries/car.js'
 ]);
 
-SessionClient = function() {
-    var _this = this;
-    var socket = null;
-    var sessionInfo = null;
 
-    _this.joinSession = function(WSURL, sessionInfo) {
-        if (socket !== null) {
-            if (socket.readyState !== socket.OPEN) {
-                socket.close();
-            }
-        }
-        socket = new WebSocket(WSURL);
-        socket.onmessage = function(event) {
-            var data = JSON.parse(event.data);
-            switch (data.action) {
-                case SESSION_ACTION.JOIN_REPLY:
-                    
-                    break;
-    //JOIN_REQUEST:   1,
-    //JOIN_REPLY:     2,
-    //UPDATE:         3,
-    //MESSAGE:        4,
-    //PLAYER_JOIN:    5,
-    //PLAYER_LEFT:    6,
-    //GAME_STATE:     7,
-    //PING:           8,
-    //VOTE:           9                
-                //case LOBBY_ACTION.REGISTER_SESSION_REPLY:
-                //    new Session(parseInt(data.port), data.block);
-                //    break;
-            }
-        };
-        socket.onopen = function() {
-            socket.send(JSON.stringify({
-                action: SESSION_ACTION.JOIN_REQUEST,
-                data: {
-
-                }
-            }));
-        };
-        socket.onclose = function() {
-            //TODO: do the disconnect things
-
-            socket = null;
-        }
-    };
-
-}
-
-var sessionClient = new SessionClient();
-
-var sessionList = new SessionList({}, 'no-ip.thoysvps.nl', 18000);
-sessionList.onSessionSelected = function(sessionWSURL, sessionInfo) {
-    sessionClient.joinSession(sessionWSURL);
-    sessionList.hide();
-};
-sessionList.init();
 var avatarSeater = new AvatarSeater();
 var keyCapturer = new KeyCapturer();
 var car = null;
-
 var state = STATE.LOBBY;
+
+var sessionClient = new SessionClient();
+var sessionList = new SessionList({}, 'no-ip.thoysvps.nl', 18000);
+sessionList.onSessionSelected = function(sessionWSURL, sessionInfo) {
+    sessionClient.joinSession(sessionWSURL, sessionInfo);
+    sessionList.hide();
+};
+sessionList.init();
 
 var timeItWentWithoutMoving = 0;
 var actionID = false;
 
 var spacebarBlockly = 'Window.alert("You have not made a blockly script for this button yet!");'
 
-var newWindow = new WebWindow("Customize your vehicle", "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/blockly-tcars/index.html", 700,700);
+var newWindow = new WebWindow("Customize your vehicle", "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/blockly-tcars/index.html", 700, 700);
 newWindow.eventBridge.webEventReceived.connect(function(data) {
     data = JSON.parse(data);
     switch (data.action) {
@@ -127,7 +79,7 @@ function isCarDriving() {
 function launchProjectile(carProps) {
     Entities.addEntity({
         type: "Model",
-        name: "Rocket",
+        name: "Projectile",
         shapeType: "sphere",
         density: 8000,
         collisionsWillMove: true,
@@ -141,9 +93,10 @@ function launchProjectile(carProps) {
         damping: 0,
         lifetime: 5
     });
+    // TODO: attach this light to the projectile when parenting PR is merged
     Entities.addEntity({
         type: "Light",
-        name: "Rocket",
+        name: "Projectile-Light",
         density: 8000,
         //collisionsWillMove: true,
         ignoreForCollisions: false,
@@ -212,6 +165,7 @@ Controller.keyPressEvent.connect(function(event) {
         } else if (event.key == KEY.SPACE) {
             var selectedCar = carSelector.selectableCars[carSelector.selectedCar];
             var selectedTrack = TRACKS[trackSelector.selectedTrack];
+            //TODO: let the session-AC decide the seat
             avatarSeater.setSeat(selectedTrack.seats[0])
             car = new Car(selectedCar.vehicle, selectedTrack.startPosition, selectedTrack.startOrientation);
             state = STATE.DRIVING;
@@ -234,7 +188,6 @@ Controller.keyReleaseEvent.connect(function(event) {
         }
     }
 });
-
 
 Script.update.connect(function(time) {
     if (isCarDriving()) {

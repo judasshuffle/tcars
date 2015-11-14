@@ -11,7 +11,36 @@ Script.include([
     SCRIPTS_PATH + "libraries/clientManager.js"
 ]);
 
+// Give max time of 5 seconds
+const PING_TIMEOUT = 5000;
+
+var lastPingRequest = null;
+var lastPingResponse = null;
+
 var lobbySocket = new WebSocket(LOBBY_WS_URL);
+
+var ping = 0;
+var pingLobby = function() {
+    print("ping: " + (ping++));
+    if (lobbySocket.readyState === lobbySocket.OPEN) {
+        var now = Date.now();
+        if (lastPingRequest !== null) {
+            if (lastPingResponse === null || (lastPingResponse + PING_TIMEOUT) < now) {
+                print("ping timeout with lobby, aborting!");
+                Script.stop();
+                return;
+            }
+        }
+        lastPingRequest = now;
+        lobbySocket.send(JSON.stringify({
+            action: LOBBY_ACTION.PING
+        }));
+    }
+};
+
+var lobbyPingTimer = Script.setInterval(pingLobby, PING_TIMEOUT);
+
+
 /*
 function startRace() {
     const SESSION_AREA_SIZE = 2000; // size in square meters
@@ -128,8 +157,11 @@ var Session = function(port, block) {
 
     var numParticipantRole = function(role) {
         var roleParticipantCount = 0;
+        print("looping through all clients:");
         clientManager.doForAllClients(function(clientID, client) {
+            print("found client with ID " + clientID + "with client role: " + client.role);
             if (client.role === role) {
+                print("role matches!");
                 roleParticipantCount++;
             }
         });
@@ -183,7 +215,8 @@ var Session = function(port, block) {
             case SESSION_ACTION.JOIN_REQUEST:
                 var sessionClient = clientManager.getClient(clientID);
                 // ROLE.* PLAYER OR SPECTATOR
-                sessionClient.role = data.role;
+                //TODO: check max for role, switch to spectator if players are full, disconnect if spectators are full, and msg client.
+                sessionClient.role = data.data.preferredRole;
                 _this.sendSessionInfo();
                 break;
             case SESSION_ACTION.VOTE:
@@ -206,7 +239,7 @@ var Session = function(port, block) {
        //     lastTime = timeLeft;
        //     sendToAllActiveClients({action: ACTION.COUNTING, timeleft: timeLeft});
        // }
-        print("state: " + state + " TimeLeft: " + timeLeft);
+        //print("state: " + state + " TimeLeft: " + timeLeft);
         if (state === SESSION_STATE.VOTE_TRACK) {
             if (timeLeft <= 0) {
                 trackID = getWinningTrackVote();
@@ -279,9 +312,18 @@ lobbySocket.onmessage = function(event) {
         case LOBBY_ACTION.REGISTER_SESSION_REPLY:
             new Session(parseInt(data.port), data.block);
             break;
+        case LOBBY_ACTION.PONG:
+            lastPingResponse = Date.now();
+            break;
     }
 };
 
+
+Script.scriptEnding.connect(function() {
+    print("Cleaning up session");
+    //TODO: try removing session specific entities?
+    lobbySocket.close();
+})
 
 /*
 function getPlayersToObject() {

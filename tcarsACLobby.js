@@ -164,5 +164,9 @@ clientManager.onClientAction = function(clientID, action, data) {
                 sessions: sessions
             });
             break;
+        case LOBBY_ACTION.PING:
+            print("received ping from " + clientID);
+            clientManager.send(clientID, {action: LOBBY_ACTION.PONG});            
+            break;
     }
 };

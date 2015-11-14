@@ -60,5 +60,3 @@ Controller.mousePressEvent.connect(function(event) {
 Script.scriptEnding.connect(function() {
     toolBar.cleanup();
 });
-
-
