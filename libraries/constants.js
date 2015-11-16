@@ -81,6 +81,7 @@ MAX_SPECTATORS = 10;
 VEHICLE_MODEL_PREFIX = "TCarModel-";
 
 ROLE = {
+    NONE: 0, // Used when a game is full.
     PLAYER: 1,
     SPECTATOR: 2
 };

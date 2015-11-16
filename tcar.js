@@ -41,7 +41,7 @@ var actionID = false;
 
 var spacebarBlockly = 'Window.alert("You have not made a blockly script for this button yet!");'
 
-var newWindow = new WebWindow("Customize your vehicle", "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/blockly-tcars/index.html", 700, 700);
+var newWindow = new WebWindow('Customize your vehicle', 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/blockly-tcars/index.html', 700, 700);
 newWindow.eventBridge.webEventReceived.connect(function(data) {
     data = JSON.parse(data);
     switch (data.action) {
@@ -78,16 +78,16 @@ function isCarDriving() {
 
 function launchProjectile(carProps) {
     Entities.addEntity({
-        type: "Model",
-        name: "Projectile",
-        shapeType: "sphere",
+        type: 'Model',
+        name: 'Projectile',
+        shapeType: 'sphere',
         density: 8000,
         collisionsWillMove: true,
         ignoreForCollisions: false,
         position: Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -7})),
         rotation: Quat.multiply(carProps.rotation, Quat.fromVec3Degrees({x: 270, y: 0, z: 0})),
         dimensions: {x: 1.25, y: 2.56, z: 1.45},
-        modelURL: MODEL_FOLDER_URL + "rockett.fbx?123",
+        modelURL: MODEL_FOLDER_URL + 'rockett.fbx',
         velocity: Vec3.sum(carProps.velocity, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -10})),
         angularVelocity: Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: 20}),
         damping: 0,
@@ -95,8 +95,8 @@ function launchProjectile(carProps) {
     });
     // TODO: attach this light to the projectile when parenting PR is merged
     Entities.addEntity({
-        type: "Light",
-        name: "Projectile-Light",
+        type: 'Light',
+        name: 'Projectile-Light',
         density: 8000,
         //collisionsWillMove: true,
         ignoreForCollisions: false,
@@ -209,7 +209,7 @@ Script.update.connect(function(time) {
         entityItemID = entities[key];
         var properties = Entities.getEntityProperties(entityItemID);
         if (properties.name.substring(0, VEHICLE_MODEL_PREFIX.length) === VEHICLE_MODEL_PREFIX) {
-            Entities.callEntityMethod(entityItemID, "updateWheels");
+            Entities.callEntityMethod(entityItemID, 'updateWheels');
         }
     }
 });

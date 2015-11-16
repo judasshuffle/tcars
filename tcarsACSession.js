@@ -150,7 +150,7 @@ var Session = function(port, block) {
             return;
         }
         var req = new XMLHttpRequest();
-        req.open("GET", TRACK_ZONE_FOLDER_URL + TRACKS[trackID].trackJSON, false);
+        req.open('GET', TRACK_ZONE_FOLDER_URL + TRACKS[trackID].trackJSON, false);
         req.send();
         track = req.response;
     };
