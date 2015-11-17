@@ -126,7 +126,7 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
         _this.getTrackName = function() {
             var trackID = sessionInfo.trackID;
             if (trackID === -1) {
-                return "(no track selected)";
+                return '(no track selected)';
             }
             return TRACKS[trackID].name;
         };
@@ -199,27 +199,27 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
     };
 
     _this.init = function() {
-        _this.overlay = Overlays.addOverlay("text", {
-            text: "TCARS - SESSION LIST",
+        _this.overlay = Overlays.addOverlay('text', {
+            text: 'TCARS - SESSION LIST',
             x: position.x,
             y: position.y,
             width: size.width,
             height: size.height,
             visible: visible
         });
-        _this.refreshButton = Overlays.addOverlay("text", {
-            text: "Refresh",
+        _this.refreshButton = Overlays.addOverlay('text', {
+            text: 'Refresh',
             x: position.x + (size.width - 120),
             y: position.y,
             width: 120,
             height: 20,
             visible: visible
         });
-        createColumn(COLUMNS.NUM, "#");
-        createColumn(COLUMNS.STATE, "Status");
-        createColumn(COLUMNS.TRACK, "Track");
-        createColumn(COLUMNS.PLAYERS, "Players");
-        createColumn(COLUMNS.SPECATORS, "Spectators");
+        createColumn(COLUMNS.NUM, '#');
+        createColumn(COLUMNS.STATE, 'Status');
+        createColumn(COLUMNS.TRACK, 'Track');
+        createColumn(COLUMNS.PLAYERS, 'Players');
+        createColumn(COLUMNS.SPECATORS, 'Spectators');
         refreshSessions();
     };
 

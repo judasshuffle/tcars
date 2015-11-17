@@ -63,4 +63,4 @@ KeyCapturer = function() {
             keysCaptured = false;
         }
     };
-}
+};
