@@ -92,7 +92,9 @@ LOBBY_ACTION = {
     REGISTER_SESSION_REPLY:     2,
     SESSION_INFORMATION_UPDATE: 3,
     PLAYER_SESSIONS_REQUEST:    4,
-    PLAYER_SESSIONS_REPLY:      5
+    PLAYER_SESSIONS_REPLY:      5,
+    PING:                       6,
+    PONG:                       7
 };
 
 SESSION_ACTION = {

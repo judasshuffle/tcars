@@ -31,7 +31,7 @@ PlayerList = function() {
 
     _this.removePlayer = function(id) {
         delete _this.players[id];
-    }
+    };
 
     // Gets a player by its ID.
     _this.getPlayer = function(playerID) {

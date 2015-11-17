@@ -21,14 +21,13 @@ const SESSION_AREA_SAFEZONES = [
         start: {x: -SESSION_AREA_SIZE, y: -SESSION_AREA_SIZE, z: -SESSION_AREA_SIZE},
         end: {x: SESSION_AREA_SIZE, y: SESSION_AREA_SIZE, z: SESSION_AREA_SIZE}
     }
-]
-
+];
 
 const SESSION_AREA_DIMENSIONS = {
     x: SESSION_AREA_SIZE,
     y: SESSION_AREA_SIZE,
     z: SESSION_AREA_SIZE
-}
+};
 
 const SCRIPTS_PATH = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/";
 
@@ -165,8 +164,32 @@ clientManager.onClientAction = function(clientID, action, data) {
             });
             break;
         case LOBBY_ACTION.PING:
-            print("received ping from " + clientID);
-            clientManager.send(clientID, {action: LOBBY_ACTION.PONG});            
+            var sessionClient = clientManager.getClient(clientID);
+            sessionClient.lastReceivedPing = Date.now();
+            print('received ping from ' + clientID);
+            clientManager.send(clientID, {action: LOBBY_ACTION.PONG});
             break;
     }
 };
+
+
+// Give max time of 10 seconds
+const PING_TIMEOUT = 10000;
+
+var cleanLobbySessions = function() {
+    var deleteClientIDs = [];
+    var now = Date.now();
+    clientManager.doForAllClients(function(clientID, client) {
+        if (client.sessionBlock !== undefined && (client.socket.readyState === client.socket.CLOSED || (client.lastReceivedPing + PING_TIMEOUT) < now)) {
+            deleteClientIDs.push(clientID);
+        }
+    });
+
+    for (var i = 0; i < deleteClientIDs.length; i++) {
+        var deleteID = deleteClientIDs[i];
+        print("removing session client with ID: " + deleteID);
+        clientManager.deleteClient(deleteID);
+    }
+};
+
+var cleanLobbySessionsTimer = Script.setInterval(cleanLobbySessions, PING_TIMEOUT);

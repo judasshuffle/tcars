@@ -26,6 +26,18 @@ ClientManager = function(port) {
         return clients[clientID];
     };
 
+    _this.deleteClient = function(clientID) {
+        var client = clients[clientID];
+        if (client === undefined) {
+            return false;
+        }
+        if (client.socket.readyState !== client.socket.CLOSED) {
+            client.socket.close(1000, "Closed by ClientManager.");
+        }
+        delete clients[clientID];
+        return true;
+    }
+
     _this.doForAllClients = function(callback) {
         for (clientID in clients) {
             callback.call(this, clientID, clients[clientID]);
