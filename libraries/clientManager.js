@@ -36,13 +36,13 @@ ClientManager = function(port) {
         }
         delete clients[clientID];
         return true;
-    }
+    };
 
     _this.doForAllClients = function(callback) {
         for (clientID in clients) {
             callback.call(this, clientID, clients[clientID]);
         }
-    }
+    };
 
     _this.send = function(clientID, data) {
         var stringData = JSON.stringify(data);

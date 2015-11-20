@@ -10,10 +10,13 @@
 Session = function(port, block) {
     var _this = this;
 
+    const GAME_TIMER_INTERVAL = 1000;
     var block = block;
+    var trackZoneManager = new TrackZoneManager();
     var state = SESSION_STATE.INITIAL;
     var trackID = -1;
     var track = null;
+    var trackZone = null;
 
     var clientManager = new ClientManager(port);
 
@@ -73,8 +76,7 @@ Session = function(port, block) {
     };
 
     var setupTrack = function() {
-        var trackZoneManager = new TrackZoneManager();
-        trackZoneManager.importTrack(block.center, track);
+        trackZone = trackZoneManager.importTrack(block.center, track);
         Entities.setPacketsPerSecond(2000);
         EntityViewer.setPosition(block.center);
         EntityViewer.setOrientation(Quat.fromPitchYawRollDegrees(0, 90, 0));
@@ -96,6 +98,10 @@ Session = function(port, block) {
 
     _this.cleanup = function() {
         //TODO: delete track here if its built
+        if (trackZone !== null) {
+            trackZone.deleteTrack();
+            trackZone = null;
+        }
     };
 
     clientManager.onClientConnect = function(clientID) {
@@ -117,9 +123,8 @@ Session = function(port, block) {
                 // ROLE.* PLAYER OR SPECTATOR
                 //TODO: check max for role, switch to spectator if players are full, disconnect if spectators are full, and msg client.
                 sessionClient.role = data.data.preferredRole;
-                sessionClient.send({
-
-                });
+                clientManager.send(clientID, {action: SESSION_ACTION.JOIN_REPLY});
+                clientManager.sendToAllActiveClients({action: SESSION_ACTION.PLAYER_JOIN })
                 _this.sendSessionInfo();
                 break;
             case SESSION_ACTION.VOTE:
@@ -176,7 +181,7 @@ Session = function(port, block) {
             }
             timeLeft--;
         }*/
-    }, 1000);
+    }, GAME_TIMER_INTERVAL);
 
     //var elementCount = 0;
     function updating(deltaTime) {

@@ -15,7 +15,7 @@
 
 // Function which exists inside of an entity which triggers as a user approches it.
 (function() {
-    const SCRIPT_NAME = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/tcarsDebugScript.js";
+    const SCRIPT_NAME = 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/tcarsDebugScript.js';
     function isScriptRunning(script) {
         script = script.toLowerCase().trim();
         var runningScripts = ScriptDiscoveryService.getRunning();

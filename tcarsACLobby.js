@@ -29,11 +29,11 @@ const SESSION_AREA_DIMENSIONS = {
     z: SESSION_AREA_SIZE
 };
 
-const SCRIPTS_PATH = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/";
+const SCRIPTS_PATH = 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/';
 
 Script.include([
-    SCRIPTS_PATH + "libraries/constants.js",
-    SCRIPTS_PATH + "libraries/clientManager.js"
+    SCRIPTS_PATH + 'libraries/constants.js',
+    SCRIPTS_PATH + 'libraries/clientManager.js'
 ]);
 
 function maxBlocksDimension(dimension) {
@@ -112,15 +112,15 @@ function getFreeSessionPort() {
 var clientManager = new ClientManager(PORT);
 
 clientManager.onClientConnect = function(clientID) {
-    print("got client with id: " + clientID);
+    print('got client with id: ' + clientID);
 };
 
 clientManager.onClientDisconnect = function(clientID) {
-    print("client disconnected with id: " + clientID);
+    print('client disconnected with id: ' + clientID);
 };
 
 clientManager.onClientAction = function(clientID, action, data) {
-    print("message from client with id: " + clientID + " action = " + action);
+    print('message from client with id: ' + clientID + ' action = ' + action);
     switch (action) {
         case LOBBY_ACTION.REGISTER_SESSION_REQUEST:
             var sessionPort = getFreeSessionPort();
@@ -136,7 +136,8 @@ clientManager.onClientAction = function(clientID, action, data) {
             var worldBlockCorner = Vec3.sum(Vec3.multiplyVbyV(sessionBlock, SESSION_AREA_DIMENSIONS), SESSION_AREA_START);
             var worldBlockCenter = Vec3.sum(worldBlockCorner, Vec3.multiply(SESSION_AREA_DIMENSIONS, 0.5));
             clientManager.send(clientID, {
-                action: LOBBY_ACTION.REGISTER_SESSION_REPLY,
+                action: LOBBY_ACTION.REGIST
+                ER_SESSION_REPLY,
                 port: sessionPort,
                 block: {
                     center: worldBlockCenter,
@@ -187,7 +188,7 @@ var cleanLobbySessions = function() {
 
     for (var i = 0; i < deleteClientIDs.length; i++) {
         var deleteID = deleteClientIDs[i];
-        print("removing session client with ID: " + deleteID);
+        print('removing session client with ID: ' + deleteID);
         clientManager.deleteClient(deleteID);
     }
 };

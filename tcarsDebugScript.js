@@ -9,11 +9,11 @@
 
 var carScriptEnabled = false;
 
-Script.include("https://raw.githubusercontent.com/highfidelity/hifi/master/examples/libraries/toolBars.js");
+Script.include('https://raw.githubusercontent.com/highfidelity/hifi/master/examples/libraries/toolBars.js');
 
 var toolBar = null;
 
-toolBar = new ToolBar(0, 0, ToolBar.HORIZONTAL, "tcars.debug.toolbar", function (windowDimensions, toolbar) {
+toolBar = new ToolBar(0, 0, ToolBar.HORIZONTAL, 'tcars.debug.toolbar', function (windowDimensions, toolbar) {
     return {
         x: windowDimensions.x - (toolbar.width * 1.1),
         y: toolbar.height / 2
@@ -42,7 +42,7 @@ function isScriptRunning(script) {
     return false;
 }
 
-var carScript = "http://hifi-external.s3.amazonaws.com/tcars/scripts/tcar.js";
+var carScript = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/tcar.js';
 
 Controller.mousePressEvent.connect(function(event) {
     var clickedOverlay = Overlays.getOverlayAtPoint({x: event.x, y: event.y});

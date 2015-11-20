@@ -196,4 +196,12 @@ TrackZone = function(trackZoneEntityID) {
     _this.setBackgroundShader = function(shaderURL) {
         Window.alert("This feature is not implemented yet!");
     };
+
+    _this.deleteTrackZone = function() {
+        print("deleting TrackZone " + _this.trackZoneEntityID);
+        for (var i = 0; i < _this.trackEntities.length; i++) {
+            Entities.deleteEntity(_this.trackEntities[i]);
+        }
+        Entities.deleteEntity(_this.trackZoneEntityID);
+    };
 };

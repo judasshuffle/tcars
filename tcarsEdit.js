@@ -63,11 +63,11 @@ TrackZoneEditingTools = function() {
 trackZoneEditingTools = new TrackZoneEditingTools();
 trackZoneEditingTools.selectClosestTrack();
 
-const MENU_TCARS_EDIT = "TCars Edit";
-const MENUITEM_TCARS_EDIT_SELECT_NEAREST = "Select Nearest TrackZone";
-const MENUITEM_TCARS_EDIT_IMPORT = "TrackZoneImport";
-const MENUITEM_TCARS_EDIT_EXPORT = "TrackZoneExport";
-const MENU_TCARS_EDIT_CHECKPOINTS = MENU_TCARS_EDIT + " > Checkpoints";
+const MENU_TCARS_EDIT = 'TCars Edit';
+const MENUITEM_TCARS_EDIT_SELECT_NEAREST = 'Select Nearest TrackZone';
+const MENUITEM_TCARS_EDIT_IMPORT = 'TrackZoneImport';
+const MENUITEM_TCARS_EDIT_EXPORT = 'TrackZoneExport';
+const MENU_TCARS_EDIT_CHECKPOINTS = MENU_TCARS_EDIT + ' > Checkpoints';
 
 Menu.addMenu(MENU_TCARS_EDIT);
 Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENUITEM_TCARS_EDIT_IMPORT});

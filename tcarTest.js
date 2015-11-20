@@ -28,7 +28,7 @@ newWindow.eventBridge.webEventReceived.connect(function(data) {
             break;
     }
 });
-newWindow.eventBridge.emitScriptEvent(JSON.stringify({action: "hello"}));
+newWindow.eventBridge.emitScriptEvent(JSON.stringify({action: 'hello'}));
 
 
 

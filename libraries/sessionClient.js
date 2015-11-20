@@ -14,6 +14,14 @@ SessionClient = function() {
         preferredRole: ROLE.PLAYER
     };
 
+    _this.onMessage = null;
+
+    var clientMessage = function(message) {
+        if (_this.onMessage) {
+            _this.onMessage.call(this, message);
+        }
+    };
+
     _this.joinSession = function(WSURL, sessionInfo, preferredRole) {
         properties.preferredRole = (preferredRole === undefined ? ROLE.PLAYER : preferredRole);
         properties.sessionInfo = sessionInfo;
@@ -27,7 +35,12 @@ SessionClient = function() {
             var data = JSON.parse(event.data);
             switch (data.action) {
                 case SESSION_ACTION.JOIN_REPLY:
+                    clientMessage("Join reply received");
                     //TODO: Get current game state and respond appropriatly (Track selection, racing, loading, etc..)
+                    
+                    break;
+                case SESSION_ACTION.PLAYER_JOIN:
+                    clientMessage("A player joined!");
                     break;
     //JOIN_REQUEST:   1,
     //JOIN_REPLY:     2,

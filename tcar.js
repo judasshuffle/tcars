@@ -11,6 +11,7 @@ Script.include([
     'libraries/keys.js',
     'libraries/vehicles.js',
     'libraries/tracks.js',
+    'libraries/messageViewer.js',
     'libraries/sessionList.js',
     'libraries/sessionClient.js',
     'libraries/speedometer.js',
@@ -22,13 +23,15 @@ Script.include([
     'libraries/car.js'
 ]);
 
-
+const MAX_MESSAGES = 20;
+var messageViewer = new MessageViewer({x: 100, y: 100}, 'TCars MessagesViewer', MAX_MESSAGES);
 var avatarSeater = new AvatarSeater();
 var keyCapturer = new KeyCapturer();
 var car = null;
 var state = STATE.LOBBY;
 
 var sessionClient = new SessionClient();
+sessionClient.onMessage = messageViewer.append;
 var sessionList = new SessionList({}, 'no-ip.thoysvps.nl', 18000);
 sessionList.onSessionSelected = function(sessionWSURL, sessionInfo) {
     sessionClient.joinSession(sessionWSURL, sessionInfo);
@@ -137,7 +140,7 @@ function handleDrivingKeyPress(event) {
 }
 
 Controller.mousePressEvent.connect(function(event) {
-    if (sessionList.handleClickEvent(event.x, event.y)) {
+    if (event.isLeftButton && sessionList.handleClickEvent(event.x, event.y)) {
         return true;
     }
 });
@@ -166,7 +169,7 @@ Controller.keyPressEvent.connect(function(event) {
             var selectedCar = carSelector.selectableCars[carSelector.selectedCar];
             var selectedTrack = TRACKS[trackSelector.selectedTrack];
             //TODO: let the session-AC decide the seat
-            avatarSeater.setSeat(selectedTrack.seats[0])
+            avatarSeater.setSeat(selectedTrack.seats[0]);
             car = new Car(selectedCar.vehicle, selectedTrack.startPosition, selectedTrack.startOrientation);
             state = STATE.DRIVING;
             cameraHandler.firstCamera();

@@ -84,9 +84,11 @@ TrackZoneManager = function () {
             // Finally select and refresh
             selectedTrackZone = newTrackZoneEntity;
             _this.refreshNearbyTracks(position);
+            return selectedTrackZone;
         } catch (e) {
             print(e);
         }
+        return false;
     };
 
     _this.refreshNearbyTracks = function(position) {
