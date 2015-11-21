@@ -22,6 +22,10 @@ Session = function(port, block) {
 
     var timeLeft = Number.MAX_VALUE;
 
+    var sendUpdateToPlayers = function(update) {
+        clientManager.sendToAllActiveClients({action: SESSION_ACTION.UPDATE, update: update});
+    };
+
     var getWinningTrackVote = function() {
         var trackVotes = {};
         clientManager.doForAllClients(function(clientID, client) {
@@ -33,14 +37,19 @@ Session = function(port, block) {
             }
         });
         var maxVoteNum = 0;
-        var selectedTrackID = -1;
+        var selectedTrackIDs = [];
         for (var trackID in trackVotes) {
             if (trackVotes[trackID] > maxVoteNum) {
                 maxVoteNum = trackVotes;
-                selectedTrackID = trackID;
+                selectedTrackIDs = [trackID];
+            } else if (trackVotes[trackID] === maxVoteNum) {
+                selectedTrackIDs.push(trackID);
             }
         }
-        return selectedTrackID;
+        if (selectedTrackIDs.length === 0) {
+            return Math.floor(Math.random() * TRACKS.length);
+        }
+        return selectedTrackIDs[Math.floor(Math.random() * selectedTrackIDs.length)];
     };
 
     var updateTrackInfo = function() {
@@ -84,7 +93,7 @@ Session = function(port, block) {
         EntityViewer.queryOctree();
     };
 
-    _this.sendSessionInfo = function() {
+    var sendSessionInfo = function() {
         lobbySocket.send(JSON.stringify({
             action: LOBBY_ACTION.SESSION_INFORMATION_UPDATE,
             sessionInfo: {
@@ -94,6 +103,14 @@ Session = function(port, block) {
                 spectators: numSpectators()
             }
         }));
+    };
+
+    var changeSessionState = function(newSessionState, extraUpdateData) {
+        state = newSessionState;
+        sendSessionInfo();
+        var update = extraUpdateData !== undefined ? extraUpdateData : {};
+        update['state'] = newSessionState;
+        sendUpdateToPlayers(update)
     };
 
     _this.cleanup = function() {
@@ -108,7 +125,7 @@ Session = function(port, block) {
         print('got client with id: ' + clientID);
 
         // inform the lobby that a player joined
-        _this.sendSessionInfo();
+        sendSessionInfo();
     };
 
     clientManager.onClientDisconnect = function(clientID) {
@@ -123,17 +140,21 @@ Session = function(port, block) {
                 // ROLE.* PLAYER OR SPECTATOR
                 //TODO: check max for role, switch to spectator if players are full, disconnect if spectators are full, and msg client.
                 sessionClient.role = data.data.preferredRole;
-                clientManager.send(clientID, {action: SESSION_ACTION.JOIN_REPLY});
-                clientManager.sendToAllActiveClients({action: SESSION_ACTION.PLAYER_JOIN })
-                _this.sendSessionInfo();
-                break;
-            case SESSION_ACTION.VOTE:
                 if (state === SESSION_STATE.INITIAL) {
                     state = SESSION_STATE.VOTE_TRACK;
-                    timeleft = TRACK_SELECTION_TIME;
+                    timeLeft = TRACK_SELECTION_TIME;
                 }
+                clientManager.send(clientID, {action: SESSION_ACTION.JOIN_REPLY, update: {state: state, counter: timeLeft, trackID: trackID}});
+                clientManager.sendToAllActiveClients({action: SESSION_ACTION.PLAYER_JOIN })
+                sendSessionInfo();
+                break;
+            case SESSION_ACTION.VOTE:
+                //if (state === SESSION_STATE.INITIAL) {
+                //    state = SESSION_STATE.VOTE_TRACK;
+                //    timeleft = TRACK_SELECTION_TIME;
+                //}
                 var sessionClient = clientManager.getClient(clientID);
-                sessionClient.trackVote = vote;
+                sessionClient.trackVote = data.vote;
                 break;
             case SESSION_ACTION.UPDATE:
 
@@ -147,11 +168,14 @@ Session = function(port, block) {
        //     lastTime = timeLeft;
        //     sendToAllActiveClients({action: ACTION.COUNTING, timeleft: timeLeft});
        // }
-        //print('state: ' + state + ' TimeLeft: ' + timeLeft);
+        print('state: ' + state + ' TimeLeft: ' + timeLeft);
         if (state === SESSION_STATE.VOTE_TRACK) {
             if (timeLeft <= 0) {
                 trackID = getWinningTrackVote();
-                state = SESSION_STATE.LOADING;
+                changeSessionState(SESSION_STATE.LOADING, {trackID: trackID, block: block});
+                updateTrackInfo();
+                setupTrack();
+                //sendSessionInfo();
                // gameState = GAME_STATE.HIDING;
                // timeLeft = HIDING_TIME;
                // seeker = Math.floor(Math.random() * Object.keys(clients).length);
@@ -162,15 +186,36 @@ Session = function(port, block) {
                 timeLeft--;
                 return;
             }
-        } /*else if (state === SESSION_STATE.LOADING) {
+        } else if (state === SESSION_STATE.LOADING) {
+            var isLoaded = trackZone !== null;
+            if (isLoaded) {
+                timeLeft = 3; // Count 3 seconds before start
+                //state = SESSION_STATE.COUNT_DOWN;
+                //sendSessionInfo();
+                changeSessionState(SESSION_STATE.COUNT_DOWN, {});
+            }
+        } else if (state === SESSION_STATE.COUNT_DOWN) {
             if (timeLeft <= 0) {
-                //gameState = GAME_STATE.SEEKING;
-                //timeLeft = GAME_TIME;
-                //sendToAllActiveClients({action: ACTION.START_SEEKING, beep: (timeLeft != 0)});
+                //state = SESSION_STATE.RACE;
+                //sendSessionInfo();
+                changeSessionState(SESSION_STATE.RACE, {});
+                //trackID = getWinningTrackVote();
+                //state = SESSION_STATE.LOADING;
+                //sendSessionInfo();
+                // gameState = GAME_STATE.HIDING;
+                // timeLeft = HIDING_TIME;
+                // seeker = Math.floor(Math.random() * Object.keys(clients).length);
+                // sendToAllActiveClients({action: ACTION.START_HIDING, seeker: seeker});
                 return;
             }
+            //if (numPlayers() > 0) { // we can only play with more then one players
             timeLeft--;
-        } else if (gameState === GAME_STATE.SEEKING) {
+            return;
+            //}
+        }
+
+
+        /* else if (gameState === GAME_STATE.SEEKING) {
             if (timeLeft <= 0) {
                 //gameState = GAME_STATE.WAITING_FOR_PLAYERS;
                 //timeLeft = GAME_TIME;
@@ -205,5 +250,5 @@ Session = function(port, block) {
         //print(EntityViewer.getVoxelSizeScale() + ' ' + EntityViewer.getBoundaryLevelAdjust() + ' ' + EntityViewer.getMaxPacketsPerSecond());
     }
 
-    _this.sendSessionInfo();
+    sendSessionInfo();
 };

@@ -11,6 +11,8 @@ Script.include([
     'libraries/keys.js',
     'libraries/vehicles.js',
     'libraries/tracks.js',
+    'libraries/player.js',
+    'libraries/playerList.js',
     'libraries/messageViewer.js',
     'libraries/sessionList.js',
     'libraries/sessionClient.js',
@@ -27,11 +29,61 @@ const MAX_MESSAGES = 20;
 var messageViewer = new MessageViewer({x: 100, y: 100}, 'TCars MessagesViewer', MAX_MESSAGES);
 var avatarSeater = new AvatarSeater();
 var keyCapturer = new KeyCapturer();
+var trackSelector = new TrackSelector();
+var carSelector = new CarSelector();
+var cameraHandler = new CameraHandler();
+cameraHandler.init();
 var car = null;
 var state = STATE.LOBBY;
+var lastSessionState = null;
+var sessionBlock = null;
+var selectedTrackID = null;
+
+function setSessionState(sessionState) {
+    lastSessionState = sessionState;
+    switch(sessionState) {
+        case SESSION_STATE.INITIAL:
+            state = STATE.LOBBY;
+            break;
+        case SESSION_STATE.VOTE_TRACK:
+            trackSelector.init();
+            state = STATE.TRACK_SELECTION;
+            break;
+        case SESSION_STATE.LOADING:
+            state = STATE.CAR_SELECTION;
+            carSelector.init(TRACKS[selectedTrackID].vehicles);
+            cameraHandler.setCameras(TRACKS[selectedTrackID].cameras);            
+            break;
+        case SESSION_STATE.COUNT_DOWN:
+            state = STATE.RACE;
+            break;
+        case SESSION_STATE.RACING:
+            state = STATE.RACE;
+            break;
+    }
+}
 
 var sessionClient = new SessionClient();
 sessionClient.onMessage = messageViewer.append;
+sessionClient.onUpdate = function(update) {
+    print("update " + JSON.stringify(update) );
+    if (update.seat !== undefined) {
+        avatarSeater.setSeat(update.seat);
+    }
+    if (update.counter !== undefined) {
+        //TODO: set countdown here (In seconds, make sure the client just keeps counting)
+    }
+    if (update.block !== undefined) {
+        sessionBlock = update.block;
+    }
+    if (update.trackID !== undefined && update.trackID !== selectedTrackID) {
+        selectedTrackID = update.trackID;
+    }
+    if (update.state !== undefined && update.state !== lastSessionState) {
+        setSessionState(update.state);
+    }
+
+};
 var sessionList = new SessionList({}, 'no-ip.thoysvps.nl', 18000);
 sessionList.onSessionSelected = function(sessionWSURL, sessionInfo) {
     sessionClient.joinSession(sessionWSURL, sessionInfo);
@@ -68,12 +120,6 @@ function mixFloats(float1, float2, mixValue) {
     }
     return float1 + ((float2 - float1) * mixValue);
 }
-
-var trackSelector = new TrackSelector();
-//trackSelector.init();
-
-var carSelector = new CarSelector();
-var cameraHandler = new CameraHandler();
 
 function isCarDriving() {
     return state == STATE.DRIVING || state == STATE.RACING;
@@ -156,9 +202,9 @@ Controller.keyPressEvent.connect(function(event) {
             trackSelector.nextTrack();
         } else if (event.key == KEY.SPACE) {
             trackSelector.hide();
-            carSelector.init(TRACKS[trackSelector.selectedTrack].vehicles);
-            cameraHandler.setCameras(TRACKS[trackSelector.selectedTrack].cameras);
-            state = STATE.CAR_SELECTION;
+            sessionClient.voteTrack(trackSelector.selectedTrack);
+            //
+            //state = STATE.CAR_SELECTION;
         }
     } else if (state == STATE.CAR_SELECTION) {
         if (event.key == KEY.LEFT || event.key == KEY.A) {
@@ -169,7 +215,7 @@ Controller.keyPressEvent.connect(function(event) {
             var selectedCar = carSelector.selectableCars[carSelector.selectedCar];
             var selectedTrack = TRACKS[trackSelector.selectedTrack];
             //TODO: let the session-AC decide the seat
-            avatarSeater.setSeat(selectedTrack.seats[0]);
+            //avatarSeater.setSeat(selectedTrack.seats[0]);
             car = new Car(selectedCar.vehicle, selectedTrack.startPosition, selectedTrack.startOrientation);
             state = STATE.DRIVING;
             cameraHandler.firstCamera();
@@ -228,6 +274,7 @@ Script.scriptEnding.connect(function() {
     carSelector.cleanup();
     trackSelector.cleanup();
     sessionList.cleanup();
+    messageViewer.cleanup();
     print('TCars script finished closing!')
     //speedometer.cleanup();
 });

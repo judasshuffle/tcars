@@ -30,5 +30,5 @@ Player = function(id, name, role) {
         }
     };*/
 
-    print("added player " + name + " with ID: " + id);
+    print('added player ' + name + ' with ID: ' + id);
 };

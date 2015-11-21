@@ -15,11 +15,22 @@ SessionClient = function() {
     };
 
     _this.onMessage = null;
+    _this.onUpdate = null;
 
     var clientMessage = function(message) {
         if (_this.onMessage) {
             _this.onMessage.call(this, message);
         }
+    };
+
+    var fireUpdate = function(update) {
+        if (_this.onUpdate) {
+            _this.onUpdate.call(this, update);
+        }
+    };
+
+    _this.voteTrack = function(trackID) {
+        socket.send(JSON.stringify({action: SESSION_ACTION.VOTE, trackID: trackID}));
     };
 
     _this.joinSession = function(WSURL, sessionInfo, preferredRole) {
@@ -37,10 +48,13 @@ SessionClient = function() {
                 case SESSION_ACTION.JOIN_REPLY:
                     clientMessage("Join reply received");
                     //TODO: Get current game state and respond appropriatly (Track selection, racing, loading, etc..)
-                    
+                    fireUpdate(data.update);
                     break;
                 case SESSION_ACTION.PLAYER_JOIN:
                     clientMessage("A player joined!");
+                    break;
+                case SESSION_ACTION.UPDATE:
+                    fireUpdate(data.update);
                     break;
     //JOIN_REQUEST:   1,
     //JOIN_REPLY:     2,

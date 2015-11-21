@@ -136,8 +136,7 @@ clientManager.onClientAction = function(clientID, action, data) {
             var worldBlockCorner = Vec3.sum(Vec3.multiplyVbyV(sessionBlock, SESSION_AREA_DIMENSIONS), SESSION_AREA_START);
             var worldBlockCenter = Vec3.sum(worldBlockCorner, Vec3.multiply(SESSION_AREA_DIMENSIONS, 0.5));
             clientManager.send(clientID, {
-                action: LOBBY_ACTION.REGIST
-                ER_SESSION_REPLY,
+                action: LOBBY_ACTION.REGISTER_SESSION_REPLY,
                 port: sessionPort,
                 block: {
                     center: worldBlockCenter,

@@ -1,7 +1,7 @@
 const LOBBY_WS_URL = 'ws://no-ip.thoysvps.nl:18000';
 const SCRIPTS_PATH = 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/';
 
-const TRACK_SELECTION_TIME = 10; //seconds
+TRACK_SELECTION_TIME = 10; //seconds
 
 Script.include([
     SCRIPTS_PATH + 'libraries/constants.js',

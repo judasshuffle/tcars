@@ -17,7 +17,7 @@ STATE = {
     LOBBY: 0,
     TRACK_SELECTION: 1,
     CAR_SELECTION: 2,
-    PITSTOP: 3,
+    LOADING: 3,
     DRIVING: 4,
     RACING: 5,
     GAMEOVER: 6
