@@ -154,7 +154,7 @@ Session = function(port, block) {
                 //    timeleft = TRACK_SELECTION_TIME;
                 //}
                 var sessionClient = clientManager.getClient(clientID);
-                sessionClient.trackVote = data.vote;
+                sessionClient.trackVote = data.trackID;
                 break;
             case SESSION_ACTION.UPDATE:
 

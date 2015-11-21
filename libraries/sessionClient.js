@@ -30,7 +30,7 @@ SessionClient = function() {
     };
 
     _this.voteTrack = function(trackID) {
-        socket.send(JSON.stringify({action: SESSION_ACTION.VOTE, trackID: trackID}));
+        socket.send(JSON.stringify({action: SESSION_ACTION.VOTE, data: {trackID: trackID}}));
     };
 
     _this.joinSession = function(WSURL, sessionInfo, preferredRole) {

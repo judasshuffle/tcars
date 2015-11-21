@@ -217,11 +217,11 @@ Controller.keyPressEvent.connect(function(event) {
             var selectedTrack = TRACKS[selectedTrackID];
             //TODO: let the session-AC decide the seat
             //avatarSeater.setSeat(selectedTrack.seats[0]);
-            car = new Car(selectedCar.vehicle, Vec3.sum(block.center, selectedTrack.startPosition), selectedTrack.startOrientation);
-            //state = STATE.DRIVING;
+            car = new Car(selectedCar.vehicle, Vec3.sum(sessionBlock.center, selectedTrack.startPosition), selectedTrack.startOrientation);
+            state = STATE.DRIVING;
             cameraHandler.firstCamera();
             carSelector.cleanup();
-            state = STATE.RACE;
+            //state = STATE.RACE;
         }
     }
 });
