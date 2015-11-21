@@ -29,6 +29,7 @@ const MAX_MESSAGES = 20;
 var messageViewer = new MessageViewer({x: 100, y: 100}, 'TCars MessagesViewer', MAX_MESSAGES);
 var avatarSeater = new AvatarSeater();
 var keyCapturer = new KeyCapturer();
+keyCapturer.captureKeys();
 var trackSelector = new TrackSelector();
 var carSelector = new CarSelector();
 var cameraHandler = new CameraHandler();
@@ -55,10 +56,10 @@ function setSessionState(sessionState) {
             cameraHandler.setCameras(TRACKS[selectedTrackID].cameras);            
             break;
         case SESSION_STATE.COUNT_DOWN:
-            state = STATE.RACE;
+            //state = STATE.RACE;
             break;
         case SESSION_STATE.RACING:
-            state = STATE.RACE;
+            //state = STATE.RACE;
             break;
     }
 }
@@ -213,13 +214,14 @@ Controller.keyPressEvent.connect(function(event) {
             carSelector.nextCar();
         } else if (event.key == KEY.SPACE) {
             var selectedCar = carSelector.selectableCars[carSelector.selectedCar];
-            var selectedTrack = TRACKS[trackSelector.selectedTrack];
+            var selectedTrack = TRACKS[selectedTrackID];
             //TODO: let the session-AC decide the seat
             //avatarSeater.setSeat(selectedTrack.seats[0]);
-            car = new Car(selectedCar.vehicle, selectedTrack.startPosition, selectedTrack.startOrientation);
-            state = STATE.DRIVING;
+            car = new Car(selectedCar.vehicle, Vec3.sum(block.center, selectedTrack.startPosition), selectedTrack.startOrientation);
+            //state = STATE.DRIVING;
             cameraHandler.firstCamera();
             carSelector.cleanup();
+            state = STATE.RACE;
         }
     }
 });
