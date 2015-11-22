@@ -15,6 +15,12 @@ TrackZoneEditingTools = function() {
         trackZoneManager.selectNearestTrackZone(Camera.position);
     };
 
+    _this.getRelativePosition = function(globalPosition) {
+        trackZoneManager.refreshNearbyTracks(MyAvatar.position);
+        _this.selectClosestTrack();
+        return Vec3.subtract(trackZoneManager.getSelectedTrackZone().getPosition(), globalPosition);
+    };
+
     _this.exportTrack = function() {
         var exportWindows = new WebWindow('Export window', Script.resolvePath('html/exportTrackZone.html'), 800, 600);
         exportWindows.setVisible(true);
@@ -68,17 +74,21 @@ const MENUITEM_TCARS_EDIT_SELECT_NEAREST = 'Select Nearest TrackZone';
 const MENUITEM_TCARS_EDIT_IMPORT = 'TrackZoneImport';
 const MENUITEM_TCARS_EDIT_EXPORT = 'TrackZoneExport';
 const MENU_TCARS_EDIT_CHECKPOINTS = MENU_TCARS_EDIT + ' > Checkpoints';
+const MENUITEM_TCARS_GET_LOCAL_POS = 'Get Local Position';
 
 Menu.addMenu(MENU_TCARS_EDIT);
 Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENUITEM_TCARS_EDIT_IMPORT});
 Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENUITEM_TCARS_EDIT_EXPORT});
 Menu.addMenu(MENU_TCARS_EDIT_CHECKPOINTS);
+Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENUITEM_TCARS_GET_LOCAL_POS});
 
 Menu.menuItemEvent.connect(function(menuItem) {
     if (menuItem === MENUITEM_TCARS_EDIT_EXPORT) {
         trackZoneEditingTools.exportTrack();
     } else if (menuItem === MENUITEM_TCARS_EDIT_IMPORT) {
         trackZoneEditingTools.importTrack();
+    } else if (menuItem === MENUITEM_TCARS_GET_LOCAL_POS) {
+        print(JSON.stringify(trackZoneEditingTools.getRelativePosition(MyAvatar.position)));
     }
 });
 

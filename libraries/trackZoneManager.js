@@ -45,12 +45,12 @@ TrackZoneManager = function () {
     };
 
     _this.createTrack = function(name, position, dimensions, entityProperties) {
-        print("name: " + name);
+        print('name: ' + name);
 
         var newProperties = {
-            type: "Zone",
+            type: 'Zone',
             name: name,
-            userData: JSON.stringify({TCars: {type: "track"}}),
+            userData: JSON.stringify({TCars: {type: 'track'}}),
             position: position,
             dimensions: dimensions
         };
@@ -60,7 +60,7 @@ TrackZoneManager = function () {
             }
         }
 
-        print("adding: " + JSON.stringify(newProperties));
+        print('adding: ' + JSON.stringify(newProperties));
         return Entities.addEntity(newProperties);
     };
 
@@ -72,7 +72,7 @@ TrackZoneManager = function () {
                 var properties = trackZoneData.entities[i];
                 var newProperties = {};
                 for (property in properties) {
-                    if (property === "localPosition") {
+                    if (property === 'localPosition') {
                         continue;
                     }
                     newProperties[property] = properties[property];
@@ -99,7 +99,7 @@ TrackZoneManager = function () {
             var entity = entities[possibleTrackZone];
             var properties = Entities.getEntityProperties(entity);
             if (entityIsTrackZone(properties)) {
-                print("Found zone: " + properties.name);
+                print('Found zone: ' + properties.name);
                 foundTracks.push(entity);
                 if (_this.trackZones[entity] === undefined) {
                     _this.trackZones[entity] = new TrackZone(entity);
@@ -110,7 +110,7 @@ TrackZoneManager = function () {
         for (var trackZoneKey in _this.trackZones) {
             if (foundTracks.indexOf(trackZoneKey) === -1) {
                 delete _this.trackZones[trackZoneKey];
-                print("Lost a TrackZone out of vision.");
+                print('Lost a TrackZone out of vision.');
             }
         }
     };
