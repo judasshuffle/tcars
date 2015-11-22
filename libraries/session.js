@@ -30,10 +30,10 @@ Session = function(port, block) {
         var trackVotes = {};
         clientManager.doForAllClients(function(clientID, client) {
             if (client.trackVote !== undefined) {
-                if (trackVotes[client.trackVotes] === undefined) {
-                    trackVotes[client.trackVotes] = 0;
+                if (trackVotes[client.trackVote] === undefined) {
+                    trackVotes[client.trackVote] = 0;
                 }
-                trackVotes[client.trackVotes]++;
+                trackVotes[client.trackVote]++;
             }
         });
         var maxVoteNum = 0;
@@ -61,15 +61,17 @@ Session = function(port, block) {
         req.open('GET', TRACK_ZONE_FOLDER_URL + TRACKS[trackID].trackJSON, false);
         req.send();
         track = req.response;
+      //  print('the track:');
+      //  print(track);
     };
 
     var numParticipantRole = function(role) {
         var roleParticipantCount = 0;
-        print('looping through all clients:');
+      //  print('looping through all clients:');
         clientManager.doForAllClients(function(clientID, client) {
-            print('found client with ID ' + clientID + 'with client role: ' + client.role);
+            //print('found client with ID ' + clientID + 'with client role: ' + client.role);
             if (client.role === role) {
-                print('role matches!');
+              //  print('role matches!');
                 roleParticipantCount++;
             }
         });
@@ -154,7 +156,8 @@ Session = function(port, block) {
                 //    timeleft = TRACK_SELECTION_TIME;
                 //}
                 var sessionClient = clientManager.getClient(clientID);
-                sessionClient.trackVote = data.trackID;
+                sessionClient.trackVote = data.data.trackID;
+                print('trackvote received with ID ' + sessionClient.trackVote);
                 break;
             case SESSION_ACTION.UPDATE:
 
@@ -168,7 +171,7 @@ Session = function(port, block) {
        //     lastTime = timeLeft;
        //     sendToAllActiveClients({action: ACTION.COUNTING, timeleft: timeLeft});
        // }
-        print('state: ' + state + ' TimeLeft: ' + timeLeft);
+        //print('state: ' + state + ' TimeLeft: ' + timeLeft);
         if (state === SESSION_STATE.VOTE_TRACK) {
             if (timeLeft <= 0) {
                 trackID = getWinningTrackVote();

@@ -16,7 +16,7 @@ TRACKS = [
             scale: 125.0
         }
     ],
-    vehicles: ['BLUES', 'CAPRI', 'TORINO', '2BEATLE', 'DS', 'TESTCAR', 'BBCAR', 'WOLF', 'CAT', 'HANDVAN', 'SHOE', 'CHAIR', 'SPACE'],
+    vehicles: ['BLUES', 'CAPRI', 'TORINO', '2BEATLE', 'DS', 'BBCAR', 'WOLF', 'CAT', 'HANDVAN', 'SHOE', 'CHAIR', 'SPACE'],
     cameras: [CAMERA.CAR_FIXED_WORLD, CAMERA.CAR_FROM_USER_AUTOFOCUS, CAMERA.CAR_TOPVIEW, CAMERA.CAR_BEHIND_CLOSE],
     startPosition: {x: -21.3447265625, y: -1.5234375, z: 34.615234375 }, //{x: 7969.8955078125, y: 7909.921875, z: 7788.82763671875},
     startOrientation: {x: 0, y: -0.8411639928817749, z: 0, w: 0.5407801270484924},
@@ -33,9 +33,9 @@ TRACKS = [
             scale: 125.0
         }
     ],
-    vehicles: ['BLUES', 'CAPRI', 'TORINO', '2BEATLE', 'DS', 'TESTCAR', 'BBCAR', 'WOLF', 'CAT', 'HANDVAN', 'SHOE', 'CHAIR', 'SPACE'],
+    vehicles: ['BLUES', 'CAPRI', 'TORINO', '2BEATLE', 'DS', 'BBCAR', 'WOLF', 'CAT', 'HANDVAN', 'SHOE', 'CHAIR', 'SPACE'],
     cameras: [CAMERA.CAR_FIXED_WORLD, CAMERA.CAR_FROM_USER_AUTOFOCUS, CAMERA.CAR_TOPVIEW, CAMERA.CAR_BEHIND_CLOSE],
-    startPosition: {x: 2046.289794921875, y: 1888.758056640625, z: 2073.35205078125},
+    startPosition: {x: -10.75732421875, y: -16.384765625, z: 26.4462890625},
     startOrientation: {x: 0, y: -0.7429486513137817, z: 0, w: 0.669348418712616},
     previewPosition: {x: -8.547079086303711, y: 1.9484647512435913, z: 1.88816499710083},
     previewOrientation: {x: -0.016121888533234596, y: 0.6953659057617188, z: 0.015607025474309921, w: 0.7183054685592651},
@@ -50,9 +50,9 @@ TRACKS = [
             scale: 10.0
         }
     ],
-    vehicles: ['BLUES', 'CAPRI', 'TORINO', '2BEATLE', 'DS', 'TESTCAR', 'BBCAR', 'WOLF', 'CAT', 'HANDVAN', 'SHOE', 'CHAIR', 'SPACE'],
+    vehicles: ['BLUES', 'CAPRI', 'TORINO', '2BEATLE', 'DS', 'BBCAR', 'WOLF', 'CAT', 'HANDVAN', 'SHOE', 'CHAIR', 'SPACE'],
     cameras: [CAMERA.CAR_TOPVIEW, CAMERA.CAR_BEHIND_CLOSE],
-    startPosition: { x: 7111.21044921875, y: 7993.75341796875, z: 8112.84814453125},
+    startPosition: {x: -66.80615234375, y: -145.240234375, z: -12.42626953125},
     startOrientation: { x: -0.002904998604208231, y: -0.9950630068778992, z: -0.09435316920280457, w: 0.030636562034487724},
     previewPosition: {x: -8.34484577178955, y: 1.9537969827651978, z: -1.680985927581787},
     previewOrientation: {x: -0.0030006752349436283, y: 0.707954466342926, z: 0.003007936989888549, w: 0.7062453031539917},
@@ -67,9 +67,9 @@ TRACKS = [
             scale: 125.0
         }
     ],
-    vehicles: ['BLUES', 'CAPRI', 'TORINO', '2BEATLE', 'DS', 'TESTCAR', 'BBCAR', 'WOLF', 'CAT', 'HANDVAN', 'SHOE', 'CHAIR', 'SPACE'],
+    vehicles: ['BLUES', 'CAPRI', 'TORINO', '2BEATLE', 'DS', 'BBCAR', 'WOLF', 'CAT', 'HANDVAN', 'SHOE', 'CHAIR', 'SPACE'],
     cameras: [CAMERA.CAR_FIXED_WORLD, CAMERA.CAR_FROM_USER_AUTOFOCUS, CAMERA.CAR_TOPVIEW, CAMERA.CAR_BEHIND_CLOSE],
-    startPosition: {x: 8686.42, y: 9298.34, z: 8729.210},
+    startPosition: {x: -160.2822265625, y: -34.20166015625, z: -193.3505859375},
     startOrientation: {x: -0.332059, y: 0, z: 0, w: 0.943259},
     previewPosition: {x: -7.89496374130249, y: 2.093385696411133, z: -9.421926498413086},
     previewOrientation: {x: -0.016021521762013435, y: 0.6992429494857788, z: 0.01567869260907173, w: 0.7145325541496277},
@@ -86,7 +86,7 @@ TRACKS = [
     ],
     vehicles: ['CHAIR', 'SPACE', 'SPACE2'],
     cameras: [CAMERA.CAR_INSIDE, CAMERA.CAR_TOPVIEW, CAMERA.CAR_BEHIND_CLOSE],
-    startPosition: {x: -2.691162109375, y: 84.7762451171875, z: -93.4931640625},
+    startPosition: {x: 4.76910400390625, y: -84.46856689453125, z: 92.44921875},
     startOrientation: {x: 0, y: 0.6923482418060303, z: 0, w: 0.7215635180473328},
     previewPosition: {x: -7.653191089630127, y: 2.104630470275879, z: -9.134285926818848},
     previewOrientation: {x: -0.01589319296181202, y: 0.7050438523292542, z: 0.01580876298248768, w: 0.7088093161582947},
