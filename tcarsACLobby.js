@@ -29,7 +29,7 @@ const SESSION_AREA_DIMENSIONS = {
     z: SESSION_AREA_SIZE
 };
 
-const SCRIPTS_PATH = 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/';
+const SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
 
 Script.include([
     SCRIPTS_PATH + 'libraries/constants.js',
