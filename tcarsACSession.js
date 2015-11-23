@@ -1,5 +1,5 @@
-const LOBBY_WS_URL = 'ws://no-ip.thoysvps.nl:18000';
-const SCRIPTS_PATH = 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/';
+const LOBBY_WS_URL = 'ws://toycars.highfidelity.io:18000';
+const SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
 
 TRACK_SELECTION_TIME = 10; //seconds
 
