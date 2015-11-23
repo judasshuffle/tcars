@@ -1,4 +1,4 @@
-const LOBBY_WS_URL = 'ws://toycars.highfidelity.io:18000/';
+const LOBBY_WS_URL = 'ws://localhost:18000/';
 const SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
 
 TRACK_SELECTION_TIME = 10; //seconds
