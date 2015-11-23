@@ -85,7 +85,7 @@ sessionClient.onUpdate = function(update) {
     }
 
 };
-var sessionList = new SessionList({}, 'no-ip.thoysvps.nl', 18000);
+var sessionList = new SessionList({}, 'toycars.highfidelity.io', 18000);
 sessionList.onSessionSelected = function(sessionWSURL, sessionInfo) {
     sessionClient.joinSession(sessionWSURL, sessionInfo);
     sessionList.hide();
