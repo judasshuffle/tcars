@@ -1,6 +1,8 @@
 const LOBBY_WS_URL = 'ws://localhost:18000/';
 const SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
 
+Messages.sendMessage("TCarsDebug", "Session started");
+
 TRACK_SELECTION_TIME = 10; //seconds
 
 Script.include([

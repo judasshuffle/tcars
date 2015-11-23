@@ -2,6 +2,8 @@ const PORT = 18000;
 const SESSION_PORTS_START = 18001;
 const SESSION_PORTS_MAX_COUNT = 100;
 
+Messages.sendMessage("TCarsDebug", "Lobby Started");
+
 const SESSION_AREA_START = {
     x: -16000,
     y: -16000,
