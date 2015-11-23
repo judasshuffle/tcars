@@ -22,9 +22,10 @@ var lastPingResponse = null;
 
 var lobbySocket = new WebSocket(LOBBY_WS_URL);
 
-//var ping = 0;
+var ping = 0;
 var pingLobby = function() {
     //print('ping: ' + (ping++));
+    Messages.sendMessage("TCarsDebug", "session ping " + (ping++));
     if (lobbySocket.readyState === lobbySocket.OPEN) {
         var now = Date.now();
         if (lastPingRequest !== null && (lastPingResponse === null || (lastPingResponse + PING_TIMEOUT) < now)) {
