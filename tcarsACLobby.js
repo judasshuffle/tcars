@@ -2,7 +2,9 @@ const PORT = 18000;
 const SESSION_PORTS_START = 18001;
 const SESSION_PORTS_MAX_COUNT = 100;
 
-Messages.sendMessage("TCarsDebug", "Lobby Started");
+Script.setTimeout(function() {
+    Messages.sendMessage("TCarsDebug", "Lobby Started, sent after 5 seconds.");
+}, 5000);
 
 const SESSION_AREA_START = {
     x: -16000,
