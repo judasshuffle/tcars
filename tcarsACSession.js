@@ -1,4 +1,4 @@
-const LOBBY_WS_URL = 'ws://10.250.17.85:18000';
+const LOBBY_WS_URL = 'ws://54.176.3.23:18000';
 const SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
 
 Messages.sendMessage("TCarsDebug", "Session started");
