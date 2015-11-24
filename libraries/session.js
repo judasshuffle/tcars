@@ -146,7 +146,7 @@ Session = function(port, block) {
                     state = SESSION_STATE.VOTE_TRACK;
                     timeLeft = TRACK_SELECTION_TIME;
                 }
-                clientManager.send(clientID, {action: SESSION_ACTION.JOIN_REPLY, update: {state: state, counter: timeLeft, trackID: trackID}});
+                clientManager.send(clientID, {action: SESSION_ACTION.JOIN_REPLY, update: {state: state, counter: timeLeft, trackID: trackID, block: block}});
                 clientManager.sendToAllActiveClients({action: SESSION_ACTION.PLAYER_JOIN })
                 sendSessionInfo();
                 break;
