@@ -63,13 +63,12 @@ DEFAULT_REGISTRATION_POINT = {x: 0.5, y: 0.5, z: 0.5};
 SPEED_FORWARD = 500;
 SPEED_BRAKES = 1015;
 
-SOUND_FOLDER_URL = "http://hifi-external.s3.amazonaws.com/tcars/sounds/";
-
 SOUND = true;
 
-MODEL_FOLDER_URL = "http://hifi-external.s3.amazonaws.com/tcars/models/";
-
-TRACK_ZONE_FOLDER_URL = "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/trackzones/";
+SOUND_FOLDER_URL = 'http://hifi-external.s3.amazonaws.com/tcars/sounds/';
+MODEL_FOLDER_URL = 'http://hifi-external.s3.amazonaws.com/tcars/models/';
+SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
+TRACK_ZONE_FOLDER_URL = SCRIPTS_PATH + '/trackzones/';
 
 TRACK_ZONE_DIMENSIONS = {x: 2000, y: 2000, z: 2000};
 TRACK_ZONE_SEARCH_DISTANCE = 2000; // search distance of trackzones (in meters)
@@ -78,7 +77,7 @@ HALF_UNIT = 0.5;
 MAX_PLAYERS = 8;
 MAX_SPECTATORS = 10;
 
-VEHICLE_MODEL_PREFIX = "TCarModel-";
+VEHICLE_MODEL_PREFIX = 'TCarModel-';
 
 ROLE = {
     NONE: 0, // Used when a game is full.
@@ -126,3 +125,15 @@ SESSION_STATE_TEXT[SESSION_STATE.VOTE_TRACK] = 'Track Voting';
 SESSION_STATE_TEXT[SESSION_STATE.LOADING] = 'Loading Track';
 SESSION_STATE_TEXT[SESSION_STATE.COUNT_DOWN] = 'Count Down';
 SESSION_STATE_TEXT[SESSION_STATE.RACE] = 'Race in progress';
+
+WHEEL_LEFT_FRONT = 0;
+WHEEL_RIGHT_FRONT = 1;
+WHEEL_LEFT_BACK = 2;
+WHEEL_RIGHT_BACK = 3;
+WHEEL_COUNT = 4;
+
+STEERING_ANGLE_MULTIPLIER = 30;
+ONE_EIGHTY = 180;
+MAX_DEGREES = 360;
+TIRE_SPIN_MULTIPLIER = 100;
+
