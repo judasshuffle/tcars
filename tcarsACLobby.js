@@ -34,11 +34,30 @@ const SESSION_AREA_DIMENSIONS = {
 };
 
 const SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
+const LOBBY_ENTITIES_PATH = SCRIPTS_PATH + 'entities/lobby.svo.json'
 
 Script.include([
     SCRIPTS_PATH + 'libraries/constants.js',
     SCRIPTS_PATH + 'libraries/clientManager.js'
 ]);
+
+function setupLobbyEntities() {
+    try {
+        var req = new XMLHttpRequest();
+        req.open('GET', LOBBY_ENTITIES_PATH, false);
+        req.send();
+        var lobbyEntityData = JSON.parse(req.response);
+        var offset = lobbyEntityData.Offset;
+        var entities = lobbyEntityData.Entities;
+        for (var i = 0; i < entities.length; i++) {
+            var entity = entities[i];
+            entity.position = Vec3.sum(entity.position, offset);
+            Entities.addEntity(entity);
+        }
+    } catch (e) {
+        print(JSON.stringify(e));
+    }
+}
 
 function maxBlocksDimension(dimension) {
     return Math.floor(Math.abs(SESSION_AREA_START[dimension] - SESSION_AREA_END[dimension]) / SESSION_AREA_DIMENSIONS[dimension]);
@@ -197,3 +216,5 @@ var cleanLobbySessions = function() {
 };
 
 var cleanLobbySessionsTimer = Script.setInterval(cleanLobbySessions, PING_TIMEOUT);
+
+setupLobbyEntities();
