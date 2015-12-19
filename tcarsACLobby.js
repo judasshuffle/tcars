@@ -51,11 +51,12 @@ function setupLobbyEntities() {
         var entities = lobbyEntityData.Entities;
         for (var i = 0; i < entities.length; i++) {
             var entity = entities[i];
-            entity.position = Vec3.sum(entity.position, offset);
+            entity.position = Vec3.subtract(entity.position, offset);
+            delete entity['id'];
             Entities.addEntity(entity);
         }
     } catch (e) {
-        print(JSON.stringify(e));
+        print("Error: " + JSON.stringify(e));
     }
 }
 
