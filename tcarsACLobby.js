@@ -1,9 +1,20 @@
 const PORT = 18000;
 const SESSION_PORTS_START = 18001;
 const SESSION_PORTS_MAX_COUNT = 100;
+const DEBUG_OVER_MESSAGES_PROTOCOL = true;
+
+var debugPrint = function(message) {
+    var preText = "[TCarsLobby] > ";
+    if (DEBUG_OVER_MESSAGES_PROTOCOL) {
+        Messages.sendMessage("TCarsDebug", preText + message);
+        return;
+    }
+    print(preText + message);
+};
 
 Script.setTimeout(function() {
-    Messages.sendMessage("TCarsDebug", "Lobby Started, sent after 5 seconds.");
+    debugPrint("Lobby Started, sent after 5 seconds.");
+    setupLobbyEntities();
 }, 5000);
 
 const SESSION_AREA_START = {
@@ -47,16 +58,12 @@ function setupLobbyEntities() {
         req.open('GET', LOBBY_ENTITIES_PATH, false);
         req.send();
         var lobbyEntityData = JSON.parse(req.response);
-        var offset = lobbyEntityData.Offset;
         var entities = lobbyEntityData.Entities;
         for (var i = 0; i < entities.length; i++) {
-            var entity = entities[i];
-            entity.position = Vec3.subtract(entity.position, offset);
-            delete entity['id'];
-            Entities.addEntity(entity);
+            Entities.addEntity(entities[i]);
         }
     } catch (e) {
-        print("Error: " + JSON.stringify(e));
+        debugPrint("Error: " + JSON.stringify(e));
     }
 }
 
@@ -136,15 +143,15 @@ function getFreeSessionPort() {
 var clientManager = new ClientManager(PORT);
 
 clientManager.onClientConnect = function(clientID) {
-    print('got client with id: ' + clientID);
+    debugPrint('got client with id: ' + clientID);
 };
 
 clientManager.onClientDisconnect = function(clientID) {
-    print('client disconnected with id: ' + clientID);
+    debugPrint('client disconnected with id: ' + clientID);
 };
 
 clientManager.onClientAction = function(clientID, action, data) {
-    print('message from client with id: ' + clientID + ' action = ' + action);
+    debugPrint('message from client with id: ' + clientID + ' action = ' + action);
     switch (action) {
         case LOBBY_ACTION.REGISTER_SESSION_REQUEST:
             var sessionPort = getFreeSessionPort();
@@ -190,7 +197,7 @@ clientManager.onClientAction = function(clientID, action, data) {
         case LOBBY_ACTION.PING:
             var sessionClient = clientManager.getClient(clientID);
             sessionClient.lastReceivedPing = Date.now();
-            print('received ping from ' + clientID);
+            debugPrint('received ping from ' + clientID);
             clientManager.send(clientID, {action: LOBBY_ACTION.PONG});
             break;
     }
@@ -211,11 +218,9 @@ var cleanLobbySessions = function() {
 
     for (var i = 0; i < deleteClientIDs.length; i++) {
         var deleteID = deleteClientIDs[i];
-        print('removing session client with ID: ' + deleteID);
+        debugPrint('removing session client with ID: ' + deleteID);
         clientManager.deleteClient(deleteID);
     }
 };
 
 var cleanLobbySessionsTimer = Script.setInterval(cleanLobbySessions, PING_TIMEOUT);
-
-setupLobbyEntities();
