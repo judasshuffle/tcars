@@ -1,19 +1,30 @@
+const LOBBY_WS_URL = 'ws://54.176.3.23:18000';
+const LOBBY_WS_URL_REQUEST_CHANNEL = 'tcarsRequestLobbyWSURL';
+const LOBBY_WS_URL_RESPONSE_CHANNEL = 'tcarsResponseLobbyWSURL';
 const PORT = 18000;
 const SESSION_PORTS_START = 18001;
 const SESSION_PORTS_MAX_COUNT = 100;
 const DEBUG_OVER_MESSAGES_PROTOCOL = true;
 
+Messages.subscribe(LOBBY_WS_URL_REQUEST_CHANNEL);
+
+Messages.messageReceived.connect(function (channel, message, senderID) {
+    if (channel === LOBBY_WS_URL_REQUEST_CHANNEL) {
+        Messages.sendMessage(LOBBY_WS_URL_RESPONSE_CHANNEL, LOBBY_WS_URL);
+    }
+});
+
 var debugPrint = function(message) {
-    var preText = "[TCarsLobby] > ";
+    var preText = '[TCarsLobby] > ';
     if (DEBUG_OVER_MESSAGES_PROTOCOL) {
-        Messages.sendMessage("TCarsDebug", preText + message);
+        Messages.sendMessage('TCarsDebug', preText + message);
         return;
     }
     print(preText + message);
 };
 
 Script.setTimeout(function() {
-    debugPrint("Lobby Started, sent after 5 seconds.");
+    debugPrint('Lobby Started, sent after 5 seconds.');
     setupLobbyEntities();
 }, 5000);
 

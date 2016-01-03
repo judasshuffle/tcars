@@ -67,7 +67,7 @@ function setSessionState(sessionState) {
 var sessionClient = new SessionClient();
 sessionClient.onMessage = messageViewer.append;
 sessionClient.onUpdate = function(update) {
-    print("update " + JSON.stringify(update) );
+    print('update ' + JSON.stringify(update));
     if (update.seat !== undefined) {
         avatarSeater.setSeat(update.seat);
     }
