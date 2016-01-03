@@ -54,8 +54,8 @@ TrackZone = function(trackZoneEntityID) {
             return userData;
         } catch (e) {
             // probably invalid JSON
-            Window.alert("error getting ZONE DATA (Stopping script)");
-            throw "Script blew up!";
+            Window.alert('error getting ZONE DATA (Stopping script)');
+            throw 'Script blew up!';
         }
     };
 
@@ -63,13 +63,13 @@ TrackZone = function(trackZoneEntityID) {
         try {
             var tCarsUserData = getZoneUserData().TCars;
             if (tCarsUserData === undefined) {
-                throw "Could not find TCars userdata property";
+                throw 'Could not find TCars userdata property';
             }
             return tCarsUserData;
         } catch (e) {
             // probably invalid JSON
-            Window.alert("error getting ZONE DATA (Stopping script)");
-            throw "Script blew up!";
+            Window.alert('error getting ZONE DATA (Stopping script)');
+            throw 'Script blew up!';
         }
     };
 
@@ -77,14 +77,14 @@ TrackZone = function(trackZoneEntityID) {
         try {
             var userData = getZoneUserData();
             if (userData.TCars === undefined) {
-                throw new Exception("Could not find TCars userdata property");
+                throw new Exception('Could not find TCars userdata property');
             }
             userData.TCars[variable] = value;
             Entities.editEntity(_this.trackZoneEntityID, {userData: JSON.stringify(userData)});
         } catch (e) {
             // probably invalid JSON
-            Window.alert("error getting ZONE DATA (Stopping script)");
-            throw new "Script blew up!";
+            Window.alert('error getting ZONE DATA (Stopping script)');
+            throw new 'Script blew up!';
         }        
     };
 
@@ -166,7 +166,7 @@ TrackZone = function(trackZoneEntityID) {
                 }
             }
             // calculate position
-            filteredProperties["localPosition"] = Vec3.subtract(properties.position, zonePosition);
+            filteredProperties['localPosition'] = Vec3.subtract(properties.position, zonePosition);
 
             result.push(filteredProperties);
         }
@@ -194,11 +194,11 @@ TrackZone = function(trackZoneEntityID) {
     };
     
     _this.setBackgroundShader = function(shaderURL) {
-        Window.alert("This feature is not implemented yet!");
+        Window.alert('This feature is not implemented yet!');
     };
 
     _this.deleteTrackZone = function() {
-        print("deleting TrackZone " + _this.trackZoneEntityID);
+        print('deleting TrackZone ' + _this.trackZoneEntityID);
         for (var i = 0; i < _this.trackEntities.length; i++) {
             Entities.deleteEntity(_this.trackEntities[i]);
         }

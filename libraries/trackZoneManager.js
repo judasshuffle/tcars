@@ -11,10 +11,10 @@ TrackZoneManager = function () {
     var selectedTrackZone = null;
 
     var entityIsTrackZone = function(properties) {
-        if (properties.type === "Zone") {
+        if (properties.type === 'Zone') {
             try {
                 var zoneUserData = JSON.parse(properties.userData);
-                return (zoneUserData.TCars !== undefined && zoneUserData.TCars.type === "track");
+                return (zoneUserData.TCars !== undefined && zoneUserData.TCars.type === 'track');
             } catch (e) {
                 print(e);
                 // probably invalid JSON

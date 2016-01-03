@@ -11,8 +11,8 @@ TrackSelector = function() {
     _this.selectedTrack = 0;
     _this.trackTitleOverlay = null;
     _this.init = function() {
-        print("Track selector initializing...");
-        _this.trackTitleOverlay = Overlays.addOverlay("text", {
+        print('Track selector initializing...');
+        _this.trackTitleOverlay = Overlays.addOverlay('text', {
             x: 200,
             y: 200,
             width: 1000,

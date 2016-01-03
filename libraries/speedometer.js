@@ -29,8 +29,8 @@ Speedometer = function() {
         Overlays.deleteOverlay(_this.overlay);
     };
     
-    _this.overlay = Overlays.addOverlay("model", {
-        url: MODEL_FOLDER_URL + "speedo/dial.fbx?v=3",
+    _this.overlay = Overlays.addOverlay('model', {
+        url: MODEL_FOLDER_URL + 'speedo/dial.fbx?v=3',
         dimensions: {x: 0.3, y: 0.3, z: 0.3},
         scale: {x: 0.3, y: 0.3, z: 0.3},
         rotation: getRotation(),

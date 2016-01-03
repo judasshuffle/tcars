@@ -46,12 +46,12 @@ SessionClient = function() {
             var data = JSON.parse(event.data);
             switch (data.action) {
                 case SESSION_ACTION.JOIN_REPLY:
-                    clientMessage("Join reply received");
+                    clientMessage('Join reply received');
                     //TODO: Get current game state and respond appropriatly (Track selection, racing, loading, etc..)
                     fireUpdate(data.update);
                     break;
                 case SESSION_ACTION.PLAYER_JOIN:
-                    clientMessage("A player joined!");
+                    clientMessage('A player joined!');
                     break;
                 case SESSION_ACTION.UPDATE:
                     fireUpdate(data.update);

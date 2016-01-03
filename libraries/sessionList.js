@@ -60,7 +60,7 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
         if (columns[column]) {
             Overlays.deleteOverlay(columns[column]);
         }
-        columns[column] = Overlays.addOverlay("text", {
+        columns[column] = Overlays.addOverlay('text', {
             x: position.x + getColumnPos(column),
             y: position.y + TITLE_HEIGHT,
             width: getColumnWidth(column),
@@ -159,8 +159,8 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
         createColumn(COLUMNS.NUM, parseInt(index) + 1);
         createColumn(COLUMNS.STATE, SESSION_STATE_TEXT[parseInt(sessionInfo.state)]);
         createColumn(COLUMNS.TRACK, _this.getTrackName());
-        createColumn(COLUMNS.PLAYERS, sessionInfo.players + " / " + MAX_PLAYERS);
-        createColumn(COLUMNS.SPECATORS, sessionInfo.spectators + " / " + MAX_SPECTATORS);
+        createColumn(COLUMNS.PLAYERS, sessionInfo.players + ' / ' + MAX_PLAYERS);
+        createColumn(COLUMNS.SPECATORS, sessionInfo.spectators + ' / ' + MAX_SPECTATORS);
 
         _this.cleanup = function() {
             for (column in columns) {
