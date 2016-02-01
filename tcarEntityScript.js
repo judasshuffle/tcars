@@ -17,7 +17,7 @@
     _this.entityID = null;
     _this.properties = null;
 
-    _this.wheelModel = "Twheel.fbx"
+    _this.wheelModel = 'Twheel.fbx';
     _this.frontAxlePos = {x: 0, y: -0.3, z: -2.6};
     _this.backAxlePos = {x: 0, y: -0.3, z: 0.6};
     _this.frontAxleLength = 2.5;
@@ -72,7 +72,7 @@
         if (properties && properties.userData){
             return JSON.parse(properties.userData);
         } else {
-            print("No user data found.");
+            print('No user data found.');
             return null;
         }
     };
@@ -89,7 +89,7 @@
     // Download sound if needed
     _this.maybeDownloadSound = function() {
         if (this.sound === null) {
-            this.sound = SoundCache.getSound("http://hifi-external.s3.amazonaws.com/tcars/sounds/collision.wav");
+            this.sound = SoundCache.getSound('http://hifi-external.s3.amazonaws.com/tcars/sounds/collision.wav');
         }
     }
 
@@ -164,4 +164,4 @@
     _this.clickReleaseOnEntity = function(entityID, mouseEvent) {
         this.updateProperties(entityID);
     };
-})
+});

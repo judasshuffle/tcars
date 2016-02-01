@@ -23,9 +23,13 @@ $(function() {
         });
     }
     sendWebEvent({action: "page_loaded"});*/
-});   
+});
+
 function doImportStuff() {
-    sendWebEvent({action: "import_json", data: $('#import_json').val()});
+    sendWebEvent({
+        action: 'import_json',
+        data: $('#import_json').val()
+    });
 }
 </script>
 </head>

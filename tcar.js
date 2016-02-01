@@ -26,6 +26,8 @@ Script.include([
 ]);
 
 const MAX_MESSAGES = 20;
+const LOBBY_WS_URL_REQUEST_CHANNEL = 'tcarsRequestLobbyWSURL';
+const LOBBY_WS_URL_RESPONSE_CHANNEL = 'tcarsResponseLobbyWSURL';
 var messageViewer = new MessageViewer({x: 100, y: 100}, 'TCars MessagesViewer', MAX_MESSAGES);
 var avatarSeater = new AvatarSeater();
 var keyCapturer = new KeyCapturer();
@@ -83,14 +85,25 @@ sessionClient.onUpdate = function(update) {
     if (update.state !== undefined && update.state !== lastSessionState) {
         setSessionState(update.state);
     }
+};
 
-};
-var sessionList = new SessionList({}, 'toycars.highfidelity.io', 18000);
-sessionList.onSessionSelected = function(sessionWSURL, sessionInfo) {
-    sessionClient.joinSession(sessionWSURL, sessionInfo);
-    sessionList.hide();
-};
-sessionList.init();
+var sessionList = null;
+
+Messages.subscribe(LOBBY_WS_URL_RESPONSE_CHANNEL);
+
+Messages.messageReceived.connect(function (channel, message, senderID) {
+    if (channel === LOBBY_WS_URL_RESPONSE_CHANNEL) {
+//        Messages.sendMessage(LOBBY_WS_URL_RESPONSE_CHANNEL, LOBBY_WS_URL);
+        Messages.unsubscribe(LOBBY_WS_URL_RESPONSE_CHANNEL);
+        var sessionList = new SessionList({}, message, 18000);
+        sessionList.onSessionSelected = function(sessionWSURL, sessionInfo) {
+            sessionClient.joinSession(sessionWSURL, sessionInfo);
+            sessionList.hide();
+        };
+        sessionList.init();
+    }
+});
+
 
 var timeItWentWithoutMoving = 0;
 var actionID = false;
