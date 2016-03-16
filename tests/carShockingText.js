@@ -16,7 +16,7 @@ var displayOverlay = Overlays.addOverlay("text", {
 var floor = Entities.addEntity("Box", {
     position: {x: -200, y: -200, z: -200},
     dimensions: {x: 50, y: 50, z: 50},
-    color: {red: 0, green: 0, blue: 50},
+    color: {red: 0, green: 0, blue: 50}
 
 });
 // box that moves over floor object

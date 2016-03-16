@@ -115,7 +115,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier, newPar
                     type: 'Model',
                     modelURL: MODEL_FOLDER_URL + _this.vehicle.wheelModel,
                     position: wheelPos,
-                    parentID: _this.entity,
+                    parentID: _this.entity
                     //ANGULAR VELOCITY TEST FAILED
                     //angularVelocity: Quat.fromPitchYawRollDegrees(0, 0, 90),
                     //angularDamping: 0
@@ -159,7 +159,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier, newPar
                 blue: 255
             },
             exponent: 0,
-            cutoff: 90, // in degrees
+            cutoff: 90 // in degrees
         });
         if (SOUND) {
             Audio.playSound(soundStarting, {
@@ -168,7 +168,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier, newPar
             });
         }
         _this.soundLoopSwitcher.setSound(soundIdle);
-    }
+    };
 
     _this.update = function(time) {
         //_this.wheelSpin += Vec3.length(_this.properties.velocity) * time * TIRE_SPIN_MULTIPLIER;
@@ -230,7 +230,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier, newPar
             newProperties.velocity.y = carProps.velocity.y;
         }
         
-        var angularVelocityY = Math.log(1 + _this.speedI, 0.1) * _this.steeringOffset;
+        var angularVelocityY = Math.log(1 + _this.speedI) * _this.steeringOffset;
         if (angularVelocityY !== _this.lastAngularVelocityY) {
             _this.lastAngularVelocityY = angularVelocityY;
             newProperties.angularVelocity = {x: 0.0, y: angularVelocityY, z: 0.0};
@@ -292,7 +292,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier, newPar
     };
 
     _this.cleanup = function() {
-        print('Cleaning up a Car.')
+        print('Cleaning up a Car.');
         Audio.playSound(soundShutdown, {
             position: Entities.getEntityProperties(_this.entity).position,
             volume: 0.1

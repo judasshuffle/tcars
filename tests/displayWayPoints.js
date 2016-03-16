@@ -9,9 +9,9 @@ const req = new XMLHttpRequest();
 req.open("GET", WAYPOINT_DATA_URL, false);
 req.send();
 var lines = req.response.split("\n");
-for (var i = 0; i < lines.length; i++) {
-    if (lines[i][0] === 'v' && lines[i][1] === ' ') {
-        var parsedLine = lines[i].split(' ');
+for (var lineIndex = 0; lineIndex < lines.length; lineIndex++) {
+    if (lines[lineIndex][0] === 'v' && lines[lineIndex][1] === ' ') {
+        var parsedLine = lines[lineIndex].split(' ');
         if (parsedLine.length === 4) {
             points.push({x: parseFloat(parsedLine[1]), y: parseFloat(parsedLine[2]), z: parseFloat(parsedLine[3])});
         }
@@ -63,13 +63,13 @@ var prevPoint = null;
 points.reverse();
 
 var cubes = [];
-var TRACKOFFSET = {x: 3006, y: 9057, z: 2999.76};
+var TRACK_OFFSET = {x: 3006, y: 9057, z: 2999.76};
 
 for (var i = 0; i < 0 /*points.length*/; i++) {
-    point = points[i];
-    MyAvatar.position = Vec3.sum(TRACKOFFSET, point);
-    cubes.push(Overlays.addOverlay("cube", {
-                    position: Vec3.sum(TRACKOFFSET, point),
+    var point = points[i];
+    MyAvatar.position = Vec3.sum(TRACK_OFFSET, point);
+    cubes.push(Overlays.addOverlay('cube', {
+                    position: Vec3.sum(TRACK_OFFSET, point),
                     size: {x: 1, y: 1, z: 1},
                     color: { red: 255, green: 0, blue: 0},
                     alpha: 1,
@@ -106,8 +106,8 @@ for (var i = 0; i < 0 /*points.length*/; i++) {
 var currentPos = 0;
 var nextPosition = 1;
 Script.setInterval(function() {
-    pointA = Vec3.sum(TRACKOFFSET, points[currentPos]);
-    pointB = Vec3.sum(TRACKOFFSET, points[nextPosition]);
+    var pointA = Vec3.sum(TRACK_OFFSET, points[currentPos]);
+    var pointB = Vec3.sum(TRACK_OFFSET, points[nextPosition]);
     MyAvatar.position = pointA;
     MyAvatar.orientation = rotateBetween(pointB, pointA);
     currentPos = (currentPos + 1) % points.length;

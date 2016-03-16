@@ -15,7 +15,7 @@ CameraHandler = function() {
 
     _this.isInitiated = function() {
         return initiated;
-    }
+    };
 
     _this.init = function() {
         if (initiated) {

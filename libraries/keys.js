@@ -38,7 +38,7 @@ ALL_KEYS = [
     KEY.DEL
 ];
 
-KeyCapturer = function() {
+KeyCatcher = function() {
     var _this = this;
     var keysCaptured = false;
 

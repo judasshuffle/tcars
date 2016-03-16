@@ -1,18 +1,39 @@
-const LOBBY_WS_URL = 'ws://54.176.3.23:18000';
-const LOBBY_WS_URL_REQUEST_CHANNEL = 'tcarsRequestLobbyWSURL';
-const LOBBY_WS_URL_RESPONSE_CHANNEL = 'tcarsResponseLobbyWSURL';
-const PORT = 18000;
-const SESSION_PORTS_START = 18001;
-const SESSION_PORTS_MAX_COUNT = 100;
+//const LOBBY_WS_URL = 'ws://54.176.3.23:18000';
+//const LOBBY_WS_URL_REQUEST_CHANNEL = 'tcarsRequestLobbyWSURL';
+//const LOBBY_WS_URL_RESPONSE_CHANNEL = 'tcarsResponseLobbyWSURL';
+//const PORT = 18000;
+//const SESSION_PORTS_START = 18001;
+//const SESSION_PORTS_MAX_COUNT = 100;
+
+const SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
+const LOBBY_ENTITIES_PATH = SCRIPTS_PATH + 'entities/lobby.svo.json';
+const LOBBY_POSITION = {x: 0, y: 0, z: 0};
+
+Script.include([
+    SCRIPTS_PATH + 'libraries/constants.js',
+    SCRIPTS_PATH + 'libraries/clientManager.js'
+]);
+
 const DEBUG_OVER_MESSAGES_PROTOCOL = true;
 
-Messages.subscribe(LOBBY_WS_URL_REQUEST_CHANNEL);
+var startupDate = (new Date());
+var timeZoneOffset = startupDate.getTimezoneOffset() * 60 *  1000;
+var startupTimestamp = startupDate.getTime();
 
-Messages.messageReceived.connect(function (channel, message, senderID) {
-    if (channel === LOBBY_WS_URL_REQUEST_CHANNEL) {
-        Messages.sendMessage(LOBBY_WS_URL_RESPONSE_CHANNEL, LOBBY_WS_URL);
-    }
-});
+//Entities.setPacketsPerSecond(2000);
+//Agent.isAvatar = true;
+EntityViewer.setPosition(LOBBY_POSITION);
+EntityViewer.setOrientation(Quat.fromPitchYawRollDegrees(0, 90, 0));
+EntityViewer.setCenterRadius(60000);
+//EntityViewer.queryOctree();
+
+//Messages.subscribe(LOBBY_WS_URL_REQUEST_CHANNEL);
+
+//Messages.messageReceived.connect(function (channel, message, senderID) {
+//    if (channel === LOBBY_WS_URL_REQUEST_CHANNEL) {
+//        Messages.sendMessage(LOBBY_WS_URL_RESPONSE_CHANNEL, LOBBY_WS_URL);
+//    }
+//});
 
 var debugPrint = function(message) {
     var preText = '[TCarsLobby] > ';
@@ -55,14 +76,6 @@ const SESSION_AREA_DIMENSIONS = {
     z: SESSION_AREA_SIZE
 };
 
-const SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
-const LOBBY_ENTITIES_PATH = SCRIPTS_PATH + 'entities/lobby.svo.json'
-
-Script.include([
-    SCRIPTS_PATH + 'libraries/constants.js',
-    SCRIPTS_PATH + 'libraries/clientManager.js'
-]);
-
 function setupLobbyEntities() {
     try {
         var req = new XMLHttpRequest();
@@ -91,7 +104,7 @@ function getBlocksFromDimensions(area) {
                 blocks.push({
                     x: Math.floor(Math.abs(SESSION_AREA_START.x - x) / SESSION_AREA_DIMENSIONS.x),
                     y: Math.floor(Math.abs(SESSION_AREA_START.y - y) / SESSION_AREA_DIMENSIONS.y),
-                    z: Math.floor(Math.abs(SESSION_AREA_START.z - z) / SESSION_AREA_DIMENSIONS.z),
+                    z: Math.floor(Math.abs(SESSION_AREA_START.z - z) / SESSION_AREA_DIMENSIONS.z)
                 });
             }
         }
@@ -134,7 +147,22 @@ function getFreeSessionBlock() {
     }
     return bestPosition;
 }
+var initialized = false;
 
+function update(deltaTime) {
+    if (!initialized) {
+        if (Entities.serversExist() && Entities.canRez()) {
+            print('initialized');
+            Entities.setPacketsPerSecond(6000);
+           // deleteBoxes()
+            initialized = true;
+            Script.update.disconnect(update);
+        }
+    }
+}
+
+Script.update.connect(update);
+/*
 function getFreeSessionPort() {
     var takenPorts = [];
     clientManager.doForAllClients(function(clientID, client) {
@@ -150,8 +178,8 @@ function getFreeSessionPort() {
     }
     return -1;
 }
-
-var clientManager = new ClientManager(PORT);
+*/
+var clientManager = new ClientManager('tcarsLobby');
 
 clientManager.onClientConnect = function(clientID) {
     debugPrint('got client with id: ' + clientID);
@@ -165,11 +193,11 @@ clientManager.onClientAction = function(clientID, action, data) {
     debugPrint('message from client with id: ' + clientID + ' action = ' + action);
     switch (action) {
         case LOBBY_ACTION.REGISTER_SESSION_REQUEST:
-            var sessionPort = getFreeSessionPort();
+            /*var sessionPort = getFreeSessionPort();
             if (sessionPort !== -1) {
                 // set session port if a free one was available
                 clientManager.getClient(clientID).sessionPort = sessionPort;
-            }
+            }*/
             var sessionBlock = getFreeSessionBlock();
             if (sessionBlock !== undefined) {
                 // set session port if a free one was available
@@ -179,7 +207,7 @@ clientManager.onClientAction = function(clientID, action, data) {
             var worldBlockCenter = Vec3.sum(worldBlockCorner, Vec3.multiply(SESSION_AREA_DIMENSIONS, 0.5));
             clientManager.send(clientID, {
                 action: LOBBY_ACTION.REGISTER_SESSION_REPLY,
-                port: sessionPort,
+                //port: sessionPort,
                 block: {
                     center: worldBlockCenter,
                     dimensions: SESSION_AREA_DIMENSIONS
@@ -187,15 +215,14 @@ clientManager.onClientAction = function(clientID, action, data) {
             });
             break;
         case LOBBY_ACTION.SESSION_INFORMATION_UPDATE:
-            var sessionClient = clientManager.getClient(clientID);
-            sessionClient.sessionInfo = data.sessionInfo;
+            clientManager.getClient(clientID).sessionInfo = data.sessionInfo;
             break;
         case LOBBY_ACTION.PLAYER_SESSIONS_REQUEST:
             var sessions = [];
             clientManager.doForAllClients(function(clientID, client) {
-                if (client.sessionPort !== undefined && client.sessionInfo !== undefined) {
+                if (/*client.sessionPort !== undefined && */client.sessionInfo !== undefined) {
                     sessions.push({
-                        port: client.sessionPort,
+                        uuid: clientID,
                         info: client.sessionInfo
                     });
                 }
@@ -206,14 +233,12 @@ clientManager.onClientAction = function(clientID, action, data) {
             });
             break;
         case LOBBY_ACTION.PING:
-            var sessionClient = clientManager.getClient(clientID);
-            sessionClient.lastReceivedPing = Date.now();
+            clientManager.getClient(clientID).lastReceivedPing = Date.now();
             debugPrint('received ping from ' + clientID);
             clientManager.send(clientID, {action: LOBBY_ACTION.PONG});
             break;
     }
 };
-
 
 // Give max time of 10 seconds
 const PING_TIMEOUT = 10000;
@@ -232,6 +257,31 @@ var cleanLobbySessions = function() {
         debugPrint('removing session client with ID: ' + deleteID);
         clientManager.deleteClient(deleteID);
     }
+    // clear old entities
+    EntityViewer.queryOctree();
+    var foundEntities =  0;
+    var entities = Entities.findEntities(LOBBY_POSITION, 60000);
+    for (var i in entities) {
+        var entity = entities[i];
+
+        var entityProperties = Entities.getEntityProperties(entity, ['created', 'locked']);
+
+        var entityCreationTimeStamp = (new Date(entityProperties.created.slice(0, -1).replace('-', '/').replace('-', '/').replace('T', ' ')).getTime()) - timeZoneOffset;
+        //print(entityProperties.created + ' ' + entityCreationTimeStamp);
+        if (startupTimestamp > entityCreationTimeStamp) {
+            foundEntities++;
+            if (entityProperties.locked) {
+                Entities.editEntity(entity, {locked: false});
+            }
+            Entities.deleteEntity(entity);
+        }
+    }
+    //print('startup timestamp:\n' + startupDate + ' ' + startupTimestamp + ' ' + startupDate.toUTCString() + ' ' + timeZoneOffset);
+    if (foundEntities > 0) {
+        print("found entities: " + foundEntities);
+    }// else {
+    //    print("found no entities" + entities.length);
+    //}
 };
 
 var cleanLobbySessionsTimer = Script.setInterval(cleanLobbySessions, PING_TIMEOUT);

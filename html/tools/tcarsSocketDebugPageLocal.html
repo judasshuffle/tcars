@@ -13,7 +13,7 @@ $(function() {
 });
 
 function testWebSocket() {
-    websocket = new WebSocket(wsUri);
+    var websocket = new WebSocket(wsUri);
     websocket.onopen = function(evt) { onOpen(evt) };
     websocket.onclose = function(evt) { onClose(evt) };
     websocket.onmessage = function(evt) { onMessage(evt) };

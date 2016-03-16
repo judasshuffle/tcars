@@ -7,7 +7,7 @@
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
 //
 
-Session = function(port, block) {
+Session = function(block) {
     var _this = this;
 
     const GAME_TIMER_INTERVAL = 1000;
@@ -18,7 +18,7 @@ Session = function(port, block) {
     var track = null;
     var trackZone = null;
 
-    var clientManager = new ClientManager(port);
+    var clientManager = new ClientManager(TCARS_SESSION_CHANNEL_PREFIX + '[' + Agent.sessionUUID + ']');
 
     var timeLeft = Number.MAX_VALUE;
 
@@ -147,7 +147,7 @@ Session = function(port, block) {
                     timeLeft = TRACK_SELECTION_TIME;
                 }
                 clientManager.send(clientID, {action: SESSION_ACTION.JOIN_REPLY, update: {state: state, counter: timeLeft, trackID: trackID, block: block}});
-                clientManager.sendToAllActiveClients({action: SESSION_ACTION.PLAYER_JOIN })
+                clientManager.sendToAllActiveClients({action: SESSION_ACTION.PLAYER_JOIN });
                 sendSessionInfo();
                 break;
             case SESSION_ACTION.VOTE:
@@ -187,7 +187,6 @@ Session = function(port, block) {
             }
             if (numPlayers() > 0) { // we can only play with more then one players
                 timeLeft--;
-                return;
             }
         } else if (state === SESSION_STATE.LOADING) {
             var isLoaded = trackZone !== null;
@@ -213,7 +212,6 @@ Session = function(port, block) {
             }
             //if (numPlayers() > 0) { // we can only play with more then one players
             timeLeft--;
-            return;
             //}
         }
 

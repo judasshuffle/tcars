@@ -29,10 +29,10 @@ TrackZone = function(trackZoneEntityID) {
     // Is the TrackZone fully loaded?
     _this.loaded = false;
     
-    //TODO: physical respawnable entities need userdata that tells us that they are such    
+    //TODO: physical respawnable entities need userdata that tells us that they are such
     _this.trackEntities = [];
 
-    var wantedProperties = {
+    var exportableProperties = {
         "all": ["rotation", "dimensions", "name", "userData", "type", "visible"],
         "Zone": ["keyLight", "skybox", "shapeType", "stage", "backgroundMode"],
         "Light": ["isSpotlight", "color", "intensity", "exponent", "cutoff"],
@@ -50,8 +50,7 @@ TrackZone = function(trackZoneEntityID) {
 
     var getZoneUserData = function() {
         try {
-            var userData = JSON.parse(getZoneProperties().userData).TCars;
-            return userData;
+            return JSON.parse(getZoneProperties().userData).TCars;
         } catch (e) {
             // probably invalid JSON
             Window.alert('error getting ZONE DATA (Stopping script)');
@@ -63,6 +62,7 @@ TrackZone = function(trackZoneEntityID) {
         try {
             var tCarsUserData = getZoneUserData().TCars;
             if (tCarsUserData === undefined) {
+                //noinspection ExceptionCaughtLocallyJS
                 throw 'Could not find TCars userdata property';
             }
             return tCarsUserData;
@@ -77,6 +77,7 @@ TrackZone = function(trackZoneEntityID) {
         try {
             var userData = getZoneUserData();
             if (userData.TCars === undefined) {
+                //noinspection ExceptionCaughtLocallyJS
                 throw new Exception('Could not find TCars userdata property');
             }
             userData.TCars[variable] = value;
@@ -84,7 +85,7 @@ TrackZone = function(trackZoneEntityID) {
         } catch (e) {
             // probably invalid JSON
             Window.alert('error getting ZONE DATA (Stopping script)');
-            throw new 'Script blew up!';
+            throw 'Script blew up!';
         }        
     };
 
@@ -111,7 +112,7 @@ TrackZone = function(trackZoneEntityID) {
         var checkpoints = [];
         var userDataCheckPoints = getZoneTCarsUserData().checkpoints;
         if (userDataCheckPoints !== undefined) {
-            //TODO: sanetize checkpoints?
+            //TODO: sanitize checkpoints?
             checkpoints = userDataCheckPoints;
         }
         return checkpoints;
@@ -134,10 +135,9 @@ TrackZone = function(trackZoneEntityID) {
         // do export voodoo Show JSON in window
         var zoneProperties = {};
         var properties = getZoneProperties();
-        for (property in properties) {
-            if ((wantedProperties["all"].indexOf(property) !== -1 || wantedProperties["Zone"].indexOf(property) !== -1) && property !== "dimensions") {
+        for (var property in properties) {
+            if (properties.hasOwnProperty(property) && (exportableProperties["all"].indexOf(property) !== -1 || exportableProperties["Zone"].indexOf(property) !== -1) && property !== "dimensions") {
                 zoneProperties[property] = properties[property];
-                continue;
             }
         }
 
@@ -158,11 +158,12 @@ TrackZone = function(trackZoneEntityID) {
         for (var i = 0; i < _this.trackEntities.length; i++) {
             var properties = Entities.getEntityProperties(_this.trackEntities[i]);
             var filteredProperties = {};
-            for (property in properties) {
-                if (wantedProperties["all"].indexOf(property) !== -1 || 
-                    (wantedProperties[properties.type] !== undefined && wantedProperties[properties.type].indexOf(property) !== -1)) {
+            for (var property in properties) {
+                if (properties.hasOwnProperty(property) && (exportableProperties["all"].indexOf(property) !== -1 ||
+                    (exportableProperties[properties.type] !== undefined &&
+                    exportableProperties[properties.type].indexOf(property) !== -1)))
+                {
                     filteredProperties[property] = properties[property];
-                    continue;
                 }
             }
             // calculate position
@@ -179,15 +180,16 @@ TrackZone = function(trackZoneEntityID) {
         var corner = Vec3.subtract(zoneProperties.position, Vec3.multiply(zoneProperties.dimensions, HALF_UNIT));
         var entities = Entities.findEntitiesInBox(corner, zoneProperties.dimensions);
         _this.trackEntities = [];
-        for (key in entities) {
-            var entity = entities[key];
-            if (entity !== _this.trackZoneEntityID) {
-                var properties = Entities.getEntityProperties(entity);
-                if (properties.name.substring(0, VEHICLE_MODEL_PREFIX.length) === VEHICLE_MODEL_PREFIX) {
-                    continue; //skip vehicles
+        for (var key in entities) {
+            if (entities.hasOwnProperty(key)) {
+                var entity = entities[key];
+                if (entity !== _this.trackZoneEntityID) {
+                    var properties = Entities.getEntityProperties(entity);
+                    if (properties.name.substring(0, VEHICLE_MODEL_PREFIX.length) === VEHICLE_MODEL_PREFIX) {
+                        continue; //skip vehicles
+                    }
+                    _this.trackEntities.push(entity);
                 }
-
-                _this.trackEntities.push(entity);
             }
         }
         _this.loaded = true;

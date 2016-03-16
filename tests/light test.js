@@ -79,7 +79,7 @@ var colorTable = [
 
 var prevPoint = null;
 for (var i = 0; i < points.length; i++) {
-    point = points[i];
+    var point = points[i];
     if (prevPoint != null) {
         Entities.addEntity({
             type: 'Light',

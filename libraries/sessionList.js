@@ -6,15 +6,16 @@
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
 //
 
-SessionList = function(properties, lobbyHostName, lobbyPort) {
+SessionList = function(properties, lobbyChannel) {
     var _this = this;
+    var lobbyListenChannel = lobbyChannel + '-' + MyAvatar.sessionUUID;
     var sessions = [];
     var columns = {};
     var visible = true;
 
-    var createWSLink = function(port) {
+    /*var createWSLink = function(port) {
         return 'ws://' + lobbyHostName + ':' + port;
-    };
+    };*/
 
     var COLUMNS = {
         NUM: 0,
@@ -77,7 +78,7 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
         var sessionList = sessionList;
 
         var sessionInfo = session.info;
-        var sessionPort = session.port;
+        var sessionUUID = session.uuid;
 
         var visible = visible;
 
@@ -106,16 +107,12 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
             return sessionInfo;
         };
 
-        _this.getSessionPort = function() {
-            return sessionPort;
-        };
-
-        _this.getWSURL = function() {
-            return createWSLink(sessionPort);
+        _this.getSessionChannel = function() {
+            return 'tcars-' + sessionUUID;
         };
 
         _this.containsOverlay = function(overlay) {
-            for (column in columns) {
+            for (var column in columns) {
                 if (columns[column] === overlay) {
                     return true;
                 }
@@ -132,7 +129,7 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
         };
 
         var setVisibility = function(newVisible) {
-            for (column in columns) {
+            for (var column in columns) {
                 Overlays.editOverlay(columns[column], {visible: newVisible});
             }
             visible = newVisible;
@@ -163,7 +160,7 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
         createColumn(COLUMNS.SPECATORS, sessionInfo.spectators + ' / ' + MAX_SPECTATORS);
 
         _this.cleanup = function() {
-            for (column in columns) {
+            for (var column in columns) {
                 Overlays.deleteOverlay(columns[column]);
             }
         };
@@ -177,7 +174,23 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
     };
 
     var refreshSessions = function() {
-        var lobbySocket = new WebSocket(createWSLink(lobbyPort));
+        Messages.subscribe(lobbyListenChannel);
+        Messages.messageReceived.connect(function (channel, message, senderID) {
+            if (channel === lobbyListenChannel) {
+                var data = JSON.parse(message);
+                switch (data.action) {
+                    case LOBBY_ACTION.PLAYER_SESSIONS_REPLY:
+                        clearSessions();
+                        for (var i in data.sessions) {
+                            sessions.push(new Session(_this, i, data.sessions[i], {x: position.x, y: position.y + TITLE_HEIGHT + HEADER_HEIGHT + (i * ROW_HEIGHT), h: ROW_HEIGHT, w: size.width}, visible));
+                        }
+                        break;
+                }
+                Messages.unsubscribe(lobbyListenChannel);
+            }
+        });
+        Messages.sendMessage(lobbyChannel, JSON.stringify({action: LOBBY_ACTION.PLAYER_SESSIONS_REQUEST, closeConnection: true}));
+        /*var lobbySocket = new WebSocket(createWSLink(lobbyPort));
         lobbySocket.onopen = function(event) {
             lobbySocket.send(JSON.stringify({
                 action: LOBBY_ACTION.PLAYER_SESSIONS_REQUEST
@@ -195,7 +208,7 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
                     break;
             }
             lobbySocket.close();
-        };
+        };*/
     };
 
     _this.init = function() {
@@ -235,7 +248,7 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
         for (var i in sessions) {
             if (sessions[i].containsOverlay(clickedOverlay)) {
                 if (_this.onSessionSelected !== undefined) {
-                    _this.onSessionSelected.call(this, sessions[i].getWSURL(), sessions[i].getSessionInfo())
+                    _this.onSessionSelected.call(this, /*sessions[i].getWSURL()*/ sessionChannel, sessions[i].getSessionInfo())
                 }
                 return true;
             }
@@ -248,7 +261,7 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
     };
 
     var setVisibility = function(newVisible) {
-        for (column in columns) {
+        for (var column in columns) {
             Overlays.editOverlay(columns[column], {visible: newVisible});
         }
         Overlays.editOverlay(_this.refreshButton, {visible: newVisible});
@@ -281,7 +294,7 @@ SessionList = function(properties, lobbyHostName, lobbyPort) {
     // Remove the overlay.
     _this.cleanup = function() {
         clearSessions();
-        for (column in columns) {
+        for (var column in columns) {
             Overlays.deleteOverlay(columns[column]);
         }
         Overlays.deleteOverlay(_this.refreshButton);

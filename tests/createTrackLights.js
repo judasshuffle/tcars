@@ -4,7 +4,7 @@
 var entities = Entities.findEntities({x:7162.57,y:8015.87,z:8128.13},100);
 for(var entity in entities) {
     //print(Entities.getEntityProperties(entity).type);
-    if (Entities.getEntityProperties(entities[entity]).type === "Light") {
+    if (Entities.getEntityProperties(entities[entity]).type === 'Light') {
         Entities.deleteEntity(entities[entity]);
         print("light deleted");
     }
@@ -17,7 +17,7 @@ var SOFTNESS_VARIANCE = 0.1;
 var points = [];
 var verticalOffset = 19.6;
 var req = new XMLHttpRequest();
-req.open("GET", "https://dl.dropboxusercontent.com/u/10483952/tcar/streettrackscaled.obj", false);
+req.open('GET', 'https://dl.dropboxusercontent.com/u/10483952/tcar/streettrackscaled.obj', false);
 req.send();
 var lines = req.response.split("\n");
 for (var i = 0; i < lines.length; i++) {
@@ -64,16 +64,18 @@ function testRotateBetween(vec1, vec2) {
 }
 testRotateBetween({x: 1, y: 2, z: 1}, {x: 2, y: 2, z: 2});
 
+/*
 var colorTable = [
 {red: 212, green: 20, blue: 22},
 {red: 100, green: 100, blue: 200},
 {red: 170, green: 40, blue: 23},
-{"red":212,"green":190,"blue":100}
+{red: 212, green: 190, blue: 100}
 ];
+*/
 
 var prevPoint = null;
 for (var i = 0; i < points.length; i++) {
-    point = points[i];
+    var point = points[i];
     if (prevPoint != null) {
         Entities.addEntity({
             type: 'Light',
@@ -83,10 +85,11 @@ for (var i = 0; i < points.length; i++) {
             registration: {x: 0.5, y: 1.0, z: 0.5},
             //rotation: rotateBetween(prevPoint, point),
             rotation: {"x":-0.525482714176178,"y":0.47314679622650146,"z":0.47314679622650146,"w":0.525482714176178},
-           // lineWidth: 4,
+            // lineWidth: 4,
             //color: colorTable[i % colorTable.length],
-             color: {red: (Math.random()*100)+150, green: (Math.random()*100)+50, blue: (Math.random()*50)+50},
-            "glowLevel":0,"isSpotlight":1,
+            color: {red: (Math.random()*100)+150, green: (Math.random()*100)+50, blue: (Math.random()*50)+50},
+            glowLevel:0,
+            isSpotlight:1,
             intensity: (Math.random() * 0.4) + 0.8, //(Math.random()*95)+5,
             "exponent":(Math.random() * SOFTNESS_VARIANCE),//SOFTNESS,
             "cutoff":CONE_ANGLE,

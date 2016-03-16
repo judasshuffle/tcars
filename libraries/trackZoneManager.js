@@ -55,7 +55,7 @@ TrackZoneManager = function () {
             dimensions: dimensions
         };
         if (entityProperties !== undefined) {
-            for (property in entityProperties) {
+            for (var property in entityProperties) {
                 newProperties[property] = entityProperties[property];
             }
         }
@@ -71,7 +71,7 @@ TrackZoneManager = function () {
             for (var i = 0; i < trackZoneData.entities.length; i++) {
                 var properties = trackZoneData.entities[i];
                 var newProperties = {};
-                for (property in properties) {
+                for (var property in properties) {
                     if (property === 'localPosition') {
                         continue;
                     }

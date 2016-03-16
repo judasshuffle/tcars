@@ -5,7 +5,6 @@
 //  Distributed under the Apache License, Version 2.0.
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
 //
-
 Script.include([
     'libraries/constants.js',
     'libraries/keys.js',
@@ -27,10 +26,10 @@ Script.include([
 
 const MAX_MESSAGES = 20;
 const LOBBY_WS_URL_REQUEST_CHANNEL = 'tcarsRequestLobbyWSURL';
-const LOBBY_WS_URL_RESPONSE_CHANNEL = 'tcarsResponseLobbyWSURL';
+//const LOBBY_WS_URL_RESPONSE_CHANNEL = 'tcarsResponseLobbyWSURL';
 var messageViewer = new MessageViewer({x: 100, y: 100}, 'TCars MessagesViewer', MAX_MESSAGES);
 var avatarSeater = new AvatarSeater();
-var keyCapturer = new KeyCapturer();
+var keyCapturer = new KeyCatcher();
 keyCapturer.captureKeys();
 var trackSelector = new TrackSelector();
 var carSelector = new CarSelector();
@@ -89,26 +88,27 @@ sessionClient.onUpdate = function(update) {
 
 var sessionList = null;
 
+/*
 Messages.subscribe(LOBBY_WS_URL_RESPONSE_CHANNEL);
 
 Messages.messageReceived.connect(function (channel, message, senderID) {
     if (channel === LOBBY_WS_URL_RESPONSE_CHANNEL) {
 //        Messages.sendMessage(LOBBY_WS_URL_RESPONSE_CHANNEL, LOBBY_WS_URL);
-        Messages.unsubscribe(LOBBY_WS_URL_RESPONSE_CHANNEL);
-        var sessionList = new SessionList({}, message, 18000);
-        sessionList.onSessionSelected = function(sessionWSURL, sessionInfo) {
-            sessionClient.joinSession(sessionWSURL, sessionInfo);
+        //Messages.unsubscribe(LOBBY_WS_URL_RESPONSE_CHANNEL);
+        var sessionList = new SessionList({}, 'tcars-lobby'/*message, 18000* /);
+        sessionList.onSessionSelected = function(sessionChannel, sessionInfo) {
+            sessionClient.joinSession(sessionChannel, sessionInfo);
             sessionList.hide();
         };
         sessionList.init();
     }
-});
+});*/
 
 
 var timeItWentWithoutMoving = 0;
 var actionID = false;
 
-var spacebarBlockly = 'Window.alert("You have not made a blockly script for this button yet!");'
+var spacebarBlockly = 'Window.alert("You have not made a blockly script for this button yet!");';
 
 var newWindow = new WebWindow('Customize your vehicle', 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/blockly-tcars/index.html', 700, 700);
 newWindow.eventBridge.webEventReceived.connect(function(data) {
@@ -269,11 +269,13 @@ Script.update.connect(function(time) {
         carSelector.update(time);
     }
     var entities = Entities.findEntities(Camera.position, 100);
-    for (key in entities) {
-        entityItemID = entities[key];
-        var properties = Entities.getEntityProperties(entityItemID);
-        if (properties.name.substring(0, VEHICLE_MODEL_PREFIX.length) === VEHICLE_MODEL_PREFIX) {
-            Entities.callEntityMethod(entityItemID, 'updateWheels');
+    for (var key in entities) {
+        if (entities.hasOwnProperty(key)) {
+            var entityItemID = entities[key];
+            var properties = Entities.getEntityProperties(entityItemID);
+            if (properties.name.substring(0, VEHICLE_MODEL_PREFIX.length) === VEHICLE_MODEL_PREFIX) {
+                Entities.callEntityMethod(entityItemID, 'updateWheels');
+            }
         }
     }
 });
@@ -290,6 +292,13 @@ Script.scriptEnding.connect(function() {
     trackSelector.cleanup();
     sessionList.cleanup();
     messageViewer.cleanup();
-    print('TCars script finished closing!')
+    print('TCars script finished closing!');
     //speedometer.cleanup();
 });
+
+sessionList = new SessionList({}, 'tcars-lobby');
+sessionList.onSessionSelected = function(sessionChannel, sessionInfo) {
+    sessionClient.joinSession(sessionChannel, sessionInfo);
+    sessionList.hide();
+};
+sessionList.init();

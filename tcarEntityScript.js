@@ -41,7 +41,7 @@
                 return Vec3.sum(_this.backAxlePos, {x: _this.backAxleLength / 2});
         }
         return {};
-    }
+    };
 
     var getRotationOffset = function(wheelIndex) {
         switch (wheelIndex) {
@@ -55,7 +55,7 @@
                 return Quat.fromPitchYawRollDegrees(MAX_DEGREES - (_this.wheelSpin % MAX_DEGREES), 0, 0);
         }
         return {};
-    }
+    };
 
     // All callbacks start by updating the properties
     _this.updateProperties = function(entityID) {
@@ -63,7 +63,7 @@
             _this.entityID = entityID;
         }
         _this.properties = Entities.getEntityProperties(_this.entityID);
-    }
+    };
 
     // Get an entity's user data
     _this.getEntityUserData = function(entityID) {
@@ -91,14 +91,14 @@
         if (this.sound === null) {
             this.sound = SoundCache.getSound('http://hifi-external.s3.amazonaws.com/tcars/sounds/collision.wav');
         }
-    }
+    };
 
     // Play drop sound
     _this.playSound = function() {
         if (this.sound && this.sound.downloaded) {
             Audio.playSound(this.sound, { position: this.properties.position });
         }
-    }
+    };
 
     _this.firstTime = true;
     _this.preload = function(entityID) {
@@ -124,7 +124,7 @@
             }, timerTimeout);
             //Script.update.connect(_this.updateWheels);*/
         }
-    }
+    };
 
     _this.unload = function(entityID) {
         print("unloaded" + entityID);

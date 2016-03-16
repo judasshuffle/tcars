@@ -1,6 +1,6 @@
  function parseCoordinate(coord) {
     var formatted = [];
-    for (key in coord) {
+    for (var key in coord) {
         formatted.push(key + ': ' + coord[key]);
     }
     return '{' + formatted.join(', ') + '}';
@@ -21,5 +21,5 @@ formatCoordinate('startPosition', MyAvatar.position) + COORD_POSTFIX +
 formatCoordinate('startOrientation', MyAvatar.orientation) + COORD_POSTFIX +
 formatCoordinate('previewPosition', Camera.position) + COORD_POSTFIX +
 formatCoordinate('previewOrientation', Camera.orientation) + COORD_POSTFIX
-)
+);
 Script.stop();

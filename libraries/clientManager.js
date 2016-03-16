@@ -6,15 +6,15 @@
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
 //
 
-ClientManager = function(port) {
+ClientManager = function(listeningChannel) {
     var _this = this;
 
     // The clients are stored in this object.
     var clients = {};
-
+/*
     // We add to this number when a new client connects.
     var nextClientID = 0;
-
+*/
     // Events
     _this.onClientConnect = undefined;
     _this.onClientDisconnect = undefined;
@@ -39,7 +39,7 @@ ClientManager = function(port) {
     };
 
     _this.doForAllClients = function(callback) {
-        for (clientID in clients) {
+        for (var clientID in clients) {
             callback.call(this, clientID, clients[clientID]);
         }
     };
@@ -47,24 +47,25 @@ ClientManager = function(port) {
     _this.send = function(clientID, data) {
         var stringData = JSON.stringify(data);
         var client = _this.getClient(clientID);
-        if (client.socket !== undefined && client.socket.readyState === client.socket.OPEN) {
-            client.socket.send(stringData);
+        if (client !== undefined) {
+            Messages.sendMessage(listeningChannel + '_' + clientID);
+            //client.socket.send(stringData);
         }
     };
 
     // Finds a client in the clients list by the WebSocket.
-    _this.findClientByWebSocket = function(socket) {
+   /* _this.findClientByWebSocket = function(socket) {
         for (client in clients) {
             if (clients[client].socket === socket) {
                 return clients[client];
             }
         }
         return null;
-    };
+    };*/
 
-    _this.sendToAllActiveClients = function(data, exceptSocket) {
+    _this.sendToAllActiveClients = function(data, exceptUUID) {
         var stringData = JSON.stringify(data);
-        for (client in clients) {
+        for (var client in clients) {
             var clientObj = clients[client];
             if (clientObj.socket !== exceptSocket && clientObj.socket.readyState === clientObj.socket.OPEN) {
                 clientObj.socket.send(stringData);
@@ -73,7 +74,7 @@ ClientManager = function(port) {
     };
 
     // We start a WebSocketServer on the given port.
-    var webSocketServer = new WebSocketServer({port: port});
+    /*var webSocketServer = new WebSocketServer({port: port});
     webSocketServer.newConnection.connect(function(newClient) {
         print("incomming connection");
         var newClientID = nextClientID++;
@@ -100,6 +101,25 @@ ClientManager = function(port) {
         };
         if (_this.onClientConnect !== undefined) {
             _this.onClientConnect.call(this, newClientID);
+        }
+    });*/
+    Messages.subscribe(listeningChannel);
+    Messages.messageReceived.connect(function (channel, message, senderID) {
+        if (senderID === Agent.sessionUUID) {
+            return;
+        }
+        if (channel === listeningChannel) {
+            if (clients[senderID] === undefined) {
+                clients[senderID] = {id: senderID};
+                if (_this.onClientConnect !== undefined) {
+                    _this.onClientConnect.call(this, senderID);
+                }
+            }
+            var data = JSON.parse(message);
+            if (_this.onClientAction !== undefined && data.action) {
+                _this.onClientAction.call(this, senderID, data.action, data);
+            }
+            
         }
     });
 };
