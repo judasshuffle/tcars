@@ -8,6 +8,7 @@
 const SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
 const LOBBY_ENTITIES_PATH = SCRIPTS_PATH + 'entities/lobby.svo.json';
 const LOBBY_POSITION = {x: 0, y: 0, z: 0};
+const TCARS_RCON = 'tcarsRCON';
 
 Script.include([
     SCRIPTS_PATH + 'libraries/constants.js',
@@ -17,7 +18,7 @@ Script.include([
 const DEBUG_OVER_MESSAGES_PROTOCOL = true;
 
 var startupDate = (new Date());
-var timeZoneOffset = startupDate.getTimezoneOffset() * 60 *  1000;
+var timeZoneOffset = startupDate.getTimezoneOffset() * 60 * 1000;
 var startupTimestamp = startupDate.getTime();
 
 //Entities.setPacketsPerSecond(2000);
@@ -34,6 +35,16 @@ EntityViewer.setCenterRadius(60000);
 //        Messages.sendMessage(LOBBY_WS_URL_RESPONSE_CHANNEL, LOBBY_WS_URL);
 //    }
 //});
+
+Messages.subscribe(TCARS_RCON);
+
+Messages.messageReceived.connect(function(channel, message, senderID) {
+    if (channel === TCARS_RCON) {
+        if (message === 'stop') {
+            Script.stop();
+        }
+    }
+});
 
 var debugPrint = function(message) {
     var preText = '[TCarsLobby] > ';
@@ -81,7 +92,7 @@ function setupLobbyEntities() {
         var req = new XMLHttpRequest();
         req.open('GET', LOBBY_ENTITIES_PATH, false);
         req.send();
-        var lobbyEntityData = JSON.parse(req.response);
+        var lobbyEntityData = JSON.parse(req.response.toString());
         var entities = lobbyEntityData.Entities;
         for (var i = 0; i < entities.length; i++) {
             Entities.addEntity(entities[i]);
@@ -117,9 +128,9 @@ function getFreeSessionBlock() {
     var maxY = maxBlocksDimension('y');
     var maxZ = maxBlocksDimension('z');
     var occupiedBlocks = [];
-    for (var i = 0; i < SESSION_AREA_SAFEZONES.length; i++) {
-        occupiedBlocks.push(getBlocksFromDimensions(SESSION_AREA_SAFEZONES[i]));
-    }
+    SESSION_AREA_SAFEZONES.forEach(function(sessionAreaSafeZone) {
+        occupiedBlocks.push(getBlocksFromDimensions(sessionAreaSafeZone));
+    });
     clientManager.doForAllClients(function(clientID, client) {
         if (client.sessionBlock !== undefined) {
             occupiedBlocks.push(client.sessionBlock);
@@ -162,23 +173,7 @@ function update(deltaTime) {
 }
 
 Script.update.connect(update);
-/*
-function getFreeSessionPort() {
-    var takenPorts = [];
-    clientManager.doForAllClients(function(clientID, client) {
-        if (client.sessionPort !== undefined) {
-            takenPorts.push(client.sessionPort);
-        }
-    });
-    var lastPort = SESSION_PORTS_START + SESSION_PORTS_MAX_COUNT;
-    for (var i = SESSION_PORTS_START; i <= lastPort; i++) {
-        if (takenPorts.indexOf(i) === -1) {
-            return i;
-        }
-    }
-    return -1;
-}
-*/
+
 var clientManager = new ClientManager('tcarsLobby');
 
 clientManager.onClientConnect = function(clientID) {
@@ -193,11 +188,6 @@ clientManager.onClientAction = function(clientID, action, data) {
     debugPrint('message from client with id: ' + clientID + ' action = ' + action);
     switch (action) {
         case LOBBY_ACTION.REGISTER_SESSION_REQUEST:
-            /*var sessionPort = getFreeSessionPort();
-            if (sessionPort !== -1) {
-                // set session port if a free one was available
-                clientManager.getClient(clientID).sessionPort = sessionPort;
-            }*/
             var sessionBlock = getFreeSessionBlock();
             if (sessionBlock !== undefined) {
                 // set session port if a free one was available
@@ -207,7 +197,6 @@ clientManager.onClientAction = function(clientID, action, data) {
             var worldBlockCenter = Vec3.sum(worldBlockCorner, Vec3.multiply(SESSION_AREA_DIMENSIONS, 0.5));
             clientManager.send(clientID, {
                 action: LOBBY_ACTION.REGISTER_SESSION_REPLY,
-                //port: sessionPort,
                 block: {
                     center: worldBlockCenter,
                     dimensions: SESSION_AREA_DIMENSIONS
@@ -220,7 +209,7 @@ clientManager.onClientAction = function(clientID, action, data) {
         case LOBBY_ACTION.PLAYER_SESSIONS_REQUEST:
             var sessions = [];
             clientManager.doForAllClients(function(clientID, client) {
-                if (/*client.sessionPort !== undefined && */client.sessionInfo !== undefined) {
+                if (client.sessionInfo !== undefined) {
                     sessions.push({
                         uuid: clientID,
                         info: client.sessionInfo
@@ -252,18 +241,16 @@ var cleanLobbySessions = function() {
         }
     });
 
-    for (var i = 0; i < deleteClientIDs.length; i++) {
-        var deleteID = deleteClientIDs[i];
+    for (var deleteClientIndex = 0; deleteClientIndex < deleteClientIDs.length; deleteClientIndex++) {
+        var deleteID = deleteClientIDs[deleteClientIndex];
         debugPrint('removing session client with ID: ' + deleteID);
         clientManager.deleteClient(deleteID);
     }
     // clear old entities
     EntityViewer.queryOctree();
-    var foundEntities =  0;
+    var foundEntities = 0;
     var entities = Entities.findEntities(LOBBY_POSITION, 60000);
-    for (var i in entities) {
-        var entity = entities[i];
-
+    entities.forEach(function (entity) {
         var entityProperties = Entities.getEntityProperties(entity, ['created', 'locked']);
 
         var entityCreationTimeStamp = (new Date(entityProperties.created.slice(0, -1).replace('-', '/').replace('-', '/').replace('T', ' ')).getTime()) - timeZoneOffset;
@@ -275,7 +262,7 @@ var cleanLobbySessions = function() {
             }
             Entities.deleteEntity(entity);
         }
-    }
+    });
     //print('startup timestamp:\n' + startupDate + ' ' + startupTimestamp + ' ' + startupDate.toUTCString() + ' ' + timeZoneOffset);
     if (foundEntities > 0) {
         print("found entities: " + foundEntities);

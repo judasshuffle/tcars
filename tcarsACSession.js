@@ -1,5 +1,6 @@
 const LOBBY_WS_URL_REQUEST_CHANNEL = 'tcarsRequestLobbyWSURL';
 const LOBBY_WS_URL_RESPONSE_CHANNEL = 'tcarsResponseLobbyWSURL';
+const TCARS_RCON = 'tcarsRCON';
 
 // Give max time of 5 seconds
 const PING_TIMEOUT = 5000;
@@ -23,8 +24,9 @@ Script.include([
 ]);
 
 Messages.subscribe(LOBBY_WS_URL_RESPONSE_CHANNEL);
+Messages.subscribe(TCARS_RCON);
 
-Messages.messageReceived.connect(function (channel, message, senderID) {
+Messages.messageReceived.connect(function(channel, message, senderID) {
     if (channel === LOBBY_WS_URL_RESPONSE_CHANNEL) {
 //        Messages.sendMessage(LOBBY_WS_URL_RESPONSE_CHANNEL, LOBBY_WS_URL);
         Messages.unsubscribe(LOBBY_WS_URL_RESPONSE_CHANNEL);
@@ -50,6 +52,10 @@ Messages.messageReceived.connect(function (channel, message, senderID) {
         };
 
         Messages.sendMessage('TCarsDebug', 'Session started');
+    } else if (channel === TCARS_RCON) {
+        if (message === "stop") {
+            Script.stop();
+        }
     }
 });
 
