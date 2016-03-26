@@ -35,7 +35,7 @@ function isScriptRunning(script) {
     script = script.toLowerCase().trim();
     var runningScripts = ScriptDiscoveryService.getRunning();
     for (var i in runningScripts) {
-        if (runningScripts[i].url.toLowerCase().trim() == script) {
+        if (runningScripts.hasOwnProperty(i) && runningScripts[i].url.toLowerCase().trim() == script) {
             return true;
         }
     }
@@ -47,7 +47,7 @@ var carScript = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/tcar.js';
 var stopScriptByName = function(scriptName) {
     var runningScripts = ScriptDiscoveryService.getRunning();
     for (var i in runningScripts) {
-        if (runningScripts[i].name === scriptName) {
+        if (runningScripts.hasOwnProperty(i) && runningScripts[i].name === scriptName) {
             ScriptDiscoveryService.stopScript(runningScripts[i].url);
         }
     }

@@ -31,4 +31,8 @@
     if (!isScriptRunning(SCRIPT_NAME)) {
         ScriptDiscoveryService.loadOneScript(SCRIPT_NAME); 
     }*/
+    this.unload = function() {
+        print('Script is unloading....');
+        Script.stop();
+    };
 });

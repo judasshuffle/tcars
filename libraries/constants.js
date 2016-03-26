@@ -1,6 +1,6 @@
 //  TCars/library/constants.js
 //
-//  This file contains all the contants for the TCars project
+//  This file contains all the constants for the TCars project
 //
 //  Distributed under the Apache License, Version 2.0.
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html

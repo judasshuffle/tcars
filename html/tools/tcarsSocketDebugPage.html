@@ -4,6 +4,7 @@
 <script language="javascript" type="text/javascript">
 var wsUri = "ws://toycars.highfidelity.io:18000/";
 var output;
+var websocket;
 
 const ACTION = {
     JOIN_REQUEST:           1,
@@ -34,7 +35,7 @@ function init() {
 } 
 
 function testWebSocket() {
-    var websocket = new WebSocket(wsUri);
+    websocket = new WebSocket(wsUri);
     websocket.onopen = function(evt) { onOpen(evt) };
     websocket.onclose = function(evt) { onClose(evt) };
     websocket.onmessage = function(evt) { onMessage(evt) };

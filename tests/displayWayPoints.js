@@ -18,7 +18,6 @@ for (var lineIndex = 0; lineIndex < lines.length; lineIndex++) {
     }
 }
 
-
 function radianToDegree(angle)
 {
     return angle * (180.0 / Math.PI);
@@ -69,12 +68,12 @@ for (var i = 0; i < 0 /*points.length*/; i++) {
     var point = points[i];
     MyAvatar.position = Vec3.sum(TRACK_OFFSET, point);
     cubes.push(Overlays.addOverlay('cube', {
-                    position: Vec3.sum(TRACK_OFFSET, point),
-                    size: {x: 1, y: 1, z: 1},
-                    color: { red: 255, green: 0, blue: 0},
-                    alpha: 1,
-                    solid: false
-                }));
+        position: Vec3.sum(TRACK_OFFSET, point),
+        size: {x: 1, y: 1, z: 1},
+        color: { red: 255, green: 0, blue: 0},
+        alpha: 1,
+        solid: false
+    }));
     /*if (prevPoint != null) {
         Entities.addEntity({
             type: 'Light',

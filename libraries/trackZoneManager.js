@@ -34,10 +34,12 @@ TrackZoneManager = function () {
         var closestDistance = Number.MAX_VALUE;
         var closestTrackZoneID = null;
         for (var trackZoneID in _this.trackZones) {
-            var distance = Vec3.distance(position, _this.trackZones[trackZoneID].getPosition());
-            if (distance < closestDistance) {
-                closestDistance = distance;
-                closestTrackZoneID = trackZoneID;
+            if (_this.trackZones.hasOwnProperty(trackZoneID)) {
+                var distance = Vec3.distance(position, _this.trackZones[trackZoneID].getPosition());
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestTrackZoneID = trackZoneID;
+                }
             }
         }
         selectedTrackZone = closestTrackZoneID;
@@ -56,7 +58,9 @@ TrackZoneManager = function () {
         };
         if (entityProperties !== undefined) {
             for (var property in entityProperties) {
-                newProperties[property] = entityProperties[property];
+                if (entityProperties.hasOwnProperty(property)) {
+                    newProperties[property] = entityProperties[property];
+                }
             }
         }
 
@@ -72,7 +76,7 @@ TrackZoneManager = function () {
                 var properties = trackZoneData.entities[i];
                 var newProperties = {};
                 for (var property in properties) {
-                    if (property === 'localPosition') {
+                    if (!properties.hasOwnProperty(property) || property === 'localPosition') {
                         continue;
                     }
                     newProperties[property] = properties[property];
@@ -95,8 +99,7 @@ TrackZoneManager = function () {
         // find nearby entities, for getting the trackzones
         var foundTracks = [];
         var entities = Entities.findEntities(position, TRACK_ZONE_SEARCH_DISTANCE);
-        for (var possibleTrackZone in entities) {
-            var entity = entities[possibleTrackZone];
+        entities.forEach(function (entity) {
             var properties = Entities.getEntityProperties(entity);
             if (entityIsTrackZone(properties)) {
                 print('Found zone: ' + properties.name);
@@ -106,7 +109,7 @@ TrackZoneManager = function () {
                 }
                 _this.trackZones[entity].updateFromZone();
             }
-        }
+        });
         for (var trackZoneKey in _this.trackZones) {
             if (foundTracks.indexOf(trackZoneKey) === -1) {
                 delete _this.trackZones[trackZoneKey];

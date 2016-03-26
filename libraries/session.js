@@ -7,11 +7,11 @@
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
 //
 
-Session = function(block) {
+Session = function(pBlock) {
     var _this = this;
 
     const GAME_TIMER_INTERVAL = 1000;
-    var block = block;
+    var block = pBlock;
     var trackZoneManager = new TrackZoneManager();
     var state = SESSION_STATE.INITIAL;
     var trackID = -1;
@@ -39,11 +39,13 @@ Session = function(block) {
         var maxVoteNum = 0;
         var selectedTrackIDs = [];
         for (var trackID in trackVotes) {
-            if (trackVotes[trackID] > maxVoteNum) {
-                maxVoteNum = trackVotes;
-                selectedTrackIDs = [trackID];
-            } else if (trackVotes[trackID] === maxVoteNum) {
-                selectedTrackIDs.push(trackID);
+            if (trackVotes.hasOwnProperty(trackID)) {
+                if (trackVotes[trackID] > maxVoteNum) {
+                    maxVoteNum = trackVotes;
+                    selectedTrackIDs = [trackID];
+                } else if (trackVotes[trackID] === maxVoteNum) {
+                    selectedTrackIDs.push(trackID);
+                }
             }
         }
         if (selectedTrackIDs.length === 0) {
@@ -136,9 +138,9 @@ Session = function(block) {
 
     clientManager.onClientAction = function(clientID, action, data) {
         print('message from client with id: ' + clientID + ' action = ' + action);
+        var sessionClient = clientManager.getClient(clientID);
         switch (action) {
             case SESSION_ACTION.JOIN_REQUEST:
-                var sessionClient = clientManager.getClient(clientID);
                 // ROLE.* PLAYER OR SPECTATOR
                 //TODO: check max for role, switch to spectator if players are full, disconnect if spectators are full, and msg client.
                 sessionClient.role = data.data.preferredRole;
@@ -155,7 +157,6 @@ Session = function(block) {
                 //    state = SESSION_STATE.VOTE_TRACK;
                 //    timeleft = TRACK_SELECTION_TIME;
                 //}
-                var sessionClient = clientManager.getClient(clientID);
                 sessionClient.trackVote = data.data.trackID;
                 print('trackvote received with ID ' + sessionClient.trackVote);
                 break;

@@ -7,7 +7,7 @@ var clipURL = "atp://24d8d613053e2ddf8f893469d7312d068a208a70b3fe844d88bb3828056
 var playFromCurrentLocation = true;
 var useDisplayName = true;
 var useAttachments = true;
-var useAvatarModel = true;
+//var useAvatarModel = true;
 
 Recording.setPlayFromCurrentLocation(playFromCurrentLocation);
 Recording.setPlayerUseDisplayName(useDisplayName);

@@ -1,14 +1,14 @@
 //snippet for getting entity properties by id:
 //JSON.stringify(Entities.getEntityProperties("{fd3a1d1f-8590-4c6b-a621-d0b4eb94b6a1}"))
 // Delete existing light entities in the city
-var entities = Entities.findEntities({x:7162.57,y:8015.87,z:8128.13},100);
-for(var entity in entities) {
+var entities = Entities.findEntities({x: 7162.57, y: 8015.87, z: 8128.13}, 100);
+entities.forEach(function(entity) {
     //print(Entities.getEntityProperties(entity).type);
-    if (Entities.getEntityProperties(entities[entity]).type === 'Light') {
-        Entities.deleteEntity(entities[entity]);
+    if (Entities.getEntityProperties(entity).type === 'Light') {
+        Entities.deleteEntity(entity);
         print("light deleted");
     }
-}
+});
 
 var LAMP_SIZE = {"x":25.0,"y":30.0,"z":25.0};
 var CONE_ANGLE = 90;

@@ -81,28 +81,28 @@ trackZoneEditingTools = new TrackZoneEditingTools();
 trackZoneEditingTools.selectClosestTrack();
 
 const MENU_TCARS_EDIT = 'TCars Edit';
-const MENUITEM_TCARS_EDIT_SELECT_NEAREST = 'Select Nearest TrackZone';
-const MENUITEM_TCARS_EDIT_IMPORT = 'TrackZoneImport';
-const MENUITEM_TCARS_EDIT_EXPORT = 'TrackZoneExport';
-const MENUITEM_TCARS_EDIT_DELETE = 'TrackZoneDelete';
+const MENU_ITEM_TCARS_EDIT_SELECT_NEAREST = 'Select Nearest TrackZone';
+const MENU_ITEM_TCARS_EDIT_IMPORT = 'TrackZoneImport';
+const MENU_ITEM_TCARS_EDIT_EXPORT = 'TrackZoneExport';
+const MENU_ITEM_TCARS_EDIT_DELETE = 'TrackZoneDelete';
 const MENU_TCARS_EDIT_CHECKPOINTS = MENU_TCARS_EDIT + ' > Checkpoints';
-const MENUITEM_TCARS_GET_LOCAL_POS = 'Get Local Position';
+const MENU_ITEM_TCARS_GET_LOCAL_POS = 'Get Local Position';
 
 Menu.addMenu(MENU_TCARS_EDIT);
-Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENUITEM_TCARS_EDIT_IMPORT});
-Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENUITEM_TCARS_EDIT_EXPORT});
-Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENUITEM_TCARS_EDIT_DELETE});
+Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENU_ITEM_TCARS_EDIT_IMPORT});
+Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENU_ITEM_TCARS_EDIT_EXPORT});
+Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENU_ITEM_TCARS_EDIT_DELETE});
 Menu.addMenu(MENU_TCARS_EDIT_CHECKPOINTS);
-Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENUITEM_TCARS_GET_LOCAL_POS});
+Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENU_ITEM_TCARS_GET_LOCAL_POS});
 
 Menu.menuItemEvent.connect(function(menuItem) {
-    if (menuItem === MENUITEM_TCARS_EDIT_EXPORT) {
+    if (menuItem === MENU_ITEM_TCARS_EDIT_EXPORT) {
         trackZoneEditingTools.exportTrack();
-    } else if (menuItem === MENUITEM_TCARS_EDIT_IMPORT) {
+    } else if (menuItem === MENU_ITEM_TCARS_EDIT_IMPORT) {
         trackZoneEditingTools.importTrack();
-    } else if (menuItem === MENUITEM_TCARS_GET_LOCAL_POS) {
+    } else if (menuItem === MENU_ITEM_TCARS_GET_LOCAL_POS) {
         print(JSON.stringify(trackZoneEditingTools.getRelativePosition(MyAvatar.position)));
-    } else if (menuItem === MENUITEM_TCARS_EDIT_DELETE) {
+    } else if (menuItem === MENU_ITEM_TCARS_EDIT_DELETE) {
         trackZoneEditingTools.deleteTrack();
     }
 });
