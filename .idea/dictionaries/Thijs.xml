@@ -6,6 +6,10 @@
       <w>dropdown</w>
       <w>gameover</w>
       <w>kevintown</w>
+      <w>onclose</w>
+      <w>onerror</w>
+      <w>onmessage</w>
+      <w>onopen</w>
       <w>quat</w>
       <w>respawnable</w>
       <w>safezones</w>
