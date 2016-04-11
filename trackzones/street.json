@@ -58,7 +58,7 @@
                 "blue": 66
             },
             "isSpotlight": 1,
-            "intensity": 0.8144070506095886,
+            "intensity": 1000,
             "exponent": 0.018248936161398888,
             "cutoff": 90,
             "localPosition": {
@@ -89,7 +89,7 @@
                 "blue": 73
             },
             "isSpotlight": 1,
-            "intensity": 1.0013350248336792,
+            "intensity": 1000,
             "exponent": 0.030190281569957733,
             "cutoff": 90,
             "localPosition": {
@@ -120,7 +120,7 @@
                 "blue": 99
             },
             "isSpotlight": 1,
-            "intensity": 0.9194030165672302,
+            "intensity": 1000,
             "exponent": 0.05555162578821182,
             "cutoff": 90,
             "localPosition": {
@@ -151,7 +151,7 @@
                 "blue": 81
             },
             "isSpotlight": 1,
-            "intensity": 1.1547775268554688,
+            "intensity": 1000,
             "exponent": 0.024848606437444687,
             "cutoff": 90,
             "localPosition": {
@@ -182,7 +182,7 @@
                 "blue": 78
             },
             "isSpotlight": 1,
-            "intensity": 1.171021819114685,
+            "intensity": 1000,
             "exponent": 0.015359168872237206,
             "cutoff": 90,
             "localPosition": {
@@ -213,7 +213,7 @@
                 "blue": 70
             },
             "isSpotlight": 1,
-            "intensity": 1.1757287979125977,
+            "intensity": 1000,
             "exponent": 0.03703971952199936,
             "cutoff": 90,
             "localPosition": {
@@ -244,7 +244,7 @@
                 "blue": 87
             },
             "isSpotlight": 1,
-            "intensity": 1.0043506622314453,
+            "intensity": 1000,
             "exponent": 0.02259889617562294,
             "cutoff": 90,
             "localPosition": {
@@ -275,7 +275,7 @@
                 "blue": 90
             },
             "isSpotlight": 1,
-            "intensity": 1.0670442581176758,
+            "intensity": 1000,
             "exponent": 0.08861071616411209,
             "cutoff": 90,
             "localPosition": {
@@ -306,7 +306,7 @@
                 "blue": 63
             },
             "isSpotlight": 1,
-            "intensity": 0.8854305148124695,
+            "intensity": 1000,
             "exponent": 0.029298121109604836,
             "cutoff": 90,
             "localPosition": {
@@ -337,7 +337,7 @@
                 "blue": 78
             },
             "isSpotlight": 1,
-            "intensity": 0.8266042470932007,
+            "intensity": 1000,
             "exponent": 0.041379086673259735,
             "cutoff": 90,
             "localPosition": {
@@ -368,7 +368,7 @@
                 "blue": 67
             },
             "isSpotlight": 1,
-            "intensity": 1.0706965923309326,
+            "intensity": 1000,
             "exponent": 0.0031909001991152763,
             "cutoff": 90,
             "localPosition": {
@@ -399,7 +399,7 @@
                 "blue": 72
             },
             "isSpotlight": 1,
-            "intensity": 1.1814820766448975,
+            "intensity": 1000,
             "exponent": 0.03406764939427376,
             "cutoff": 90,
             "localPosition": {
@@ -430,7 +430,7 @@
                 "blue": 99
             },
             "isSpotlight": 1,
-            "intensity": 1.1693679094314575,
+            "intensity": 1000,
             "exponent": 0.06275847554206848,
             "cutoff": 90,
             "localPosition": {
@@ -461,7 +461,7 @@
                 "blue": 67
             },
             "isSpotlight": 1,
-            "intensity": 1.1767909526824951,
+            "intensity": 1000,
             "exponent": 0.05277319997549057,
             "cutoff": 90,
             "localPosition": {
@@ -492,7 +492,7 @@
                 "blue": 72
             },
             "isSpotlight": 1,
-            "intensity": 0.9366441965103149,
+            "intensity": 1000,
             "exponent": 0.08742289245128632,
             "cutoff": 90,
             "localPosition": {
@@ -523,7 +523,7 @@
                 "blue": 86
             },
             "isSpotlight": 1,
-            "intensity": 0.8089210391044617,
+            "intensity": 1000,
             "exponent": 0.05242544040083885,
             "cutoff": 90,
             "localPosition": {
@@ -554,7 +554,7 @@
                 "blue": 78
             },
             "isSpotlight": 1,
-            "intensity": 1.0860756635665894,
+            "intensity": 1000,
             "exponent": 0.0933554396033287,
             "cutoff": 90,
             "localPosition": {
@@ -585,7 +585,7 @@
                 "blue": 85
             },
             "isSpotlight": 1,
-            "intensity": 1.0939699411392212,
+            "intensity": 1000,
             "exponent": 0.061555661261081696,
             "cutoff": 90,
             "localPosition": {
@@ -616,7 +616,7 @@
                 "blue": 53
             },
             "isSpotlight": 1,
-            "intensity": 0.9420579671859741,
+            "intensity": 1000,
             "exponent": 0.03165260702371597,
             "cutoff": 90,
             "localPosition": {
@@ -647,7 +647,7 @@
                 "blue": 76
             },
             "isSpotlight": 1,
-            "intensity": 0.9135389924049377,
+            "intensity": 1000,
             "exponent": 0.08268161863088608,
             "cutoff": 90,
             "localPosition": {
@@ -678,7 +678,7 @@
                 "blue": 97
             },
             "isSpotlight": 1,
-            "intensity": 0.8457943201065063,
+            "intensity": 1000,
             "exponent": 0.014050377532839775,
             "cutoff": 90,
             "localPosition": {
@@ -709,7 +709,7 @@
                 "blue": 56
             },
             "isSpotlight": 1,
-            "intensity": 0.9025776386260986,
+            "intensity": 1000,
             "exponent": 0.030108284205198288,
             "cutoff": 90,
             "localPosition": {
@@ -740,7 +740,7 @@
                 "blue": 71
             },
             "isSpotlight": 1,
-            "intensity": 0.8784960508346558,
+            "intensity": 1000,
             "exponent": 0.07088374346494675,
             "cutoff": 90,
             "localPosition": {
@@ -771,7 +771,7 @@
                 "blue": 63
             },
             "isSpotlight": 1,
-            "intensity": 0.8664200901985168,
+            "intensity": 1000,
             "exponent": 0.016063591465353966,
             "cutoff": 90,
             "localPosition": {
@@ -802,7 +802,7 @@
                 "blue": 52
             },
             "isSpotlight": 1,
-            "intensity": 0.8244490027427673,
+            "intensity": 1000,
             "exponent": 0.07948224246501923,
             "cutoff": 90,
             "localPosition": {
@@ -833,7 +833,7 @@
                 "blue": 70
             },
             "isSpotlight": 1,
-            "intensity": 0.9776304960250854,
+            "intensity": 1000,
             "exponent": 0.048612963408231735,
             "cutoff": 90,
             "localPosition": {
@@ -864,7 +864,7 @@
                 "blue": 77
             },
             "isSpotlight": 1,
-            "intensity": 1.0550767183303833,
+            "intensity": 1000,
             "exponent": 0.09252875298261642,
             "cutoff": 90,
             "localPosition": {
@@ -895,7 +895,7 @@
                 "blue": 57
             },
             "isSpotlight": 1,
-            "intensity": 1.1552361249923706,
+            "intensity": 1000,
             "exponent": 0.009622976183891296,
             "cutoff": 90,
             "localPosition": {
@@ -926,7 +926,7 @@
                 "blue": 61
             },
             "isSpotlight": 1,
-            "intensity": 1.040788173675537,
+            "intensity": 1000,
             "exponent": 0.0835813507437706,
             "cutoff": 90,
             "localPosition": {
@@ -957,7 +957,7 @@
                 "blue": 72
             },
             "isSpotlight": 1,
-            "intensity": 0.9987407326698303,
+            "intensity": 1000,
             "exponent": 0.05325686186552048,
             "cutoff": 90,
             "localPosition": {
@@ -988,7 +988,7 @@
                 "blue": 58
             },
             "isSpotlight": 1,
-            "intensity": 1.039198875427246,
+            "intensity": 1000,
             "exponent": 0.04757404327392578,
             "cutoff": 90,
             "localPosition": {
@@ -1019,7 +1019,7 @@
                 "blue": 92
             },
             "isSpotlight": 1,
-            "intensity": 1.044464111328125,
+            "intensity": 1000,
             "exponent": 0.054458245635032654,
             "cutoff": 90,
             "localPosition": {
@@ -1256,7 +1256,7 @@
                 "blue": 121
             },
             "isSpotlight": 0,
-            "intensity": 2,
+            "intensity": 1,
             "exponent": 0,
             "cutoff": 90,
             "localPosition": {
@@ -1427,7 +1427,7 @@
                 "blue": 83
             },
             "isSpotlight": 1,
-            "intensity": 0.9804176688194275,
+            "intensity": 1000,
             "exponent": 0.05798348784446716,
             "cutoff": 90,
             "localPosition": {
@@ -1458,7 +1458,7 @@
                 "blue": 98
             },
             "isSpotlight": 1,
-            "intensity": 0.871076226234436,
+            "intensity": 1000,
             "exponent": 0.07195506989955902,
             "cutoff": 90,
             "localPosition": {
@@ -1489,7 +1489,7 @@
                 "blue": 87
             },
             "isSpotlight": 1,
-            "intensity": 0.9256343245506287,
+            "intensity": 1000,
             "exponent": 0.06644811481237411,
             "cutoff": 90,
             "localPosition": {
@@ -1520,7 +1520,7 @@
                 "blue": 85
             },
             "isSpotlight": 1,
-            "intensity": 1.0372165441513062,
+            "intensity": 1000,
             "exponent": 0.07448273152112961,
             "cutoff": 90,
             "localPosition": {
@@ -1551,7 +1551,7 @@
                 "blue": 62
             },
             "isSpotlight": 1,
-            "intensity": 1.1028852462768555,
+            "intensity": 1000,
             "exponent": 0.09713126718997955,
             "cutoff": 90,
             "localPosition": {
@@ -1582,7 +1582,7 @@
                 "blue": 66
             },
             "isSpotlight": 1,
-            "intensity": 0.9617198705673218,
+            "intensity": 1000,
             "exponent": 0.08088294416666031,
             "cutoff": 90,
             "localPosition": {
@@ -1683,7 +1683,7 @@
                 "blue": 66
             },
             "isSpotlight": 1,
-            "intensity": 1.147472858428955,
+            "intensity": 1000,
             "exponent": 0.031944967806339264,
             "cutoff": 90,
             "localPosition": {
@@ -1714,7 +1714,7 @@
                 "blue": 66
             },
             "isSpotlight": 1,
-            "intensity": 1.1507481336593628,
+            "intensity": 1000,
             "exponent": 0.04701646789908409,
             "cutoff": 90,
             "localPosition": {
@@ -1745,7 +1745,7 @@
                 "blue": 77
             },
             "isSpotlight": 1,
-            "intensity": 0.8397547006607056,
+            "intensity": 1000,
             "exponent": 0.09430751949548721,
             "cutoff": 90,
             "localPosition": {
@@ -1776,7 +1776,7 @@
                 "blue": 68
             },
             "isSpotlight": 1,
-            "intensity": 1.164483666419983,
+            "intensity": 1000,
             "exponent": 0.054177165031433105,
             "cutoff": 90,
             "localPosition": {
@@ -1807,7 +1807,7 @@
                 "blue": 85
             },
             "isSpotlight": 1,
-            "intensity": 0.8585096001625061,
+            "intensity": 1000,
             "exponent": 0.05667095631361008,
             "cutoff": 90,
             "localPosition": {
@@ -1838,7 +1838,7 @@
                 "blue": 59
             },
             "isSpotlight": 1,
-            "intensity": 0.8121264576911926,
+            "intensity": 1000,
             "exponent": 0.06038275361061096,
             "cutoff": 90,
             "localPosition": {
@@ -1869,7 +1869,7 @@
                 "blue": 58
             },
             "isSpotlight": 1,
-            "intensity": 0.9338611960411072,
+            "intensity": 1000,
             "exponent": 0.029183678328990936,
             "cutoff": 90,
             "localPosition": {
@@ -1900,7 +1900,7 @@
                 "blue": 88
             },
             "isSpotlight": 1,
-            "intensity": 0.9302635788917542,
+            "intensity": 1000,
             "exponent": 0.07518668472766876,
             "cutoff": 90,
             "localPosition": {
@@ -1931,7 +1931,7 @@
                 "blue": 69
             },
             "isSpotlight": 1,
-            "intensity": 1.039430022239685,
+            "intensity": 1000,
             "exponent": 0.06381478905677795,
             "cutoff": 90,
             "localPosition": {
@@ -1962,7 +1962,7 @@
                 "blue": 80
             },
             "isSpotlight": 1,
-            "intensity": 1.0458931922912598,
+            "intensity": 1000,
             "exponent": 0.029546046629548073,
             "cutoff": 90,
             "localPosition": {
@@ -1993,7 +1993,7 @@
                 "blue": 83
             },
             "isSpotlight": 1,
-            "intensity": 0.8155678510665894,
+            "intensity": 1000,
             "exponent": 0.09903968125581741,
             "cutoff": 90,
             "localPosition": {
@@ -2024,7 +2024,7 @@
                 "blue": 64
             },
             "isSpotlight": 1,
-            "intensity": 1.0777103900909424,
+            "intensity": 1000,
             "exponent": 0.035215120762586594,
             "cutoff": 90,
             "localPosition": {
@@ -2055,7 +2055,7 @@
                 "blue": 70
             },
             "isSpotlight": 1,
-            "intensity": 0.9586085081100464,
+            "intensity": 1000,
             "exponent": 0.010719052515923977,
             "cutoff": 90,
             "localPosition": {
@@ -2086,7 +2086,7 @@
                 "blue": 77
             },
             "isSpotlight": 1,
-            "intensity": 1.034163236618042,
+            "intensity": 1000,
             "exponent": 0.06908974051475525,
             "cutoff": 90,
             "localPosition": {
@@ -2117,7 +2117,7 @@
                 "blue": 52
             },
             "isSpotlight": 1,
-            "intensity": 1.191575527191162,
+            "intensity": 1000,
             "exponent": 0.03628754988312721,
             "cutoff": 90,
             "localPosition": {
@@ -6717,7 +6717,7 @@
                 "blue": 98
             },
             "isSpotlight": 1,
-            "intensity": 1.0092064142227173,
+            "intensity": 1000,
             "exponent": 0.023080933839082718,
             "cutoff": 90,
             "localPosition": {
@@ -6748,7 +6748,7 @@
                 "blue": 57
             },
             "isSpotlight": 1,
-            "intensity": 0.8140474557876587,
+            "intensity": 1000,
             "exponent": 0.09550929814577103,
             "cutoff": 90,
             "localPosition": {
@@ -6779,7 +6779,7 @@
                 "blue": 96
             },
             "isSpotlight": 1,
-            "intensity": 1.1393581628799438,
+            "intensity": 1000,
             "exponent": 0.027534184977412224,
             "cutoff": 90,
             "localPosition": {
@@ -6810,7 +6810,7 @@
                 "blue": 90
             },
             "isSpotlight": 1,
-            "intensity": 0.9739309549331665,
+            "intensity": 1000,
             "exponent": 0.016106177121400833,
             "cutoff": 90,
             "localPosition": {
@@ -6841,7 +6841,7 @@
                 "blue": 74
             },
             "isSpotlight": 1,
-            "intensity": 0.9304656386375427,
+            "intensity": 1000,
             "exponent": 0.028465013951063156,
             "cutoff": 90,
             "localPosition": {
@@ -6872,7 +6872,7 @@
                 "blue": 150
             },
             "isSpotlight": 1,
-            "intensity": 1,
+            "intensity": 1000,
             "exponent": 3,
             "cutoff": 85,
             "localPosition": {
@@ -7008,7 +7008,7 @@
                 "blue": 87
             },
             "isSpotlight": 1,
-            "intensity": 0.9520304203033447,
+            "intensity": 1000,
             "exponent": 0.003199736587703228,
             "cutoff": 90,
             "localPosition": {
@@ -7039,7 +7039,7 @@
                 "blue": 60
             },
             "isSpotlight": 1,
-            "intensity": 1.073502779006958,
+            "intensity": 1000,
             "exponent": 0.08976730704307556,
             "cutoff": 90,
             "localPosition": {
@@ -7070,7 +7070,7 @@
                 "blue": 52
             },
             "isSpotlight": 1,
-            "intensity": 1.0313843488693237,
+            "intensity": 1000,
             "exponent": 0.07315299659967422,
             "cutoff": 90,
             "localPosition": {
@@ -7101,7 +7101,7 @@
                 "blue": 98
             },
             "isSpotlight": 1,
-            "intensity": 0.9653063416481018,
+            "intensity": 1000,
             "exponent": 0.03448034077882767,
             "cutoff": 90,
             "localPosition": {
@@ -7132,7 +7132,7 @@
                 "blue": 63
             },
             "isSpotlight": 1,
-            "intensity": 0.8119727969169617,
+            "intensity": 1000,
             "exponent": 0.05863191559910774,
             "cutoff": 90,
             "localPosition": {
@@ -7163,7 +7163,7 @@
                 "blue": 97
             },
             "isSpotlight": 1,
-            "intensity": 0.8539004325866699,
+            "intensity": 1000,
             "exponent": 0.09138227254152298,
             "cutoff": 90,
             "localPosition": {
@@ -7194,7 +7194,7 @@
                 "blue": 53
             },
             "isSpotlight": 1,
-            "intensity": 0.9309163689613342,
+            "intensity": 1000,
             "exponent": 0.04706871137022972,
             "cutoff": 90,
             "localPosition": {
@@ -7225,7 +7225,7 @@
                 "blue": 76
             },
             "isSpotlight": 1,
-            "intensity": 1.1369158029556274,
+            "intensity": 1000,
             "exponent": 0.09866774827241898,
             "cutoff": 90,
             "localPosition": {
@@ -7256,7 +7256,7 @@
                 "blue": 98
             },
             "isSpotlight": 1,
-            "intensity": 0.8164668083190918,
+            "intensity": 1000,
             "exponent": 0.0420454703271389,
             "cutoff": 90,
             "localPosition": {
@@ -7287,7 +7287,7 @@
                 "blue": 79
             },
             "isSpotlight": 1,
-            "intensity": 0.8675800561904907,
+            "intensity": 1000,
             "exponent": 0.08006623387336731,
             "cutoff": 90,
             "localPosition": {
@@ -7318,7 +7318,7 @@
                 "blue": 93
             },
             "isSpotlight": 1,
-            "intensity": 0.8183167576789856,
+            "intensity": 1000,
             "exponent": 0.09239383041858673,
             "cutoff": 90,
             "localPosition": {
@@ -7349,7 +7349,7 @@
                 "blue": 76
             },
             "isSpotlight": 1,
-            "intensity": 1.1087218523025513,
+            "intensity": 1000,
             "exponent": 0.06042667478322983,
             "cutoff": 90,
             "localPosition": {
