@@ -29,7 +29,7 @@
             "name": "",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/streetrtrack.fbx",
             "shapeType": "compound",
-            "compoundShapeURL": "https://dl.dropboxusercontent.com/u/10483952/tcar/streetcol.obj?v1",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/streetcol.obj",
             "localPosition": {
                 "x": -14.859375,
                 "y": -122.63916015625,
