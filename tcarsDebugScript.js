@@ -6,7 +6,6 @@
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
 //
 
-
 var carScriptEnabled = false;
 
 Script.include('https://raw.githubusercontent.com/highfidelity/hifi/master/examples/libraries/toolBars.js');

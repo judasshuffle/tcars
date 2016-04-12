@@ -41,7 +41,9 @@ PlayerList = function() {
     // Calls the cleanup event for all Player instances.
     _this.cleanup = function() {
         for (var player in _this.players) {
-            _this.players[player].cleanup();
+            if (_this.players.hasOwnProperty(player)) {
+                _this.players[player].cleanup();
+            }
         }
     };
 };

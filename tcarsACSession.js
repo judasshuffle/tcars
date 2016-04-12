@@ -1,5 +1,5 @@
-const LOBBY_WS_URL_REQUEST_CHANNEL = 'tcarsRequestLobbyWSURL';
-const LOBBY_WS_URL_RESPONSE_CHANNEL = 'tcarsResponseLobbyWSURL';
+//const LOBBY_WS_URL_REQUEST_CHANNEL = 'tcarsRequestLobbyWSURL';
+//const LOBBY_WS_URL_RESPONSE_CHANNEL = 'tcarsResponseLobbyWSURL';
 const TCARS_RCON = 'tcarsRCON';
 
 // Give max time of 5 seconds
@@ -10,7 +10,6 @@ const SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
 var lastPingRequest = null;
 var lastPingResponse = null;
 var currentSession = null;
-var lobbySocket = null;
 
 TRACK_SELECTION_TIME = 10; //seconds
 
@@ -19,15 +18,33 @@ Script.include([
     SCRIPTS_PATH + 'libraries/trackZone.js',
     SCRIPTS_PATH + 'libraries/trackZoneManager.js',
     SCRIPTS_PATH + 'libraries/tracks.js',
+    SCRIPTS_PATH + 'libraries/client.js',
     SCRIPTS_PATH + 'libraries/clientManager.js',
     SCRIPTS_PATH + 'libraries/session.js'
 ]);
 
-Messages.subscribe(LOBBY_WS_URL_RESPONSE_CHANNEL);
+//Messages.subscribe(LOBBY_WS_URL_RESPONSE_CHANNEL);
 Messages.subscribe(TCARS_RCON);
 
+var lobbyClient = new Client('tcarsLobby', Agent.sessionUUID);
+lobbyClient.onActionReceived = function (senderID, action, data) {
+    print('received action ' + action + ' from ' + senderID + ' with data ' + JSON.stringify(data));
+    switch (data.action) {
+        case LOBBY_ACTION.REGISTER_SESSION_REPLY:
+            currentSession = new Session(data.block);
+            break;
+        case LOBBY_ACTION.PONG:
+            lastPingResponse = Date.now();
+            print('last ping response ' + lastPingResponse);
+            break;
+    }
+};
+lobbyClient.send({
+    action: LOBBY_ACTION.REGISTER_SESSION_REQUEST
+});
+
 Messages.messageReceived.connect(function(channel, message, senderID) {
-    if (channel === LOBBY_WS_URL_RESPONSE_CHANNEL) {
+    /*if (channel === LOBBY_WS_URL_RESPONSE_CHANNEL) {
 //        Messages.sendMessage(LOBBY_WS_URL_RESPONSE_CHANNEL, LOBBY_WS_URL);
         Messages.unsubscribe(LOBBY_WS_URL_RESPONSE_CHANNEL);
 
@@ -52,31 +69,33 @@ Messages.messageReceived.connect(function(channel, message, senderID) {
         };
 
         Messages.sendMessage('TCarsDebug', 'Session started');
-    } else if (channel === TCARS_RCON) {
+    } else 
+    */
+    if (channel === TCARS_RCON) {
         if (message === "stop") {
             Script.stop();
         }
     }
 });
 
-Messages.sendMessage(LOBBY_WS_URL_RESPONSE_CHANNEL, 'requestForSession');
+//Messages.sendMessage(LOBBY_WS_URL_RESPONSE_CHANNEL, 'requestForSession');
 
 var ping = 0;
 
 var lobbyPingTimer = Script.setInterval(function() {
     Messages.sendMessage('TCarsDebug', 'session ping ' + (ping++));
-    if (lobbySocket !== null && lobbySocket.readyState === lobbySocket.OPEN) {
-        var now = Date.now();
-        if (lastPingRequest !== null && (lastPingResponse === null || (lastPingResponse + PING_TIMEOUT) < now)) {
-            print('ping timeout with lobby, aborting!');
-            Script.stop();
-            return;
-        }
-        lastPingRequest = now;
-        lobbySocket.send(JSON.stringify({
-            action: LOBBY_ACTION.PING
-        }));
+    //if (lobbySocket !== null && lobbySocket.readyState === lobbySocket.OPEN) {
+    var now = Date.now();
+    print("now " + now);
+    if (lastPingRequest !== null && (lastPingResponse === null || (lastPingResponse + PING_TIMEOUT) < now)) {
+        print('ping timeout with lobby, aborting!');
+        return;
     }
+    lastPingRequest = now;
+    lobbyClient.send({
+        action: LOBBY_ACTION.PING
+    });
+    //}
 }, PING_TIMEOUT);
 
 Script.scriptEnding.connect(function() {
@@ -84,9 +103,9 @@ Script.scriptEnding.connect(function() {
     if (currentSession !== null) {
         currentSession.cleanup();
     }
-    if (lobbySocket !== null) {
+    /*if (lobbySocket !== null) {
         lobbySocket.close();
-    }
+    }*/
 });
 
 /*

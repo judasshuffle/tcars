@@ -31,16 +31,18 @@ ClientManager = function(listeningChannel) {
         if (client === undefined) {
             return false;
         }
-        if (client.socket.readyState !== client.socket.CLOSED) {
-            client.socket.close(1000, "Closed by ClientManager.");
-        }
+        //if (client.socket.readyState !== client.socket.CLOSED) {
+        //    client.socket.close(1000, 'Closed by ClientManager.');
+        //}
         delete clients[clientID];
         return true;
     };
 
     _this.doForAllClients = function(callback) {
         for (var clientID in clients) {
-            callback.call(this, clientID, clients[clientID]);
+            if (clients.hasOwnProperty(clientID)) {
+                callback.call(this, clientID, clients[clientID]);
+            }
         }
     };
 
@@ -48,7 +50,8 @@ ClientManager = function(listeningChannel) {
         var stringData = JSON.stringify(data);
         var client = _this.getClient(clientID);
         if (client !== undefined) {
-            Messages.sendMessage(listeningChannel + '_' + clientID);
+            print('sending ' + listeningChannel + '_' + clientID + ': ' + stringData);
+            Messages.sendMessage(listeningChannel + '_' + clientID, stringData);
             //client.socket.send(stringData);
         }
     };
@@ -64,11 +67,14 @@ ClientManager = function(listeningChannel) {
     };*/
 
     _this.sendToAllActiveClients = function(data, exceptUUID) {
-        var stringData = JSON.stringify(data);
+        //var stringData = JSON.stringify(data);
         for (var client in clients) {
-            var clientObj = clients[client];
-            if (clientObj.socket !== exceptSocket && clientObj.socket.readyState === clientObj.socket.OPEN) {
-                clientObj.socket.send(stringData);
+            if (clients.hasOwnProperty(client)) {
+                var clientObj = clients[client];
+                if (clientObj.id !== exceptUUID) {
+                    //clientObj.socket.send(stringData);
+                    _this.send(data);
+                }
             }
         }
     };
@@ -105,21 +111,18 @@ ClientManager = function(listeningChannel) {
     });*/
     Messages.subscribe(listeningChannel);
     Messages.messageReceived.connect(function (channel, message, senderID) {
-        if (senderID === Agent.sessionUUID) {
+        if (senderID === Agent.sessionUUID || channel !== listeningChannel) {
             return;
         }
-        if (channel === listeningChannel) {
-            if (clients[senderID] === undefined) {
-                clients[senderID] = {id: senderID};
-                if (_this.onClientConnect !== undefined) {
-                    _this.onClientConnect.call(this, senderID);
-                }
+        if (clients[senderID] === undefined) {
+            clients[senderID] = {id: senderID};
+            if (_this.onClientConnect !== undefined) {
+                _this.onClientConnect.call(this, senderID);
             }
-            var data = JSON.parse(message);
-            if (_this.onClientAction !== undefined && data.action) {
-                _this.onClientAction.call(this, senderID, data.action, data);
-            }
-            
+        }
+        var data = JSON.parse(message);
+        if (_this.onClientAction !== undefined && data.action) {
+            _this.onClientAction.call(this, senderID, data.action, data);
         }
     });
 };

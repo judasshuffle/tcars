@@ -111,7 +111,7 @@ TrackZoneManager = function () {
             }
         });
         for (var trackZoneKey in _this.trackZones) {
-            if (foundTracks.indexOf(trackZoneKey) === -1) {
+            if (_this.trackZones.hasOwnProperty(trackZoneKey) && foundTracks.indexOf(trackZoneKey) === -1) {
                 delete _this.trackZones[trackZoneKey];
                 print('Lost a TrackZone out of vision.');
             }

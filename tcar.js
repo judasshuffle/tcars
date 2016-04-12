@@ -12,6 +12,7 @@ Script.include([
     'libraries/tracks.js',
     'libraries/player.js',
     'libraries/playerList.js',
+    'libraries/client.js',
     'libraries/messageViewer.js',
     'libraries/sessionList.js',
     'libraries/sessionClient.js',
@@ -110,8 +111,11 @@ var actionID = false;
 
 var spacebarBlockly = 'Window.alert("You have not made a blockly script for this button yet!");';
 
-var newWindow = new WebWindow('Customize your vehicle', 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/blockly-tcars/index.html', 700, 700);
-newWindow.eventBridge.webEventReceived.connect(function(data) {
+var newWindow = new OverlayWebWindow('Customize your vehicle', 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/blockly-tcars/index.html', 700, 700);
+newWindow.setVisible(false);
+
+//FIXME: new qml connection method
+/*newWindow.eventBridge.webEventReceived.connect(function(data) {
     data = JSON.parse(data);
     switch (data.action) {
         case 'ping':
@@ -122,7 +126,7 @@ newWindow.eventBridge.webEventReceived.connect(function(data) {
             spacebarBlockly = data.script;
             break;
     }
-});
+});*/
 
 function doSpaceBarBlockly() {
     eval(spacebarBlockly);
@@ -296,7 +300,7 @@ Script.scriptEnding.connect(function() {
     //speedometer.cleanup();
 });
 
-sessionList = new SessionList({}, 'tcars-lobby');
+sessionList = new SessionList({}, TCARS_LOBBY_CHANNEL);
 sessionList.onSessionSelected = function(sessionChannel, sessionInfo) {
     sessionClient.joinSession(sessionChannel, sessionInfo);
     sessionList.hide();

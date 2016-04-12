@@ -63,8 +63,8 @@ Session = function(pBlock) {
         req.open('GET', TRACK_ZONE_FOLDER_URL + TRACKS[trackID].trackJSON, false);
         req.send();
         track = req.response;
-      //  print('the track:');
-      //  print(track);
+        print('the track:');
+        print(track);
     };
 
     var numParticipantRole = function(role) {
@@ -98,7 +98,7 @@ Session = function(pBlock) {
     };
 
     var sendSessionInfo = function() {
-        lobbySocket.send(JSON.stringify({
+        lobbyClient.send({
             action: LOBBY_ACTION.SESSION_INFORMATION_UPDATE,
             sessionInfo: {
                 state: state,
@@ -106,7 +106,7 @@ Session = function(pBlock) {
                 players: numPlayers(),
                 spectators: numSpectators()
             }
-        }));
+        });
     };
 
     var changeSessionState = function(newSessionState, extraUpdateData) {

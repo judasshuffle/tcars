@@ -31,7 +31,7 @@ TrackZoneEditingTools = function() {
                     trackZoneManager.refreshNearbyTracks(MyAvatar.position);
                     _this.selectClosestTrack();
                     exportWindows.eventBridge.emitScriptEvent(JSON.stringify({
-                        action: "export",
+                        action: 'export',
                         data: trackZoneManager.getSelectedTrackZone().exportTrack()
                     }));
                     break;
@@ -57,7 +57,7 @@ TrackZoneEditingTools = function() {
         trackZoneManager.refreshNearbyTracks(MyAvatar.position);
         _this.selectClosestTrack();
         var trackZone = trackZoneManager.getSelectedTrackZone();
-        if (Window.confirm('Are you sure you want to delete trackzone ' + trackZone.getName() + '?') ) {
+        if (true){//Window.confirm('Are you sure you want to delete trackzone ' + trackZone.getName() + '?') ) {
             trackZone.deleteTrackZone();
             trackZoneManager.refreshNearbyTracks(MyAvatar.position);
             //_this.selectClosestTrack();            

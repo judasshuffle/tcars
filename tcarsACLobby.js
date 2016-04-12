@@ -5,7 +5,7 @@
 //const SESSION_PORTS_START = 18001;
 //const SESSION_PORTS_MAX_COUNT = 100;
 
-const SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
+const SCRIPTS_PATH = 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/';//'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
 const LOBBY_ENTITIES_PATH = SCRIPTS_PATH + 'entities/lobby.svo.json';
 const LOBBY_POSITION = {x: 0, y: 0, z: 0};
 const TCARS_RCON = 'tcarsRCON';
@@ -15,7 +15,7 @@ Script.include([
     SCRIPTS_PATH + 'libraries/clientManager.js'
 ]);
 
-const DEBUG_OVER_MESSAGES_PROTOCOL = true;
+const DEBUG_OVER_MESSAGES_PROTOCOL = false;
 
 var startupDate = (new Date());
 var timeZoneOffset = startupDate.getTimezoneOffset() * 60 * 1000;
@@ -174,7 +174,7 @@ function update(deltaTime) {
 
 Script.update.connect(update);
 
-var clientManager = new ClientManager('tcarsLobby');
+var clientManager = new ClientManager(TCARS_LOBBY_CHANNEL);
 
 clientManager.onClientConnect = function(clientID) {
     debugPrint('got client with id: ' + clientID);
@@ -204,6 +204,7 @@ clientManager.onClientAction = function(clientID, action, data) {
             });
             break;
         case LOBBY_ACTION.SESSION_INFORMATION_UPDATE:
+            print("sessionInfoUpdate");
             clientManager.getClient(clientID).sessionInfo = data.sessionInfo;
             break;
         case LOBBY_ACTION.PLAYER_SESSIONS_REQUEST:
@@ -236,7 +237,7 @@ var cleanLobbySessions = function() {
     var deleteClientIDs = [];
     var now = Date.now();
     clientManager.doForAllClients(function(clientID, client) {
-        if (client.sessionBlock !== undefined && (client.socket.readyState === client.socket.CLOSED || (client.lastReceivedPing + PING_TIMEOUT) < now)) {
+        if (client.sessionBlock !== undefined && (client.lastReceivedPing + PING_TIMEOUT) < now) {
             deleteClientIDs.push(clientID);
         }
     });
@@ -254,7 +255,7 @@ var cleanLobbySessions = function() {
         var entityProperties = Entities.getEntityProperties(entity, ['created', 'locked']);
 
         var entityCreationTimeStamp = (new Date(entityProperties.created.slice(0, -1).replace('-', '/').replace('-', '/').replace('T', ' ')).getTime()) - timeZoneOffset;
-        //print(entityProperties.created + ' ' + entityCreationTimeStamp);
+     //   print(entityProperties.created + ' ' + entityCreationTimeStamp);
         if (startupTimestamp > entityCreationTimeStamp) {
             foundEntities++;
             if (entityProperties.locked) {
@@ -263,8 +264,9 @@ var cleanLobbySessions = function() {
             Entities.deleteEntity(entity);
         }
     });
-    //print('startup timestamp:\n' + startupDate + ' ' + startupTimestamp + ' ' + startupDate.toUTCString() + ' ' + timeZoneOffset);
+  //
     if (foundEntities > 0) {
+        print('startup timestamp:\n' + startupDate + ' ' + startupTimestamp + ' ' + startupDate.toUTCString() + ' ' + timeZoneOffset);
         print("found entities: " + foundEntities);
     }// else {
     //    print("found no entities" + entities.length);

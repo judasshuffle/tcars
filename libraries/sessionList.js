@@ -8,7 +8,7 @@
 
 SessionList = function(properties, lobbyChannel) {
     var _this = this;
-    var lobbyListenChannel = lobbyChannel + '-' + MyAvatar.sessionUUID;
+    var lobbyListenChannel = lobbyChannel + '_' + MyAvatar.sessionUUID;
     var sessions = [];
     var columns = {};
     var visible = true;
@@ -36,7 +36,7 @@ SessionList = function(properties, lobbyChannel) {
     var TITLE_HEIGHT = 22;
 
     var HEADER_HEIGHT = 20;
-    var HEADER_COLOR = {red: 20, blue: 20, red: 20};
+    var HEADER_COLOR = {red: 20, green: 20, blue: 20};
 
     var ROW_HEIGHT = 20;
 
@@ -75,12 +75,8 @@ SessionList = function(properties, lobbyChannel) {
     var Session = function(sessionList, index, session, rect, visible) {
         var _this = this;
 
-        var sessionList = sessionList;
-
         var sessionInfo = session.info;
         var sessionUUID = session.uuid;
-
-        var visible = visible;
 
         var columns = {};
 
@@ -108,7 +104,7 @@ SessionList = function(properties, lobbyChannel) {
         };
 
         _this.getSessionChannel = function() {
-            return 'tcars-' + sessionUUID;
+            return TCARS_SESSION_CHANNEL_PREFIX + '[' + sessionUUID + ']';
         };
 
         _this.containsOverlay = function(overlay) {
@@ -176,18 +172,21 @@ SessionList = function(properties, lobbyChannel) {
     var refreshSessions = function() {
         Messages.subscribe(lobbyListenChannel);
         Messages.messageReceived.connect(function (channel, message, senderID) {
-            if (channel === lobbyListenChannel) {
-                var data = JSON.parse(message);
-                switch (data.action) {
-                    case LOBBY_ACTION.PLAYER_SESSIONS_REPLY:
-                        clearSessions();
-                        for (var i in data.sessions) {
+            if (channel !== lobbyListenChannel) {
+                return;
+            }
+            var data = JSON.parse(message);
+            switch (data.action) {
+                case LOBBY_ACTION.PLAYER_SESSIONS_REPLY:
+                    clearSessions();
+                    for (var i in data.sessions) {
+                        if (data.sessions.hasOwnProperty(i)) {
                             sessions.push(new Session(_this, i, data.sessions[i], {x: position.x, y: position.y + TITLE_HEIGHT + HEADER_HEIGHT + (i * ROW_HEIGHT), h: ROW_HEIGHT, w: size.width}, visible));
                         }
-                        break;
-                }
-                Messages.unsubscribe(lobbyListenChannel);
+                    }
+                    break;
             }
+            Messages.unsubscribe(lobbyListenChannel);
         });
         Messages.sendMessage(lobbyChannel, JSON.stringify({action: LOBBY_ACTION.PLAYER_SESSIONS_REQUEST, closeConnection: true}));
         /*var lobbySocket = new WebSocket(createWSLink(lobbyPort));
@@ -248,7 +247,7 @@ SessionList = function(properties, lobbyChannel) {
         for (var i in sessions) {
             if (sessions[i].containsOverlay(clickedOverlay)) {
                 if (_this.onSessionSelected !== undefined) {
-                    _this.onSessionSelected.call(this, /*sessions[i].getWSURL()*/ sessionChannel, sessions[i].getSessionInfo())
+                    _this.onSessionSelected.call(this, /*sessions[i].getWSURL()*/ sessions[i].getSessionChannel(), sessions[i].getSessionInfo())
                 }
                 return true;
             }
