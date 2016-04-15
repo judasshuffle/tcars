@@ -67,7 +67,7 @@ Session = function(pBlock) {
         req.timeout = HTTP_GET_TIMEOUT;
         req.ontimeout = function() { print("failed to load track!!!!!"); };
         req.onreadystatechange =  function() {
-            if (req.readyState === usersRequest.DONE) {
+            if (req.readyState === req.DONE) {
                 if (req.status === 200) {
                     track = req.response;
                     print('the track:');
