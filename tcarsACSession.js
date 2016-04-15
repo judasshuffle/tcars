@@ -28,15 +28,17 @@ Messages.subscribe(TCARS_RCON);
 
 var lobbyClient = new Client('tcarsLobby', Agent.sessionUUID);
 lobbyClient.onActionReceived = function (senderID, action, data) {
-    print('received action ' + action + ' from ' + senderID + ' with data ' + JSON.stringify(data));
     switch (data.action) {
         case LOBBY_ACTION.REGISTER_SESSION_REPLY:
+            print('received session registering reply!!!');
             currentSession = new Session(data.block);
             break;
         case LOBBY_ACTION.PONG:
             lastPingResponse = Date.now();
-            print('last ping response ' + lastPingResponse);
+            //print('last ping response ' + lastPingResponse);
             break;
+        default:
+            print('received unknown action ' + action + ' from ' + senderID + ' with data ' + JSON.stringify(data));
     }
 };
 lobbyClient.send({
@@ -83,10 +85,10 @@ Messages.messageReceived.connect(function(channel, message, senderID) {
 var ping = 0;
 
 var lobbyPingTimer = Script.setInterval(function() {
-    Messages.sendMessage('TCarsDebug', 'session ping ' + (ping++));
+    //Messages.sendMessage('TCarsDebug', 'session ping ' + (ping++));
     //if (lobbySocket !== null && lobbySocket.readyState === lobbySocket.OPEN) {
     var now = Date.now();
-    print("now " + now);
+    //print("now " + now);
     if (lastPingRequest !== null && (lastPingResponse === null || (lastPingResponse + PING_TIMEOUT) < now)) {
         print('ping timeout with lobby, aborting!');
         return;

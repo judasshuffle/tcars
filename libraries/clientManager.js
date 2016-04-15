@@ -21,8 +21,8 @@ ClientManager = function(listeningChannel) {
     _this.onClientAction = undefined;
 
     _this.getClient = function(clientID) {
-        print("CID = "  + clientID);
-        print(JSON.stringify(clients));
+        //print("CID = "  + clientID);
+        //print(JSON.stringify(clients));
         return clients[clientID];
     };
 
@@ -50,7 +50,7 @@ ClientManager = function(listeningChannel) {
         var stringData = JSON.stringify(data);
         var client = _this.getClient(clientID);
         if (client !== undefined) {
-            print('sending ' + listeningChannel + '_' + clientID + ': ' + stringData);
+            //print('sending ' + listeningChannel + '_' + clientID + ': ' + stringData);
             Messages.sendMessage(listeningChannel + '_' + clientID, stringData);
             //client.socket.send(stringData);
         }

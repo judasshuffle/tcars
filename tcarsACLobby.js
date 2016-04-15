@@ -191,7 +191,7 @@ clientManager.onClientDisconnect = function(clientID) {
 };
 
 clientManager.onClientAction = function(clientID, action, data) {
-    debugPrint('message from client with id: ' + clientID + ' action = ' + action);
+
     switch (action) {
         case LOBBY_ACTION.REGISTER_SESSION_REQUEST:
             var sessionBlock = getFreeSessionBlock();
@@ -233,6 +233,8 @@ clientManager.onClientAction = function(clientID, action, data) {
             debugPrint('received ping from ' + clientID);
             clientManager.send(clientID, {action: LOBBY_ACTION.PONG});
             break;
+        default:
+            debugPrint('unknown message from client with id: ' + clientID + ' action = ' + action);
     }
 };
 
