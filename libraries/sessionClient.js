@@ -44,6 +44,7 @@ SessionClient = function() {
         client = new Client(sessionChannel, MyAvatar.sessionUUID);
 
         client.onActionReceived = function(senderID, action, data) {
+            print ('action received ' + data);
             switch (data.action) {
                 case SESSION_ACTION.JOIN_REPLY:
                     clientMessage('Join reply received');

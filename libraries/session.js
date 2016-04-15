@@ -192,6 +192,7 @@ Session = function(pBlock) {
         if (state === SESSION_STATE.VOTE_TRACK) {
             if (timeLeft <= 0) {
                 trackID = getWinningTrackVote();
+                // Move players to car selection here:
                 changeSessionState(SESSION_STATE.LOADING, {trackID: trackID, block: block});
                 updateTrackInfo();
                 //setupTrack();

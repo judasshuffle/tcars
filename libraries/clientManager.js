@@ -73,7 +73,7 @@ ClientManager = function(listeningChannel) {
                 var clientObj = clients[client];
                 if (clientObj.id !== exceptUUID) {
                     //clientObj.socket.send(stringData);
-                    _this.send(data);
+                    _this.send(clientObj.id, data);
                 }
             }
         }
