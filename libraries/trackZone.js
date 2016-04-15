@@ -124,7 +124,11 @@ TrackZone = function(trackZoneEntityID) {
     _this.insertCheckpoint = function(position, rotation, dimensions) {
         // checkpoint!
         var checkpoints = _this.getCheckPoints();
-        checkpoints.push({position: position, rotation: rotation, dimensions: dimensions});
+        checkpoints.push({
+            position: position,
+            rotation: rotation,
+            dimensions: dimensions
+        });
     };
 
 

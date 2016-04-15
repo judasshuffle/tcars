@@ -5,7 +5,7 @@
 //const SESSION_PORTS_START = 18001;
 //const SESSION_PORTS_MAX_COUNT = 100;
 
-const SCRIPTS_PATH = 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/';//'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
+const SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';//'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/';//'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
 const LOBBY_ENTITIES_PATH = SCRIPTS_PATH + 'entities/lobby.svo.json';
 const LOBBY_POSITION = {x: 0, y: 0, z: 0};
 const TCARS_RCON = 'tcarsRCON';
@@ -17,9 +17,15 @@ Script.include([
 
 const DEBUG_OVER_MESSAGES_PROTOCOL = false;
 
-var startupDate = (new Date());
-var timeZoneOffset = startupDate.getTimezoneOffset() * 60 * 1000;
-var startupTimestamp = startupDate.getTime();
+//var startupDate = (new Date());
+//var timeZoneOffset = startupDate.getTimezoneOffset() * 60 * 1000;
+//var startupTimestamp = startupDate.getTime();
+
+var getMillisecondsFromTime = function(dateString) {
+    return (new Date(dateString.slice(0, -1).replace('-', '/').replace('-', '/').replace('T', ' ')).getTime());
+};
+
+print('start time = ' + startupTimestamp);
 
 //Entities.setPacketsPerSecond(2000);
 //Agent.isAvatar = true;
@@ -247,15 +253,18 @@ var cleanLobbySessions = function() {
         debugPrint('removing session client with ID: ' + deleteID);
         clientManager.deleteClient(deleteID);
     }
+};
+
+var checkForEntities = function() {
     // clear old entities
     EntityViewer.queryOctree();
     var foundEntities = 0;
     var entities = Entities.findEntities(LOBBY_POSITION, 60000);
     entities.forEach(function (entity) {
         var entityProperties = Entities.getEntityProperties(entity, ['created', 'locked']);
-
-        var entityCreationTimeStamp = (new Date(entityProperties.created.slice(0, -1).replace('-', '/').replace('-', '/').replace('T', ' ')).getTime()) - timeZoneOffset;
-     //   print(entityProperties.created + ' ' + entityCreationTimeStamp);
+        var entityCreationTimeStamp = getMillisecondsFromTime(entityProperties.created);
+        //var entityCreationTimeStamp = (new Date(entityProperties.created.slice(0, -1).replace('-', '/').replace('-', '/').replace('T', ' ')).getTime()) - timeZoneOffset;
+        //   print(entityProperties.created + ' ' + entityCreationTimeStamp);
         if (startupTimestamp > entityCreationTimeStamp) {
             foundEntities++;
             if (entityProperties.locked) {
@@ -264,7 +273,7 @@ var cleanLobbySessions = function() {
             Entities.deleteEntity(entity);
         }
     });
-  //
+    //
     if (foundEntities > 0) {
         print('startup timestamp:\n' + startupDate + ' ' + startupTimestamp + ' ' + startupDate.toUTCString() + ' ' + timeZoneOffset);
         print("found entities: " + foundEntities);
@@ -272,5 +281,6 @@ var cleanLobbySessions = function() {
     //    print("found no entities" + entities.length);
     //}
 };
+
 
 var cleanLobbySessionsTimer = Script.setInterval(cleanLobbySessions, PING_TIMEOUT);
