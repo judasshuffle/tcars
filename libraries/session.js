@@ -10,6 +10,7 @@
 Session = function(pBlock) {
     var _this = this;
 
+    const HTTP_GET_TIMEOUT = 60000;
     const GAME_TIMER_INTERVAL = 1000;
     var block = pBlock;
     var trackZoneManager = new TrackZoneManager();
@@ -59,12 +60,27 @@ Session = function(pBlock) {
             track = null;
             return;
         }
+        var trackURL = TRACK_ZONE_FOLDER_URL + TRACKS[trackID].trackJSON;
+        print("The trackzone URL is: " + trackURL);
         var req = new XMLHttpRequest();
-        req.open('GET', TRACK_ZONE_FOLDER_URL + TRACKS[trackID].trackJSON, false);
+        req.open('GET', trackURL, true);
+        req.timeout = HTTP_GET_TIMEOUT;
+        req.ontimeout = function() { print("failed to load track!!!!!"); };
+        req.onreadystatechange =  function() {
+            if (usersRequest.readyState === usersRequest.DONE) {
+                if (usersRequest.status === 200) {
+                    track = req.response;
+                    print('the track:');
+                    print(track);
+                    setupTrack();
+                }
+            }
+        };
         req.send();
-        track = req.response;
-        print('the track:');
-        print(track);
+       // req.open('GET', trackURL, false);
+       // req.send();
+
+
     };
 
     var numParticipantRole = function(role) {
@@ -178,7 +194,7 @@ Session = function(pBlock) {
                 trackID = getWinningTrackVote();
                 changeSessionState(SESSION_STATE.LOADING, {trackID: trackID, block: block});
                 updateTrackInfo();
-                setupTrack();
+                //setupTrack();
                 //sendSessionInfo();
                // gameState = GAME_STATE.HIDING;
                // timeLeft = HIDING_TIME;

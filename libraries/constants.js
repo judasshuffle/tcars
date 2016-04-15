@@ -68,7 +68,7 @@ SOUND = true;
 SOUND_FOLDER_URL = 'http://hifi-external.s3.amazonaws.com/tcars/sounds/';
 MODEL_FOLDER_URL = 'http://hifi-external.s3.amazonaws.com/tcars/models/';
 SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
-TRACK_ZONE_FOLDER_URL = SCRIPTS_PATH + '/trackzones/';
+TRACK_ZONE_FOLDER_URL = SCRIPTS_PATH + 'trackzones/';
 
 TRACK_ZONE_DIMENSIONS = {x: 2000, y: 2000, z: 2000};
 TRACK_ZONE_SEARCH_DISTANCE = 2000; // search distance of trackzones (in meters)
