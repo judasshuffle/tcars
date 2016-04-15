@@ -25,7 +25,7 @@ var getMillisecondsFromTime = function(dateString) {
     return (new Date(dateString.slice(0, -1).replace('-', '/').replace('-', '/').replace('T', ' ')).getTime());
 };
 
-print('start time = ' + startupTimestamp);
+//print('start time = ' + startupTimestamp);
 
 //Entities.setPacketsPerSecond(2000);
 //Agent.isAvatar = true;
