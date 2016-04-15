@@ -11,6 +11,8 @@ var lastPingRequest = null;
 var lastPingResponse = null;
 var currentSession = null;
 
+var hadFirstPingReply = false;
+
 TRACK_SELECTION_TIME = 10; //seconds
 
 Script.include([
@@ -35,15 +37,18 @@ lobbyClient.onActionReceived = function (senderID, action, data) {
             break;
         case LOBBY_ACTION.PONG:
             lastPingResponse = Date.now();
+            if (!hadFirstPingReply) {
+                lobbyClient.send({
+                    action: LOBBY_ACTION.REGISTER_SESSION_REQUEST
+                });
+                hadFirstPingReply = true;
+            }
             //print('last ping response ' + lastPingResponse);
             break;
         default:
             print('received unknown action ' + action + ' from ' + senderID + ' with data ' + JSON.stringify(data));
     }
 };
-lobbyClient.send({
-    action: LOBBY_ACTION.REGISTER_SESSION_REQUEST
-});
 
 Messages.messageReceived.connect(function(channel, message, senderID) {
     /*if (channel === LOBBY_WS_URL_RESPONSE_CHANNEL) {
