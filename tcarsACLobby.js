@@ -194,11 +194,13 @@ clientManager.onClientAction = function(clientID, action, data) {
 
     switch (action) {
         case LOBBY_ACTION.REGISTER_SESSION_REQUEST:
+            print('We have received a session request, finally Houston!');
             var sessionBlock = getFreeSessionBlock();
             if (sessionBlock !== undefined) {
                 // set session port if a free one was available
                 clientManager.getClient(clientID).sessionBlock = sessionBlock;
             }
+            print('we want the world to see.')
             var worldBlockCorner = Vec3.sum(Vec3.multiplyVbyV(sessionBlock, SESSION_AREA_DIMENSIONS), SESSION_AREA_START);
             var worldBlockCenter = Vec3.sum(worldBlockCorner, Vec3.multiply(SESSION_AREA_DIMENSIONS, 0.5));
             clientManager.send(clientID, {
@@ -208,6 +210,7 @@ clientManager.onClientAction = function(clientID, action, data) {
                     dimensions: SESSION_AREA_DIMENSIONS
                 }
             });
+            print('the session block should have been send by now...')
             break;
         case LOBBY_ACTION.SESSION_INFORMATION_UPDATE:
             print("sessionInfoUpdate");
