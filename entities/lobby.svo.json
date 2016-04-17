@@ -1020,7 +1020,7 @@
                 "y": 1.4342482089996338,
                 "z": 5.426290512084961
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/torino.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/torinoshiny.fbx.fbx",
             "position": {
                 "x": 9.254936218261719,
                 "y": -7.52801513671875,
