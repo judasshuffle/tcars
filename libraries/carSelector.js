@@ -79,7 +79,7 @@ CarSelector = function() {
                 selectableCar.overlay = Overlays.addOverlay("model", {
                     url: MODEL_FOLDER_URL + selectableCar.vehicle.selectormodel + "?v=" + (new Date()).getTime(),
                     position: Vec3.sum(CAR_SELECTOR.CENTER, {x: 0, y: selectableCar.vehicle.dimensions.y / 2, z: 0}),
-                    dimensions: selectableCar.vehicle.dimensions,
+                    dimensions: selectableCar.vehicle.selectorDimensions,
                     visible: true
                     //scale: 0.01///alpha: 0.5
                 });
