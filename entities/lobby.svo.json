@@ -1215,7 +1215,7 @@
                 "z": 47.82183074951172
             },
             "locked": 1,
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/lobbyfolder/lobby4.fbx?v1",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/newlobby/speedyslobby1.fbx",
             "name": "lobby",
             "position": {
                 "x": 0.4603271484375,
