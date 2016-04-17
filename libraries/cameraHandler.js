@@ -43,9 +43,7 @@ CameraHandler = function() {
     };
 
     var cameraLookAt = function(cameraPos, lookAtPos) {
-        var lookAtRaw = Quat.lookAt(cameraPos, lookAtPos, WORLD_UP_DIRECTION);
-        lookAtRaw.w = -lookAtRaw.w;
-        return lookAtRaw;
+        return Quat.lookAt(cameraPos, lookAtPos, WORLD_UP_DIRECTION);
     };
 
     _this.updateCamera = function(updateTime, carProps) {
