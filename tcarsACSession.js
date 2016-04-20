@@ -95,12 +95,16 @@ var lobbyPingTimer = Script.setInterval(function() {
     var now = Date.now();
     //print("now " + now);
     if (lastPingRequest !== null && (lastPingResponse === null || (lastPingResponse + PING_TIMEOUT) < now)) {
-        print('ping timeout with lobby, aborting!');
+        print('ping timeout with lobby, aborting in 5 seconds.');
+        Script.setTimeout(function() {
+            Script.stop();
+        }, 5000);
         return;
     }
     lastPingRequest = now;
     lobbyClient.send({
-        action: LOBBY_ACTION.PING
+        action: LOBBY_ACTION.PING,
+        number: ping++
     });
     //}
 }, PING_TIMEOUT);
