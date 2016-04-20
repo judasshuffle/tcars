@@ -10,6 +10,7 @@ MAX_DEGREES = 360;
 
 GRAVITY = -9.81;
 
+WORLD_FRONT_DIRECTION = {x: 0, y: 0, z: -1};
 WORLD_UP_DIRECTION = {x: 0, y: 1, z: 0};
 
 // We have different states that the script switches between
