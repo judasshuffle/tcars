@@ -15,7 +15,7 @@
 
 // Function which exists inside of an entity which triggers as a user approaches it.
 (function() {
-    if (GlobalServices.username !== "thoys" && GlobalServices.username !== "Judas"&& GlobalServices.username !== "Jazmin") {
+    if (GlobalServices.username !== "thoys" && GlobalServices.username !== "Judas" && GlobalServices.username !== "Jazmin" && GlobalServices.username !== "Grayson2015") {
         var carScript = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/tcar.js';
 
         Script.include(carScript);
