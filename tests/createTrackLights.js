@@ -10,9 +10,9 @@ entities.forEach(function(entity) {
     }
 });
 
-var LAMP_SIZE = {"x":25.0,"y":30.0,"z":25.0};
+var LAMP_SIZE = {"x": 25.0, "y": 30.0, "z": 25.0};
 var CONE_ANGLE = 90;
-var INTENSITY = 1.0;
+//var INTENSITY = 1.0;
 var SOFTNESS_VARIANCE = 0.1;
 var points = [];
 var verticalOffset = 19.6;
@@ -74,32 +74,31 @@ var colorTable = [
 */
 
 var prevPoint = null;
-for (var i = 0; i < points.length; i++) {
-    var point = points[i];
+points.forEach(function(point) {
     if (prevPoint != null) {
         Entities.addEntity({
             type: 'Light',
             name: 'test light ' + (i+1) + '/' + points.length,
             dimensions: LAMP_SIZE,//{x: 1, y: 1, z: 1/* Vec3.length(Vec3.subtract(point, prevPoint))*/},
-            position: Vec3.sum({x:7162.57,y:8015.87 -verticalOffset,z:8128.13}, Vec3.mix(prevPoint, point, 0)),
+            position: Vec3.sum({x: 7162.57, y: 8015.87 - verticalOffset, z: 8128.13}, Vec3.mix(prevPoint, point, 0)),
             registration: {x: 0.5, y: 1.0, z: 0.5},
             //rotation: rotateBetween(prevPoint, point),
-            rotation: {"x":-0.525482714176178,"y":0.47314679622650146,"z":0.47314679622650146,"w":0.525482714176178},
+            rotation: {x: -0.525482714176178, y: 0.47314679622650146, z: 0.47314679622650146, w: 0.525482714176178},
             // lineWidth: 4,
             //color: colorTable[i % colorTable.length],
-            color: {red: (Math.random()*100)+150, green: (Math.random()*100)+50, blue: (Math.random()*50)+50},
+            color: {red: (Math.random() * 100) + 150, green: (Math.random() * 100) + 50, blue: (Math.random() * 50) + 50},
             glowLevel:0,
             isSpotlight:1,
             intensity: (Math.random() * 0.4) + 0.8, //(Math.random()*95)+5,
-            "exponent":(Math.random() * SOFTNESS_VARIANCE),//SOFTNESS,
-            "cutoff":CONE_ANGLE,
-       // linePoints: points,
+            exponent: (Math.random() * SOFTNESS_VARIANCE),//SOFTNESS,
+            cutoff: CONE_ANGLE,
+            // linePoints: points,
             visible: true
-    });
-//{"dimensions":{"x":13.611613273620605,"y":13.611613273620605,"z":13.611613273620605},"rotation":{"x":-0.525482714176178,"y":0.47314679622650146,"z":0.47314679622650146,"w":0.525482714176178}, "color":{"red":212,"green":23,"blue":23}, "glowLevel":0,"isSpotlight":1,"intensity":8,"exponent":1,"cutoff":90,
+        });
+        //{"dimensions":{"x":13.611613273620605,"y":13.611613273620605,"z":13.611613273620605},"rotation":{"x":-0.525482714176178,"y":0.47314679622650146,"z":0.47314679622650146,"w":0.525482714176178}, "color":{"red":212,"green":23,"blue":23}, "glowLevel":0,"isSpotlight":1,"intensity":8,"exponent":1,"cutoff":90,
     }
-    print(i + "ha");
+    print(i + 'ha');
     prevPoint = point;
-    
-}
+});
+
 Script.stop();

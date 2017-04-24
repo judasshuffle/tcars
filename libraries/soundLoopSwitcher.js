@@ -6,12 +6,12 @@
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
 //
 
-SoundLoopSwitcher = function() {
+SoundLoopSwitcher = function () {
     var _this = this;
     _this.sound = null;
     _this.injector = null;
     _this.position = MyAvatar.position;
-    _this.setSound = function(sound) {
+    _this.setSound = function (sound) {
         if (!SOUND) {
             return;
         }
@@ -19,14 +19,14 @@ SoundLoopSwitcher = function() {
             _this.stopSound();
             _this.sound = sound;
             _this.injector = Audio.playSound(_this.sound, {
-                position: _this.position, //MyAvatar.position,
+                position: _this.position,
                 volume: 0.2,
                 loop: true
             });
         }
     };
 
-    _this.stopSound = function() {
+    _this.stopSound = function () {
         if (_this.injector !== null) {
             _this.injector.stop();
             _this.sound = null;
@@ -34,14 +34,14 @@ SoundLoopSwitcher = function() {
         }
     };
 
-    _this.updatePosition = function(newPosition) {
+    _this.updatePosition = function (newPosition) {
         if (_this.injector !== null) {
             var currentOptions = _this.injector.options;
             currentOptions.position = newPosition;
             _this.injector.options = currentOptions;
-            //_this.injector.setOptions({position: newPosition});
-            //print(JSON.stringify(_this.injector.getOptions()));
+            // _this.injector.setOptions({position: newPosition});
+            // print(JSON.stringify(_this.injector.getOptions()));
         }
-        _this.position = newPosition
+        _this.position = newPosition;
     };
 };

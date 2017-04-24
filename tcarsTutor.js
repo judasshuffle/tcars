@@ -1,4 +1,4 @@
-//would you like to play a game
+// would you like to play a game
 
  Agent.isAvatar = true;
 

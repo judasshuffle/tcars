@@ -117,7 +117,7 @@ SESSION_STATE = {
     LOADING:            3,
     COUNT_DOWN:         4,
     RACE:               5
-    //TODO: Another state after race or restart?
+    // TODO: Another state after race or restart?
 };
 
 SESSION_STATE_TEXT = {};

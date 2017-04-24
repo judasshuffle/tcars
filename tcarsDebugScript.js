@@ -43,7 +43,7 @@ function isScriptRunning(script) {
 
 var carScript = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/tcar.js';
 
-var stopScriptByName = function(scriptName) {
+var stopScriptByName = function (scriptName) {
     var runningScripts = ScriptDiscoveryService.getRunning();
     for (var i in runningScripts) {
         if (runningScripts.hasOwnProperty(i) && runningScripts[i].name === scriptName) {
@@ -52,7 +52,7 @@ var stopScriptByName = function(scriptName) {
     }
 };
 
-Controller.mousePressEvent.connect(function(event) {
+Controller.mousePressEvent.connect(function (event) {
     var clickedOverlay = Overlays.getOverlayAtPoint({x: event.x, y: event.y});
     if (toolBar.clicked(clickedOverlay) === carScriptButton) {
         carScriptEnabled = !isScriptRunning(carScript);

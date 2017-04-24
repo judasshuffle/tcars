@@ -108,7 +108,7 @@
         if (this.firstTime) {
             this.firstTime = false;
             for (var i = 0; i < WHEEL_COUNT; i++) {
-                var wheelPos = Vec3.sum(this.properties.position, Vec3.multiplyQbyV(this.properties.rotation, getPositionOffset(i)));
+                // var wheelPos = Vec3.sum(this.properties.position, Vec3.multiplyQbyV(this.properties.rotation, getPositionOffset(i)));
                 _this.wheels[i] = Overlays.addOverlay("model", {
                     url: MODEL_FOLDER_URL + _this.wheelModel,
                    // position: wheelPos,
@@ -153,15 +153,15 @@
         }
     };
 
-    _this.clickDownOnEntity = function(entityID, mouseEvent) {
+    _this.clickDownOnEntity = function(entityID/*, mouseEvent*/) {
         this.updateProperties(entityID);
         this.playSound();
     };
 
-    _this.holdingClickOnEntity = function(entityID, mouseEvent) {
+    _this.holdingClickOnEntity = function(entityID/*, mouseEvent*/) {
         this.updateProperties(entityID);
     };
-    _this.clickReleaseOnEntity = function(entityID, mouseEvent) {
+    _this.clickReleaseOnEntity = function(entityID/*, mouseEvent*/) {
         this.updateProperties(entityID);
     };
 });

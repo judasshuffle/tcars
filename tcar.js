@@ -25,8 +25,8 @@ Script.include([
     'libraries/car.js'
 ]);
 
-const MAX_MESSAGES = 20;
-const LOBBY_WS_URL_REQUEST_CHANNEL = 'tcarsRequestLobbyWSURL';
+var MAX_MESSAGES = 20;
+//var LOBBY_WS_URL_REQUEST_CHANNEL = 'tcarsRequestLobbyWSURL';
 //const LOBBY_WS_URL_RESPONSE_CHANNEL = 'tcarsResponseLobbyWSURL';
 var messageViewer = new MessageViewer({x: 100, y: 100}, 'TCars MessagesViewer', MAX_MESSAGES);
 var avatarSeater = new AvatarSeater();
@@ -106,8 +106,8 @@ Messages.messageReceived.connect(function (channel, message, senderID) {
 });*/
 
 
-var timeItWentWithoutMoving = 0;
-var actionID = false;
+//var timeItWentWithoutMoving = 0;
+//var actionID = false;
 
 var spacebarBlockly = 'Window.alert("You have not made a blockly script for this button yet!");';
 
@@ -132,15 +132,15 @@ function doSpaceBarBlockly() {
     eval(spacebarBlockly);
 }
 
-function mixFloats(float1, float2, mixValue) {
+/*function mixFloats(float1, float2, mixValue) {
     if (mixValue > 1.0) {
         mixValue = 1.0;
     }
     return float1 + ((float2 - float1) * mixValue);
-}
+}*/
 
 function isCarDriving() {
-    return state == STATE.DRIVING || state == STATE.RACING;
+    return state === STATE.DRIVING || state === STATE.RACING;
 }
 
 function launchProjectile(carProps) {
@@ -183,21 +183,21 @@ function launchProjectile(carProps) {
 }
 
 function handleDrivingKeyPress(event) {
-    if (event.key == KEY.UP || event.key == KEY.W) {
+    if (event.key === KEY.UP || event.key === KEY.W) {
         car.accelerating = true;
-    } else if (event.key == KEY.DOWN || event.key == KEY.S) {
+    } else if (event.key === KEY.DOWN || event.key === KEY.S) {
         car.reversing = true;
-    } else if (event.key == KEY.LEFT || event.key == KEY.A) {
+    } else if (event.key === KEY.LEFT || event.key === KEY.A) {
         car.steeringLeft = true;
-    } else if (event.key == KEY.RIGHT || event.key == KEY.D) {
+    } else if (event.key === KEY.RIGHT || event.key === KEY.D) {
         car.steeringRight = true;
-    } else if (event.key == KEY.C) {
+    } else if (event.key === KEY.C) {
         event.isShifted ? cameraHandler.prevCamera() : cameraHandler.nextCamera();
-    } else if (event.key == KEY.R) {
+    } else if (event.key === KEY.R) {
         car.reset();
-    } else if (event.key == KEY.B) {
+    } else if (event.key === KEY.B) {
         newWindow.setVisible(true);
-    } else if (event.key == KEY.SPACE) {
+    } else if (event.key === KEY.SPACE) {
         //launchProjectile(Entities.getEntityProperties(car.entity));
         doSpaceBarBlockly();
     }

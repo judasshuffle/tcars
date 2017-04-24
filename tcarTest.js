@@ -4,7 +4,7 @@
 // Models by Judas VERY important code also by Judas
 // Car tuning by unknown
 
-const TCARS_BLOCKLY_URL = 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/blockly-tcars/carTest.html';
+//const TCARS_BLOCKLY_URL = 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/blockly-tcars/carTest.html';
 
 Script.include([
     'libraries/constants.js',

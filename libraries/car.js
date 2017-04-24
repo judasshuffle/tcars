@@ -226,7 +226,8 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier, newPar
         
         if (_this.speedI !== _this.lastSpeedI) {
             _this.lastSpeedI = _this.speedI;
-            newProperties.velocity = Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -Math.log(1 + _this.speedI) * _this.speedMultiplier});
+            newProperties.velocity = Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -Math.log(1 + _this.speedI) *
+                _this.speedMultiplier});
             newProperties.velocity.y = carProps.velocity.y;
         }
         

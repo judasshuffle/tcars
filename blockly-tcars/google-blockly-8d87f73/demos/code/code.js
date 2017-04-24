@@ -351,7 +351,7 @@ Code.init = function() {
 
   var rtl = Code.isRtl();
   var container = document.getElementById('content_area');
-  var onresize = function(e) {
+  var onresize = function(/*e*/) {
     var bBox = Code.getBBox_(container);
     for (var i = 0; i < Code.TABS_.length; i++) {
       var el = document.getElementById('content_' + Code.TABS_[i]);

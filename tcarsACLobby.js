@@ -5,14 +5,20 @@
 //const SESSION_PORTS_START = 18001;
 //const SESSION_PORTS_MAX_COUNT = 100;
 
-const SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';//'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/';//'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
+// Allow to run the lobby through Interface for testing purposes
+const LOCAL_RUN = MyAvatar !== undefined;
+
+const SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
+//'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/';
+//'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
 const LOBBY_ENTITIES_PATH = SCRIPTS_PATH + 'entities/lobby.svo.json';
 const LOBBY_POSITION = {x: 0, y: 0, z: 0};
 const TCARS_RCON = 'tcarsRCON';
 
+var scriptIncludePath = LOCAL_RUN ? '' : SCRIPTS_PATH;
 Script.include([
-    SCRIPTS_PATH + 'libraries/constants.js',
-    SCRIPTS_PATH + 'libraries/clientManager.js'
+    scriptIncludePath + 'libraries/constants.js',
+    scriptIncludePath + 'libraries/clientManager.js'
 ]);
 
 const DEBUG_OVER_MESSAGES_PROTOCOL = false;
@@ -29,9 +35,11 @@ var getMillisecondsFromTime = function(dateString) {
 
 //Entities.setPacketsPerSecond(2000);
 //Agent.isAvatar = true;
-EntityViewer.setPosition(LOBBY_POSITION);
-EntityViewer.setOrientation(Quat.fromPitchYawRollDegrees(0, 90, 0));
-EntityViewer.setCenterRadius(60000);
+if (!LOCAL_RUN) {
+    EntityViewer.setPosition(LOBBY_POSITION);
+    EntityViewer.setOrientation(Quat.fromPitchYawRollDegrees(0, 90, 0));
+    EntityViewer.setCenterRadius(60000);
+}
 //EntityViewer.queryOctree();
 
 //Messages.subscribe(LOBBY_WS_URL_REQUEST_CHANNEL);
@@ -44,7 +52,7 @@ EntityViewer.setCenterRadius(60000);
 
 Messages.subscribe(TCARS_RCON);
 
-Messages.messageReceived.connect(function(channel, message, senderID) {
+Messages.messageReceived.connect(function(channel, message/*, senderID*/) {
     if (channel === TCARS_RCON) {
         if (message === 'stop') {
             Script.stop();
@@ -95,21 +103,22 @@ const SESSION_AREA_DIMENSIONS = {
 
 function setupLobbyEntities() {
     try {
-        var req = new XMLHttpRequest();
-        req.open('GET', LOBBY_ENTITIES_PATH, false);
-        req.send();
-        var lobbyEntityData = JSON.parse(req.response.toString());
+        var webRequest = new XMLHttpRequest();
+        webRequest.open('GET', LOBBY_ENTITIES_PATH, false);
+        webRequest.send();
+        var lobbyEntityData = JSON.parse(webRequest.response.toString());
         var entities = lobbyEntityData.Entities;
         for (var i = 0; i < entities.length; i++) {
             Entities.addEntity(entities[i]);
         }
     } catch (e) {
-        debugPrint("Error: " + JSON.stringify(e));
+        debugPrint('Error: ' + JSON.stringify(e));
     }
 }
 
 function maxBlocksDimension(dimension) {
-    return Math.floor(Math.abs(SESSION_AREA_START[dimension] - SESSION_AREA_END[dimension]) / SESSION_AREA_DIMENSIONS[dimension]);
+    return Math.floor(Math.abs(SESSION_AREA_START[dimension] - SESSION_AREA_END[dimension]) /
+        SESSION_AREA_DIMENSIONS[dimension]);
 }
 
 // get blocks positions from specific dimensions
@@ -166,19 +175,24 @@ function getFreeSessionBlock() {
 }
 var initialized = false;
 
-function update(deltaTime) {
+var updateTimer;
+
+function update(/*deltaTime*/) {
     if (!initialized) {
         if (Entities.serversExist() && Entities.canRez()) {
             print('initialized');
             Entities.setPacketsPerSecond(6000);
            // deleteBoxes()
             initialized = true;
-            Script.update.disconnect(update);
+            //Script.update.disconnect(update);
+            Script.clearInterval(updateTimer);
         }
     }
 }
 
-Script.update.connect(update);
+//Script.update.connect(update);
+
+updateTimer = Script.setInterval(update, 1000 / 60);
 
 var clientManager = new ClientManager(TCARS_LOBBY_CHANNEL);
 
@@ -246,6 +260,7 @@ var cleanLobbySessions = function() {
     var now = Date.now();
     clientManager.doForAllClients(function(clientID, client) {
         if (client.sessionBlock !== undefined && (client.lastReceivedPing + PING_TIMEOUT) < now) {
+            print(client.lastReceivedPing);
             deleteClientIDs.push(clientID);
         }
     });
@@ -256,10 +271,29 @@ var cleanLobbySessions = function() {
         clientManager.deleteClient(deleteID);
     }
 };
+EntityCleaner = function() {
+    var _this = this;
+
+    _this.init = function() {
+
+    };
+
+    _this.checkForOldEntities = function() {
+
+    };
+
+    _this.cleanup = function() {
+
+    };
+
+    _this.init();
+};
 
 var checkForEntities = function() {
     // clear old entities
-    EntityViewer.queryOctree();
+    if (!LOCAL_RUN) {
+        EntityViewer.queryOctree();
+    }
     var foundEntities = 0;
     var entities = Entities.findEntities(LOBBY_POSITION, 60000);
     entities.forEach(function (entity) {

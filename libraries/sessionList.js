@@ -13,7 +13,7 @@ SessionList = function(properties, lobbyChannel) {
     var columns = {};
     var visible = true;
 
-    /*var createWSLink = function(port) {
+    /* var createWSLink = function(port) {
         return 'ws://' + lobbyHostName + ':' + port;
     };*/
 
@@ -88,7 +88,7 @@ SessionList = function(properties, lobbyChannel) {
             if (columns[column]) {
                 Overlays.deleteOverlay(columns[column]);
             }
-            columns[column] = Overlays.addOverlay("text", {
+            columns[column] = Overlays.addOverlay('text', {
                 x: rect.x + getColumnPos(column),
                 y: rect.y + TITLE_HEIGHT,
                 width: getColumnWidth(column),
@@ -109,7 +109,7 @@ SessionList = function(properties, lobbyChannel) {
 
         _this.containsOverlay = function(overlay) {
             for (var column in columns) {
-                if (columns[column] === overlay) {
+                if (columns.hasOwnProperty(column) && columns[column] === overlay) {
                     return true;
                 }
             }
@@ -125,8 +125,10 @@ SessionList = function(properties, lobbyChannel) {
         };
 
         var setVisibility = function(newVisible) {
-            for (var column in columns) {
-                Overlays.editOverlay(columns[column], {visible: newVisible});
+            for (var columnKey in columns) {
+                if (columns.hasOwnProperty(columnKey)) {
+                    Overlays.editOverlay(columns[columnKey], {visible: newVisible});
+                }
             }
             visible = newVisible;
         };
@@ -157,14 +159,18 @@ SessionList = function(properties, lobbyChannel) {
 
         _this.cleanup = function() {
             for (var column in columns) {
-                Overlays.deleteOverlay(columns[column]);
+                if (columns.hasOwnProperty(column)) {
+                    Overlays.deleteOverlay(columns[column]);
+                }
             }
         };
     };
 
     var clearSessions = function() {
-        for (var i in sessions) {
-            sessions[i].cleanup();
+        for (var sessionKey in sessions) {
+            if (sessions.hasOwnProperty(sessionKey)) {
+                sessions[sessionKey].cleanup();
+            }
         }
         sessions = [];
     };
@@ -181,15 +187,23 @@ SessionList = function(properties, lobbyChannel) {
                     clearSessions();
                     for (var i in data.sessions) {
                         if (data.sessions.hasOwnProperty(i)) {
-                            sessions.push(new Session(_this, i, data.sessions[i], {x: position.x, y: position.y + TITLE_HEIGHT + HEADER_HEIGHT + (i * ROW_HEIGHT), h: ROW_HEIGHT, w: size.width}, visible));
+                            sessions.push(new Session(_this, i, data.sessions[i], {
+                                x: position.x,
+                                y: position.y + TITLE_HEIGHT + HEADER_HEIGHT + (i * ROW_HEIGHT),
+                                h: ROW_HEIGHT,
+                                w: size.width
+                            }, visible));
                         }
                     }
                     break;
             }
             Messages.unsubscribe(lobbyListenChannel);
         });
-        Messages.sendMessage(lobbyChannel, JSON.stringify({action: LOBBY_ACTION.PLAYER_SESSIONS_REQUEST, closeConnection: true}));
-        /*var lobbySocket = new WebSocket(createWSLink(lobbyPort));
+        Messages.sendMessage(lobbyChannel, JSON.stringify({
+            action: LOBBY_ACTION.PLAYER_SESSIONS_REQUEST,
+            closeConnection: true
+        }));
+        /* var lobbySocket = new WebSocket(createWSLink(lobbyPort));
         lobbySocket.onopen = function(event) {
             lobbySocket.send(JSON.stringify({
                 action: LOBBY_ACTION.PLAYER_SESSIONS_REQUEST
@@ -202,7 +216,8 @@ SessionList = function(properties, lobbyChannel) {
                 case LOBBY_ACTION.PLAYER_SESSIONS_REPLY:
                     clearSessions();
                     for (var i in data.sessions) {
-                        sessions.push(new Session(_this, i, data.sessions[i], {x: position.x, y: position.y + TITLE_HEIGHT + HEADER_HEIGHT + (i * ROW_HEIGHT), h: ROW_HEIGHT, w: size.width}, visible));
+                        sessions.push(new Session(_this, i, data.sessions[i], {x: position.x, y: position.y + TITLE_HEIGHT +
+                            HEADER_HEIGHT + (i * ROW_HEIGHT), h: ROW_HEIGHT, w: size.width}, visible));
                     }
                     break;
             }
@@ -236,7 +251,7 @@ SessionList = function(properties, lobbyChannel) {
     };
 
     // returns selected session
-    // onSessionSelected(sessionWSURL, sessionInfo)
+    // onSessionSelected(sessionChannel, sessionInfo)
     _this.onSessionSelected = undefined;
 
     _this.handleClickEvent = function(x, y) {
@@ -244,10 +259,14 @@ SessionList = function(properties, lobbyChannel) {
             return false;
         }
         var clickedOverlay = Overlays.getOverlayAtPoint({x: x, y: y});
-        for (var i in sessions) {
-            if (sessions[i].containsOverlay(clickedOverlay)) {
+        for (var sessionKey in sessions) {
+            if (!sessions.hasOwnProperty(sessionKey)) {
+                continue;
+            }
+            var session = sessions[sessionKey];
+            if (session.containsOverlay(clickedOverlay)) {
                 if (_this.onSessionSelected !== undefined) {
-                    _this.onSessionSelected.call(this, /*sessions[i].getWSURL()*/ sessions[i].getSessionChannel(), sessions[i].getSessionInfo())
+                    _this.onSessionSelected.call(this, session.getSessionChannel(), session.getSessionInfo());
                 }
                 return true;
             }
@@ -261,7 +280,9 @@ SessionList = function(properties, lobbyChannel) {
 
     var setVisibility = function(newVisible) {
         for (var column in columns) {
-            Overlays.editOverlay(columns[column], {visible: newVisible});
+            if (columns.hasOwnProperty(column)) {
+                Overlays.editOverlay(columns[column], {visible: newVisible});
+            }
         }
         Overlays.editOverlay(_this.refreshButton, {visible: newVisible});
         Overlays.editOverlay(_this.overlay, {visible: newVisible});
@@ -284,8 +305,10 @@ SessionList = function(properties, lobbyChannel) {
             // already shown.
             return;
         }
-        for (var i in sessions) {
-            sessions[i].show();
+        for (var sessionKey in sessions) {
+            if (sessions.hasOwnProperty(sessionKey)) {
+                sessions[sessionKey].show();
+            }
         }
         setVisibility(true);
     };
@@ -294,7 +317,9 @@ SessionList = function(properties, lobbyChannel) {
     _this.cleanup = function() {
         clearSessions();
         for (var column in columns) {
-            Overlays.deleteOverlay(columns[column]);
+            if (columns.hasOwnProperty(column)) {
+                Overlays.deleteOverlay(columns[column]);
+            }
         }
         Overlays.deleteOverlay(_this.refreshButton);
         Overlays.deleteOverlay(_this.overlay);

@@ -22,15 +22,15 @@ TrackZoneEditingTools = function() {
     };
 
     _this.exportTrack = function() {
-        var exportWindows = new WebWindow('Export window', Script.resolvePath('html/exportTrackZone.html'), 800, 600);
+        var exportWindows = new OverlayWebWindow('Export window', Script.resolvePath('html/exportTrackZone.html'), 800, 600);
         exportWindows.setVisible(true);
-        exportWindows.eventBridge.webEventReceived.connect(function(data) {
+        exportWindows.webEventReceived.connect(function(data) {
             data = JSON.parse(data);
             switch (data.action) {
                 case 'page_loaded':
                     trackZoneManager.refreshNearbyTracks(MyAvatar.position);
                     _this.selectClosestTrack();
-                    exportWindows.eventBridge.emitScriptEvent(JSON.stringify({
+                    exportWindows.emitScriptEvent(JSON.stringify({
                         action: 'export',
                         data: trackZoneManager.getSelectedTrackZone().exportTrack()
                     }));
@@ -41,9 +41,9 @@ TrackZoneEditingTools = function() {
 
 
     _this.importTrack = function() {
-        var importWindows = new WebWindow('Import window', Script.resolvePath('html/importTrackZone.html'), 800, 600);
+        var importWindows = new OverlayWebWindow('Import window', Script.resolvePath('html/importTrackZone.html'), 800, 600);
         importWindows.setVisible(true);
-        importWindows.eventBridge.webEventReceived.connect(function(data) {
+        importWindows.webEventReceived.connect(function(data) {
             data = JSON.parse(data);
             switch (data.action) {
                 case 'import_json':
@@ -57,11 +57,11 @@ TrackZoneEditingTools = function() {
         trackZoneManager.refreshNearbyTracks(MyAvatar.position);
         _this.selectClosestTrack();
         var trackZone = trackZoneManager.getSelectedTrackZone();
-        if (true){//Window.confirm('Are you sure you want to delete trackzone ' + trackZone.getName() + '?') ) {
-            trackZone.deleteTrackZone();
-            trackZoneManager.refreshNearbyTracks(MyAvatar.position);
-            //_this.selectClosestTrack();            
-        }
+        //if (true){//Window.confirm('Are you sure you want to delete trackzone ' + trackZone.getName() + '?') ) {
+        trackZone.deleteTrackZone();
+        trackZoneManager.refreshNearbyTracks(MyAvatar.position);
+        //_this.selectClosestTrack();
+        //}
     };
     // add respawnable stuff
     
@@ -76,12 +76,19 @@ TrackZoneEditingTools = function() {
     _this.addCheckpoint = function() {
         
     };
+
+    _this.testDrive = function() {
+        trackZoneManager.selectNearestTrackZone(Camera.position);
+        // var selectedTrackzone = trackZoneManager.getSelectedTrackZone();
+        
+    };
 };
 trackZoneEditingTools = new TrackZoneEditingTools();
 trackZoneEditingTools.selectClosestTrack();
 
 const MENU_TCARS_EDIT = 'TCars Edit';
-const MENU_ITEM_TCARS_EDIT_SELECT_NEAREST = 'Select Nearest TrackZone';
+//const MENU_ITEM_TCARS_EDIT_SELECT_NEAREST = 'Select Nearest TrackZone';
+const MENU_ITEM_TCARS_EDIT_TESTDRIVE = 'TrackZoneTestDrive';
 const MENU_ITEM_TCARS_EDIT_IMPORT = 'TrackZoneImport';
 const MENU_ITEM_TCARS_EDIT_EXPORT = 'TrackZoneExport';
 const MENU_ITEM_TCARS_EDIT_DELETE = 'TrackZoneDelete';
@@ -89,6 +96,7 @@ const MENU_TCARS_EDIT_CHECKPOINTS = MENU_TCARS_EDIT + ' > Checkpoints';
 const MENU_ITEM_TCARS_GET_LOCAL_POS = 'Get Local Position';
 
 Menu.addMenu(MENU_TCARS_EDIT);
+Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENU_ITEM_TCARS_EDIT_TESTDRIVE});
 Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENU_ITEM_TCARS_EDIT_IMPORT});
 Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENU_ITEM_TCARS_EDIT_EXPORT});
 Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENU_ITEM_TCARS_EDIT_DELETE});
@@ -104,6 +112,8 @@ Menu.menuItemEvent.connect(function(menuItem) {
         print(JSON.stringify(trackZoneEditingTools.getRelativePosition(MyAvatar.position)));
     } else if (menuItem === MENU_ITEM_TCARS_EDIT_DELETE) {
         trackZoneEditingTools.deleteTrack();
+    } else if (menuItem === MENU_ITEM_TCARS_EDIT_TESTDRIVE) {
+        trackZoneEditingTools.testDrive();
     }
 });
 

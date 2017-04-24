@@ -313,11 +313,11 @@ var myOverlay = Overlays.addOverlay("model", {
     visible: true
 });
 
-var multiple_timer = Script.setInterval(function() {
-	modelIndex = (modelIndex + 1) % models.length;
-	Overlays.editOverlay(myOverlay, {url: MODEL_PATH + models[modelIndex].file});
+/* var multipleTimer = */Script.setInterval(function () {
+    modelIndex = (modelIndex + 1) % models.length;
+    Overlays.editOverlay(myOverlay, {url: MODEL_PATH + models[modelIndex].file});
 }, 3000);
 
-Script.scriptEnding.connect(function() {
+Script.scriptEnding.connect(function () {
     Overlays.deleteOverlay(myOverlay);
 });

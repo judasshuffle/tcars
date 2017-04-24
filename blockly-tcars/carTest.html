@@ -304,7 +304,7 @@ button {
       }
     };
 
-    Blockly.JavaScript['running'] = function(block) {
+    Blockly.JavaScript['running'] = function(/*block*/) {
       return 'car.start()';
     };
 
@@ -313,15 +313,15 @@ button {
       return 'car.changeModel("' +  dropdown_name + '");';
     };
 
-    Blockly.JavaScript['drive_forwards'] = function(block) {
+    Blockly.JavaScript['drive_forwards'] = function(/*block*/) {
       return 'car.forward();';
     };
 
-    Blockly.JavaScript['turn_left'] = function(block) {
+    Blockly.JavaScript['turn_left'] = function(/*block*/) {
       return 'car.turn_left();';
     };
 
-    Blockly.JavaScript['turn_right'] = function(block) {
+    Blockly.JavaScript['turn_right'] = function(/*block*/) {
       return 'car.turn_right();';
     };
 
@@ -337,7 +337,7 @@ button {
     });
 
     var container = document.getElementById('content_area');
-    var onResize = function(e) {
+    var onResize = function(/*e*/) {
         var bBox = getBBox_(container);
         var el = document.getElementById('content_blocks');
         el.style.top = bBox.y + 'px';
@@ -363,7 +363,7 @@ button {
     });
 
     if (window.EventBridge !== undefined) {
-        EventBridge.scriptEventReceived.connect(function(data) {
+        EventBridge.scriptEventReceived.connect(function(/*data*/) {
            // data = JSON.parse(data);
            // if (data.action == 'load') {
            //     $.each(data.options, function(option, value) {

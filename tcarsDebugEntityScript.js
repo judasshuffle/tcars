@@ -14,13 +14,14 @@
 
 
 // Function which exists inside of an entity which triggers as a user approaches it.
-(function() {
-    if (GlobalServices.username !== "thoys" && GlobalServices.username !== "Judas" && GlobalServices.username !== "Jazmin" && GlobalServices.username !== "Grayson2015") {
+(function () {
+    if (GlobalServices.username !== "thoys" && GlobalServices.username !== "Judas" &&
+        GlobalServices.username !== "Jazmin" && GlobalServices.username !== "Grayson2015") {
         var carScript = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/tcar.js';
 
         Script.include(carScript);
     }
-    /*const SCRIPT_NAME = 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/tcarsDebugScript.js';
+    /* const SCRIPT_NAME = 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/tcarsDebugScript.js';
     function isScriptRunning(script) {
         script = script.toLowerCase().trim();
         var runningScripts = ScriptDiscoveryService.getRunning();

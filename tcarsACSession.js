@@ -50,7 +50,7 @@ lobbyClient.onActionReceived = function (senderID, action, data) {
     }
 };
 
-Messages.messageReceived.connect(function(channel, message, senderID) {
+Messages.messageReceived.connect(function(channel, message/*, senderID*/) {
     /*if (channel === LOBBY_WS_URL_RESPONSE_CHANNEL) {
 //        Messages.sendMessage(LOBBY_WS_URL_RESPONSE_CHANNEL, LOBBY_WS_URL);
         Messages.unsubscribe(LOBBY_WS_URL_RESPONSE_CHANNEL);

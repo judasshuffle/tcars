@@ -7,17 +7,24 @@
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
 //
 
-CameraHandler = function() {
+CameraHandler = function () {
     var _this = this;
-    _this.cameraList = [CAMERA.CAR_FROM_USER_AUTOFOCUS, CAMERA.CAR_TOPVIEW, /*CAMERA.HOOD, */ CAMERA.CAR_BEHIND_CLOSE, /*CAMERA.BEHIND_MEDIUM, CAMERA.BEHIND_FAR, */ CAMERA.CAR_FIXED_WORLD];
+    _this.cameraList = [
+        CAMERA.CAR_FROM_USER_AUTOFOCUS,
+        CAMERA.CAR_TOPVIEW,
+        /*CAMERA.HOOD, */
+        CAMERA.CAR_BEHIND_CLOSE,
+        /*CAMERA.BEHIND_MEDIUM, CAMERA.BEHIND_FAR, */
+        CAMERA.CAR_FIXED_WORLD
+    ];
 
     var initiated = false;
 
-    _this.isInitiated = function() {
+    _this.isInitiated = function () {
         return initiated;
     };
 
-    _this.init = function() {
+    _this.init = function () {
         if (initiated) {
             return;
         }
@@ -27,11 +34,11 @@ CameraHandler = function() {
         _this.orientation = Camera.orientation;
         _this.oldCameraMode = Camera.mode;
         _this.oldAudioListenerMode = MyAvatar.audioListenerMode;
-        Camera.mode = "independent";
+        Camera.mode = 'independent';
         MyAvatar.audioListenerMode = MyAvatar.FROM_CAMERA;
     };
 
-    _this.shutdown = function() {
+    _this.shutdown = function () {
         if (!initiated){
             return;
         }
@@ -42,11 +49,11 @@ CameraHandler = function() {
         initiated = false;
     };
 
-    var cameraLookAt = function(cameraPos, lookAtPos) {
+    var cameraLookAt = function (cameraPos, lookAtPos) {
         return Quat.lookAt(cameraPos, lookAtPos, WORLD_UP_DIRECTION);
     };
 
-    _this.updateCamera = function(updateTime, carProps) {
+    _this.updateCamera = function (updateTime, carProps) {
         var applyHMDOffsets = HMD.active;
         if (_this.stance === CAMERA.CAR_TOPVIEW) {
             var targetPos = Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 13, z: 13}));
@@ -75,31 +82,33 @@ CameraHandler = function() {
         }
         if (applyHMDOffsets) {
             Camera.position = Vec3.sum(_this.position, Vec3.subtract(HMD.position, MyAvatar.position));
-            Camera.orientation = Quat.multiply(_this.orientation, Quat.multiply(Quat.inverse(MyAvatar.orientation), HMD.orientation));
+            Camera.orientation = Quat.multiply(_this.orientation, Quat.multiply(Quat.inverse(MyAvatar.orientation),
+                HMD.orientation));
             return;
         }
         Camera.position = _this.position;
         Camera.orientation = _this.orientation;
     };
 
-    _this.setCameras = function(cameraList) {
+    _this.setCameras = function (cameraList) {
         _this.cameraList = cameraList;
         _this.firstCamera();
     };
 
-    _this.nextCamera = function() {
+    _this.nextCamera = function () {
         _this.stance = _this.cameraList[(_this.cameraList.indexOf(_this.stance) + 1) % _this.cameraList.length];
     };
 
-    _this.prevCamera = function() {
-        _this.stance = _this.cameraList[(_this.cameraList.indexOf(_this.stance) + (_this.cameraList.length - 1)) % _this.cameraList.length];
+    _this.prevCamera = function () {
+        _this.stance = _this.cameraList[(_this.cameraList.indexOf(_this.stance) + (_this.cameraList.length - 1)) %
+            _this.cameraList.length];
     };
 
-    _this.firstCamera = function() {
+    _this.firstCamera = function () {
         _this.stance = _this.cameraList[0];
     };
 
-    _this.lastCamera = function() {
+    _this.lastCamera = function () {
         _this.stance = _this.cameraList[_this.cameraList.length - 1];
     };
 };

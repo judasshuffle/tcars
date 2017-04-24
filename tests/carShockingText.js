@@ -1,4 +1,4 @@
-//Shocking!
+// Shocking!
 
 // overlay which display position X
 var displayOverlay = Overlays.addOverlay('text', {
@@ -26,7 +26,7 @@ Camera.mode = 'independent';
 Camera.position = {x: -200, y: -130, z: -200};
 Camera.lookAt({x: -200, y: -200, z: -200});
 
-Script.scriptEnding.connect(function() {
+Script.scriptEnding.connect(function () {
     Overlays.deleteOverlay(displayOverlay);
     Entities.deleteEntity(floor);
     Camera.mode = 'firstperson';

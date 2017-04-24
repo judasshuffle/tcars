@@ -1,7 +1,9 @@
  function parseCoordinate(coord) {
     var formatted = [];
     for (var key in coord) {
-        formatted.push(key + ': ' + coord[key]);
+        if (coord.hasOwnProperty(key)) {
+            formatted.push(key + ': ' + coord[key]);
+        }
     }
     return '{' + formatted.join(', ') + '}';
 }

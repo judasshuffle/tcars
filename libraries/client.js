@@ -8,7 +8,7 @@
 
 
 // clientID should be Agent.sessionUUID or MyAvatar.sessionUUID
-Client = function(sendingChannel, clientID) {
+Client = function (sendingChannel, clientID) {
     var _this = this;
 
     // hook to this event to get the results
@@ -16,7 +16,7 @@ Client = function(sendingChannel, clientID) {
 
     var listeningChannel = sendingChannel + '_' + clientID;
 
-    _this.send = function(data) {
+    _this.send = function (data) {
         Messages.sendMessage(sendingChannel, JSON.stringify(data));
     };
 

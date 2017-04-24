@@ -9,7 +9,6 @@
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
 //
 
-
 /** 
  * creates a new TrackZone
  * a TrackZone is a Zone Entity which contains a complete TCars track
@@ -44,11 +43,11 @@ TrackZone = function(trackZoneEntityID) {
     /**
      * Private Functions
      */
-    var getZoneProperties = function() {
+    var getZoneProperties = function () {
         return Entities.getEntityProperties(_this.trackZoneEntityID);
     };
 
-    var getZoneUserData = function() {
+    var getZoneUserData = function () {
         try {
             return JSON.parse(getZoneProperties().userData).TCars;
         } catch (e) {
@@ -62,7 +61,7 @@ TrackZone = function(trackZoneEntityID) {
         try {
             var tCarsUserData = getZoneUserData().TCars;
             if (tCarsUserData === undefined) {
-                //noinspection ExceptionCaughtLocallyJS
+                // noinspection ExceptionCaughtLocallyJS
                 throw 'Could not find TCars userdata property';
             }
             return tCarsUserData;
@@ -112,7 +111,7 @@ TrackZone = function(trackZoneEntityID) {
         var checkpoints = [];
         var userDataCheckPoints = getZoneTCarsUserData().checkpoints;
         if (userDataCheckPoints !== undefined) {
-            //TODO: sanitize checkpoints?
+            // TODO: sanitize checkpoints?
             checkpoints = userDataCheckPoints;
         }
         return checkpoints;
@@ -129,6 +128,11 @@ TrackZone = function(trackZoneEntityID) {
             rotation: rotation,
             dimensions: dimensions
         });
+        setZoneTCarsUserData('checkpoints', checkpoints);
+    };
+
+    _this.setSpawnLocation = function(position, rotation) {
+        setZoneTCarsUserData('spawningPoints', {position: position, rotation: rotation});
     };
 
 
@@ -140,7 +144,9 @@ TrackZone = function(trackZoneEntityID) {
         var zoneProperties = {};
         var properties = getZoneProperties();
         for (var property in properties) {
-            if (properties.hasOwnProperty(property) && (exportableProperties["all"].indexOf(property) !== -1 || exportableProperties["Zone"].indexOf(property) !== -1) && property !== "dimensions") {
+            if (properties.hasOwnProperty(property) && (exportableProperties['all'].indexOf(property) !== -1 ||
+                exportableProperties['Zone'].indexOf(property) !== -1) && property !== 'dimensions')
+            {
                 zoneProperties[property] = properties[property];
             }
         }
@@ -163,7 +169,7 @@ TrackZone = function(trackZoneEntityID) {
             var properties = Entities.getEntityProperties(_this.trackEntities[i]);
             var filteredProperties = {};
             for (var property in properties) {
-                if (properties.hasOwnProperty(property) && (exportableProperties["all"].indexOf(property) !== -1 ||
+                if (properties.hasOwnProperty(property) && (exportableProperties['all'].indexOf(property) !== -1 ||
                     (exportableProperties[properties.type] !== undefined &&
                     exportableProperties[properties.type].indexOf(property) !== -1)))
                 {
@@ -185,22 +191,19 @@ TrackZone = function(trackZoneEntityID) {
         var entities = Entities.findEntitiesInBox(corner, zoneProperties.dimensions);
         _this.trackEntities = [];
         for (var key in entities) {
-            if (entities.hasOwnProperty(key)) {
-                var entity = entities[key];
-                if (entity !== _this.trackZoneEntityID) {
-                    var properties = Entities.getEntityProperties(entity);
-                    if (properties.name.substring(0, VEHICLE_MODEL_PREFIX.length) === VEHICLE_MODEL_PREFIX) {
-                        continue; //skip vehicles
-                    }
-                    _this.trackEntities.push(entity);
+            if (!entities.hasOwnProperty(key)) {
+                continue;
+            }
+            var entity = entities[key];
+            if (entity !== _this.trackZoneEntityID) {
+                var properties = Entities.getEntityProperties(entity);
+                if (properties.name.substring(0, VEHICLE_MODEL_PREFIX.length) === VEHICLE_MODEL_PREFIX) {
+                    continue; //skip vehicles
                 }
+                _this.trackEntities.push(entity);
             }
         }
         _this.loaded = true;
-    };
-    
-    _this.setBackgroundShader = function(shaderURL) {
-        Window.alert('This feature is not implemented yet!');
     };
 
     _this.deleteTrackZone = function() {

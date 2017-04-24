@@ -36,11 +36,11 @@ SessionClient = function() {
     _this.joinSession = function(sessionChannel, sessionInfo, preferredRole) {
         properties.preferredRole = (preferredRole === undefined ? ROLE.PLAYER : preferredRole);
         properties.sessionInfo = sessionInfo;
-        /*if (socket !== null) {
+        /* if (socket !== null) {
             if (socket.readyState !== socket.OPEN) {
                 socket.close();
             }
-        }*/
+        } */
         client = new Client(sessionChannel, MyAvatar.sessionUUID);
 
         client.onActionReceived = function(senderID, action, data) {
@@ -48,7 +48,7 @@ SessionClient = function() {
             switch (data.action) {
                 case SESSION_ACTION.JOIN_REPLY:
                     clientMessage('Join reply received');
-                    //TODO: Get current game state and respond appropriatly (Track selection, racing, loading, etc..)
+                    // TODO: Get current game state and respond appropriatly (Track selection, racing, loading, etc..)
                     fireUpdate(data.update);
                     break;
                 case SESSION_ACTION.PLAYER_JOIN:
@@ -57,16 +57,16 @@ SessionClient = function() {
                 case SESSION_ACTION.UPDATE:
                     fireUpdate(data.update);
                     break;
-                //JOIN_REQUEST:   1,
-                //JOIN_REPLY:     2,
-                //UPDATE:         3,
-                //MESSAGE:        4,
-                //PLAYER_JOIN:    5,
-                //PLAYER_LEFT:    6,
-                //GAME_STATE:     7,
-                //PING:           8,
-                //VOTE:           9
-                //case LOBBY_ACTION.REGISTER_SESSION_REPLY:
+                // JOIN_REQUEST:   1,
+                // JOIN_REPLY:     2,
+                // UPDATE:         3,
+                // MESSAGE:        4,
+                // PLAYER_JOIN:    5,
+                // PLAYER_LEFT:    6,
+                // GAME_STATE:     7,
+                // PING:           8,
+                // VOTE:           9
+                // case LOBBY_ACTION.REGISTER_SESSION_REPLY:
                 //    new Session(parseInt(data.port), data.block);
                 //    break;
             }
