@@ -39,6 +39,7 @@ if (!LOCAL_RUN) {
     EntityViewer.setPosition(LOBBY_POSITION);
     EntityViewer.setOrientation(Quat.fromPitchYawRollDegrees(0, 90, 0));
     EntityViewer.setCenterRadius(60000);
+    EntityViewer.setVoxelSizeScale(Number.MAX_VALUE);
 }
 //EntityViewer.queryOctree();
 
@@ -185,9 +186,11 @@ function update(/*deltaTime*/) {
            // deleteBoxes()
             initialized = true;
             //Script.update.disconnect(update);
-            Script.clearInterval(updateTimer);
+            //Script.clearInterval(updateTimer);
         }
+        return;
     }
+    checkForEntities();
 }
 
 //Script.update.connect(update);
