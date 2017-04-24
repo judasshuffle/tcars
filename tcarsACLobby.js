@@ -6,7 +6,7 @@
 //const SESSION_PORTS_MAX_COUNT = 100;
 
 // Allow to run the lobby through Interface for testing purposes
-const LOCAL_RUN = MyAvatar !== undefined;
+const LOCAL_RUN = this.MyAvatar !== undefined;
 
 const SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
 //'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/';
