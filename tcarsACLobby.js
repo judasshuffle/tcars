@@ -23,18 +23,18 @@ Script.include([
 
 const DEBUG_OVER_MESSAGES_PROTOCOL = false;
 
-//var startupDate = (new Date());
-//var timeZoneOffset = startupDate.getTimezoneOffset() * 60 * 1000;
-//var startupTimestamp = startupDate.getTime();
+var startupDate = (new Date());
+var timeZoneOffset = startupDate.getTimezoneOffset() * 60 * 1000;
+var startupTimestamp = startupDate.getTime();
 
 var getMillisecondsFromTime = function(dateString) {
     return (new Date(dateString.slice(0, -1).replace('-', '/').replace('-', '/').replace('T', ' ')).getTime());
 };
 
-//print('start time = ' + startupTimestamp);
+print('start time = ' + startupTimestamp);
 
 //Entities.setPacketsPerSecond(2000);
-//Agent.isAvatar = true;
+Agent.isAvatar = true;
 if (!LOCAL_RUN) {
     EntityViewer.setPosition(LOBBY_POSITION);
     EntityViewer.setOrientation(Quat.fromPitchYawRollDegrees(0, 90, 0));
