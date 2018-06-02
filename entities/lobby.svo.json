@@ -6,7 +6,7 @@
                 "y": 0.10303982347249985,
                 "z": 0.38306331634521484
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/satchel.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/satchel.fbx",
             "position": {
                 "x": -11.974315643310547,
                 "y": -7.938446044921875,
@@ -26,7 +26,7 @@
                 "y": 0.1419229805469513,
                 "z": 0.0963318794965744
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/slurpy.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/slurpy.fbx",
             "position": {
                 "x": -12.772668838500977,
                 "y": -6.894927978515625,
@@ -46,7 +46,7 @@
                 "y": 0.1419229805469513,
                 "z": 0.0963318794965744
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/slurpy.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/slurpy.fbx",
             "position": {
                 "x": -12.867711067199707,
                 "y": -6.868377685546875,
@@ -66,7 +66,7 @@
                 "y": 0.1419229805469513,
                 "z": 0.0963318794965744
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/slurpy.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/slurpy.fbx",
             "position": {
                 "x": -12.897555351257324,
                 "y": -6.868377685546875,
@@ -86,7 +86,7 @@
                 "y": 0.9571572542190552,
                 "z": 0.7295661568641663
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/Trashybin.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/Trashybin.fbx",
             "position": {
                 "x": -11.878532409667969,
                 "y": -7.61590576171875,
@@ -106,7 +106,7 @@
                 "y": 1.6602596044540405,
                 "z": 0.07911870628595352
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/trackpictures/toytrackpic.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/trackpictures/toytrackpic.fbx",
             "position": {
                 "x": -12.444662094116211,
                 "y": 1.91387939453125,
@@ -126,7 +126,7 @@
                 "y": 1.6602596044540405,
                 "z": 0.07911870628595352
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/trackpictures/spacetrackpic.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/trackpictures/spacetrackpic.fbx",
             "position": {
                 "x": -12.33242416381836,
                 "y": 1.890380859375,
@@ -146,7 +146,7 @@
                 "y": 3.2520127296447754,
                 "z": 2.350419521331787
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/leafyplant.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/leafyplant.fbx",
             "position": {
                 "x": -11.263601303100586,
                 "y": -6.516876220703125,
@@ -166,7 +166,7 @@
                 "y": 0.37185877561569214,
                 "z": 0.3233582675457001
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ryanbluepaint.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ryanbluepaint.fbx",
             "position": {
                 "x": -12.853322982788086,
                 "y": -6.754119873046875,
@@ -186,7 +186,7 @@
                 "y": 0.37185877561569214,
                 "z": 0.3233582675457001
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ryanbluepaint.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ryanbluepaint.fbx",
             "position": {
                 "x": -12.768957138061523,
                 "y": -6.754119873046875,
@@ -206,7 +206,7 @@
                 "y": 1.8937301635742188,
                 "z": 0.6824795603752136
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/petrolpump.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/petrolpump.fbx",
             "position": {
                 "x": -11.90107536315918,
                 "y": -7.24713134765625,
@@ -227,7 +227,7 @@
                 "y": 1.8937301635742188,
                 "z": 0.6824795603752136
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/petrolpump.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/petrolpump.fbx",
             "position": {
                 "x": -12.039981842041016,
                 "y": -7.24713134765625,
@@ -248,7 +248,7 @@
                 "y": 1.6602596044540405,
                 "z": 0.07911870628595352
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/trackpictures/streettrackpic.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/trackpictures/streettrackpic.fbx",
             "position": {
                 "x": -12.495006561279297,
                 "y": 1.875030517578125,
@@ -268,7 +268,7 @@
                 "y": 1.6602596044540405,
                 "z": 0.07911870628595352
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/trackpictures/schooltrack2pic.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/trackpictures/schooltrack2pic.fbx",
             "position": {
                 "x": -12.376388549804688,
                 "y": 1.899200439453125,
@@ -288,7 +288,7 @@
                 "y": 1.6602596044540405,
                 "z": 0.07911870628595352
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/trackpictures/classroomtrackpic.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/trackpictures/classroomtrackpic.fbx",
             "position": {
                 "x": -12.350000381469727,
                 "y": 1.889984130859375,
@@ -308,7 +308,7 @@
                 "y": 1.3821873664855957,
                 "z": 1.3821873664855957
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/imememine.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/imememine.fbx",
             "position": {
                 "x": -4.662294387817383,
                 "y": -7.4730224609375,
@@ -328,7 +328,7 @@
                 "y": 0.9309613704681396,
                 "z": 0.499889612197876
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/smokebomb.fbx?v1",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/smokebomb.fbx?v1",
             "position": {
                 "x": -2.9736709594726562,
                 "y": -7.634918212890625,
@@ -348,7 +348,7 @@
                 "y": 0.22681844234466553,
                 "z": 0.1972351372241974
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ryanbluepaint.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ryanbluepaint.fbx",
             "position": {
                 "x": -3.0710201263427734,
                 "y": -7.990997314453125,
@@ -392,7 +392,7 @@
                 "y": 1.8937301635742188,
                 "z": 0.6824795603752136
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/petrolpump.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/petrolpump.fbx",
             "position": {
                 "x": -11.894676208496094,
                 "y": -7.24713134765625,
@@ -409,51 +409,11 @@
         },
         {
             "dimensions": {
-                "x": 1.4920226335525513,
-                "y": 2.4043338298797607,
-                "z": 1.5861246585845947
-            },
-            "modelURL": "https://dl.dropboxusercontent.com/u/10483952/snowman/SNOWMANJS1.fbx",
-            "position": {
-                "x": -6.294410705566406,
-                "y": -7.004638671875,
-                "z": 2.6466941833496094
-            },
-            "rotation": {
-                "w": 0.7372701168060303,
-                "x": -0.0000152587890625,
-                "y": 0.6755626201629639,
-                "z": -0.0000152587890625
-            },
-            "type": "Model"
-        },
-        {
-            "dimensions": {
-                "x": 1.9185287952423096,
-                "y": 2.59812593460083,
-                "z": 1.9021129608154297
-            },
-            "modelURL": "https://dl.dropboxusercontent.com/u/10483952/xmastree/tree.fbx?123",
-            "position": {
-                "x": -5.603702545166016,
-                "y": -6.819244384765625,
-                "z": 5.156158447265625
-            },
-            "rotation": {
-                "w": 0.8314487934112549,
-                "x": -0.0000152587890625,
-                "y": -0.5556267499923706,
-                "z": -0.0000152587890625
-            },
-            "type": "Model"
-        },
-        {
-            "dimensions": {
                 "x": 0.6321936249732971,
                 "y": 1.0229023694992065,
                 "z": 0.6244136095046997
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/oildrum.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/oildrum.fbx",
             "position": {
                 "x": -0.19214248657226562,
                 "y": -7.6763916015625,
@@ -473,7 +433,7 @@
                 "y": 1.0229023694992065,
                 "z": 0.6244136095046997
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/oildrum.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/oildrum.fbx",
             "position": {
                 "x": -0.45086097717285156,
                 "y": -7.6763916015625,
@@ -493,7 +453,7 @@
                 "y": 1.0229023694992065,
                 "z": 0.6244136095046997
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/oildrum.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/oildrum.fbx",
             "position": {
                 "x": 0.456634521484375,
                 "y": -7.6763916015625,
@@ -513,7 +473,7 @@
                 "y": 0.3552839457988739,
                 "z": 0.5970166325569153
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/shufflemachine.fbx?v2",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/shufflemachine.fbx?v2",
             "position": {
                 "x": 12.24899673461914,
                 "y": -6.879302978515625,
@@ -533,7 +493,7 @@
                 "y": 2.622616767883301,
                 "z": 3.018939733505249
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/workbench.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/workbench.fbx",
             "position": {
                 "x": 12.510185241699219,
                 "y": -6.809539794921875,
@@ -553,7 +513,7 @@
                 "y": 2.827655792236328,
                 "z": 1.0462311506271362
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/plantpot.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/plantpot.fbx",
             "position": {
                 "x": 7.675086975097656,
                 "y": -6.78076171875,
@@ -568,13 +528,13 @@
             "type": "Model"
         },
         {
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/lecturn.obj",
+            "compoundShapeURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/lecturn.obj",
             "dimensions": {
                 "x": 1.4201916456222534,
                 "y": 2.638901472091675,
                 "z": 2.305182456970215
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/lecturn.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/lecturn.fbx",
             "position": {
                 "x": 8.827423095703125,
                 "y": -6.79541015625,
@@ -595,7 +555,7 @@
                 "y": 0.23945924639701843,
                 "z": 0.6333232522010803
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/dynamite.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/dynamite.fbx",
             "position": {
                 "x": -0.17320823669433594,
                 "y": -7.985382080078125,
@@ -665,7 +625,7 @@
                 "y": 0.1035175621509552,
                 "z": 2.1026694774627686
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/Instructions/carselect.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/Instructions/carselect.fbx",
             "position": {
                 "x": 0.6563701629638672,
                 "y": -3.875030517578125,
@@ -769,7 +729,7 @@
                 "y": 1.0229023694992065,
                 "z": 0.6244136095046997
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/oildrum.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/oildrum.fbx",
             "position": {
                 "x": -0.8543319702148438,
                 "y": -7.6763916015625,
@@ -790,7 +750,7 @@
                 "y": 3.8552980422973633,
                 "z": 3.102612018585205
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/gimble.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/gimble.fbx",
             "name": "origin",
             "position": {
                 "x": 0,
@@ -817,7 +777,7 @@
                 "y": 0.37185877561569214,
                 "z": 0.3233582675457001
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ryanbluepaint.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ryanbluepaint.fbx",
             "position": {
                 "x": -12.858297348022461,
                 "y": -6.754119873046875,
@@ -837,7 +797,7 @@
                 "y": 0.7873961925506592,
                 "z": 0.3143066167831421
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/banana.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/banana.fbx",
             "position": {
                 "x": 1.686136245727539,
                 "y": -7.790618896484375,
@@ -857,7 +817,7 @@
                 "y": 1.9133033752441406,
                 "z": 0.7079212665557861
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/plantpot.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/plantpot.fbx",
             "position": {
                 "x": -4.91057014465332,
                 "y": -7.140960693359375,
@@ -877,7 +837,7 @@
                 "y": 1.9133033752441406,
                 "z": 0.7079212665557861
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/plantpot.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/plantpot.fbx",
             "position": {
                 "x": -5.410497665405273,
                 "y": -7.140960693359375,
@@ -897,7 +857,7 @@
                 "y": 1.6195955276489258,
                 "z": 0.599249541759491
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/plantpot.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/plantpot.fbx",
             "position": {
                 "x": -4.716320037841797,
                 "y": -7.292816162109375,
@@ -917,7 +877,7 @@
                 "y": 0.8301298022270203,
                 "z": 0.03955935314297676
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/painting.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/painting.fbx",
             "position": {
                 "x": 7.416370391845703,
                 "y": -6.02557373046875,
@@ -937,7 +897,7 @@
                 "y": 0.8301298022270203,
                 "z": 0.03955935314297676
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/painting.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/painting.fbx",
             "position": {
                 "x": 7.411457061767578,
                 "y": -4.993072509765625,
@@ -957,7 +917,7 @@
                 "y": 0.20217688381671906,
                 "z": 4.1066575050354
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/Instructions/trackselect.fbx?v2",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/Instructions/trackselect.fbx?v2",
             "position": {
                 "x": 12.283485412597656,
                 "y": -4.519073486328125,
@@ -973,13 +933,13 @@
             "userData": "{}"
         },
         {
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ramp.obj",
+            "compoundShapeURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ramp.obj",
             "dimensions": {
                 "x": 3.44748854637146,
                 "y": 4.09310245513916,
                 "z": 6.807641506195068
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ramp.fbx?v2",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ramp.fbx?v2",
             "position": {
                 "x": -9.943758010864258,
                 "y": -6.1927490234375,
@@ -1000,7 +960,7 @@
                 "y": 0.2773630619049072,
                 "z": 3.845466136932373
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/Instructions/driving.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/Instructions/driving.fbx",
             "position": {
                 "x": 11.64010238647461,
                 "y": -4.70068359375,
@@ -1112,7 +1072,7 @@
                 "y": 0.9123994708061218,
                 "z": 0.9332096576690674
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/hificrate.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/hificrate.fbx",
             "position": {
                 "x": 201.98703002929688,
                 "y": -47.980712890625,
@@ -1208,7 +1168,7 @@
             "type": "Light"
         },
         {
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/speedyslobby.obj",
+            "compoundShapeURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/speedyslobby.obj",
             "dimensions": {
                 "x": 40.059879302978516,
                 "y": 21.64255714416504,
@@ -1228,7 +1188,7 @@
                 "y": -0.0000152587890625,
                 "z": -0.0000152587890625
             },
-            "script": "https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/tcarsDebugEntityScript.js",
+            "script": "https://hifi-external.s3.amazonaws.com/tcars/scripts/tcarsDebugEntityScript.js",
             "shapeType": "compound",
             "type": "Model",
             "userData": "{}"
@@ -1239,7 +1199,7 @@
                 "y": 3.394850730895996,
                 "z": 5.601593971252441
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/CARLIFT.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/CARLIFT.fbx",
             "name": "CARLIFT",
             "position": {
                 "x": -3.874727249145508,
@@ -1260,7 +1220,7 @@
                 "y": 0.7098233699798584,
                 "z": 3.963351011276245
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/tyrespile.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/lobby/tyrespile.fbx",
             "position": {
                 "x": -8.375495910644531,
                 "y": -7.7781982421875,
@@ -1280,7 +1240,7 @@
                 "y": 2.622616767883301,
                 "z": 3.018939733505249
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/workbench.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/workbench.fbx",
             "position": {
                 "x": -12.049793243408203,
                 "y": -6.809539794921875,
@@ -1300,7 +1260,7 @@
                 "y": 2.9600000381469727,
                 "z": 9.489999771118164
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/spaceship2.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/spaceship2.fbx",
             "position": {
                 "x": -17.350006103515625,
                 "y": -5.737884521484375,
@@ -1320,7 +1280,7 @@
                 "y": 2.622616767883301,
                 "z": 3.018939733505249
             },
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/workbench.fbx",
+            "modelURL": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/workbench.fbx",
             "position": {
                 "x": 12.548744201660156,
                 "y": -6.809539794921875,
@@ -1361,7 +1321,7 @@
             },
             "scriptTimestamp": 1447877764521,
             "type": "Sphere",
-            "userData": "{\"ProceduralEntity\":{\"shaderUrl\":\"http://hifi-external.s3.amazonaws.com/tcars/models/trackpictures/waves.fs\"},\"grabKey\":{\"activated\":true,\"avatarId\":\"{ed365cc1-3079-4cba-92f4-1d88d63f989f}\",\"refCount\":2,\"gravity\":{\"x\":0,\"y\":0,\"z\":0},\"ignoreForCollisions\":1,\"collisionsWillMove\":0}}"
+            "userData": "{\"ProceduralEntity\":{\"shaderUrl\":\"https://hifi-external.s3.amazonaws.com/tcars/models/trackpictures/waves.fs\"},\"grabKey\":{\"activated\":true,\"avatarId\":\"{ed365cc1-3079-4cba-92f4-1d88d63f989f}\",\"refCount\":2,\"gravity\":{\"x\":0,\"y\":0,\"z\":0},\"ignoreForCollisions\":1,\"collisionsWillMove\":0}}"
         },
         {
             "backgroundMode": "skybox",
