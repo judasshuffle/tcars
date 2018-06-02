@@ -1,9 +1,9 @@
 
-//public slots:
+// public slots:
 //    void emitWebEvent(const QString& data);
 //    void emitScriptEvent(const QString& data);
 //
-//signals:
+// signals:
 //    void webEventReceived(const QString& data);
 //    void scriptEventReceived(const QString& data);
 //

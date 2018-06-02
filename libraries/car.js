@@ -24,7 +24,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier, newPar
     _this.wheels = [];
     _this.wheelSpin = 0;
 
-    const PARENTING_ROT_OFFSET = Quat.fromPitchYawRollDegrees(90, 0, 0);
+    var PARENTING_ROT_OFFSET = Quat.fromPitchYawRollDegrees(90, 0, 0);
 
     var useNewParentingMethod = newParentingMethod !== undefined ? newParentingMethod : true;
     var soundAccelerating = SoundCache.getSound(SOUND_FOLDER_URL + 'enginenoise2.wav');
@@ -53,11 +53,9 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier, newPar
     var getRotationOffset = function(wheelIndex) {
         switch (wheelIndex) {
             case WHEEL_LEFT_FRONT:
-           //     return Quat.fromPitchYawRollDegrees(_this.wheelSpin % MAX_DEGREES, -_this.properties.angularVelocity.y * STEERING_ANGLE_MULTIPLIER, ONE_EIGHTY);
             case WHEEL_LEFT_BACK:
                 return Quat.fromPitchYawRollDegrees(_this.wheelSpin % MAX_DEGREES, 0, ONE_EIGHTY);
             case WHEEL_RIGHT_FRONT:
-            //    return Quat.fromPitchYawRollDegrees(MAX_DEGREES - (_this.wheelSpin % MAX_DEGREES), _this.properties.angularVelocity.y * STEERING_ANGLE_MULTIPLIER, 0);
             case WHEEL_RIGHT_BACK:
                 return Quat.fromPitchYawRollDegrees(MAX_DEGREES - (_this.wheelSpin % MAX_DEGREES), 0, 0);
         }
@@ -81,10 +79,10 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier, newPar
             density: 3000,
             damping: 0.7,
             angularDamping: 0.7,
-            //Test settings (falls better, slides too much)
-            //damping: 0.02,
-            //angularDamping: 0.5,
-            //friction: 0.001,
+            // Test settings (falls better, slides too much)
+            // damping: 0.02,
+            // angularDamping: 0.5,
+            // friction: 0.001,
             registrationPoint: _this.vehicle.registrationPoint
            // collisionSoundURL: "https://dl.dropboxusercontent.com/u/14997455/hifi/tcar/collision.wav?v=2"
         };
@@ -116,10 +114,10 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier, newPar
                     modelURL: MODEL_FOLDER_URL + _this.vehicle.wheelModel,
                     position: wheelPos,
                     parentID: _this.entity
-                    //ANGULAR VELOCITY TEST FAILED
-                    //angularVelocity: Quat.fromPitchYawRollDegrees(0, 0, 90),
-                    //angularDamping: 0
-                   // rotation: this.properties.rotation
+                    // ANGULAR VELOCITY TEST FAILED
+                    // angularVelocity: Quat.fromPitchYawRollDegrees(0, 0, 90),
+                    // angularDamping: 0
+                    // rotation: this.properties.rotation
                 });
             }
         }
@@ -171,10 +169,10 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier, newPar
     };
 
     _this.update = function(time) {
-        //_this.wheelSpin += Vec3.length(_this.properties.velocity) * time * TIRE_SPIN_MULTIPLIER;
+        // this.wheelSpin += Vec3.length(_this.properties.velocity) * time * TIRE_SPIN_MULTIPLIER;
         var carProps = Entities.getEntityProperties(_this.entity);
         _this.soundLoopSwitcher.updatePosition(carProps.position);
-        //MyAvatar.position = carProps.position;
+        // MyAvatar.position = carProps.position;
         if (_this.accelerating) {
             _this.soundLoopSwitcher.setSound(soundAccelerating);
             _this.speedI += time * SPEED_FORWARD;
@@ -184,7 +182,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier, newPar
                 _this.soundLoopSwitcher.setSound(soundDecelerating);
             }
         }
-        //steering
+        // steering
         if (_this.steeringLeft && _this.steeringOffset < 0.2) {
             _this.steeringOffset += time;
         }
@@ -206,8 +204,9 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier, newPar
         if (_this.speedI === 0) {
             _this.soundLoopSwitcher.setSound(soundIdle);
         }
-        //newProperties.ignoreForCollisions = false;
-        /*if (_this.speedI < 0) {
+        // newProperties.ignoreForCollisions = false;
+        /*
+        if (_this.speedI < 0) {
             _this.speedI = 0;
             _this.soundLoopSwitcher.setSound(soundIdle);
             _this.timeItWentWithoutMoving += time;
@@ -220,10 +219,10 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier, newPar
             }
         } else {
             _this.timeItWentWithoutMoving = 0;
-        }*/
-        //cameraHandler.updateCamera(time, carProps);
-        
-        
+        }
+        */
+        // cameraHandler.updateCamera(time, carProps);
+
         if (_this.speedI !== _this.lastSpeedI) {
             _this.lastSpeedI = _this.speedI;
             newProperties.velocity = Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -Math.log(1 + _this.speedI) *
@@ -263,10 +262,11 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier, newPar
        // _this.updateProperties();
         _this.wheelSpin += Vec3.length(carProps.velocity) * time * TIRE_SPIN_MULTIPLIER;
         for (var i = 0; i < _this.wheels.length; i++) {
-           // var newWheelProps = {
-             //   position: Vec3.multiplyQbyV(Quat.fromPitchYawRollDegrees(90, 0, 0), getPositionOffset(i)),//Vec3.sum(_this.properties.position, Vec3.multiplyQbyV(_this.properties.rotation, getPositionOffset(i))),
-           //     rotation: getRotationOffset(i) //Quat.multiply(_this.properties.rotation, getRotationOffset(i))
-            //};
+            // var newWheelProps = {
+            // position: Vec3.multiplyQbyV(Quat.fromPitchYawRollDegrees(90, 0, 0), getPositionOffset(i)),
+            // Vec3.sum(_this.properties.position, Vec3.multiplyQbyV(_this.properties.rotation, getPositionOffset(i))),
+            //     rotation: getRotationOffset(i) //Quat.multiply(_this.properties.rotation, getRotationOffset(i))
+            // };
            // print("wheel " + i + " new props = " + JSON.stringify(newWheelProps));
             Overlays.editOverlay(_this.wheels[i], {rotation: getRotationOffset(i)});
         }
@@ -282,14 +282,14 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier, newPar
         var direction = Quat.safeEulerAngles(carProps.rotation).y;
         Entities.deleteEntity(_this.entity);
         _this.entity = Entities.addEntity(getNewCarProperties(Vec3.sum(carProps.position, {x: 0, y: carProps.dimensions.y, z: 0}), Quat.fromPitchYawRollDegrees(0, direction, 0)));
-        //Entities.editEntity(_this.entity, {
-        //    rotation: Quat.fromPitchYawRollDegrees(0, direction, 0),
-        //    position: Vec3.sum(carProps.position, {x: 0, y: carProps.dimensions.y, z: 0}),
-        //    ignoreForCollisions: true
-        //});
-        //newProperties.rotation = Quat.fromPitchYawRollDegrees(0, direction, 0);
-        //newProperties.position = Vec3.sum(carProps.position, carProps.dimensions),
-        //newProperties.ignoreForCollisions = true;
+        // Entities.editEntity(_this.entity, {
+        //     rotation: Quat.fromPitchYawRollDegrees(0, direction, 0),
+        //     position: Vec3.sum(carProps.position, {x: 0, y: carProps.dimensions.y, z: 0}),
+        //     ignoreForCollisions: true
+        // });
+        // newProperties.rotation = Quat.fromPitchYawRollDegrees(0, direction, 0);
+        // newProperties.position = Vec3.sum(carProps.position, carProps.dimensions),
+        // newProperties.ignoreForCollisions = true;
     };
 
     _this.cleanup = function() {
@@ -307,7 +307,7 @@ Car = function(vehicle, startPosition, startOrientation, speedMultiplier, newPar
         Entities.deleteEntity(_this.spotlight);
         Entities.deleteEntity(_this.glowLight);
         _this.soundLoopSwitcher.stopSound();
-        print('Finished cleaning up a Car.')
+        print('Finished cleaning up a Car.');
     };
 
     _this.init();
