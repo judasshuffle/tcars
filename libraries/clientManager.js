@@ -9,7 +9,7 @@
 ClientManager = function(listeningChannel) {
     var _this = this;
 
-    var managerSessionUUID = MyAvatar !== undefined ? MyAvatar.sessionUUID : Agent.sessionUUID;
+    var managerSessionUUID = this.MyAvatar !== undefined ? MyAvatar.sessionUUID : Agent.sessionUUID;
     // The clients are stored in this object.
     var clients = {};
 /*
@@ -22,8 +22,8 @@ ClientManager = function(listeningChannel) {
     _this.onClientAction = undefined;
 
     _this.getClient = function (clientID) {
-        //print("CID = "  + clientID);
-        //print(JSON.stringify(clients));
+        // print("CID = "  + clientID);
+        // print(JSON.stringify(clients));
         return clients[clientID];
     };
 
@@ -51,65 +51,19 @@ ClientManager = function(listeningChannel) {
         var stringData = JSON.stringify(data);
         var client = _this.getClient(clientID);
         if (client !== undefined) {
-            // print('sending ' + listeningChannel + '_' + clientID + ': ' + stringData);
+            print('sending ' + listeningChannel + '_' + clientID + ': ' + stringData);
             Messages.sendMessage(listeningChannel + '_' + clientID, stringData);
-            // client.socket.send(stringData);
         }
     };
-
-    // Finds a client in the clients list by the WebSocket.
-   /* _this.findClientByWebSocket = function(socket) {
-        for (client in clients) {
-            if (clients[client].socket === socket) {
-                return clients[client];
-            }
-        }
-        return null;
-    };*/
 
     _this.sendToAllActiveClients = function (data, exceptUUID) {
-        // var stringData = JSON.stringify(data);
-        for (var client in clients) {
-            if (clients.hasOwnProperty(client)) {
-                var clientObj = clients[client];
-                if (clientObj.id !== exceptUUID) {
-                    // clientObj.socket.send(stringData);
-                    _this.send(clientObj.id, data);
-                }
+        clients.forEach(function(client) {
+            if (client.id !== exceptUUID) {
+                _this.send(client.id, data);
             }
-        }
+        });
     };
 
-    // We start a WebSocketServer on the given port.
-    /* var webSocketServer = new WebSocketServer({port: port});
-    webSocketServer.newConnection.connect(function(newClient) {
-        print("incomming connection");
-        var newClientID = nextClientID++;
-        clients[newClientID] = {socket: newClient, id: newClientID};
-
-        newClient.onmessage = function(event) {
-            var data = JSON.parse(event.data);
-            if (_this.onClientAction !== undefined) {
-                _this.onClientAction.call(this, newClientID, data.action, data);
-            }
-        };
-        newClient.onerror = function(event) {
-            print("error");
-            if (_this.onClientDisconnect !== undefined) {
-                _this.onClientDisconnect.call(this, newClientID);
-            }
-            delete clients[newClientID];
-        };
-        newClient.onclose = function(event) {
-            if (_this.onClientDisconnect !== undefined) {
-                _this.onClientDisconnect.call(this, newClientID);
-            }
-            delete clients[newClientID];
-        };
-        if (_this.onClientConnect !== undefined) {
-            _this.onClientConnect.call(this, newClientID);
-        }
-    });*/
     Messages.subscribe(listeningChannel);
     Messages.messageReceived.connect(function (channel, message, senderID) {
         if (senderID === managerSessionUUID || channel !== listeningChannel) {

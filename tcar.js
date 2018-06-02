@@ -26,8 +26,8 @@ Script.include([
 ]);
 
 var MAX_MESSAGES = 20;
-//var LOBBY_WS_URL_REQUEST_CHANNEL = 'tcarsRequestLobbyWSURL';
-//const LOBBY_WS_URL_RESPONSE_CHANNEL = 'tcarsResponseLobbyWSURL';
+// var LOBBY_WS_URL_REQUEST_CHANNEL = 'tcarsRequestLobbyWSURL';
+// var LOBBY_WS_URL_RESPONSE_CHANNEL = 'tcarsResponseLobbyWSURL';
 var messageViewer = new MessageViewer({x: 100, y: 100}, 'TCars MessagesViewer', MAX_MESSAGES);
 var avatarSeater = new AvatarSeater();
 var keyCapturer = new KeyCatcher();
@@ -58,10 +58,10 @@ function setSessionState(sessionState) {
             cameraHandler.setCameras(TRACKS[selectedTrackID].cameras);            
             break;
         case SESSION_STATE.COUNT_DOWN:
-            //state = STATE.RACE;
+            // state = STATE.RACE;
             break;
         case SESSION_STATE.RACING:
-            //state = STATE.RACE;
+            // state = STATE.RACE;
             break;
     }
 }
@@ -74,7 +74,7 @@ sessionClient.onUpdate = function(update) {
         avatarSeater.setSeat(update.seat);
     }
     if (update.counter !== undefined) {
-        //TODO: set countdown here (In seconds, make sure the client just keeps counting)
+        // TODO: set countdown here (In seconds, make sure the client just keeps counting)
     }
     if (update.block !== undefined) {
         sessionBlock = update.block;
@@ -106,16 +106,17 @@ Messages.messageReceived.connect(function (channel, message, senderID) {
 });*/
 
 
-//var timeItWentWithoutMoving = 0;
-//var actionID = false;
+// var timeItWentWithoutMoving = 0;
+// var actionID = false;
 
 var spacebarBlockly = 'Window.alert("You have not made a blockly script for this button yet!");';
 
 var newWindow = new OverlayWebWindow('Customize your vehicle', 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/blockly-tcars/index.html', 700, 700);
 newWindow.setVisible(false);
 
-//FIXME: new qml connection method
-/*newWindow.eventBridge.webEventReceived.connect(function(data) {
+// FIXME: new qml connection method
+/*
+newWindow.eventBridge.webEventReceived.connect(function(data) {
     data = JSON.parse(data);
     switch (data.action) {
         case 'ping':
@@ -126,18 +127,19 @@ newWindow.setVisible(false);
             spacebarBlockly = data.script;
             break;
     }
-});*/
+});
+*/
 
 function doSpaceBarBlockly() {
     eval(spacebarBlockly);
 }
 
-/*function mixFloats(float1, float2, mixValue) {
+/* function mixFloats(float1, float2, mixValue) {
     if (mixValue > 1.0) {
         mixValue = 1.0;
     }
     return float1 + ((float2 - float1) * mixValue);
-}*/
+} */
 
 function isCarDriving() {
     return state === STATE.DRIVING || state === STATE.RACING;
@@ -165,7 +167,7 @@ function launchProjectile(carProps) {
         type: 'Light',
         name: 'Projectile-Light',
         density: 8000,
-        //collisionsWillMove: true,
+        // collisionsWillMove: true,
         ignoreForCollisions: false,
         position: Vec3.sum(carProps.position, Vec3.multiplyQbyV(carProps.rotation, {x: 0, y: 0, z: -7})),
         rotation: Quat.multiply(carProps.rotation, Quat.fromVec3Degrees({x: 270, y: 0, z: 0})),
@@ -198,7 +200,7 @@ function handleDrivingKeyPress(event) {
     } else if (event.key === KEY.B) {
         newWindow.setVisible(true);
     } else if (event.key === KEY.SPACE) {
-        //launchProjectile(Entities.getEntityProperties(car.entity));
+        // launchProjectile(Entities.getEntityProperties(car.entity));
         doSpaceBarBlockly();
     }
 }
@@ -214,44 +216,44 @@ Controller.keyPressEvent.connect(function(event) {
         handleDrivingKeyPress(event);
     }
     if (state === STATE.TRACK_SELECTION) {
-        if (event.key == KEY.LEFT || event.key == KEY.A) {
+        if (event.key === KEY.LEFT || event.key === KEY.A) {
             trackSelector.prevTrack();
-        } else if (event.key == KEY.RIGHT || event.key == KEY.D) {
+        } else if (event.key === KEY.RIGHT || event.key === KEY.D) {
             trackSelector.nextTrack();
-        } else if (event.key == KEY.SPACE) {
+        } else if (event.key === KEY.SPACE) {
             trackSelector.hide();
             sessionClient.voteTrack(trackSelector.selectedTrack);
             //
-            //state = STATE.CAR_SELECTION;
+            // state = STATE.CAR_SELECTION;
         }
-    } else if (state == STATE.CAR_SELECTION) {
-        if (event.key == KEY.LEFT || event.key == KEY.A) {
+    } else if (state === STATE.CAR_SELECTION) {
+        if (event.key === KEY.LEFT || event.key === KEY.A) {
             carSelector.prevCar();
-        } else if (event.key == KEY.RIGHT || event.key == KEY.D) {
+        } else if (event.key === KEY.RIGHT || event.key === KEY.D) {
             carSelector.nextCar();
-        } else if (event.key == KEY.SPACE) {
+        } else if (event.key === KEY.SPACE) {
             var selectedCar = carSelector.selectableCars[carSelector.selectedCar];
             var selectedTrack = TRACKS[selectedTrackID];
-            //TODO: let the session-AC decide the seat
-            //avatarSeater.setSeat(selectedTrack.seats[0]);
+            // TODO: let the session-AC decide the seat
+            // avatarSeater.setSeat(selectedTrack.seats[0]);
             car = new Car(selectedCar.vehicle, Vec3.sum(sessionBlock.center, selectedTrack.startPosition), selectedTrack.startOrientation);
             state = STATE.DRIVING;
             cameraHandler.firstCamera();
             carSelector.cleanup();
-            //state = STATE.RACE;
+            // state = STATE.RACE;
         }
     }
 });
 
 Controller.keyReleaseEvent.connect(function(event) {
     if (isCarDriving()) {
-        if (event.key == KEY.UP || event.key == KEY.W) {
+        if (event.key === KEY.UP || event.key === KEY.W) {
             car.accelerating = false;
-        } else if (event.key == KEY.DOWN || event.key == KEY.S) {
+        } else if (event.key === KEY.DOWN || event.key === KEY.S) {
             car.reversing = false;
-        } else if (event.key == KEY.LEFT || event.key == KEY.A) {
+        } else if (event.key === KEY.LEFT || event.key === KEY.A) {
             car.steeringLeft = false;
-        } else if (event.key == KEY.RIGHT || event.key == KEY.D) {
+        } else if (event.key === KEY.RIGHT || event.key === KEY.D) {
             car.steeringRight = false;
         }
     }
@@ -262,26 +264,22 @@ Script.update.connect(function(time) {
         car.update(time);
         var carProps = Entities.getEntityProperties(car.entity);
         cameraHandler.updateCamera(time, carProps);
-        //speedometer.update(time);
-    } else if (state == STATE.TRACK_SELECTION) {
+        // speedometer.update(time);
+    } else if (state === STATE.TRACK_SELECTION) {
         cameraHandler.stance = CAMERA.TRACK_SELECTOR;
         cameraHandler.updateCamera(time, null);
         trackSelector.update(time);
-    } else if (state == STATE.CAR_SELECTION) {
+    } else if (state === STATE.CAR_SELECTION) {
         cameraHandler.stance = CAMERA.CAR_SELECTOR;
         cameraHandler.updateCamera(time, null);
         carSelector.update(time);
     }
-    var entities = Entities.findEntities(Camera.position, 100);
-    for (var key in entities) {
-        if (entities.hasOwnProperty(key)) {
-            var entityItemID = entities[key];
-            var properties = Entities.getEntityProperties(entityItemID);
-            if (properties.name.substring(0, VEHICLE_MODEL_PREFIX.length) === VEHICLE_MODEL_PREFIX) {
-                Entities.callEntityMethod(entityItemID, 'updateWheels');
-            }
+    Entities.findEntities(Camera.position, 100).forEach(function(entity) {
+        var properties = Entities.getEntityProperties(entity, 'name');
+        if (properties.name !== undefined && properties.name.substring(0, VEHICLE_MODEL_PREFIX.length) === VEHICLE_MODEL_PREFIX) {
+            Entities.callEntityMethod(entity, 'updateWheels');
         }
-    }
+    });
 });
 
 Script.scriptEnding.connect(function() {
@@ -297,7 +295,7 @@ Script.scriptEnding.connect(function() {
     sessionList.cleanup();
     messageViewer.cleanup();
     print('TCars script finished closing!');
-    //speedometer.cleanup();
+    // speedometer.cleanup();
 });
 
 sessionList = new SessionList({}, TCARS_LOBBY_CHANNEL);

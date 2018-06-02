@@ -44,7 +44,7 @@ TrackSelector = function() {
     };
 
     _this.updateSelectionText = function() {
-        _this.setSelectionText(TRACKS[_this.selectedTrack].name)
+        _this.setSelectionText(TRACKS[_this.selectedTrack].name);
     };
 
     _this.setSelectionText = function(text) {

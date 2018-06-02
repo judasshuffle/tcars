@@ -28,7 +28,7 @@ TrackZone = function(trackZoneEntityID) {
     // Is the TrackZone fully loaded?
     _this.loaded = false;
     
-    //TODO: physical respawnable entities need userdata that tells us that they are such
+    // TODO: physical respawnable entities need userdata that tells us that they are such
     _this.trackEntities = [];
 
     var exportableProperties = {
@@ -76,7 +76,7 @@ TrackZone = function(trackZoneEntityID) {
         try {
             var userData = getZoneUserData();
             if (userData.TCars === undefined) {
-                //noinspection ExceptionCaughtLocallyJS
+                // noinspection ExceptionCaughtLocallyJS
                 throw new Exception('Could not find TCars userdata property');
             }
             userData.TCars[variable] = value;
@@ -145,8 +145,8 @@ TrackZone = function(trackZoneEntityID) {
         var properties = getZoneProperties();
         for (var property in properties) {
             if (properties.hasOwnProperty(property) && (exportableProperties['all'].indexOf(property) !== -1 ||
-                exportableProperties['Zone'].indexOf(property) !== -1) && property !== 'dimensions')
-            {
+                exportableProperties['Zone'].indexOf(property) !== -1) && property !== 'dimensions') {
+
                 zoneProperties[property] = properties[property];
             }
         }
@@ -171,8 +171,8 @@ TrackZone = function(trackZoneEntityID) {
             for (var property in properties) {
                 if (properties.hasOwnProperty(property) && (exportableProperties['all'].indexOf(property) !== -1 ||
                     (exportableProperties[properties.type] !== undefined &&
-                    exportableProperties[properties.type].indexOf(property) !== -1)))
-                {
+                    exportableProperties[properties.type].indexOf(property) !== -1))) {
+
                     filteredProperties[property] = properties[property];
                 }
             }
@@ -198,7 +198,7 @@ TrackZone = function(trackZoneEntityID) {
             if (entity !== _this.trackZoneEntityID) {
                 var properties = Entities.getEntityProperties(entity);
                 if (properties.name.substring(0, VEHICLE_MODEL_PREFIX.length) === VEHICLE_MODEL_PREFIX) {
-                    continue; //skip vehicles
+                    continue; // skip vehicles
                 }
                 _this.trackEntities.push(entity);
             }

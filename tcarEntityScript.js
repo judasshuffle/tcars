@@ -1,18 +1,18 @@
 (function() {
     var _this = this;
-    const MODEL_FOLDER_URL = "http://hifi-external.s3.amazonaws.com/tcars/models/";
-    const WHEEL_LEFT_FRONT = 0;
-    const WHEEL_RIGHT_FRONT = 1;
-    const WHEEL_LEFT_BACK = 2;
-    const WHEEL_RIGHT_BACK = 3;
-    const WHEEL_COUNT = 4;
+    var MODEL_FOLDER_URL = "http://hifi-external.s3.amazonaws.com/tcars/models/";
+    var WHEEL_LEFT_FRONT = 0;
+    var WHEEL_RIGHT_FRONT = 1;
+    var WHEEL_LEFT_BACK = 2;
+    var WHEEL_RIGHT_BACK = 3;
+    var WHEEL_COUNT = 4;
 
-    const STEERING_ANGLE_MULTIPLIER = 30;
-    const ONE_EIGHTY = 180;
+    var STEERING_ANGLE_MULTIPLIER = 30;
+    var ONE_EIGHTY = 180;
 
-    const MAX_DEGREES = 360;
+    var MAX_DEGREES = 360;
 
-    const TIRE_SPIN_MULTIPLIER = 100;
+    var TIRE_SPIN_MULTIPLIER = 100;
 
     _this.entityID = null;
     _this.properties = null;
@@ -116,13 +116,15 @@
                    // rotation: this.properties.rotation
                 });
             }
-            /*var framesPerSecond = 30;
+            /*
+            var framesPerSecond = 30;
             var second = 1000; // a second is 1000 ms
             var timerTimeout = second / framesPerSecond;
             Script.setInterval(function() {
                 _this.updateWheels(timerTimeout);
             }, timerTimeout);
-            //Script.update.connect(_this.updateWheels);*/
+            // Script.update.connect(_this.updateWheels);
+            */
         }
     };
 
@@ -153,15 +155,15 @@
         }
     };
 
-    _this.clickDownOnEntity = function(entityID/*, mouseEvent*/) {
+    _this.clickDownOnEntity = function(entityID /* , mouseEvent */) {
         this.updateProperties(entityID);
         this.playSound();
     };
 
-    _this.holdingClickOnEntity = function(entityID/*, mouseEvent*/) {
+    _this.holdingClickOnEntity = function(entityID /* , mouseEvent */) {
         this.updateProperties(entityID);
     };
-    _this.clickReleaseOnEntity = function(entityID/*, mouseEvent*/) {
+    _this.clickReleaseOnEntity = function(entityID /* , mouseEvent */) {
         this.updateProperties(entityID);
     };
 });

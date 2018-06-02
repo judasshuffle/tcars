@@ -10,8 +10,8 @@
 Session = function(pBlock) {
     var _this = this;
 
-    const HTTP_GET_TIMEOUT = 60000;
-    const GAME_TIMER_INTERVAL = 1000;
+    var HTTP_GET_TIMEOUT = 60000;
+    var GAME_TIMER_INTERVAL = 1000;
     var block = pBlock;
     var trackZoneManager = new TrackZoneManager();
     var state = SESSION_STATE.INITIAL;
@@ -65,8 +65,10 @@ Session = function(pBlock) {
         var req = new XMLHttpRequest();
         req.open('GET', trackURL, true);
         req.timeout = HTTP_GET_TIMEOUT;
-        req.ontimeout = function() { print("failed to load track!!!!!"); };
-        req.onreadystatechange =  function() {
+        req.ontimeout = function() {
+            print("failed to load track!!!!!");
+        };
+        req.onreadystatechange = function() {
             if (req.readyState === req.DONE) {
                 if (req.status === 200) {
                     track = req.response;
@@ -87,9 +89,9 @@ Session = function(pBlock) {
         var roleParticipantCount = 0;
       //  print('looping through all clients:');
         clientManager.doForAllClients(function(clientID, client) {
-            //print('found client with ID ' + clientID + 'with client role: ' + client.role);
+            // print('found client with ID ' + clientID + 'with client role: ' + client.role);
             if (client.role === role) {
-              //  print('role matches!');
+                // print('role matches!');
                 roleParticipantCount++;
             }
         });
@@ -130,11 +132,11 @@ Session = function(pBlock) {
         sendSessionInfo();
         var update = extraUpdateData !== undefined ? extraUpdateData : {};
         update['state'] = newSessionState;
-        sendUpdateToPlayers(update)
+        sendUpdateToPlayers(update);
     };
 
     _this.cleanup = function() {
-        //TODO: delete track here if its built
+        // TODO: delete track here if its built
         if (trackZone !== null) {
             trackZone.deleteTrack();
             trackZone = null;
@@ -158,7 +160,7 @@ Session = function(pBlock) {
         switch (action) {
             case SESSION_ACTION.JOIN_REQUEST:
                 // ROLE.* PLAYER OR SPECTATOR
-                //TODO: check max for role, switch to spectator if players are full, disconnect if spectators are full, and msg client.
+                // TODO: check max for role, switch to spectator if players are full, disconnect if spectators are full, and msg client.
                 sessionClient.role = data.data.preferredRole;
                 if (state === SESSION_STATE.INITIAL) {
                     state = SESSION_STATE.VOTE_TRACK;
@@ -169,10 +171,10 @@ Session = function(pBlock) {
                 sendSessionInfo();
                 break;
             case SESSION_ACTION.VOTE:
-                //if (state === SESSION_STATE.INITIAL) {
-                //    state = SESSION_STATE.VOTE_TRACK;
-                //    timeleft = TRACK_SELECTION_TIME;
-                //}
+                // if (state === SESSION_STATE.INITIAL) {
+                //     state = SESSION_STATE.VOTE_TRACK;
+                //     timeleft = TRACK_SELECTION_TIME;
+                // }
                 sessionClient.trackVote = data.data.trackID;
                 print('trackvote received with ID ' + sessionClient.trackVote);
                 break;
@@ -183,24 +185,24 @@ Session = function(pBlock) {
         }
     };
 
-    var gameTimer = Script.setInterval(function() {
-       // if (timeLeft !== lastTime) {
-       //     lastTime = timeLeft;
-       //     sendToAllActiveClients({action: ACTION.COUNTING, timeleft: timeLeft});
-       // }
-        //print('state: ' + state + ' TimeLeft: ' + timeLeft);
+    /* var gameTimer = */ Script.setInterval(function() {
+        // if (timeLeft !== lastTime) {
+        //     lastTime = timeLeft;
+        //     sendToAllActiveClients({action: ACTION.COUNTING, timeleft: timeLeft});
+        // }
+        // print('state: ' + state + ' TimeLeft: ' + timeLeft);
         if (state === SESSION_STATE.VOTE_TRACK) {
             if (timeLeft <= 0) {
                 trackID = getWinningTrackVote();
                 // Move players to car selection here:
                 changeSessionState(SESSION_STATE.LOADING, {trackID: trackID, block: block});
                 updateTrackInfo();
-                //setupTrack();
-                //sendSessionInfo();
-               // gameState = GAME_STATE.HIDING;
-               // timeLeft = HIDING_TIME;
-               // seeker = Math.floor(Math.random() * Object.keys(clients).length);
-               // sendToAllActiveClients({action: ACTION.START_HIDING, seeker: seeker});
+                // setupTrack();
+                // sendSessionInfo();
+                // gameState = GAME_STATE.HIDING;
+                // timeLeft = HIDING_TIME;
+                // seeker = Math.floor(Math.random() * Object.keys(clients).length);
+                // sendToAllActiveClients({action: ACTION.START_HIDING, seeker: seeker});
                 return;
             }
             if (numPlayers() > 0) { // we can only play with more then one players
@@ -210,27 +212,27 @@ Session = function(pBlock) {
             var isLoaded = trackZone !== null;
             if (isLoaded) {
                 timeLeft = 3; // Count 3 seconds before start
-                //state = SESSION_STATE.COUNT_DOWN;
-                //sendSessionInfo();
+                // state = SESSION_STATE.COUNT_DOWN;
+                // sendSessionInfo();
                 changeSessionState(SESSION_STATE.COUNT_DOWN, {});
             }
         } else if (state === SESSION_STATE.COUNT_DOWN) {
             if (timeLeft <= 0) {
-                //state = SESSION_STATE.RACE;
-                //sendSessionInfo();
+                // state = SESSION_STATE.RACE;
+                // sendSessionInfo();
                 changeSessionState(SESSION_STATE.RACE, {});
-                //trackID = getWinningTrackVote();
-                //state = SESSION_STATE.LOADING;
-                //sendSessionInfo();
+                // trackID = getWinningTrackVote();
+                // state = SESSION_STATE.LOADING;
+                // sendSessionInfo();
                 // gameState = GAME_STATE.HIDING;
                 // timeLeft = HIDING_TIME;
                 // seeker = Math.floor(Math.random() * Object.keys(clients).length);
                 // sendToAllActiveClients({action: ACTION.START_HIDING, seeker: seeker});
                 return;
             }
-            //if (numPlayers() > 0) { // we can only play with more then one players
+            // if (numPlayers() > 0) { // we can only play with more then one players
             timeLeft--;
-            //}
+            // }
         }
 
 
@@ -247,26 +249,26 @@ Session = function(pBlock) {
         }*/
     }, GAME_TIMER_INTERVAL);
 
-    //var elementCount = 0;
+    // var elementCount = 0;
     function updating(deltaTime) {
         if (!RACING) { 
             return;
         }
-     //   EntityViewer.setPosition({x: 8040.73046875, y: y, z: 7730.63916015625});
-    //    y -= deltaTime;
-       // updateAvatarPos();
+        // EntityViewer.setPosition({x: 8040.73046875, y: y, z: 7730.63916015625});
+        // y -= deltaTime;
+        // updateAvatarPos();
         EntityViewer.queryOctree();
-       // entityID = Entities.findEntit (sessionArea.center, SESSION_AREA_SIZE);
-       // if (entityID) {
-       //     var props = Entities.getEntityProperties(entityID);
-            //setDisplayName('nearby: ' + props.name + ' (' + Vec3.distance(Avatar.position, props.position) + 'm)');
-       // }
-        //var newCount = EntityViewer.getOctreeElementsCount();
-        //if (newCount !== elementCount) {
-        //    elementCount = newCount;
-        //    print('elementCount:' + elementCount);
-        //}
-        //print(EntityViewer.getVoxelSizeScale() + ' ' + EntityViewer.getBoundaryLevelAdjust() + ' ' + EntityViewer.getMaxPacketsPerSecond());
+        // entityID = Entities.findEntit (sessionArea.center, SESSION_AREA_SIZE);
+        // if (entityID) {
+        //     var props = Entities.getEntityProperties(entityID);
+              // setDisplayName('nearby: ' + props.name + ' (' + Vec3.distance(Avatar.position, props.position) + 'm)');
+        // }
+        // var newCount = EntityViewer.getOctreeElementsCount();
+        // if (newCount !== elementCount) {
+        //     elementCount = newCount;
+        //     print('elementCount:' + elementCount);
+        // }
+        // print(EntityViewer.getVoxelSizeScale() + ' ' + EntityViewer.getBoundaryLevelAdjust() + ' ' + EntityViewer.getMaxPacketsPerSecond());
     }
 
     sendSessionInfo();
