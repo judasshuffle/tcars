@@ -1,19 +1,19 @@
-//const LOBBY_WS_URL = 'ws://54.176.3.23:18000';
-//const LOBBY_WS_URL_REQUEST_CHANNEL = 'tcarsRequestLobbyWSURL';
-//const LOBBY_WS_URL_RESPONSE_CHANNEL = 'tcarsResponseLobbyWSURL';
-//const PORT = 18000;
-//const SESSION_PORTS_START = 18001;
-//const SESSION_PORTS_MAX_COUNT = 100;
+// var LOBBY_WS_URL = 'ws://54.176.3.23:18000';
+// var LOBBY_WS_URL_REQUEST_CHANNEL = 'tcarsRequestLobbyWSURL';
+// var LOBBY_WS_URL_RESPONSE_CHANNEL = 'tcarsResponseLobbyWSURL';
+// var PORT = 18000;
+// var SESSION_PORTS_START = 18001;
+// var SESSION_PORTS_MAX_COUNT = 100;
 
 // Allow to run the lobby through Interface for testing purposes
-const LOCAL_RUN = this.MyAvatar !== undefined;
+var LOCAL_RUN = this.MyAvatar !== undefined;
 
-const SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
-//'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/';
-//'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
-const LOBBY_ENTITIES_PATH = SCRIPTS_PATH + 'entities/lobby.svo.json';
-const LOBBY_POSITION = {x: 0, y: 0, z: 0};
-const TCARS_RCON = 'tcarsRCON';
+var SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
+// 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/';
+// 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
+var LOBBY_ENTITIES_PATH = SCRIPTS_PATH + 'entities/lobby.svo.json';
+var LOBBY_POSITION = {x: 0, y: 0, z: 0};
+var TCARS_RCON = 'tcarsRCON';
 
 var scriptIncludePath = LOCAL_RUN ? '' : SCRIPTS_PATH;
 Script.include([
@@ -21,7 +21,7 @@ Script.include([
     scriptIncludePath + 'libraries/clientManager.js'
 ]);
 
-const DEBUG_OVER_MESSAGES_PROTOCOL = false;
+var DEBUG_OVER_MESSAGES_PROTOCOL = false;
 
 var startupDate = (new Date());
 var timeZoneOffset = startupDate.getTimezoneOffset() * 60 * 1000;
@@ -33,7 +33,7 @@ var getMillisecondsFromTime = function(dateString) {
 
 print('start time = ' + startupTimestamp);
 
-//Entities.setPacketsPerSecond(2000);
+// Entities.setPacketsPerSecond(2000);
 Agent.isAvatar = true;
 if (!LOCAL_RUN) {
     EntityViewer.setPosition(LOBBY_POSITION);
@@ -41,19 +41,19 @@ if (!LOCAL_RUN) {
     EntityViewer.setCenterRadius(60000);
     EntityViewer.setVoxelSizeScale(Number.MAX_VALUE);
 }
-//EntityViewer.queryOctree();
+// EntityViewer.queryOctree();
 
-//Messages.subscribe(LOBBY_WS_URL_REQUEST_CHANNEL);
+// Messages.subscribe(LOBBY_WS_URL_REQUEST_CHANNEL);
 
-//Messages.messageReceived.connect(function (channel, message, senderID) {
-//    if (channel === LOBBY_WS_URL_REQUEST_CHANNEL) {
-//        Messages.sendMessage(LOBBY_WS_URL_RESPONSE_CHANNEL, LOBBY_WS_URL);
-//    }
-//});
+// Messages.messageReceived.connect(function (channel, message, senderID) {
+//     if (channel === LOBBY_WS_URL_REQUEST_CHANNEL) {
+//         Messages.sendMessage(LOBBY_WS_URL_RESPONSE_CHANNEL, LOBBY_WS_URL);
+//     }
+// });
 
 Messages.subscribe(TCARS_RCON);
 
-Messages.messageReceived.connect(function(channel, message/*, senderID*/) {
+Messages.messageReceived.connect(function(channel, message /* , senderID */) {
     if (channel === TCARS_RCON) {
         if (message === 'stop') {
             Script.stop();
@@ -75,28 +75,28 @@ Script.setTimeout(function() {
     setupLobbyEntities();
 }, 5000);
 
-const SESSION_AREA_START = {
+var SESSION_AREA_START = {
     x: -16000,
     y: -16000,
     z: -16000
 };
 
-const SESSION_AREA_END = {
+var SESSION_AREA_END = {
     x: 16000,
     y: 16000,
     z: 16000
 };
 
-const SESSION_AREA_SIZE = 2000; 
+var SESSION_AREA_SIZE = 2000;
 
-const SESSION_AREA_SAFEZONES = [
+var SESSION_AREA_SAFEZONES = [
     {
         start: {x: -SESSION_AREA_SIZE, y: -SESSION_AREA_SIZE, z: -SESSION_AREA_SIZE},
         end: {x: SESSION_AREA_SIZE, y: SESSION_AREA_SIZE, z: SESSION_AREA_SIZE}
     }
 ];
 
-const SESSION_AREA_DIMENSIONS = {
+var SESSION_AREA_DIMENSIONS = {
     x: SESSION_AREA_SIZE,
     y: SESSION_AREA_SIZE,
     z: SESSION_AREA_SIZE
@@ -185,8 +185,8 @@ var checkForEntities = function() {
     entities.forEach(function (entity) {
         var entityProperties = Entities.getEntityProperties(entity, ['created', 'locked']);
         var entityCreationTimeStamp = getMillisecondsFromTime(entityProperties.created);
-        //var entityCreationTimeStamp = (new Date(entityProperties.created.slice(0, -1).replace('-', '/').replace('-', '/').replace('T', ' ')).getTime()) - timeZoneOffset;
-        //   print(entityProperties.created + ' ' + entityCreationTimeStamp);
+        // var entityCreationTimeStamp = (new Date(entityProperties.created.slice(0, -1).replace('-', '/').replace('-', '/').replace('T', ' ')).getTime()) - timeZoneOffset;
+        // print(entityProperties.created + ' ' + entityCreationTimeStamp);
         if (startupTimestamp > entityCreationTimeStamp) {
             foundEntities++;
             if (entityProperties.locked) {
@@ -199,31 +199,32 @@ var checkForEntities = function() {
     if (foundEntities > 0) {
         print('startup timestamp:\n' + startupDate + ' ' + startupTimestamp + ' ' + startupDate.toUTCString() + ' ' + timeZoneOffset);
         print("found entities: " + foundEntities);
-    }// else {
-    //    print("found no entities" + entities.length);
-    //}
+    }
+    // else {
+    //     print("found no entities" + entities.length);
+    // }
 };
 
 var initialized = false;
 
 var updateTimer;
 
-function update(/*deltaTime*/) {
+function update(/* deltaTime */) {
     if (!initialized) {
         if (Entities.serversExist() && Entities.canRez()) {
             print('initialized');
             Entities.setPacketsPerSecond(6000);
-           // deleteBoxes()
+            // deleteBoxes()
             initialized = true;
-            //Script.update.disconnect(update);
-            //Script.clearInterval(updateTimer);
+            // Script.update.disconnect(update);
+            // Script.clearInterval(updateTimer);
         }
         return;
     }
     checkForEntities();
 }
 
-//Script.update.connect(update);
+// Script.update.connect(update);
 
 updateTimer = Script.setInterval(update, 1000 / 60);
 
@@ -286,7 +287,7 @@ clientManager.onClientAction = function(clientID, action, data) {
 };
 
 // Give max time of 10 seconds
-const PING_TIMEOUT = 10000;
+var PING_TIMEOUT = 10000;
 
 var cleanLobbySessions = function() {
     var deleteClientIDs = [];

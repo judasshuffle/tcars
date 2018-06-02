@@ -34,7 +34,7 @@ function isScriptRunning(script) {
     script = script.toLowerCase().trim();
     var runningScripts = ScriptDiscoveryService.getRunning();
     for (var i in runningScripts) {
-        if (runningScripts.hasOwnProperty(i) && runningScripts[i].url.toLowerCase().trim() == script) {
+        if (runningScripts.hasOwnProperty(i) && runningScripts[i].url.toLowerCase().trim() === script) {
             return true;
         }
     }

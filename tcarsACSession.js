@@ -1,11 +1,9 @@
-//const LOBBY_WS_URL_REQUEST_CHANNEL = 'tcarsRequestLobbyWSURL';
-//const LOBBY_WS_URL_RESPONSE_CHANNEL = 'tcarsResponseLobbyWSURL';
-const TCARS_RCON = 'tcarsRCON';
+// var LOBBY_WS_URL_REQUEST_CHANNEL = 'tcarsRequestLobbyWSURL';
+// var LOBBY_WS_URL_RESPONSE_CHANNEL = 'tcarsResponseLobbyWSURL';
+var TCARS_RCON = 'tcarsRCON';
 
 // Give max time of 5 seconds
-const PING_TIMEOUT = 5000;
-
-const SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
+var PING_TIMEOUT = 5000;
 
 var lastPingRequest = null;
 var lastPingResponse = null;
@@ -13,19 +11,19 @@ var currentSession = null;
 
 var hadFirstPingReply = false;
 
-TRACK_SELECTION_TIME = 10; //seconds
+TRACK_SELECTION_TIME = 10; // seconds
 
 Script.include([
-    SCRIPTS_PATH + 'libraries/constants.js',
-    SCRIPTS_PATH + 'libraries/trackZone.js',
-    SCRIPTS_PATH + 'libraries/trackZoneManager.js',
-    SCRIPTS_PATH + 'libraries/tracks.js',
-    SCRIPTS_PATH + 'libraries/client.js',
-    SCRIPTS_PATH + 'libraries/clientManager.js',
-    SCRIPTS_PATH + 'libraries/session.js'
+    'libraries/constants.js',
+    'libraries/trackZone.js',
+    'libraries/trackZoneManager.js',
+    'libraries/tracks.js',
+    'libraries/client.js',
+    'libraries/clientManager.js',
+    'libraries/session.js'
 ]);
 
-//Messages.subscribe(LOBBY_WS_URL_RESPONSE_CHANNEL);
+// Messages.subscribe(LOBBY_WS_URL_RESPONSE_CHANNEL);
 Messages.subscribe(TCARS_RCON);
 
 var lobbyClient = new Client('tcarsLobby', Agent.sessionUUID);
@@ -43,16 +41,17 @@ lobbyClient.onActionReceived = function (senderID, action, data) {
                 });
                 hadFirstPingReply = true;
             }
-            //print('last ping response ' + lastPingResponse);
+            // print('last ping response ' + lastPingResponse);
             break;
         default:
             print('received unknown action ' + action + ' from ' + senderID + ' with data ' + JSON.stringify(data));
     }
 };
 
-Messages.messageReceived.connect(function(channel, message/*, senderID*/) {
-    /*if (channel === LOBBY_WS_URL_RESPONSE_CHANNEL) {
-//        Messages.sendMessage(LOBBY_WS_URL_RESPONSE_CHANNEL, LOBBY_WS_URL);
+Messages.messageReceived.connect(function(channel, message /* , senderID */) {
+    /*
+    if (channel === LOBBY_WS_URL_RESPONSE_CHANNEL) {
+        // Messages.sendMessage(LOBBY_WS_URL_RESPONSE_CHANNEL, LOBBY_WS_URL);
         Messages.unsubscribe(LOBBY_WS_URL_RESPONSE_CHANNEL);
 
         lobbySocket = new WebSocket(message);
@@ -85,15 +84,15 @@ Messages.messageReceived.connect(function(channel, message/*, senderID*/) {
     }
 });
 
-//Messages.sendMessage(LOBBY_WS_URL_RESPONSE_CHANNEL, 'requestForSession');
+// Messages.sendMessage(LOBBY_WS_URL_RESPONSE_CHANNEL, 'requestForSession');
 
 var ping = 0;
 
 var lobbyPingTimer = Script.setInterval(function() {
-    //Messages.sendMessage('TCarsDebug', 'session ping ' + (ping++));
-    //if (lobbySocket !== null && lobbySocket.readyState === lobbySocket.OPEN) {
+    // Messages.sendMessage('TCarsDebug', 'session ping ' + (ping++));
+    // if (lobbySocket !== null && lobbySocket.readyState === lobbySocket.OPEN) {
     var now = Date.now();
-    //print("now " + now);
+    // print("now " + now);
     if (lastPingRequest !== null && (lastPingResponse === null || (lastPingResponse + PING_TIMEOUT) < now)) {
         print('ping timeout with lobby, aborting in 5 seconds.');
         Script.setTimeout(function() {
@@ -106,7 +105,7 @@ var lobbyPingTimer = Script.setInterval(function() {
         action: LOBBY_ACTION.PING,
         number: ping++
     });
-    //}
+    // }
 }, PING_TIMEOUT);
 
 Script.scriptEnding.connect(function() {
@@ -114,9 +113,11 @@ Script.scriptEnding.connect(function() {
     if (currentSession !== null) {
         currentSession.cleanup();
     }
-    /*if (lobbySocket !== null) {
+    /*
+    if (lobbySocket !== null) {
         lobbySocket.close();
-    }*/
+    }
+    */
 });
 
 /*
@@ -185,6 +186,5 @@ webSocketServer.newConnection.connect(function(newClient) {
         sendToAllActiveClients({action: ACTION.PLAYER_LEFT, id: newClientID}, newClient);
     };
     newClient.send(JSON.stringify({action: ACTION.JOIN_REQUEST, id: newClientID, players: getPlayersToObject()}));
-});*/
-
-
+});
+*/

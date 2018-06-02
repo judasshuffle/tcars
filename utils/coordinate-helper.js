@@ -1,4 +1,4 @@
- function parseCoordinate(coord) {
+function parseCoordinate(coord) {
     var formatted = [];
     for (var key in coord) {
         if (coord.hasOwnProperty(key)) {
