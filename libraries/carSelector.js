@@ -117,7 +117,7 @@ CarSelector = function () {
     };
 
     _this.updateCarSelectionText = function() {
-        _this.setSelectionText(_this.selectableCars[_this.selectedCar].vehicle.name)
+        _this.setSelectionText(_this.selectableCars[_this.selectedCar].vehicle.name);
     };
 
     _this.setSelectionText = function(text) {
