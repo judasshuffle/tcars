@@ -19,7 +19,7 @@
                 openEventBridge(function () {
                     EventBridge.scriptEventReceived.connect(function (data) {
                         data = JSON.parse(data);
-                        if (data.action == 'export') {
+                        if (data.action === 'export') {
                             $('#export_result').val(JSON.stringify(data.data, null, 4) + "\n");
                         }
                     });
