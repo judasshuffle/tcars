@@ -24,6 +24,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": true,
             "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
             "name": "justclassroom",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/justclassroom.fbx",
@@ -31,16 +32,16 @@
             "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/floorcollision.obj",
             "localPosition": {
                 "x": -44.6544189453125,
-                "y": 93.767333984375,
+                "y": 93.76732635498047,
                 "z": -41.9332275390625
             }
         },
         {
-            "type": "Model",
+            "type": "Zone",
             "dimensions": {
-                "x": 98.3934326171875,
-                "y": 226.46728515625,
-                "z": 140.43902587890625
+                "x": 30000,
+                "y": 30000,
+                "z": 30000
             },
             "rotation": {
                 "x": -0.0000152587890625,
@@ -48,161 +49,36 @@
                 "z": -0.0000152587890625,
                 "w": 1
             },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
+            "visible": true,
+            "userData": "",
+            "name": "Thick Clouds Skybox Zone",
+            "shapeType": "box",
+            "keyLight": {
+                "color": {
+                    "red": 255,
+                    "green": 255,
+                    "blue": 255
+                },
+                "intensity": 1,
+                "direction": {
+                    "x": 0,
+                    "y": -1,
+                    "z": 0
+                },
+                "castShadows": false
             },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "Blackboard",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Blackboard.fbx",
-            "shapeType": "compound",
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/blackboardcol.obj",
+            "skybox": {
+                "color": {
+                    "red": 0,
+                    "green": 0,
+                    "blue": 0
+                },
+                "url": "https://hifi-public.s3.amazonaws.com/images/SkyboxTextures/ThickCloudsWater2.jpg"
+            },
             "localPosition": {
-                "x": 227.0267333984375,
-                "y": -6.1868896484375,
-                "z": 25.7713623046875
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 20.7387752532959,
-                "y": 3.79463529586792,
-                "z": 16.231040954589844
-            },
-            "rotation": {
-                "x": -0.0174715518951416,
-                "y": -0.0000152587890625,
-                "z": -0.0000152587890625,
-                "w": 0.999847412109375
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0,
-            "restitution": 0.5,
-            "friction": 0,
-            "density": 1000,
-            "angularDamping": 0,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "Pencilcase",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/pencilcase.fbx",
-            "shapeType": "compound",
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/pencilcasecol.obj",
-            "localPosition": {
-                "x": -25.866455078125,
-                "y": -16.1514892578125,
-                "z": 0.421142578125
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 91.98158264160156,
-                "y": 102.12580108642578,
-                "z": 73.66438293457031
-            },
-            "rotation": {
-                "x": -0.0000457763671875,
-                "y": 0.9990234375,
-                "z": -0.0000152587890625,
-                "w": 0.043595075607299805
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "Desk",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/desk/desk.fbx",
-            "shapeType": "compound",
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/desk/desk.obj",
-            "localPosition": {
-                "x": -7.5120849609375,
-                "y": -68.7213134765625,
-                "z": 26.8616943359375
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 11.097980499267578,
-                "y": 14.34709358215332,
-                "z": 9.050121307373047
-            },
-            "rotation": {
-                "x": -0.0000152587890625,
-                "y": -0.0000152587890625,
-                "z": -0.0000152587890625,
-                "w": 1
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Inkbottle.fbx",
-            "shapeType": "compound",
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/inkbottlecol.obj",
-            "localPosition": {
-                "x": -29.512451171875,
-                "y": -10.712646484375,
-                "z": 12.1876220703125
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 91.98158264160156,
-                "y": 102.12580108642578,
-                "z": 73.66438293457031
-            },
-            "rotation": {
-                "x": -0.0000457763671875,
-                "y": 1,
-                "z": -0.0000152587890625,
-                "w": -0.0000152587890625
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "Desk",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/loosedeskcolis/DESK.fbx",
-            "shapeType": "compound",
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/desk/desk.obj",
-            "localPosition": {
-                "x": 96.9620361328125,
-                "y": -68.7213134765625,
-                "z": 35.3765869140625
+                "x": 1800.922119140625,
+                "y": -71.48542022705078,
+                "z": -87.24415588378906
             }
         },
         {
@@ -216,7 +92,7 @@
                 "x": -0.0000457763671875,
                 "y": 0.99993896484375,
                 "z": -0.0000152587890625,
-                "w": -0.00877392292022705
+                "w": -0.00883495807647705
             },
             "gravity": {
                 "x": 0,
@@ -228,6 +104,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": true,
             "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
             "name": "Desk",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/loosedeskcolis/DESK.fbx",
@@ -242,15 +119,15 @@
         {
             "type": "Model",
             "dimensions": {
-                "x": 91.98158264160156,
-                "y": 102.12580108642578,
-                "z": 73.66438293457031
+                "x": 91.71782684326172,
+                "y": 102.12578582763672,
+                "z": 73.33100891113281
             },
             "rotation": {
                 "x": -0.0000152587890625,
-                "y": -0.0000152587890625,
-                "z": -0.0000457763671875,
-                "w": 1
+                "y": 0.00862133502960205,
+                "z": 0.0000152587890625,
+                "w": -0.999969482421875
             },
             "gravity": {
                 "x": 0,
@@ -262,15 +139,86 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": true,
             "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
             "name": "Desk",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/loosedeskcolis/DESK.fbx",
-            "shapeType": "compound",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Desk.fbx",
+            "shapeType": "static-mesh",
             "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/desk/desk.obj",
             "localPosition": {
-                "x": -23.9810791015625,
+                "x": -126.1903076171875,
                 "y": -68.7213134765625,
-                "z": -106.111328125
+                "z": -65.8167724609375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 58.775699615478516,
+                "y": 12.638504028320312,
+                "z": 46.985198974609375
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.930449366569519,
+                "z": -0.0000152587890625,
+                "w": 0.3664149045944214
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/satchel.fbx",
+            "shapeType": "none",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -144.550048828125,
+                "y": -11.804931640625,
+                "z": -77.1610107421875
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 53.144752502441406,
+                "y": 103.03097534179688,
+                "z": 52.128944396972656
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.7314106822013855,
+                "z": -0.0000457763671875,
+                "w": 0.6819103956222534
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "Chair",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Chair.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chaircollision.obj",
+            "localPosition": {
+                "x": -134.7843017578125,
+                "y": -66.9383544921875,
+                "z": -141.810302734375
             }
         },
         {
@@ -296,15 +244,16 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": true,
             "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
             "name": "Desk",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/loosedeskcolis/DESK.fbx",
             "shapeType": "compound",
             "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/desk/desk.obj",
             "localPosition": {
-                "x": 80.5225830078125,
+                "x": -23.9810791015625,
                 "y": -68.7213134765625,
-                "z": -44.5208740234375
+                "z": -106.111328125
             }
         },
         {
@@ -330,6 +279,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": true,
             "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
             "name": "Chair",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Chair.fbx",
@@ -338,21 +288,21 @@
             "localPosition": {
                 "x": -123.0770263671875,
                 "y": -66.9383544921875,
-                "z": 61.3621826171875
+                "z": 61.36217498779297
             }
         },
         {
             "type": "Model",
             "dimensions": {
-                "x": 53.144752502441406,
-                "y": 103.03097534179688,
-                "z": 52.128944396972656
+                "x": 91.98158264160156,
+                "y": 102.12580108642578,
+                "z": 73.66438293457031
             },
             "rotation": {
-                "x": -0.0000152587890625,
-                "y": -0.7313801646232605,
-                "z": -0.0000457763671875,
-                "w": 0.6819409132003784
+                "x": -0.0000457763671875,
+                "y": 0.9990234375,
+                "z": -0.0000152587890625,
+                "w": 0.043595075607299805
             },
             "gravity": {
                 "x": 0,
@@ -364,6 +314,42 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "Desk",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/desk/desk.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/desk/desk.obj",
+            "localPosition": {
+                "x": -7.5120849609375,
+                "y": -68.7213134765625,
+                "z": 26.8616943359375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 53.144752502441406,
+                "y": 103.03097534179688,
+                "z": 52.128944396972656
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.7314106822013855,
+                "z": -0.0000457763671875,
+                "w": 0.6819103956222534
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
             "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
             "name": "Chair",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Chair.fbx",
@@ -373,6 +359,286 @@
                 "x": -31.0552978515625,
                 "y": -66.9383544921875,
                 "z": -122.6007080078125
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 98.3934326171875,
+                "y": 226.46728515625,
+                "z": 140.43902587890625
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "Blackboard",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Blackboard.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/blackboardcol.obj",
+            "localPosition": {
+                "x": 227.0267333984375,
+                "y": -6.1868896484375,
+                "z": 25.7713623046875
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 53.144752502441406,
+                "y": 103.03097534179688,
+                "z": 52.128944396972656
+            },
+            "rotation": {
+                "x": -0.0014190673828125,
+                "y": -0.0038605332374572754,
+                "z": -0.4410620331764221,
+                "w": 0.8974593877792358
+            },
+            "gravity": {
+                "x": 0,
+                "y": -2,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "Chair",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Chair.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chaircollision.obj",
+            "localPosition": {
+                "x": 8.2393798828125,
+                "y": -65.876708984375,
+                "z": -41.4859619140625
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 53.144752502441406,
+                "y": 103.03097534179688,
+                "z": 52.128944396972656
+            },
+            "rotation": {
+                "x": -0.0000457763671875,
+                "y": 0.6819714307785034,
+                "z": -0.0000152587890625,
+                "w": 0.7313497066497803
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "Chair",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Chair.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chaircollision.obj",
+            "localPosition": {
+                "x": -20.6048583984375,
+                "y": -66.9383544921875,
+                "z": 108.97618865966797
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 91.98158264160156,
+                "y": 102.12580108642578,
+                "z": 73.66438293457031
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000457763671875,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "Desk",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/loosedeskcolis/DESK.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/desk/desk.obj",
+            "localPosition": {
+                "x": 80.5225830078125,
+                "y": -68.7213134765625,
+                "z": -44.5208740234375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 91.98158264160156,
+                "y": 102.12580108642578,
+                "z": 73.66438293457031
+            },
+            "rotation": {
+                "x": -0.0000457763671875,
+                "y": 1,
+                "z": -0.0000152587890625,
+                "w": -0.0000152587890625
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "Desk",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/loosedeskcolis/DESK.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/desk/desk.obj",
+            "localPosition": {
+                "x": 96.9620361328125,
+                "y": -68.7213134765625,
+                "z": 35.3765869140625
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 53.144752502441406,
+                "y": 103.03097534179688,
+                "z": 52.128944396972656
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.7314106822013855,
+                "z": -0.0000457763671875,
+                "w": 0.6819103956222534
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "Chair",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Chair.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chaircollision.obj",
+            "localPosition": {
+                "x": 81.0777587890625,
+                "y": -66.9383544921875,
+                "z": -90.5589599609375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 38.684722900390625,
+                "y": 0.20795059204101562,
+                "z": 4.580682754516602
+            },
+            "rotation": {
+                "x": -0.0000457763671875,
+                "y": 0.29649806022644043,
+                "z": -0.0000152587890625,
+                "w": 0.9550163745880127
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -70.7647705078125,
+                "y": -17.669189453125,
+                "z": -77.927734375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 53.144752502441406,
+                "y": 103.03097534179688,
+                "z": 52.128944396972656
+            },
+            "rotation": {
+                "x": -0.0000457763671875,
+                "y": 0.6819714307785034,
+                "z": -0.0000152587890625,
+                "w": 0.7313497066497803
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "Chair",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Chair.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chaircollision.obj",
+            "localPosition": {
+                "x": 92.5157470703125,
+                "y": -66.9383544921875,
+                "z": 106.29235076904297
             }
         },
         {
@@ -398,6 +664,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": true,
             "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
             "name": "Globe",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Globe.fbx",
@@ -412,15 +679,15 @@
         {
             "type": "Model",
             "dimensions": {
-                "x": 64.99327850341797,
-                "y": 3.823594093322754,
-                "z": 56.31829833984375
+                "x": 38.684722900390625,
+                "y": 0.20795059204101562,
+                "z": 4.580682754516602
             },
             "rotation": {
                 "x": -0.0000152587890625,
-                "y": -0.19514763355255127,
+                "y": -0.19523918628692627,
                 "z": -0.0000457763671875,
-                "w": 0.9807736873626709
+                "w": 0.9807431697845459
             },
             "gravity": {
                 "x": 0,
@@ -432,29 +699,30 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": true,
             "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "Openbook",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/OpenBook.fbx",
-            "shapeType": "compound",
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/openbookcol.obj",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
             "localPosition": {
-                "x": -102.727783203125,
-                "y": -15.72705078125,
-                "z": 12.6839599609375
+                "x": 29.9761962890625,
+                "y": -17.669189453125,
+                "z": -81.5894775390625
             }
         },
         {
             "type": "Model",
             "dimensions": {
-                "x": 91.71782684326172,
-                "y": 102.12578582763672,
-                "z": 73.33100891113281
+                "x": 58.775699615478516,
+                "y": 12.638504028320312,
+                "z": 46.985198974609375
             },
             "rotation": {
-                "x": -0.0000152587890625,
-                "y": 0.00868237018585205,
-                "z": 0.0000152587890625,
-                "w": -0.999969482421875
+                "x": 0.37651634216308594,
+                "y": -0.5597467422485352,
+                "z": 0.40361642837524414,
+                "w": 0.618005633354187
             },
             "gravity": {
                 "x": 0,
@@ -466,15 +734,51 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": true,
             "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "Desk",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Desk.fbx",
-            "shapeType": "compound",
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/desk/desk.obj",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/satchel.fbx",
+            "shapeType": "none",
+            "compoundShapeURL": "",
             "localPosition": {
-                "x": -126.1903076171875,
-                "y": -68.7213134765625,
-                "z": -65.8167724609375
+                "x": -184.9849853515625,
+                "y": -97.434814453125,
+                "z": 42.00768280029297
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 36.444000244140625,
+                "y": 15.345481872558594,
+                "z": 3.0968291759490967
+            },
+            "rotation": {
+                "x": 0.00852978229522705,
+                "y": -0.19520866870880127,
+                "z": 0.0016937255859375,
+                "w": 0.9807126522064209
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/abacus1.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": 12.8358154296875,
+                "y": -9.93798828125,
+                "z": 7.6038818359375
             }
         },
         {
@@ -500,6 +804,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": true,
             "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
             "name": "Bell",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Bell.fbx",
@@ -508,7 +813,462 @@
             "localPosition": {
                 "x": 1.0384521484375,
                 "y": -3.9794921875,
-                "z": 51.0225830078125
+                "z": 51.02257537841797
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 64.99327850341797,
+                "y": 3.823594093322754,
+                "z": 56.31829833984375
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.19517815113067627,
+                "z": -0.0000457763671875,
+                "w": 0.9807431697845459
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "Openbook",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/OpenBook.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/openbookcol.obj",
+            "localPosition": {
+                "x": -102.727783203125,
+                "y": -15.72705078125,
+                "z": 12.6839599609375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 40.50767135620117,
+                "y": 3.8759589195251465,
+                "z": 39.22288513183594
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Book.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/bookcol.obj",
+            "localPosition": {
+                "x": -25.122802734375,
+                "y": -16.205078125,
+                "z": 41.54772186279297
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 38.684722900390625,
+                "y": 0.20795059204101562,
+                "z": 4.580682754516602
+            },
+            "rotation": {
+                "x": -0.0000457763671875,
+                "y": 0.6393988132476807,
+                "z": -0.0000152587890625,
+                "w": 0.7688257694244385
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -146.3663330078125,
+                "y": -17.669189453125,
+                "z": -36.206298828125
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 38.684722900390625,
+                "y": 0.20795059204101562,
+                "z": 4.580682754516602
+            },
+            "rotation": {
+                "x": -0.06681925058364868,
+                "y": 0.023880362510681152,
+                "z": 0.07063400745391846,
+                "w": 0.9949644804000854
+            },
+            "gravity": {
+                "x": 0,
+                "y": -2,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -139.033203125,
+                "y": -14.9921875,
+                "z": 4.70068359375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 38.684722900390625,
+                "y": 0.20795059204101562,
+                "z": 4.580682754516602
+            },
+            "rotation": {
+                "x": -0.0000457763671875,
+                "y": -0.09163039922714233,
+                "z": -0.0000457763671875,
+                "w": 0.9957884550094604
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -69.3968505859375,
+                "y": -17.669189453125,
+                "z": 16.2489013671875
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 20.7387752532959,
+                "y": 3.79463529586792,
+                "z": 16.231040954589844
+            },
+            "rotation": {
+                "x": -0.0174715518951416,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 0.999847412109375
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0,
+            "restitution": 0.5,
+            "friction": 0,
+            "density": 1000,
+            "angularDamping": 0,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "Pencilcase",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/pencilcase.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/pencilcasecol.obj",
+            "localPosition": {
+                "x": -25.866455078125,
+                "y": -16.1514892578125,
+                "z": 0.421142578125
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 11.097980499267578,
+                "y": 14.34709358215332,
+                "z": 9.050121307373047
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Inkbottle.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/inkbottlecol.obj",
+            "localPosition": {
+                "x": -29.512451171875,
+                "y": -10.712646484375,
+                "z": 12.1876220703125
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 11.097980499267578,
+                "y": 14.34709358215332,
+                "z": 9.050121307373047
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Inkbottle.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/inkbottlecol.obj",
+            "localPosition": {
+                "x": -11.8218994140625,
+                "y": -10.712646484375,
+                "z": 16.2669677734375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 29.36484146118164,
+                "y": 44.06729507446289,
+                "z": 29.35869026184082
+            },
+            "rotation": {
+                "x": -0.0000457763671875,
+                "y": 0.7879911661148071,
+                "z": -0.0000152587890625,
+                "w": 0.615655779838562
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "Globe",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Globe.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/globe.obj",
+            "localPosition": {
+                "x": 86.7437744140625,
+                "y": 4.272705078125,
+                "z": 58.07579803466797
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 38.684722900390625,
+                "y": 0.20795059204101562,
+                "z": 4.580682754516602
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": 45.9884033203125,
+                "y": -17.69775390625,
+                "z": 48.11486053466797
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 14.689750671386719,
+                "y": 26.68364715576172,
+                "z": 14.79764175415039
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": -3,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "Bell",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Bell.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/bell.obj",
+            "localPosition": {
+                "x": 84.8375244140625,
+                "y": -4.789794921875,
+                "z": 42.92784881591797
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 40.50767135620117,
+                "y": 3.8759589195251465,
+                "z": 39.22288513183594
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Book.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/bookcol.obj",
+            "localPosition": {
+                "x": 84.0997314453125,
+                "y": -16.205078125,
+                "z": -36.4486083984375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 40.50767135620117,
+                "y": 3.8759589195251465,
+                "z": 39.22288513183594
+            },
+            "rotation": {
+                "x": -0.0000457763671875,
+                "y": 0.19505608081817627,
+                "z": -0.0000152587890625,
+                "w": 0.9807736873626709
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": true,
+            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Book.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/bookcol.obj",
+            "localPosition": {
+                "x": 84.0997314453125,
+                "y": -13.2698974609375,
+                "z": -36.4486083984375
             }
         },
         {
@@ -534,6 +1294,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": true,
             "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
             "name": "",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
@@ -568,6 +1329,7 @@
             "friction": 0.5,
             "density": 1000,
             "angularDamping": 0.39346998929977417,
+            "visible": true,
             "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
             "name": "",
             "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
@@ -577,722 +1339,6 @@
                 "x": 46.6224365234375,
                 "y": -17.57958984375,
                 "z": 21.5985107421875
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 38.684722900390625,
-                "y": 0.20795059204101562,
-                "z": 4.580682754516602
-            },
-            "rotation": {
-                "x": -0.06669718027114868,
-                "y": 0.023880362510681152,
-                "z": 0.07063400745391846,
-                "w": 0.9949644804000854
-            },
-            "gravity": {
-                "x": 0,
-                "y": -2,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
-            "shapeType": "box",
-            "compoundShapeURL": "",
-            "localPosition": {
-                "x": -139.033203125,
-                "y": -14.9921875,
-                "z": 4.70068359375
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 53.144752502441406,
-                "y": 103.03097534179688,
-                "z": 52.128944396972656
-            },
-            "rotation": {
-                "x": -0.0000457763671875,
-                "y": 0.6819714307785034,
-                "z": -0.0000152587890625,
-                "w": 0.7313497066497803
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "Chair",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Chair.fbx",
-            "shapeType": "compound",
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chaircollision.obj",
-            "localPosition": {
-                "x": -20.6048583984375,
-                "y": -66.9383544921875,
-                "z": 108.9761962890625
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 53.144752502441406,
-                "y": 103.03097534179688,
-                "z": 52.128944396972656
-            },
-            "rotation": {
-                "x": -0.0014190673828125,
-                "y": -0.0038300156593322754,
-                "z": -0.4410315155982971,
-                "w": 0.8974899053573608
-            },
-            "gravity": {
-                "x": 0,
-                "y": -2,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "Chair",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Chair.fbx",
-            "shapeType": "compound",
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chaircollision.obj",
-            "localPosition": {
-                "x": 8.2393798828125,
-                "y": -65.876708984375,
-                "z": -41.4859619140625
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 58.775699615478516,
-                "y": 12.638504028320312,
-                "z": 46.985198974609375
-            },
-            "rotation": {
-                "x": 0.37654685974121094,
-                "y": -0.5597162246704102,
-                "z": 0.40364694595336914,
-                "w": 0.618036150932312
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/satchel.fbx",
-            "shapeType": "none",
-            "compoundShapeURL": "",
-            "localPosition": {
-                "x": -184.9849853515625,
-                "y": -97.434814453125,
-                "z": 42.0076904296875
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 36.444000244140625,
-                "y": 15.345481872558594,
-                "z": 3.0968291759490967
-            },
-            "rotation": {
-                "x": 0.00852978229522705,
-                "y": -0.19514763355255127,
-                "z": 0.0016937255859375,
-                "w": 0.9807126522064209
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/abacus1.fbx",
-            "shapeType": "box",
-            "compoundShapeURL": "",
-            "localPosition": {
-                "x": 12.8358154296875,
-                "y": -9.93798828125,
-                "z": 7.6038818359375
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 38.684722900390625,
-                "y": 0.20795059204101562,
-                "z": 4.580682754516602
-            },
-            "rotation": {
-                "x": -0.0000457763671875,
-                "y": -0.09156936407089233,
-                "z": -0.0000457763671875,
-                "w": 0.9957884550094604
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
-            "shapeType": "box",
-            "compoundShapeURL": "",
-            "localPosition": {
-                "x": -69.3968505859375,
-                "y": -17.669189453125,
-                "z": 16.2489013671875
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 53.144752502441406,
-                "y": 103.03097534179688,
-                "z": 52.128944396972656
-            },
-            "rotation": {
-                "x": -0.0000152587890625,
-                "y": -0.7313801646232605,
-                "z": -0.0000457763671875,
-                "w": 0.6819409132003784
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "Chair",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Chair.fbx",
-            "shapeType": "compound",
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chaircollision.obj",
-            "localPosition": {
-                "x": -134.7843017578125,
-                "y": -66.9383544921875,
-                "z": -141.810302734375
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 58.775699615478516,
-                "y": 12.638504028320312,
-                "z": 46.985198974609375
-            },
-            "rotation": {
-                "x": -0.0000152587890625,
-                "y": -0.930449366569519,
-                "z": -0.0000152587890625,
-                "w": 0.3664759397506714
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/satchel.fbx",
-            "shapeType": "none",
-            "compoundShapeURL": "",
-            "localPosition": {
-                "x": -144.550048828125,
-                "y": -11.804931640625,
-                "z": -77.1610107421875
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 38.684722900390625,
-                "y": 0.20795059204101562,
-                "z": 4.580682754516602
-            },
-            "rotation": {
-                "x": -0.0000457763671875,
-                "y": 0.6393988132476807,
-                "z": -0.0000152587890625,
-                "w": 0.7688257694244385
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
-            "shapeType": "box",
-            "compoundShapeURL": "",
-            "localPosition": {
-                "x": -146.3663330078125,
-                "y": -17.669189453125,
-                "z": -36.206298828125
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 38.684722900390625,
-                "y": 0.20795059204101562,
-                "z": 4.580682754516602
-            },
-            "rotation": {
-                "x": -0.0000457763671875,
-                "y": 0.29649806022644043,
-                "z": -0.0000152587890625,
-                "w": 0.9550163745880127
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
-            "shapeType": "box",
-            "compoundShapeURL": "",
-            "localPosition": {
-                "x": -70.7647705078125,
-                "y": -17.669189453125,
-                "z": -77.927734375
-            }
-        },
-        {
-            "type": "Box",
-            "dimensions": {
-                "x": 0.20000000298023224,
-                "y": 0.20000000298023224,
-                "z": 0.20000000298023224
-            },
-            "rotation": {
-                "x": -0.0001068115234375,
-                "y": -0.651544988155365,
-                "z": -0.0000457763671875,
-                "w": 0.7586327791213989
-            },
-            "gravity": {
-                "x": 0,
-                "y": -1,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "",
-            "color": {
-                "red": 255,
-                "green": 0,
-                "blue": 0
-            },
-            "localPosition": {
-                "x": 2.2054443359375,
-                "y": -117.01513671875,
-                "z": 14.5008544921875
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 11.097980499267578,
-                "y": 14.34709358215332,
-                "z": 9.050121307373047
-            },
-            "rotation": {
-                "x": -0.0000152587890625,
-                "y": -0.0000152587890625,
-                "z": -0.0000152587890625,
-                "w": 1
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Inkbottle.fbx",
-            "shapeType": "compound",
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/inkbottlecol.obj",
-            "localPosition": {
-                "x": -11.8218994140625,
-                "y": -10.712646484375,
-                "z": 16.2669677734375
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 40.50767135620117,
-                "y": 3.8759589195251465,
-                "z": 39.22288513183594
-            },
-            "rotation": {
-                "x": -0.0000152587890625,
-                "y": -0.0000152587890625,
-                "z": -0.0000152587890625,
-                "w": 1
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Book.fbx",
-            "shapeType": "compound",
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/bookcol.obj",
-            "localPosition": {
-                "x": -25.122802734375,
-                "y": -16.205078125,
-                "z": 41.5477294921875
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 53.144752502441406,
-                "y": 103.03097534179688,
-                "z": 52.128944396972656
-            },
-            "rotation": {
-                "x": -0.0000152587890625,
-                "y": -0.7313801646232605,
-                "z": -0.0000457763671875,
-                "w": 0.6819409132003784
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "Chair",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Chair.fbx",
-            "shapeType": "compound",
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chaircollision.obj",
-            "localPosition": {
-                "x": 81.0777587890625,
-                "y": -66.9383544921875,
-                "z": -90.5589599609375
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 40.50767135620117,
-                "y": 3.8759589195251465,
-                "z": 39.22288513183594
-            },
-            "rotation": {
-                "x": -0.0000457763671875,
-                "y": 0.19505608081817627,
-                "z": -0.0000152587890625,
-                "w": 0.9807736873626709
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Book.fbx",
-            "shapeType": "compound",
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/bookcol.obj",
-            "localPosition": {
-                "x": 84.0997314453125,
-                "y": -13.2698974609375,
-                "z": -36.4486083984375
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 40.50767135620117,
-                "y": 3.8759589195251465,
-                "z": 39.22288513183594
-            },
-            "rotation": {
-                "x": -0.0000152587890625,
-                "y": -0.0000152587890625,
-                "z": -0.0000152587890625,
-                "w": 1
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Book.fbx",
-            "shapeType": "compound",
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/bookcol.obj",
-            "localPosition": {
-                "x": 84.0997314453125,
-                "y": -16.205078125,
-                "z": -36.4486083984375
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 38.684722900390625,
-                "y": 0.20795059204101562,
-                "z": 4.580682754516602
-            },
-            "rotation": {
-                "x": -0.0000152587890625,
-                "y": -0.19514763355255127,
-                "z": -0.0000457763671875,
-                "w": 0.9807736873626709
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
-            "shapeType": "box",
-            "compoundShapeURL": "",
-            "localPosition": {
-                "x": 29.9761962890625,
-                "y": -17.669189453125,
-                "z": -81.5894775390625
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 53.144752502441406,
-                "y": 103.03097534179688,
-                "z": 52.128944396972656
-            },
-            "rotation": {
-                "x": -0.0000457763671875,
-                "y": 0.6819714307785034,
-                "z": -0.0000152587890625,
-                "w": 0.7313497066497803
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "Chair",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Chair.fbx",
-            "shapeType": "compound",
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chaircollision.obj",
-            "localPosition": {
-                "x": 92.5157470703125,
-                "y": -66.9383544921875,
-                "z": 106.2923583984375
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 29.36484146118164,
-                "y": 44.06729507446289,
-                "z": 29.35869026184082
-            },
-            "rotation": {
-                "x": -0.0000457763671875,
-                "y": 0.7879911661148071,
-                "z": -0.0000152587890625,
-                "w": 0.615655779838562
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "Globe",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Globe.fbx",
-            "shapeType": "compound",
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/globe.obj",
-            "localPosition": {
-                "x": 86.7437744140625,
-                "y": 4.272705078125,
-                "z": 58.0758056640625
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 38.684722900390625,
-                "y": 0.20795059204101562,
-                "z": 4.580682754516602
-            },
-            "rotation": {
-                "x": -0.0000152587890625,
-                "y": -0.0000152587890625,
-                "z": -0.0000152587890625,
-                "w": 1
-            },
-            "gravity": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
-            "shapeType": "box",
-            "compoundShapeURL": "",
-            "localPosition": {
-                "x": 45.9884033203125,
-                "y": -17.69775390625,
-                "z": 48.1148681640625
-            }
-        },
-        {
-            "type": "Model",
-            "dimensions": {
-                "x": 14.689750671386719,
-                "y": 26.68364715576172,
-                "z": 14.79764175415039
-            },
-            "rotation": {
-                "x": -0.0000152587890625,
-                "y": -0.0000152587890625,
-                "z": -0.0000152587890625,
-                "w": 1
-            },
-            "gravity": {
-                "x": 0,
-                "y": -3,
-                "z": 0
-            },
-            "damping": 0.39346998929977417,
-            "restitution": 0.5,
-            "friction": 0.5,
-            "density": 1000,
-            "angularDamping": 0.39346998929977417,
-            "userData": "{\"grabbableKey\":{\"grabbable\":false}}",
-            "name": "Bell",
-            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Bell.fbx",
-            "shapeType": "compound",
-            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/bell.obj",
-            "localPosition": {
-                "x": 84.8375244140625,
-                "y": -4.789794921875,
-                "z": 42.9278564453125
             }
         }
     ],
@@ -1304,18 +1350,31 @@
             "z": -0.0000152587890625,
             "w": 1
         },
+        "visible": true,
         "userData": "{\n    \"TCars\": {\n            \"type\": \"track\"\n     }\n}",
         "name": "SchoolTrack (new)",
         "shapeType": "box",
-        "backgroundMode": "skybox",
-        "stage": {
-            "sunModelEnabled": 0,
-            "latitude": 37.777000427246094,
-            "longitude": 122.40699768066406,
-            "altitude": 0.029999999329447746,
-            "day": 60,
-            "hour": 12,
-            "automaticHourDay": 0
+        "keyLight": {
+            "color": {
+                "red": 255,
+                "green": 255,
+                "blue": 255
+            },
+            "intensity": 1,
+            "direction": {
+                "x": 0,
+                "y": -1,
+                "z": 0
+            },
+            "castShadows": false
+        },
+        "skybox": {
+            "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
+            "url": ""
         }
     }
 }
