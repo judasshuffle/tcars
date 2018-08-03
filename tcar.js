@@ -38,6 +38,7 @@ var cameraHandler = new CameraHandler();
 cameraHandler.init();
 var car = null;
 var state = STATE.LOBBY;
+state = STATE.CAR_SELECTION;
 var lastSessionState = null;
 var sessionBlock = null;
 var selectedTrackID = null;
@@ -298,9 +299,9 @@ Script.scriptEnding.connect(function() {
     // speedometer.cleanup();
 });
 
-sessionList = new SessionList({}, TCARS_LOBBY_CHANNEL);
-sessionList.onSessionSelected = function(sessionChannel, sessionInfo) {
-    sessionClient.joinSession(sessionChannel, sessionInfo);
-    sessionList.hide();
-};
-sessionList.init();
+//sessionList = new SessionList({}, TCARS_LOBBY_CHANNEL);
+//sessionList.onSessionSelected = function(sessionChannel, sessionInfo) {
+//    sessionClient.joinSession(sessionChannel, sessionInfo);
+//    sessionList.hide();
+//};
+//sessionList.init();

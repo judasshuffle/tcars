@@ -15,11 +15,8 @@
                 EventBridge.emitWebEvent(JSON.stringify(data));
             }
 
-            $(function() {
-                openEventBridge(function () {});
-            });
-
             function importTrackZoneJSON() {
+                alert('pling');
                 sendWebEvent({
                     action: 'import_json',
                     data: $('#import_json').val()

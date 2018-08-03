@@ -6,9 +6,9 @@
 // var SESSION_PORTS_MAX_COUNT = 100;
 
 // Allow to run the lobby through Interface for testing purposes
-var LOCAL_RUN = this.MyAvatar !== undefined;
+var LOCAL_RUN = Script.context === 'client';
 
-var SCRIPTS_PATH = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
+var SCRIPTS_PATH = ''; // 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
 // 'https://dl.dropboxusercontent.com/u/14997455/hifi/tcars/';
 // 'http://hifi-external.s3.amazonaws.com/tcars/scripts/';
 var LOBBY_ENTITIES_PATH = SCRIPTS_PATH + 'entities/lobby.svo.json';
@@ -17,7 +17,6 @@ var TCARS_RCON = 'tcarsRCON';
 
 var scriptIncludePath = LOCAL_RUN ? '' : SCRIPTS_PATH;
 Script.include([
-    scriptIncludePath + 'libraries/constants.js',
     scriptIncludePath + 'libraries/clientManager.js'
 ]);
 
@@ -34,8 +33,10 @@ var getMillisecondsFromTime = function(dateString) {
 print('start time = ' + startupTimestamp);
 
 // Entities.setPacketsPerSecond(2000);
-Agent.isAvatar = true;
+
+
 if (!LOCAL_RUN) {
+    Agent.isAvatar = true;
     EntityViewer.setPosition(LOBBY_POSITION);
     EntityViewer.setOrientation(Quat.fromPitchYawRollDegrees(0, 90, 0));
     EntityViewer.setCenterRadius(60000);
@@ -183,6 +184,7 @@ var checkForEntities = function() {
     var foundEntities = 0;
     var entities = Entities.findEntities(LOBBY_POSITION, 60000);
     entities.forEach(function (entity) {
+        /*
         var entityProperties = Entities.getEntityProperties(entity, ['created', 'locked']);
         var entityCreationTimeStamp = getMillisecondsFromTime(entityProperties.created);
         // var entityCreationTimeStamp = (new Date(entityProperties.created.slice(0, -1).replace('-', '/').replace('-', '/').replace('T', ' ')).getTime()) - timeZoneOffset;
@@ -193,7 +195,7 @@ var checkForEntities = function() {
                 Entities.editEntity(entity, {locked: false});
             }
             Entities.deleteEntity(entity);
-        }
+        }*/
     });
     //
     if (foundEntities > 0) {

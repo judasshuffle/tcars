@@ -1,5 +1,12 @@
 // var LOBBY_WS_URL_REQUEST_CHANNEL = 'tcarsRequestLobbyWSURL';
 // var LOBBY_WS_URL_RESPONSE_CHANNEL = 'tcarsResponseLobbyWSURL';
+
+var constants = Script.require('./modules/constants.js');
+var Client = Script.require('./modules/client.js').Client;
+var Session = Script.require('./modules/session.js').Session;
+
+var LOBBY_ACTION = constants.LOBBY_ACTION;
+
 var TCARS_RCON = 'tcarsRCON';
 
 // Give max time of 5 seconds
@@ -11,27 +18,23 @@ var currentSession = null;
 
 var hadFirstPingReply = false;
 
-TRACK_SELECTION_TIME = 10; // seconds
 
 Script.include([
-    'libraries/constants.js',
     'libraries/trackZone.js',
     'libraries/trackZoneManager.js',
     'libraries/tracks.js',
-    'libraries/client.js',
-    'libraries/clientManager.js',
-    'libraries/session.js'
+    'libraries/clientManager.js'
 ]);
 
 // Messages.subscribe(LOBBY_WS_URL_RESPONSE_CHANNEL);
 Messages.subscribe(TCARS_RCON);
 
 var lobbyClient = new Client('tcarsLobby', Agent.sessionUUID);
-lobbyClient.onActionReceived = function (senderID, action, data) {
+lobbyClient.onActionReceived = function(senderID, action, data) {
     switch (data.action) {
         case LOBBY_ACTION.REGISTER_SESSION_REPLY:
             print('received session registering reply!!!');
-            currentSession = new Session(data.block);
+            currentSession = new Session(lobbyClient, data.block);
             break;
         case LOBBY_ACTION.PONG:
             lastPingResponse = Date.now();

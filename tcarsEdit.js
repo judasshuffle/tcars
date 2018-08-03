@@ -1,12 +1,15 @@
 // IMPORT track, JSON
 
-Script.include([
-    "libraries/constants.js",
-    "libraries/trackZone.js",
-    "libraries/trackZoneManager.js"
-]);
+var constants = Script.require('./modules/constants.js');
 
-TrackZoneEditingTools = function() {
+
+var TrackZoneManager = Script.require('./modules/trackZoneManager.js').TrackZoneManager;
+
+
+var WINDOW_WIDTH = 800;
+var WINDOW_HEIGHT = 600;
+
+var TrackZoneEditingTools = function() {
     var _this = this;
 
     var trackZoneManager = new TrackZoneManager();
@@ -22,7 +25,8 @@ TrackZoneEditingTools = function() {
     };
 
     _this.exportTrack = function() {
-        var exportWindows = new OverlayWebWindow('Export window', Script.resolvePath('html/exportTrackZone.html'), 800, 600);
+        var exportWindows = new OverlayWebWindow('Export window', Script.resolvePath('html/exportTrackZone.html'), WINDOW_WIDTH,
+            WINDOW_HEIGHT);
         exportWindows.setVisible(true);
         exportWindows.webEventReceived.connect(function(data) {
             data = JSON.parse(data);
@@ -41,9 +45,11 @@ TrackZoneEditingTools = function() {
 
 
     _this.importTrack = function() {
-        var importWindows = new OverlayWebWindow('Import window', Script.resolvePath('html/importTrackZone.html'), 800, 600);
+        var importWindows = new OverlayWebWindow('Import window', Script.resolvePath('html/importTrackZone.html'), WINDOW_WIDTH,
+            WINDOW_HEIGHT);
         importWindows.setVisible(true);
         importWindows.webEventReceived.connect(function(data) {
+            console.warn('web event receiveddddd');
             data = JSON.parse(data);
             switch (data.action) {
                 case 'import_json':

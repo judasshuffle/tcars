@@ -16,7 +16,7 @@
             }
 
             $(function() {
-                openEventBridge(function () {
+               // openEventBridge(function () {
                     EventBridge.scriptEventReceived.connect(function (data) {
                         data = JSON.parse(data);
                         if (data.action === 'export') {
@@ -25,7 +25,7 @@
                     });
                     sendWebEvent({action: 'page_loaded'});
                 });
-            });
+          //  });
         </script>
     </head>
     <body>

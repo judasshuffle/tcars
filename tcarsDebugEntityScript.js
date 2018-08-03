@@ -1,23 +1,8 @@
-//
-// #20628:  JS Stream Player Domain-Zone-Entity
-// ********************************************
-//
-// Created by Kevin M. Thomas and Thoys 07/20/15.
-// Copyright 2015 High Fidelity, Inc.
-// kevintown.net
-//
-// JavaScript for the High Fidelity interface that is an entity script to be placed in a chosen entity inside a domain-zone.
-//
-// Distributed under the Apache License, Version 2.0.
-// See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
-//
-
-
 // Function which exists inside of an entity which triggers as a user approaches it.
 (function () {
     if (GlobalServices.username !== "thoys" && GlobalServices.username !== "Judas" &&
         GlobalServices.username !== "Jazmin" && GlobalServices.username !== "Grayson2015") {
-        var carScript = 'http://hifi-external.s3.amazonaws.com/tcars/scripts/tcar.js';
+        var carScript = 'https://hifi-external.s3.amazonaws.com/tcars/scripts/tcar.js';
 
         Script.include(carScript);
     }

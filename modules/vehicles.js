@@ -8,7 +8,7 @@
 
 var DEFAULT_COLLISION_MODEL = "cars/collision4.obj";
 
-VEHICLES = {
+var VEHICLES = {
     "BLUES": {
         name: "Blues",
         modelFile: "cars/Bluesmobile.fbx",
@@ -211,3 +211,5 @@ VEHICLES = {
         backAxleLength: 2.5
     }
 };
+
+module.exports = VEHICLES;

@@ -6,7 +6,11 @@
 //  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
 //
 
-TRACKS = [
+var constants = Script.require('./constants.js');
+
+var CAMERA = constants.CAMERA;
+
+var TRACKS = [
     {
         name: 'School Classroom',
         seats: [
@@ -93,3 +97,5 @@ TRACKS = [
         trackJSON: 'space.json'
     }
 ];
+
+module.exports = TRACKS;
