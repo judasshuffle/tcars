@@ -8,11 +8,16 @@ function Session(env, catalog, manifest, rootURL, notify) {
     this.pending=null;this.race=new C.Race([]);this.cameraPosition=null;this.cameraMode='chase';
     this.sound=null;this.injector=null;this.soundMode=null;this.muted=false;this.accumulator=0;this.lease=0;
     this.status='Ready. Build a track, then spawn a car.';this.keys={};this.errors=[];
+    this.inputPaused=false;
 }
 Session.prototype.say=function(message){this.status=message;this.env.print('[TCARS] '+message);this.notify();};
-Session.prototype.asset=function(url){
+Session.prototype.asset=function(url,localOnly){
     var entry=this.manifest.assets[url];
-    return entry && entry.available ? this.rootURL+entry.path : null;
+    if(!entry || !entry.available){return null;}
+    // Collision resources must resolve on the domain physics server, not only on this client.
+    // Use the verified upstream source for file/localhost launches; a shared web deployment uses its cache.
+    var shared=/^https?:\/\//i.test(this.rootURL) && !/^https?:\/\/(localhost|127\.[0-9.]+|\[::1\])(:|\/)/i.test(this.rootURL);
+    return localOnly || shared ? this.rootURL+entry.path : (entry.request || url.replace(/^http:/,'https:'));
 };
 Session.prototype.checkAPI=function(){
     var e=this.env.Entities;
@@ -21,7 +26,8 @@ Session.prototype.checkAPI=function(){
     }
 };
 Session.prototype.checkRez=function(){
-    if(typeof this.env.Entities.canRez==='function' && !this.env.Entities.canRez()){
+    if(typeof this.env.Entities.canRez==='function' && !this.env.Entities.canRez() &&
+        !(typeof this.env.Entities.canRezTmp==='function' && this.env.Entities.canRezTmp())){
         throw new Error('This domain does not allow you to rez entities. Use your own domain or request rez permission.');
     }
 };
@@ -57,6 +63,7 @@ Session.prototype.build=function(index){
     this.checkAPI();this.checkRez();
     var track=this.catalog.tracks[index];if(!track || !track.data){throw new Error('Track data is not loaded.');}
     var pose=this.front(12), frame=C.trackFrame(track,pose.position,pose.rotation), self=this;
+    pose.rotation=C.quat(frame.rotation,track.startOrientation || C.IDENTITY);
     // Preflight ALL geometry before touching the current track.
     var props=C.importEntities(track.data,frame,function(url){return self.asset(url);});
     var ids=[],i=0;
@@ -88,6 +95,12 @@ Session.prototype.spawn=function(index){
     this.checkAPI();this.checkRez();
     var def=this.catalog.vehicles[index];if(!def){throw new Error('Unknown vehicle.');}
     var pose=this.track?C.copy(this.track.pose):this.front(6);
+    if(this.track){
+        var ground=this.env.Entities.findRayIntersection({origin:C.add(pose.position,{x:0,y:8,z:0}),direction:{x:0,y:-1,z:0}},
+            true,this.track.ids,[],false,true);
+        if(!ground.intersects || ground.distance>30){throw new Error('Track surface at the start is not ready. Wait for models to load, then Spawn again; check Diagnostics if this persists.');}
+        pose.position.y=ground.intersection.y;
+    }
     pose.position.y+=def.rideHeight+0.15;
     var ids=[],self=this,id,bodyURL=def.modelURL?this.asset(def.modelURL):null;
     try{
@@ -191,7 +204,7 @@ Session.prototype.reset=function(toStart){
 Session.prototype.stopSound=function(){if(this.injector){this.injector.stop();this.injector=null;}this.soundMode=null;};
 Session.prototype.audio=function(p,speed){
     if(this.muted || !this.env.SoundCache || !this.env.Audio){this.stopSound();return;}
-    var mode=speed>2?'enginenoise2':'idle', url=this.asset('http://hifi-external.s3.amazonaws.com/tcars/sounds/'+mode+'.wav');
+    var mode=speed>2?'enginenoise2':'idle', url=this.asset('http://hifi-external.s3.amazonaws.com/tcars/sounds/'+mode+'.wav',true);
     if(!url){return;}
     if(this.soundMode!==mode){this.stopSound();this.sound=this.env.SoundCache.getSound(url);this.soundMode=mode;}
     if(!this.injector && this.sound.downloaded){this.injector=this.env.Audio.playSound(this.sound,{position:p.position,loop:true,volume:0.18,localOnly:true});}
@@ -217,7 +230,9 @@ Session.prototype.update=function(dt){
         var forward=(val('W')||val('Up'))-(val('S')||val('Down'));
         var steer=(val('D')||val('Right'))-(val('A')||val('Left'));
         // Tablet focus/chat must never leave a latched throttle. Qt keyboard values are read every frame.
-        var input=C.controls(forward,steer,val('Space')>0.5?1:0,p.velocity,p.rotation);
+        var focused=!this.env.Window || this.env.Window.hasFocus();
+        var paused=this.inputPaused || !focused;
+        var input=paused?{throttle:0,steering:0,brake:1,handBrake:1}:C.controls(forward,steer,val('Space')>0.5?1:0,p.velocity,p.rotation);
         if(this.env.Entities.setVehicleControls(this.car.id,input)===false){this.exit();this.say('Native vehicle controls rejected this entity.');return;}
         var speed=C.length(p.velocity);this.car.speed=speed*3.6;
         this.race.update(p.position,Date.now()/1000);

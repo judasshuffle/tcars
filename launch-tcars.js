@@ -48,8 +48,12 @@
             case 'stop':Script.stop();break;
             case 'diagnostics':
                 var stats=typeof Entities.getVehicleStats==='function'?Entities.getVehicleStats():{};
+                var loading=0,models=0;
+                if(typeof Entities.isLoaded==='function'){Object.keys(session.owned).forEach(function(id){
+                    if(Entities.getEntityProperties(id,['type']).type==='Model'){models++;if(!Entities.isLoaded(id)){loading++;}}
+                });}
                 session.say('Native controls: '+(typeof Entities.setVehicleControls==='function'?'available':'MISSING')+
-                    '. Owned entities: '+Object.keys(session.owned).length+'. Physics: '+JSON.stringify(stats)+
+                    '. Owned entities: '+Object.keys(session.owned).length+'. Models awaiting assets: '+loading+'/'+models+'. Physics: '+JSON.stringify(stats)+
                     (loadErrors.length?'. Load errors: '+loadErrors.join('; '):''));break;
             }
         }catch(error){session.say(error.message || String(error));}
@@ -57,7 +61,9 @@
     }
     function onWeb(message){try{action(typeof message==='string'?JSON.parse(message):message);}catch(error){log('Invalid HUD event: '+error);}}
     function toggle(){if(pageOpen){tablet.gotoHomeScreen();}else{tablet.gotoWebScreen(page);}}
-    function screen(type,url){pageOpen=type==='Web' && String(url).split('?')[0]===page;button.editProperties({isActive:pageOpen});if(pageOpen){send();}}
+    function screen(type,url){pageOpen=type==='Web' && String(url).split('?')[0]===page;
+        if(session){session.inputPaused=pageOpen;}button.editProperties({isActive:pageOpen});if(pageOpen){send();}}
+    function domainChanged(){if(session){session.removeTrack();session.say('Domain changed; previous session released. Build a new track here.');}}
     function key(event){
         if(!session || !session.seated || event.isAutoRepeat || event.isControl || event.isAlt || !event.text){return;}
         var k=event.text.toLowerCase();
@@ -73,6 +79,7 @@
         requests.forEach(function(r){r.abort();});
         if(session){session.cleanup();}
         Script.update.disconnect(update);Controller.keyPressEvent.disconnect(key);
+        Window.domainChanged.disconnect(domainChanged);
         if(tablet){tablet.webEventReceived.disconnect(onWeb);tablet.screenChanged.disconnect(screen);
             if(pageOpen){tablet.gotoHomeScreen();}if(button){button.clicked.disconnect(toggle);tablet.removeButton(button);}}
         if(overlay){Overlays.deleteOverlay(overlay);}
@@ -95,9 +102,10 @@
         tablet=Tablet.getTablet('com.highfidelity.interface.tablet.system');
         button=tablet.addButton({text:'TCARS',icon:Script.resolvePath('car-button.svg'),isActive:false});
         session=new Session({Entities:Entities,MyAvatar:MyAvatar,Camera:Camera,Controller:Controller,DriveKeys:DriveKeys,
-            Quat:Quat,Uuid:Uuid,Script:Script,SoundCache:SoundCache,Audio:Audio,print:print},catalog,manifest,root,send);
+            Quat:Quat,Uuid:Uuid,Script:Script,SoundCache:SoundCache,Audio:Audio,Window:Window,print:print},catalog,manifest,root,send);
         button.clicked.connect(toggle);tablet.webEventReceived.connect(onWeb);tablet.screenChanged.connect(screen);
         Controller.keyPressEvent.connect(key);Script.update.connect(update);Script.scriptEnding.connect(cleanup);
+        Window.domainChanged.connect(domainChanged);
         if(typeof Overlays!=='undefined'){
             overlay=Overlays.addOverlay('text',{x:20,y:20,width:650,height:42,text:'TCARS',font:{size:16},
                 color:{red:245,green:245,blue:245},backgroundColor:{red:20,green:24,blue:32},backgroundAlpha:0.85,visible:false});

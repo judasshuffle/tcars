@@ -1,0 +1,43 @@
+{
+  "id": "roadster",
+  "name": "TCARS Roadster (offline)",
+  "dimensions": {
+    "x": 1.8,
+    "y": 0.8,
+    "z": 4
+  },
+  "rideHeight": 0.72,
+  "seat": {
+    "x": 0,
+    "y": 0.18,
+    "z": -0.2
+  },
+  "color": {
+    "red": 225,
+    "green": 70,
+    "blue": 35
+  },
+  "spec": {
+    "type": "wheeled",
+    "mass": 1200,
+    "centerOfMass": {
+      "x": 0,
+      "y": -0.25,
+      "z": 0
+    },
+    "wheels": "[{\"name\":\"FL\",\"center\":[-0.8280000000000001,-0.24,-1.32],\"radius\":0.36,\"width\":0.22,\"mass\":20,\"suspensionDistance\":0.24,\"targetPosition\":0.5,\"steer\":1,\"brake\":1,\"handBrake\":0},{\"name\":\"FR\",\"center\":[0.8280000000000001,-0.24,-1.32],\"radius\":0.36,\"width\":0.22,\"mass\":20,\"suspensionDistance\":0.24,\"targetPosition\":0.5,\"steer\":1,\"brake\":1,\"handBrake\":0},{\"name\":\"RL\",\"center\":[-0.8280000000000001,-0.24,1.32],\"radius\":0.36,\"width\":0.22,\"mass\":20,\"suspensionDistance\":0.24,\"targetPosition\":0.5,\"steer\":0,\"brake\":1,\"handBrake\":1},{\"name\":\"RR\",\"center\":[0.8280000000000001,-0.24,1.32],\"radius\":0.36,\"width\":0.22,\"mass\":20,\"suspensionDistance\":0.24,\"targetPosition\":0.5,\"steer\":0,\"brake\":1,\"handBrake\":1}]",
+    "seats": "[]",
+    "maxSteerAngle": 30,
+    "maxTorque": 240,
+    "minRPM": 800,
+    "maxRPM": 6000,
+    "gearRatios": "[3.2,2.1,1.4,1.0,0.8]",
+    "reverseGearRatio": 3.1,
+    "finalDriveRatio": 3.6,
+    "maxBrakeTorque": 1500,
+    "maxHandBrakeTorque": 3000,
+    "driveType": "rear",
+    "suspensionFrequency": 1.8,
+    "suspensionDamping": 0.65
+  }
+}

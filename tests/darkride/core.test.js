@@ -16,7 +16,8 @@ test('every original track keeps distances and dimensions; start is moved to ava
         const transformed=result.find(e=>e.modelURL===manifest[first.modelURL].path);
         assert.deepEqual(transformed.dimensions,first.dimensions);
         close(C.length(C.sub(transformed.position,target)),C.length(C.sub(first.localPosition,track.startPosition)));
-        const heading=C.quat(frame.rotation,track.startOrientation);close(C.dot(C.rotate(heading,{x:0,y:0,z:-1}),C.rotate(q,{x:0,y:0,z:-1})),1);
+        const heading=C.level(C.quat(frame.rotation,track.startOrientation));close(C.dot(C.rotate(heading,{x:0,y:0,z:-1}),C.rotate(q,{x:0,y:0,z:-1})),1);
+        const up=C.rotate(frame.rotation,{x:0,y:1,z:0});close(up.x,0);close(up.y,1);close(up.z,0);
         assert(result.every(e=>!e.script && !e.userData && !e.dynamic && e.type!=='Zone'));
     }
 });

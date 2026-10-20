@@ -27,6 +27,7 @@ function practice() {
     box('Far barrier',0,0.7,-90,80,1.4,1,wall);box('Near barrier',0,0.7,10,80,1.4,1,wall);
     for(var i=0;i<10;i++){box('Start stripe',-39+i*2,0.012,-3,2,0.024,1,i%2?{red:255,green:255,blue:255}:{red:15,green:15,blue:15});}
     var gates=[{x:-30,y:2,z:-3},{x:-30,y:2,z:-75},{x:30,y:2,z:-75},{x:30,y:2,z:0}].map(function(p,i){
+        if(i>0){box('Checkpoint '+(i+1),p.x,0.018,p.z,18,0.036,0.5,{red:65,green:210,blue:220});}
         return {position:p,rotation:C.IDENTITY,dimensions:{x:18,y:6,z:i===0?2:12}};
     });
     return {id:'practice',name:'Practice circuit (offline)',description:'New primitive circuit, not an original recovered TCARS track. Four ordered checkpoints.',

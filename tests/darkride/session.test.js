@@ -63,3 +63,25 @@ test('driver ownership change releases controls without erasing the new driver',
     const f=fixture();f.s.spawn(0);f.s.enter();const id=f.s.car.id;f.entities[id].vehicle.driver='OTHER';
     f.s.update(0.1);assert.equal(f.s.seated,null);assert.equal(f.entities[id].vehicle.driver,'OTHER');
 });
+test('open HUD and lost application focus apply native brakes, then driving resumes',()=>{
+    const f=fixture();f.s.spawn(0);f.s.enter();f.entities[f.s.car.id].velocity=C.ZERO;
+    f.s.inputPaused=true;f.s.update(0.2);assert.equal(f.controls.at(-1)[1].throttle,0);assert.equal(f.controls.at(-1)[1].brake,1);
+    f.s.inputPaused=false;f.env.Window={hasFocus:()=>false};f.s.update(0.2);assert.equal(f.controls.at(-1)[1].handBrake,1);
+    f.env.Window.hasFocus=()=>true;f.s.update(0.2);assert.equal(f.controls.at(-1)[1].throttle,1);
+});
+test('missing start surface blocks spawn without replacing an existing car',()=>{
+    const f=fixture();f.s.build(0);f.drain();f.s.spawn(0);const old=f.s.car;
+    f.env.Entities.findRayIntersection=()=>({intersects:false});assert.throws(()=>f.s.spawn(0),/not ready/);assert.equal(f.s.car,old);
+});
+test('temporary rez permissions work with leased entities',()=>{
+    const f=fixture();f.env.Entities.canRez=()=>false;f.env.Entities.canRezTmp=()=>true;f.s.spawn(0);
+    const car=f.entities[f.s.car.id];assert.equal(car.lifetime,7200);car.age=120;f.s.update(61);assert.equal(car.lifetime,7320);
+});
+test('remote physics never receives client-only collision URLs',()=>{
+    const f=fixture(),url='http://example.org/track.obj';
+    f.s.manifest.assets[url]={available:true,path:'assets/cache/track.obj',request:'https://example.org/track.obj'};
+    f.s.rootURL='file:///C:/tcars/';assert.equal(f.s.asset(url),'https://example.org/track.obj');
+    assert.equal(f.s.asset(url,true),'file:///C:/tcars/assets/cache/track.obj');
+    f.s.rootURL='http://127.0.0.1:8765/';assert.equal(f.s.asset(url),'https://example.org/track.obj');
+    f.s.rootURL='https://assets.example.org/tcars/';assert.equal(f.s.asset(url),'https://assets.example.org/tcars/assets/cache/track.obj');
+});

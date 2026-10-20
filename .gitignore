@@ -1,3 +1,5 @@
 /tcars.sublime-project
 /tcars.sublime-workspace
 /backups
+/dist/
+__pycache__/

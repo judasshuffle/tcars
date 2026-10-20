@@ -25,7 +25,7 @@ function controls(forward, steering, handBrake, velocity, rotation) {
 // Saved localPosition is relative to the old zone's translation, NOT its rotation.
 // Rotate the whole export around its start so the original heading faces the avatar's forward.
 function trackFrame(track, position, rotation) {
-    return {position:position,rotation:quat(rotation,inverse(track.startOrientation || IDENTITY)),origin:track.startPosition || ZERO};
+    return {position:position,rotation:quat(level(rotation),inverse(level(track.startOrientation || IDENTITY))),origin:track.startPosition || ZERO};
 }
 function point(frame, local) { return add(frame.position,rotate(frame.rotation,sub(local,frame.origin))); }
 var OPTIONAL_MODELS=['https://hifi-public.s3.amazonaws.com/models/props/flashlight.fbx','https://hifi-public.s3.amazonaws.com/ryan/ryan_phoneApt01.fbx'];
