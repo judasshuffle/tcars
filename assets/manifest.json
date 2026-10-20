@@ -1,0 +1,998 @@
+{
+  "assets": {
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/2beatle.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/2beatle.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/2beatle.fbx",
+      "available": true,
+      "path": "assets/cache/191fef9d44ce43250f11.fbx",
+      "bytes": 89836,
+      "sha256": "05c6b66588a839fd74e9608b1cf9506b16c8b18a525c6d92b789770878fee82f"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/2beatlewheel.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/2beatlewheel.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/2beatlewheel.fbx",
+      "available": true,
+      "path": "assets/cache/7e989a26b23fc32730d0.fbx",
+      "bytes": 26412,
+      "sha256": "cd9cc9acccb714c539af145c048ab21aaa8196ea5a7468421332f0d98cc788e2"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/BBCar.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/BBCar.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/BBCar.fbx",
+      "available": true,
+      "path": "assets/cache/c0feafbee9e414d950ee.fbx",
+      "bytes": 201308,
+      "sha256": "9e8182924ebadb5b4db6040dc8830fc1fb055c1cf2d9673463bb16ba0869b1d4"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Bluesmobile.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Bluesmobile.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/Bluesmobile.fbx",
+      "available": true,
+      "path": "assets/cache/423d435971e907cca4fd.fbx",
+      "bytes": 106540,
+      "sha256": "76bf4d77653da03a655bf23444365979b0b1a4e311a3ae7a3c775f7b5afb0d67"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Bluesmobilewheel.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Bluesmobilewheel.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/Bluesmobilewheel.fbx",
+      "available": true,
+      "path": "assets/cache/0a556ac34ee3d9c2836a.fbx",
+      "bytes": 30412,
+      "sha256": "20fead7f6479ace762ef6f6c061b21da9d6dbf386e3ef7e03f08d6fd22484e92"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Cat.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Cat.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/Cat.fbx",
+      "available": true,
+      "path": "assets/cache/a20b0a3ec638088370f2.fbx",
+      "bytes": 60460,
+      "sha256": "c657c3dd5d450404f5c388af062eed2da50b076612c56d1b1f14ed0b6b456d7e"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Ds.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Ds.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/Ds.fbx",
+      "available": true,
+      "path": "assets/cache/50b4ff4c29a76e5b9f1c.fbx",
+      "bytes": 120876,
+      "sha256": "7cd1c0416c6609500d962811a7de7f60e94a82854f8aca843985dd2eb4f64b23"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Redcar.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Redcar.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/Redcar.fbx",
+      "available": true,
+      "path": "assets/cache/38042378c13e74730f2b.fbx",
+      "bytes": 29740,
+      "sha256": "d3a98efd725d8d73c6e71df923958608177f42f4626e7487774380d6a86e2d3c"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Shoecar.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Shoecar.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/Shoecar.fbx",
+      "available": true,
+      "path": "assets/cache/c2f544e4cf128501cea8.fbx",
+      "bytes": 163964,
+      "sha256": "c1eed3964b4f947b5d0aa868fc1b2da59c999b3114ff81846829c2c88273564c"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Torino.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Torino.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/Torino.fbx",
+      "available": true,
+      "path": "assets/cache/e0a8e9c9d8f412130401.fbx",
+      "bytes": 110060,
+      "sha256": "35d0a48a89319659a1437b997c26b29a32502b9ce605da1637d20b30298804df"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Twheel.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Twheel.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/Twheel.fbx",
+      "available": true,
+      "path": "assets/cache/1a812cff3b8915543ea7.fbx",
+      "bytes": 20092,
+      "sha256": "02c0a14c34f87e23425b70254d703fc43f491c0a230f0653eb2cd1a4cdbcad80"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Vanthehand.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Vanthehand.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/Vanthehand.fbx",
+      "available": true,
+      "path": "assets/cache/e15ef9004d702ee4f2e0.fbx",
+      "bytes": 66620,
+      "sha256": "924a645517541825675486e2d70bb4500284763e1a45de70c8201b3ac02da9c7"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Wolf.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/Wolf.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/Wolf.fbx",
+      "available": true,
+      "path": "assets/cache/804a1af496ab6642739d.fbx",
+      "bytes": 45324,
+      "sha256": "0751dad968bc1f618862d8346a16c861f39a9fb35f1473d483009a403f8a4aae"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/capri.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/capri.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/capri.fbx",
+      "available": true,
+      "path": "assets/cache/293639b4ab88ea12c78b.fbx",
+      "bytes": 115372,
+      "sha256": "1f70c56c4573462d90e9abc63aed8981c0fceacae5b809fc03dfd59a3a2a361a"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/capriwheelfbx.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/capriwheelfbx.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/capriwheelfbx.fbx",
+      "available": true,
+      "path": "assets/cache/6bd5c7609f7b30dd6914.fbx",
+      "bytes": 53820,
+      "sha256": "2302ba3cceecc9a3681e56b178e8e42e8ee38b754261dc0c1239855bc998ae4c"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/chair.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/chair.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/chair.fbx",
+      "available": true,
+      "path": "assets/cache/0b54d5e58eaa88ab2b1f.fbx",
+      "bytes": 134316,
+      "sha256": "1edd290f81bb6300a106e050ae4722a71fb103b36f6b71b2fc3e4c76a8ed846c"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/collision4.obj": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/collision4.obj",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/collision4.obj",
+      "available": true,
+      "path": "assets/cache/8376ab9cac4e03e95727.obj",
+      "bytes": 2725,
+      "sha256": "6bad953ffb3a9872017a372813bc4300fd34f6f006417dd227e534b82be97b2c"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/dswheel.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/dswheel.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/dswheel.fbx",
+      "available": true,
+      "path": "assets/cache/2af81247697818abf710.fbx",
+      "bytes": 46652,
+      "sha256": "9d55fd51fa4c26ce50ee1e6f6f07651f4771a4c64c0e21166e205aff0f27da30"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/spaceship.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/spaceship.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/spaceship.fbx",
+      "available": true,
+      "path": "assets/cache/e8a415e2db671cf17bd3.fbx",
+      "bytes": 3049836,
+      "sha256": "b8036c757b05c91402eabf6ec4c036df75a83cbb25b01b49de391d85b89e06af"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/spaceship.fbx?v37": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/spaceship.fbx?v37",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/spaceship.fbx?v37",
+      "available": true,
+      "path": "assets/cache/75d1ba78e1b1c55de8df.fbx",
+      "bytes": 3049836,
+      "sha256": "b8036c757b05c91402eabf6ec4c036df75a83cbb25b01b49de391d85b89e06af"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/cars/spaceship2.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/spaceship2.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/cars/spaceship2.fbx",
+      "available": true,
+      "path": "assets/cache/15bd0c940de5ec3e1b70.fbx",
+      "bytes": 1309772,
+      "sha256": "5f39c1c048bba96c3081c6d41a9f15c149d0fb386fc855465883e4e479acc196"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/beetle.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/beetle.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/beetle.fbx",
+      "available": true,
+      "path": "assets/cache/dc7bd494269140472da7.fbx",
+      "bytes": 108236,
+      "sha256": "4f4ba194e67b3ad5038adf8c4deb3c85c61bc3d1a3eecd2cdc2eaf23eca59a39"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/blues.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/blues.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/blues.fbx",
+      "available": true,
+      "path": "assets/cache/6879af9f2e403b6ad2fd.fbx",
+      "bytes": 108636,
+      "sha256": "7e48b65bb0b2fa82c6391767e34a0cdd8f60d5cf2559cccb84bae03dd57f861f"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/capri.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/capri.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/capri.fbx",
+      "available": true,
+      "path": "assets/cache/9ba7f2271c9c78ebeb81.fbx",
+      "bytes": 394028,
+      "sha256": "4a42b73f4d82db2a10e5455820ce2c15e1302caca735e00181be5b5a71851c81"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/ds.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/ds.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/ds.fbx",
+      "available": true,
+      "path": "assets/cache/32aa64e310bb1be9f22c.fbx",
+      "bytes": 222300,
+      "sha256": "1af6e14ee7c1c25f7b95afb7735205072e92c20d708026d0ca3ac4459709433d"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/pinky.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/pinky.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/pinky.fbx",
+      "available": true,
+      "path": "assets/cache/d7c56cbca8f713612d0b.fbx",
+      "bytes": 748316,
+      "sha256": "0de45986075cd5b1d98999dbb2b9573601c3b877b4da2936c17a2cb3d681cb57"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/torino.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/torino.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/carswithwheels/torino.fbx",
+      "available": true,
+      "path": "assets/cache/0428cacb462e136321c2.fbx",
+      "bytes": 110076,
+      "sha256": "9d6773856b879a255c50f91f0bdb6a43c0b1dd6eb54cce3ccaa574206569fb73"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/chequeredflag/CHEQUEREDFLAG.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/chequeredflag/CHEQUEREDFLAG.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/chequeredflag/CHEQUEREDFLAG.fbx",
+      "available": true,
+      "path": "assets/cache/95d88e2a90c855939e85.fbx",
+      "bytes": 300508,
+      "sha256": "ec5054ef1dc003ca3a8394dc09330d4d1cb4a1f44925e96f9b3971bcc80955d2"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/Space/spacetrack.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/Space/spacetrack.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/Space/spacetrack.fbx",
+      "available": true,
+      "path": "assets/cache/cc0ac4770441c2ea04b7.fbx",
+      "bytes": 6938220,
+      "sha256": "02dbd8aa8c83c30fd90d602b44671a172c56b62fded50b13b4875914db6bcbbf"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/Space/tubecollision.obj": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/Space/tubecollision.obj",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/Space/tubecollision.obj",
+      "available": true,
+      "path": "assets/cache/ae46a403f294dedc9cf7.obj",
+      "bytes": 57445,
+      "sha256": "554aa2e38af0634554d3993174f9ef9e511fbf774e61a76cf6194754523f45a8"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Bell.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Bell.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Bell.fbx",
+      "available": true,
+      "path": "assets/cache/e7344ac28c4814af6ab8.fbx",
+      "bytes": 52028,
+      "sha256": "cf4b51393ff59a1866c9366217367bca6642284cc1473b19f0b09bac0f1c64e2"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Blackboard.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Blackboard.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Blackboard.fbx",
+      "available": true,
+      "path": "assets/cache/2b595b7d42cb329494b1.fbx",
+      "bytes": 2088364,
+      "sha256": "36e2c0e699af2a4875c114e31a0069696480febb41e05949c4b8c0b8f972b9fa"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Book.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Book.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Book.fbx",
+      "available": true,
+      "path": "assets/cache/fa9e964d331e24a672ad.fbx",
+      "bytes": 283804,
+      "sha256": "892189c2b60a596068f2ff010d7ed63ff801f40fb3e183f0792e4bb774e0b9e3"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Chair.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Chair.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Chair.fbx",
+      "available": true,
+      "path": "assets/cache/016293196654a33644b5.fbx",
+      "bytes": 2119948,
+      "sha256": "a52085a4bf8e07b12dcd25de41779b67821c4fce52e00e9e4f268bc7c08a2206"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Desk.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Desk.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Desk.fbx",
+      "available": true,
+      "path": "assets/cache/7855521bc9850d5e609f.fbx",
+      "bytes": 2096108,
+      "sha256": "9d135a7baf750024df6501551bb838a90c42803abed0a15daa3d3635ded924ad"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Globe.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Globe.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Globe.fbx",
+      "available": true,
+      "path": "assets/cache/7b24837e4644212cac38.fbx",
+      "bytes": 305996,
+      "sha256": "b91997f7033ead2a86d1cd6a02e64f35f7db60fdfe8564465abc14b0cc5994dd"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Inkbottle.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Inkbottle.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/Inkbottle.fbx",
+      "available": true,
+      "path": "assets/cache/46b9d8b3668d2885b4d3.fbx",
+      "bytes": 75772,
+      "sha256": "e78e5b7e1167839882b235f06362a6aa020267b2a279e971954465653e1657d2"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/OpenBook.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/OpenBook.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/OpenBook.fbx",
+      "available": true,
+      "path": "assets/cache/c3b2f87e27a8f2f46089.fbx",
+      "bytes": 766124,
+      "sha256": "59e63163bcec5d5a357a399afc1c4f3143d591856bf28510806f546d9dc1f9f8"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/bell.obj": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/bell.obj",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/bell.obj",
+      "available": true,
+      "path": "assets/cache/42d4286d2857634a5fab.obj",
+      "bytes": 206485,
+      "sha256": "f1679ea2de45bfc1937d5342438538c4d9f71371c5bcb60eaecf89f19668613d"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/blackboardcol.obj": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/blackboardcol.obj",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/blackboardcol.obj",
+      "available": true,
+      "path": "assets/cache/07c51d44503ef7a0bd1a.obj",
+      "bytes": 59893,
+      "sha256": "863dad5684d4a04643340e146fed3dd1b08dcd44b3f9620ddac55982688a9c1d"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/bookcol.obj": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/bookcol.obj",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/bookcol.obj",
+      "available": true,
+      "path": "assets/cache/f2c0efc56a2b72979e67.obj",
+      "bytes": 13626,
+      "sha256": "9f1d85bca90dd83b29f5b7b75288db0290fbb1111c8212a5e328fc1962f50050"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chaircollision.obj": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chaircollision.obj",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chaircollision.obj",
+      "available": true,
+      "path": "assets/cache/acc344399a5684e3ca50.obj",
+      "bytes": 217191,
+      "sha256": "a894fc5ceda0f1bd491aa3ebb59b5b149c2d1a3047b286fecd49c3b2af38a6dd"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chalkboardfran.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chalkboardfran.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chalkboardfran.fbx",
+      "available": true,
+      "path": "assets/cache/23ccb2bab4c0d6edf2d6.fbx",
+      "bytes": 1439676,
+      "sha256": "ceda893aff48647c575834b69a6fb0566813b3a59620287cefc1404a6be48a93"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/desk/desk.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/desk/desk.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/desk/desk.fbx",
+      "available": true,
+      "path": "assets/cache/e316cd4b7264bbf71518.fbx",
+      "bytes": 2142876,
+      "sha256": "3576d0b15dc5941800c649c909b882bb00008ea672d9f1208139e4148cdcda11"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/desk/desk.obj": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/desk/desk.obj",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/desk/desk.obj",
+      "available": true,
+      "path": "assets/cache/60adf38a7ee27f0019e2.obj",
+      "bytes": 419561,
+      "sha256": "afcdb32786534fb91e59e09becaf5a5c34eebbfe8b7d83de92a96bc6feb46b61"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/globe.obj": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/globe.obj",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/globe.obj",
+      "available": true,
+      "path": "assets/cache/26783bd0de10bccce507.obj",
+      "bytes": 272367,
+      "sha256": "5b8d2428fd659ac35927d2355703a67aa9fc6b7c29ef83bc9dcc34741f4fd50f"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/inkbottlecol.obj": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/inkbottlecol.obj",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/inkbottlecol.obj",
+      "available": true,
+      "path": "assets/cache/6f6c92e3dd754ceeb842.obj",
+      "bytes": 367042,
+      "sha256": "4f3fd46347355e9a79af0f7d327a79d94b732e4ed9556f3b872453853380d969"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/justclassroom.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/justclassroom.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/justclassroom.fbx",
+      "available": true,
+      "path": "assets/cache/538efb7e42b3bdb292a2.fbx",
+      "bytes": 2517084,
+      "sha256": "d78ac0e654f01c1c0986bf892d91f3a6953d9b554a19e7c8d7181f8dba3c350d"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/loosedeskcolis/DESK.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/loosedeskcolis/DESK.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/loosedeskcolis/DESK.fbx",
+      "available": true,
+      "path": "assets/cache/9cc6cd580160313355a0.fbx",
+      "bytes": 2140860,
+      "sha256": "43181a0855d8a58f18d7edb069a6b52e0734c6a7539ef62ada1110cd8c57ce7e"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/openbookcol.obj": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/openbookcol.obj",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/openbookcol.obj",
+      "available": true,
+      "path": "assets/cache/3f1a0e77e76763063202.obj",
+      "bytes": 387653,
+      "sha256": "209c0e1066186f3dec853df3b0f9bf0d500b0304d16e6e698f95bb8732582686"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/pencilcase.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/pencilcase.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/pencilcase.fbx",
+      "available": true,
+      "path": "assets/cache/b75555726bb5464adda7.fbx",
+      "bytes": 2151820,
+      "sha256": "d28efd76156be3490dfce19935b2d1199ce3ffaaaa2c92294e73b7a8edd6f448"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/pencilsharpne.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/pencilsharpne.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/pencilsharpne.fbx",
+      "available": true,
+      "path": "assets/cache/4cfe8e2fbde6d5424a73.fbx",
+      "bytes": 157404,
+      "sha256": "ca3453cd65df86986198c8a7366ddaa9e303f88c87ef674cb47ff45631069c29"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
+      "available": true,
+      "path": "assets/cache/cf027cf487b3048dfddd.fbx",
+      "bytes": 317404,
+      "sha256": "c168665e0097c5c68c90d7cb071a880d1b5ea3fd0b149a3db3f2d13a7150b8cc"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/satchel.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/satchel.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/satchel.fbx",
+      "available": true,
+      "path": "assets/cache/c0f51f76978c314a4fe8.fbx",
+      "bytes": 2146732,
+      "sha256": "5ec060eeebae8c608a737f4287ce27b55242c160d169655f59084a255e3b0b21"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/test.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/test.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/test.fbx",
+      "available": true,
+      "path": "assets/cache/288cf52215b35e5ae96d.fbx",
+      "bytes": 7700204,
+      "sha256": "86dcbfce07d51fb95661de55a8b866ff8c4bd7f7526b4dd6a3ca3180ec05cb06"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/abacus1.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/abacus1.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/abacus1.fbx",
+      "available": true,
+      "path": "assets/cache/65144a38f20d6783eef4.fbx",
+      "bytes": 1530764,
+      "sha256": "1eb91a5e4f2237df97100a1d21576949b1f95fb8379b7a59c3927843eb11bb46"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/barrier.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/barrier.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/barrier.fbx",
+      "available": true,
+      "path": "assets/cache/732930b66ea5531cee11.fbx",
+      "bytes": 10095052,
+      "sha256": "616caf31e244252680702914014839489aaf7e43ca1ecbc7117174a3958f3137"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/barriercol.obj": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/barriercol.obj",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/barriercol.obj",
+      "available": true,
+      "path": "assets/cache/c0bff65a576570d0f7d9.obj",
+      "bytes": 7784,
+      "sha256": "34c850a803fde21cf92722a16070a48909e79c830f2d83644c94956e93dc0d2c"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/binbag.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/binbag.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/binbag.fbx",
+      "available": true,
+      "path": "assets/cache/b6b3f355c84ee602a807.fbx",
+      "bytes": 795452,
+      "sha256": "69f76cdb8a33f112ef3ddcaab03ac8c0564517af8260fc103cd5978f2185f3cf"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/bumpzebra.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/bumpzebra.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/bumpzebra.fbx",
+      "available": true,
+      "path": "assets/cache/77b7a25a35db2e620384.fbx",
+      "bytes": 18652,
+      "sha256": "34d540e4aecf5f6ae9209e46e34171db26f96e011c072e803dfde0b943326602"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/bumpzebra.obj": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/bumpzebra.obj",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/bumpzebra.obj",
+      "available": true,
+      "path": "assets/cache/1d9e54c77fcfd9b505d0.obj",
+      "bytes": 27543,
+      "sha256": "2b0cf2df7259ab11c424e9f53c76169ac71218d95ff6e93005c6fda3913668e6"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/cardboardbox.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/cardboardbox.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/cardboardbox.fbx",
+      "available": true,
+      "path": "assets/cache/7f6cb61b9e1a0dc67aa7.fbx",
+      "bytes": 2419324,
+      "sha256": "9e5c3be68b96f73da73a1522145f0f4e1fa5112a7a2021569e4da2b5bfa24d59"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/gaslamp.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/gaslamp.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/gaslamp.fbx",
+      "available": true,
+      "path": "assets/cache/8a7a872d57b5358d4adc.fbx",
+      "bytes": 425148,
+      "sha256": "bae23684162c31e6483375834f571bf91e97c936f19193ae5e19b601caab0a7e"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/hificrate.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/hificrate.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/hificrate.fbx",
+      "available": true,
+      "path": "assets/cache/d76da36a13307273d479.fbx",
+      "bytes": 2978492,
+      "sha256": "1f51d1730ded6aef3407c86135db12483e44c47130f3b1d5b807c4afaf73ede1"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/leafyplant.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/leafyplant.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/leafyplant.fbx",
+      "available": true,
+      "path": "assets/cache/1afc481ac26bd9a86b33.fbx",
+      "bytes": 360028,
+      "sha256": "eebf5fa43891aebbf6c00d2c260cb53ab7589b83431b96bea93a7cbac7a84d1c"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/oildrum.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/oildrum.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/oildrum.fbx",
+      "available": true,
+      "path": "assets/cache/5d4bb474616bd3f1cf59.fbx",
+      "bytes": 27084,
+      "sha256": "d1899001c9a5a4aadf4b720cff43eb34b2e8f3cab2d2adbc651b24bca0d656ab"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/pallette.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/pallette.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/pallette.fbx",
+      "available": true,
+      "path": "assets/cache/773b22e6ca8887fcdafb.fbx",
+      "bytes": 1081084,
+      "sha256": "8402e342ec48d4cc3682a7b01f51ff55ace57c85d690477bc41440f6f997b036"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/petrolpump.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/petrolpump.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/petrolpump.fbx",
+      "available": true,
+      "path": "assets/cache/b9a3ee51029acb0e2cdc.fbx",
+      "bytes": 979244,
+      "sha256": "f0f8b3fe6b7f5ff38da098f351d9725d34430f3be5ea119a46ab2925f06aeef7"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/plantpot.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/plantpot.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/plantpot.fbx",
+      "available": true,
+      "path": "assets/cache/afd91a29e46f37f2f3ee.fbx",
+      "bytes": 296604,
+      "sha256": "917b912c2d0fece6cc86054013c138e14f97b1d32acbfa7be5bc1bbb9a258b24"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/plasticroadbarrier.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/plasticroadbarrier.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/plasticroadbarrier.fbx",
+      "available": true,
+      "path": "assets/cache/cb13dc534b9f0bf7eba7.fbx",
+      "bytes": 19116,
+      "sha256": "9ff1ec803e3ee8389e183db0a09d6eacc4773e041741fba1398b9d0f1fb72d5e"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ramp.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ramp.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ramp.fbx",
+      "available": true,
+      "path": "assets/cache/c2eae1fa91fb506ae913.fbx",
+      "bytes": 38044,
+      "sha256": "cd028e45486691f0e41d7ce485a9dcbe76674bc61743c74520ef964767fb6734"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ramp.obj": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ramp.obj",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ramp.obj",
+      "available": true,
+      "path": "assets/cache/22e6999f78983455aa1a.obj",
+      "bytes": 69583,
+      "sha256": "792c631c0cfb602101c99c048c8a2ad4fa039e7af247a8c2c1eeeb7af24e1a8b"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/slurpy.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/slurpy.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/slurpy.fbx",
+      "available": true,
+      "path": "assets/cache/99c649ea482ad3e7c4c2.fbx",
+      "bytes": 873228,
+      "sha256": "74aca951674d9094bf3b80027f0e3db11b6d6655718c3b06f4e2d759b7d1c6de"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/trafficcone.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/trafficcone.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/trafficcone.fbx",
+      "available": true,
+      "path": "assets/cache/289713661b12d02e0b41.fbx",
+      "bytes": 22492,
+      "sha256": "50fc0cd41d1bd2a9d796cc72fa313cddf72c17e6d2ef26039eebd0ae1c38e7a1"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/trafficconecol.obj": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/trafficconecol.obj",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/trafficconecol.obj",
+      "available": true,
+      "path": "assets/cache/947b42900b3d0ce2ad6b.obj",
+      "bytes": 5591,
+      "sha256": "54703dc4ae8971b5e0dcfd8ae4536b6d2d81afbaf660e29ae9ed7e1ff99b6b91"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/trashcan.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/trashcan.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/trashcan.fbx",
+      "available": true,
+      "path": "assets/cache/bbec4e2d2203598b79ac.fbx",
+      "bytes": 1264860,
+      "sha256": "0bbc682d4a6cb72f6a6e8fec2cc0c31fa164dfc4998f91dd19c1e937131f3bb4"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/zebracrossing.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/zebracrossing.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/zebracrossing.fbx",
+      "available": true,
+      "path": "assets/cache/ac26bc299bad9e74f7e7.fbx",
+      "bytes": 16284,
+      "sha256": "b4bd74d0c48a8ae6898b13b55499738175fa05c6faf984f19b92f5a48282e951"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/4sashywindow.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/4sashywindow.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/4sashywindow.fbx",
+      "available": true,
+      "path": "assets/cache/3585f4df3061b66b03ca.fbx",
+      "bytes": 146844,
+      "sha256": "7cc636498b2f5bad27f986f3f250b844a2fd565b63f142ba23e93cbb893df6c8"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/POSTBOX.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/POSTBOX.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/POSTBOX.fbx",
+      "available": true,
+      "path": "assets/cache/8ada6d599ead92540503.fbx",
+      "bytes": 70444,
+      "sha256": "355682195a5197931eb2c4a0abc9c6c8c5ec902e2ac43535abfb3187272dece2"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/STONEWALL.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/STONEWALL.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/STONEWALL.fbx",
+      "available": true,
+      "path": "assets/cache/6b9beb0b1ccd6b9b87d5.fbx",
+      "bytes": 14910604,
+      "sha256": "fc15b39e37a09ace866ac98cd5dcbc9acff373e4d022819e05e3fdc2767a805e"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/bin.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/bin.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/bin.fbx",
+      "available": true,
+      "path": "assets/cache/6fb6cce8ba4d90057b33.fbx",
+      "bytes": 240924,
+      "sha256": "15d4120052752b628e54a839259c181c059657da538a11a042af2bdbe6497f14"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/bollards.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/bollards.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/bollards.fbx",
+      "available": true,
+      "path": "assets/cache/0dc4fed073fce68fb450.fbx",
+      "bytes": 221484,
+      "sha256": "2133c28f2c9edf4342c4e66ed5870c076cc0cd304a5fd5412721f0aa0375ce7b"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/frontaGE.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/frontaGE.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/frontaGE.fbx",
+      "available": true,
+      "path": "assets/cache/56453b53bf46dd13f6fe.fbx",
+      "bytes": 29388,
+      "sha256": "376ac384ddbc18f506e7dbef43d39657660e25d8d6237ed437e84e8ef0094b69"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/gritbox.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/gritbox.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/gritbox.fbx",
+      "available": true,
+      "path": "assets/cache/b72f5decb0bcc8070bb6.fbx",
+      "bytes": 209404,
+      "sha256": "846b5ef00cf0064f462964846e274677d669c3ef2993078736071a26eecabf63"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/house1.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/house1.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/house1.fbx",
+      "available": true,
+      "path": "assets/cache/4788e91b59cb0b58aec4.fbx",
+      "bytes": 3668428,
+      "sha256": "a4915033576108e20089b15880e3e1c1e8aed9d27f63ba83168a9a0f7ef55f56"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/house3.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/house3.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/house3.fbx",
+      "available": true,
+      "path": "assets/cache/f963f30fd88b90a5ba9e.fbx",
+      "bytes": 2170092,
+      "sha256": "cf4cc146968dcfce13ca452439f277e8e0e55e343358465932c0016426561a77"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/3DJUDE.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/3DJUDE.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/3DJUDE.fbx",
+      "available": true,
+      "path": "assets/cache/31758c9e8143594ecf43.fbx",
+      "bytes": 734492,
+      "sha256": "088ab2d3163ae19b8dee62b1d448415e4672c7d5a7db3ceacc6402ab43e1a621"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/JUDEBOOTH.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/JUDEBOOTH.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/JUDEBOOTH.fbx",
+      "available": true,
+      "path": "assets/cache/b85fbebca7d097cb789a.fbx",
+      "bytes": 135308,
+      "sha256": "bd1517ff2f4740c269e83898b2369ccec9f68023f77971a6dcf37f9d389f365d"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/THOYSGEVARA.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/THOYSGEVARA.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/THOYSGEVARA.fbx",
+      "available": true,
+      "path": "assets/cache/b46aa478c58de8f7d625.fbx",
+      "bytes": 499612,
+      "sha256": "6c0825390d1e08d57a7472bd09ee49595a728978abca08792b6a9d3b3846867f"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/buildhigh.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/buildhigh.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/buildhigh.fbx",
+      "available": true,
+      "path": "assets/cache/eb36d10d80fa23ba0c43.fbx",
+      "bytes": 41084,
+      "sha256": "9f860d980499a3d3a1277412bd8bc37669890e2220ba8da220ade8b38f104ee2"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/catposter.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/catposter.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/catposter.fbx",
+      "available": true,
+      "path": "assets/cache/a7d92482ab4dd25e01cd.fbx",
+      "bytes": 22544188,
+      "sha256": "94e21e830deaefc4670d457ecf52ecea60467c7b91cf5553d1566fdd0b24d8a1"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/clove.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/clove.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/clove.fbx",
+      "available": true,
+      "path": "assets/cache/a19010b3c8e53577f62a.fbx",
+      "bytes": 178508,
+      "sha256": "100118df5d82bc14b83b6c1b951de1a1ad3d16bb9d40066cc1fdac8a45c48bb7"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/orient.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/orient.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/orient.fbx",
+      "available": true,
+      "path": "assets/cache/0c0677a0f00cbb5da101.fbx",
+      "bytes": 1493484,
+      "sha256": "f7b4c69036c4a98659e475af38ea00386b30f897f8139cfdee962ddbab97784d"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/stop.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/stop.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/stop.fbx",
+      "available": true,
+      "path": "assets/cache/34fcaf00f425c942e007.fbx",
+      "bytes": 135484,
+      "sha256": "aef45db50e7a310bda8d279eb4b2cdc0586f8b8d487ca6dcc80d55ec5e4509bb"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/tcarsposter.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/tcarsposter.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/tcarsposter.fbx",
+      "available": true,
+      "path": "assets/cache/ac89620b773c95ab3f8e.fbx",
+      "bytes": 31884,
+      "sha256": "4a95d38109624e3ea9fb53073872bdc85b4429d96201a869ff63977de88631b5"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/trator.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/trator.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/posters/trator.fbx",
+      "available": true,
+      "path": "assets/cache/c31a7a9f5bb81614a6e3.fbx",
+      "bytes": 37548,
+      "sha256": "3676073cae97aa5cf8cf65d7f3665305e0f097aba9fe145e65eb076b9bd420fb"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/railings.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/railings.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/railings.fbx",
+      "available": true,
+      "path": "assets/cache/253a8a4fa7898d802e28.fbx",
+      "bytes": 23196,
+      "sha256": "30bb58d4497d4b688ff58dc1a7e8421ae97526b2565f7bbe8e793ab624bf5955"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/ronstatue.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/ronstatue.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/ronstatue.fbx",
+      "available": true,
+      "path": "assets/cache/404ab87ae0b243c9199e.fbx",
+      "bytes": 417212,
+      "sha256": "05cc1c958dd008f849ddda8988765eee64035be50b48d9c52342813c8e017da5"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/roundwindow5.fbx?v1": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/roundwindow5.fbx?v1",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/roundwindow5.fbx?v1",
+      "available": true,
+      "path": "assets/cache/44b158c41cfdd9279846.fbx",
+      "bytes": 17248636,
+      "sha256": "8b319df43048a86571f711105792984aa05b10dfd2bf9ebf6f7ed843d517ae4a"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/shopfronts1.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/shopfronts1.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/shopfronts1.fbx",
+      "available": true,
+      "path": "assets/cache/9633fc98b1ed4249e60d.fbx",
+      "bytes": 39180,
+      "sha256": "af4240f0e29864c1f624218f599accbdacb11b38ff4959f7d61d787b8a41ca39"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/shopfronts2.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/shopfronts2.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/shopfronts2.fbx",
+      "available": true,
+      "path": "assets/cache/ebfbb98e223346e283eb.fbx",
+      "bytes": 38956,
+      "sha256": "fe46ee0803889137261aa5743449661d404d4396bcbf26fa1cc376e0cec36dd9"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/shopfrontthinfg.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/shopfrontthinfg.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/shopfrontthinfg.fbx",
+      "available": true,
+      "path": "assets/cache/43eee0e543f86178bb5d.fbx",
+      "bytes": 4711836,
+      "sha256": "4b28a6bea638ed316df37c96d112c191d1fba1d98edb57603c92d208260a4368"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/shuffleshoes.fbx?234": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/shuffleshoes.fbx?234",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/shuffleshoes.fbx?234",
+      "available": true,
+      "path": "assets/cache/46fb2cfff09157f12bde.fbx",
+      "bytes": 298604,
+      "sha256": "6e750d25396c3002dbcb957ede1940994ad6b82f0c35d45131270a57bc901ef5"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/skip.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/skip.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/skip.fbx",
+      "available": true,
+      "path": "assets/cache/06e5395ace7239ca6855.fbx",
+      "bytes": 27628,
+      "sha256": "6c91b4cd8b6624d1b58701673109a0e1fcae78650f576f26bb0d340e54f2f644"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/streetcol.obj": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/streetcol.obj",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/streetcol.obj",
+      "available": true,
+      "path": "assets/cache/6525d3301b8078443b10.obj",
+      "bytes": 1737627,
+      "sha256": "3094d06e6e2eaf72af1a7f5b7449dc16964497750687912de253c3cc4e4e175c"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/streetrtrack.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/streetrtrack.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/streetrtrack.fbx",
+      "available": true,
+      "path": "assets/cache/d8c8d08cbba16f9759f8.fbx",
+      "bytes": 33422572,
+      "sha256": "4ddae3c1511d6b86f1445bc82ba0a9c92a400790df1572f71dffad2b65c4962d"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/telegraphpole.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/telegraphpole.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/telegraphpole.fbx",
+      "available": true,
+      "path": "assets/cache/cfc67305de895dbffba9.fbx",
+      "bytes": 29452,
+      "sha256": "367bfad4f55ace42ddfd0c3e2b9e9353bc6433bab2efe6afbef81af05dce383c"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/trafficisland.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/trafficisland.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/trafficisland.fbx",
+      "available": true,
+      "path": "assets/cache/95516d164fe25d7bfc1d.fbx",
+      "bytes": 38316,
+      "sha256": "1beda5b7e42b97c185f4281d775cea354c69f6c672b0f26c9bf489a1ed5b20bd"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/trafficisland.obj": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/trafficisland.obj",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/trafficisland.obj",
+      "available": true,
+      "path": "assets/cache/80f711799b9a11b27ed0.obj",
+      "bytes": 1617,
+      "sha256": "ddf05a4da02729a8f196f514d125dcef5059ceb7ac2e8e577d514bc8e200f6de"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/trafficlights.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/trafficlights.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/trafficlights.fbx",
+      "available": true,
+      "path": "assets/cache/4ee4e57b1a69cf2fed8f.fbx",
+      "bytes": 49644,
+      "sha256": "ed98abdbe5f9a31c0cf46f34e10f2e8703955785c5f7de3ebb51e038fa377dc2"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/tree1.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/tree1.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/tree1.fbx",
+      "available": true,
+      "path": "assets/cache/f90a438873822ef39b77.fbx",
+      "bytes": 977580,
+      "sha256": "d7b1b1615af108edad999afafc5dc8162424d5f940dd3eeec1596f1f61cfc08d"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/windows.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/windows.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/street/windows.fbx",
+      "available": true,
+      "path": "assets/cache/34d1f53cc4eceb683d06.fbx",
+      "bytes": 29116,
+      "sha256": "a15f2a6eaf104cf7e60f8f71873419651e6a71c347f8c7002b3958c7ec200ed1"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/barrier.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/barrier.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/barrier.fbx",
+      "available": true,
+      "path": "assets/cache/16592e81a357b4536ab6.fbx",
+      "bytes": 10095052,
+      "sha256": "616caf31e244252680702914014839489aaf7e43ca1ecbc7117174a3958f3137"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/barriercol.obj": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/barriercol.obj",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/barriercol.obj",
+      "available": true,
+      "path": "assets/cache/225d51c517de55e66eee.obj",
+      "bytes": 7784,
+      "sha256": "34c850a803fde21cf92722a16070a48909e79c830f2d83644c94956e93dc0d2c"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/towerbridge.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/towerbridge.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/towerbridge.fbx",
+      "available": true,
+      "path": "assets/cache/e6a0acc94165076ca313.fbx",
+      "bytes": 65548,
+      "sha256": "7a3ae215aaf75d01f0f2d5a9209794194681a8c8f03a279d23142c0534dd0ef4"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/toytrackoct.fbx": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/toytrackoct.fbx",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/toytrackoct.fbx",
+      "available": true,
+      "path": "assets/cache/df364df96ee3dbaeace8.fbx",
+      "bytes": 21433244,
+      "sha256": "e761d74cdb537f10f35b0c254d9a7039329b7bc34691bd5abe5b3f5ccf3a2f2b"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/ttmk2col.obj": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/ttmk2col.obj",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/ttmk2col.obj",
+      "available": true,
+      "path": "assets/cache/fb29db5330056ba66a04.obj",
+      "bytes": 193340,
+      "sha256": "ce853d93c055d3b5482d9bbe313d24b5fc2d0f6c8e481ed4eab90b70a01235b4"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/sounds/decelerating.wav": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/sounds/decelerating.wav",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/sounds/decelerating.wav",
+      "available": true,
+      "path": "assets/cache/599ef02b711f4796c32c.wav",
+      "bytes": 307696,
+      "sha256": "b03b6ffe372f5e532b4916e0c65cbf988e599823b5b1e5dfad1d0dcc60dd3ff8"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/sounds/enginenoise2.wav": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/sounds/enginenoise2.wav",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/sounds/enginenoise2.wav",
+      "available": true,
+      "path": "assets/cache/ae1ee7c7f50e573bf356.wav",
+      "bytes": 177378,
+      "sha256": "546813fd57c71c64336869ec8de8614bde0e7ee51009c9c2835b6d4f79e22a7e"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/sounds/idle.wav": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/sounds/idle.wav",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/sounds/idle.wav",
+      "available": true,
+      "path": "assets/cache/ce245627065105354588.wav",
+      "bytes": 200700,
+      "sha256": "1501cf54262254c8ab2e87aa39777aed8325c3955cc765c9307e463f34564ee3"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/sounds/shutdown.wav": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/sounds/shutdown.wav",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/sounds/shutdown.wav",
+      "available": true,
+      "path": "assets/cache/ee40af648f2efe17ce19.wav",
+      "bytes": 151658,
+      "sha256": "d982f10de4ce63283244ef3caaf3a30944b7f0127b62cf53b6da47ff40774030"
+    },
+    "http://hifi-external.s3.amazonaws.com/tcars/sounds/starting.wav": {
+      "source": "http://hifi-external.s3.amazonaws.com/tcars/sounds/starting.wav",
+      "request": "https://hifi-external.s3.amazonaws.com/tcars/sounds/starting.wav",
+      "available": true,
+      "path": "assets/cache/65f92179c91d5650d8fb.wav",
+      "bytes": 107076,
+      "sha256": "e777ff8c1c0d7880b4f6baf3aace63f873efe497068b0e19411a3ad4c27fb846"
+    },
+    "https://dl.dropboxusercontent.com/u/96759331/fbx/collision_track.obj": {
+      "source": "https://dl.dropboxusercontent.com/u/96759331/fbx/collision_track.obj",
+      "request": "https://dl.dropboxusercontent.com/u/96759331/fbx/collision_track.obj",
+      "available": false,
+      "error": "HTTP Error 404: Not Found"
+    },
+    "https://hifi-public.s3.amazonaws.com/models/props/flashlight.fbx": {
+      "source": "https://hifi-public.s3.amazonaws.com/models/props/flashlight.fbx",
+      "request": "https://hifi-public.s3.amazonaws.com/models/props/flashlight.fbx",
+      "available": false,
+      "error": "HTTP Error 403: Forbidden"
+    },
+    "https://hifi-public.s3.amazonaws.com/ryan/ryan_phoneApt01.fbx": {
+      "source": "https://hifi-public.s3.amazonaws.com/ryan/ryan_phoneApt01.fbx",
+      "request": "https://hifi-public.s3.amazonaws.com/ryan/ryan_phoneApt01.fbx",
+      "available": false,
+      "error": "HTTP Error 403: Forbidden"
+    }
+  }
+}

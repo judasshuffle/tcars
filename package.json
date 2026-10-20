@@ -1,0 +1,8 @@
+{
+  "name": "tcars-darkride",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TCARS launcher and native Jolt vehicle system for DarkRide",
+  "scripts": { "test": "node --test tests/darkride/*.test.js", "check": "node tools/check.js" },
+  "engines": { "node": ">=18" }
+}
