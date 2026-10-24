@@ -8,7 +8,7 @@ function Session(env, catalog, manifest, rootURL, notify) {
     this.pending=null;this.race=new C.Race([]);this.cameraPosition=null;this.cameraMode='chase';
     this.sound=null;this.injector=null;this.soundMode=null;this.muted=false;this.accumulator=0;this.lease=0;
     this.status='Ready. Build a track, then spawn a car.';this.keys={};this.errors=[];
-    this.inputPaused=false;this.fireCooldown=0;
+    this.inputPaused=false;this.fireCooldown=0;this.projectileModels={};
 }
 Session.prototype.say=function(message){this.status=message;this.env.print('[TCARS] '+message);this.notify();};
 Session.prototype.asset=function(url,localOnly){
@@ -205,12 +205,19 @@ Session.prototype.reset=function(toStart){
 Session.prototype.fire=function(p){
     if(!this.seated || !this.car || this.fireCooldown>0){return;}
     this.fireCooldown=0.5;
-    this.add({type:'Box',name:'Projectile',dimensions:{x:1.25,y:1.45,z:2.56},
+    var id=this.add({type:'Box',name:'Projectile',dimensions:{x:1.25,y:1.45,z:2.56},
         color:{red:255,green:150,blue:35},shapeType:'sphere',density:8000,
         dynamic:true,collisionless:false,gravity:C.ZERO,
         position:C.add(p.position,C.rotate(p.rotation,{x:0,y:0,z:-7})),rotation:p.rotation,
         velocity:C.add(p.velocity,C.rotate(p.rotation,{x:0,y:0,z:-10})),
         angularVelocity:C.rotate(p.rotation,{x:0,y:0,z:20}),damping:0,angularDamping:0},'projectile');
+    // Keep the existing physical cube; swap only its visible appearance after the FBX loads.
+    try{
+        this.projectileModels[id]=this.add({type:'Model',name:'Original rocket',parentID:id,
+            modelURL:'https://hifi-external.s3.amazonaws.com/tcars/models/rockett.fbx',
+            localPosition:C.ZERO,localRotation:{x:Math.SQRT1_2,y:0,z:0,w:-Math.SQRT1_2},
+            dimensions:{x:1.25,y:2.56,z:1.45},dynamic:false,collisionless:true},'projectile');
+    }catch(error){this.env.print('[TCARS] Rocket unavailable; keeping cube.');}
 };
 Session.prototype.stopSound=function(){if(this.injector){this.injector.stop();this.injector=null;}this.soundMode=null;};
 Session.prototype.audio=function(p,speed){
@@ -223,6 +230,14 @@ Session.prototype.audio=function(p,speed){
 };
 Session.prototype.update=function(dt){
     if(this.closed){return;}
+    var self=this;
+    Object.keys(this.projectileModels).forEach(function(id){
+        if(!self.isOwned(id)){delete self.projectileModels[id];return;}
+        var model=self.projectileModels[id], e=self.env.Entities;
+        var loaded=self.isOwned(model) && typeof e.isLoaded==='function' && e.isLoaded(model);
+        var visible=e.getEntityProperties(id,['visible']).visible;
+        if(visible!==!loaded){e.editEntity(id,{visible:!loaded});}
+    });
     this.accumulator+=dt;this.lease+=dt;this.fireCooldown=Math.max(0,this.fireCooldown-dt);
     if(this.lease>60){
         this.lease=0;var self=this;

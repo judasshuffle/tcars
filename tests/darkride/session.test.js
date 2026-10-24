@@ -90,7 +90,7 @@ test('projectile ballistics, cooldown, Shift brake and five-second lease',()=>{
     const f=fixture(),s=f.s;s.spawn(0);s.enter();const car=f.entities[s.car.id];
     car.velocity={x:3,y:1,z:-4};car.rotation={x:0,y:Math.SQRT1_2,z:0,w:Math.SQRT1_2};
     let pressed='Space';f.env.Controller.getValue=k=>k===pressed?1:0;
-    const shots=()=>Object.values(f.entities).filter(p=>JSON.parse(p.userData).tcars.kind==='projectile');
+    const shots=()=>Object.values(f.entities).filter(p=>JSON.parse(p.userData).tcars.kind==='projectile' && p.dynamic);
     s.update(0.01);assert.equal(shots().length,1);const p=shots()[0];
     assert.deepEqual(p.position,C.add(car.position,C.rotate(car.rotation,{x:0,y:0,z:-7})));
     assert.deepEqual(p.velocity,C.add(car.velocity,C.rotate(car.rotation,{x:0,y:0,z:-10})));
@@ -117,7 +117,28 @@ test('players own independent projectiles and cooldowns',()=>{
     const b=new Session(env,a.catalog,a.manifest,a.rootURL,()=>{});b.spawn(0);b.enter();
     const other=f.entities[b.car.id];other.velocity=C.ZERO;
     a.fire(car);b.fire(other);a.fire(car);b.fire(other);
-    const ids=Object.keys(f.entities).filter(id=>JSON.parse(f.entities[id].userData).tcars.kind==='projectile');
+    const ids=Object.keys(f.entities).filter(id=>JSON.parse(f.entities[id].userData).tcars.kind==='projectile' && f.entities[id].dynamic);
     assert.equal(ids.length,2);assert.notEqual(f.entities[ids[0]].userData,f.entities[ids[1]].userData);
     a.cleanup();assert(!f.entities[ids[0]]);assert(f.entities[ids[1]]);assert(f.entities[b.car.id]);b.cleanup();
+});
+
+test('original rocket visual preserves cube physics and falls back on load failure',()=>{
+    const f=fixture(),s=f.s;s.spawn(0);s.enter();const car=f.entities[s.car.id];car.velocity=C.ZERO;
+    s.fire(car);const [id,model]=Object.entries(s.projectileModels)[0],rocket=f.entities[model];
+    assert.equal(rocket.type,'Model');assert.equal(rocket.parentID,id);
+    assert.equal(rocket.modelURL,'https://hifi-external.s3.amazonaws.com/tcars/models/rockett.fbx');
+    assert.deepEqual(rocket.dimensions,{x:1.25,y:2.56,z:1.45});
+    assert.deepEqual(rocket.localRotation,{x:Math.SQRT1_2,y:0,z:0,w:-Math.SQRT1_2});
+    assert.equal(rocket.collisionless,true);assert.equal(rocket.dynamic,false);assert.equal(rocket.lifetime,5);
+    f.env.Entities.isLoaded=()=>false;s.update(0.01);assert.equal(f.entities[id].visible,true);
+    f.env.Entities.isLoaded=()=>true;s.update(0.01);assert.equal(f.entities[id].visible,false);
+    delete f.entities[model];s.update(0.01);assert.equal(f.entities[id].visible,true);
+    delete f.entities[id];s.update(0.01);assert.equal(s.projectileModels[id],undefined);
+    s.cleanup();assert.equal(Object.keys(f.entities).length,0);
+});
+test('failed rocket entity creation leaves the physical cube intact',()=>{
+    const f=fixture(),s=f.s;s.spawn(0);s.enter();const car=f.entities[s.car.id];car.velocity=C.ZERO;
+    f.setFail(Object.keys(f.entities).length+2);s.fire(car);
+    assert.equal(Object.keys(s.projectileModels).length,0);
+    assert.equal(Object.values(f.entities).filter(p=>p.name==='TCARS / Projectile').length,1);
 });
