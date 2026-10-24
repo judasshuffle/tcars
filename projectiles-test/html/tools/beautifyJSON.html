@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>Import window</title>
+<style type="text/css">
+    /*noinspection CssUnusedSymbol*/
+    #import_json {
+        width: 100%;
+        height: 90%;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+function beautifyJSON() {
+    var $inputJSON = $('#input_json');
+    $inputJSON.val(JSON.stringify(JSON.parse($inputJSON.val()), null, 4) + "\n");
+}
+</script>
+</head>
+<body>
+	<div>TrackZone JSON Beautifier</div>
+    <div>
+        <textarea title="input json" id="input_json"></textarea>
+    </div>
+    <div>
+        <button onclick="beautifyJSON()">Beautify JSON</button>
+    </div>
+</body>
+</html>

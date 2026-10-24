@@ -1,0 +1,129 @@
+//  TCars/library/sessionClient.js
+//
+//  Handles the session client-side
+//
+//  Distributed under the Apache License, Version 2.0.
+//  See the accompanying file LICENSE or http://www.apache.org/licenses/LICENSE-2.0.html
+//
+
+SessionClient = function() {
+    var _this = this;
+    var client = null;
+    var properties = {
+        sessionInfo: null,
+        preferredRole: ROLE.PLAYER
+    };
+
+    _this.onMessage = null;
+    _this.onUpdate = null;
+
+    var clientMessage = function(message) {
+        if (_this.onMessage) {
+            _this.onMessage.call(this, message);
+        }
+    };
+
+    var fireUpdate = function(update) {
+        if (_this.onUpdate) {
+            _this.onUpdate.call(this, update);
+        }
+    };
+
+    _this.voteTrack = function(trackID) {
+        client.send({action: SESSION_ACTION.VOTE, data: {trackID: trackID}});
+    };
+
+    _this.joinSession = function(sessionChannel, sessionInfo, preferredRole) {
+        properties.preferredRole = (preferredRole === undefined ? ROLE.PLAYER : preferredRole);
+        properties.sessionInfo = sessionInfo;
+        /* if (socket !== null) {
+            if (socket.readyState !== socket.OPEN) {
+                socket.close();
+            }
+        } */
+        client = new Client(sessionChannel, MyAvatar.sessionUUID);
+
+        client.onActionReceived = function(senderID, action, data) {
+            print ('action received ' + data);
+            switch (data.action) {
+                case SESSION_ACTION.JOIN_REPLY:
+                    clientMessage('Join reply received');
+                    // TODO: Get current game state and respond appropriatly (Track selection, racing, loading, etc..)
+                    fireUpdate(data.update);
+                    break;
+                case SESSION_ACTION.PLAYER_JOIN:
+                    clientMessage('A player joined!');
+                    break;
+                case SESSION_ACTION.UPDATE:
+                    fireUpdate(data.update);
+                    break;
+                // JOIN_REQUEST:   1,
+                // JOIN_REPLY:     2,
+                // UPDATE:         3,
+                // MESSAGE:        4,
+                // PLAYER_JOIN:    5,
+                // PLAYER_LEFT:    6,
+                // GAME_STATE:     7,
+                // PING:           8,
+                // VOTE:           9
+                // case LOBBY_ACTION.REGISTER_SESSION_REPLY:
+                //    new Session(parseInt(data.port), data.block);
+                //    break;
+            }
+        };
+
+        client.send({
+            action: SESSION_ACTION.JOIN_REQUEST,
+            data: {
+                preferredRole: ROLE.PLAYER
+            }
+        });
+        /*
+        socket.onmessage = function(event) {
+            var data = JSON.parse(event.data);
+            switch (data.action) {
+                case SESSION_ACTION.JOIN_REPLY:
+                    clientMessage('Join reply received');
+                    //TODO: Get current game state and respond appropriatly (Track selection, racing, loading, etc..)
+                    fireUpdate(data.update);
+                    break;
+                case SESSION_ACTION.PLAYER_JOIN:
+                    clientMessage('A player joined!');
+                    break;
+                case SESSION_ACTION.UPDATE:
+                    fireUpdate(data.update);
+                    break;
+    //JOIN_REQUEST:   1,
+    //JOIN_REPLY:     2,
+    //UPDATE:         3,
+    //MESSAGE:        4,
+    //PLAYER_JOIN:    5,
+    //PLAYER_LEFT:    6,
+    //GAME_STATE:     7,
+    //PING:           8,
+    //VOTE:           9                
+                //case LOBBY_ACTION.REGISTER_SESSION_REPLY:
+                //    new Session(parseInt(data.port), data.block);
+                //    break;
+            }
+        };
+        socket.onopen = function() {
+            //TODO: ability to select role
+            socket.send(JSON.stringify({
+                action: SESSION_ACTION.JOIN_REQUEST,
+                data: {
+                    preferredRole: ROLE.PLAYER
+                }
+            }));
+        };
+        socket.onclose = function() {
+            //TODO: do the disconnect things
+            // destroy car?
+            // reset state?
+            // teleport back to lobby?
+            // re-open lobby?
+            socket = null;
+        };
+        */
+    };
+};

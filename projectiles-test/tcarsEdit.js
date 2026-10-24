@@ -1,0 +1,128 @@
+// IMPORT track, JSON
+
+var constants = Script.require('./modules/constants.js');
+
+
+var TrackZoneManager = Script.require('./modules/trackZoneManager.js').TrackZoneManager;
+
+
+var WINDOW_WIDTH = 800;
+var WINDOW_HEIGHT = 600;
+
+var TrackZoneEditingTools = function() {
+    var _this = this;
+
+    var trackZoneManager = new TrackZoneManager();
+
+    _this.selectClosestTrack = function() {
+        trackZoneManager.selectNearestTrackZone(Camera.position);
+    };
+
+    _this.getRelativePosition = function(globalPosition) {
+        trackZoneManager.refreshNearbyTracks(MyAvatar.position);
+        _this.selectClosestTrack();
+        return Vec3.subtract(globalPosition, trackZoneManager.getSelectedTrackZone().getPosition());
+    };
+
+    _this.exportTrack = function() {
+        var exportWindows = new OverlayWebWindow('Export window', Script.resolvePath('html/exportTrackZone.html'), WINDOW_WIDTH,
+            WINDOW_HEIGHT);
+        exportWindows.setVisible(true);
+        exportWindows.webEventReceived.connect(function(data) {
+            data = JSON.parse(data);
+            switch (data.action) {
+                case 'page_loaded':
+                    trackZoneManager.refreshNearbyTracks(MyAvatar.position);
+                    _this.selectClosestTrack();
+                    exportWindows.emitScriptEvent(JSON.stringify({
+                        action: 'export',
+                        data: trackZoneManager.getSelectedTrackZone().exportTrack()
+                    }));
+                    break;
+            }
+        });
+    };
+
+
+    _this.importTrack = function() {
+        var importWindows = new OverlayWebWindow('Import window', Script.resolvePath('html/importTrackZone.html'), WINDOW_WIDTH,
+            WINDOW_HEIGHT);
+        importWindows.setVisible(true);
+        importWindows.webEventReceived.connect(function(data) {
+            console.warn('web event receiveddddd');
+            data = JSON.parse(data);
+            switch (data.action) {
+                case 'import_json':
+                    trackZoneManager.importTrack(MyAvatar.position, data.data);
+                    break;
+            }
+        });
+    };
+
+    _this.deleteTrack = function() {
+        trackZoneManager.refreshNearbyTracks(MyAvatar.position);
+        _this.selectClosestTrack();
+        var trackZone = trackZoneManager.getSelectedTrackZone();
+        // if (true){//Window.confirm('Are you sure you want to delete trackzone ' + trackZone.getName() + '?') ) {
+        trackZone.deleteTrackZone();
+        trackZoneManager.refreshNearbyTracks(MyAvatar.position);
+        // this.selectClosestTrack();
+        // }
+    };
+    // add respawnable stuff
+    
+    // add solid stuff
+    
+    // set start line ( and 4 starting positions)
+    _this.setStartLine = function() {
+        
+    };
+    
+    // add checkpoints
+    _this.addCheckpoint = function() {
+        
+    };
+
+    _this.testDrive = function() {
+        trackZoneManager.selectNearestTrackZone(Camera.position);
+        // var selectedTrackzone = trackZoneManager.getSelectedTrackZone();
+        
+    };
+};
+var trackZoneEditingTools = new TrackZoneEditingTools();
+trackZoneEditingTools.selectClosestTrack();
+
+var MENU_TCARS_EDIT = 'TCars Edit';
+// var MENU_ITEM_TCARS_EDIT_SELECT_NEAREST = 'Select Nearest TrackZone';
+var MENU_ITEM_TCARS_EDIT_TESTDRIVE = 'TrackZoneTestDrive';
+var MENU_ITEM_TCARS_EDIT_IMPORT = 'TrackZoneImport';
+var MENU_ITEM_TCARS_EDIT_EXPORT = 'TrackZoneExport';
+var MENU_ITEM_TCARS_EDIT_DELETE = 'TrackZoneDelete';
+var MENU_TCARS_EDIT_CHECKPOINTS = MENU_TCARS_EDIT + ' > Checkpoints';
+var MENU_ITEM_TCARS_GET_LOCAL_POS = 'Get Local Position';
+
+Menu.addMenu(MENU_TCARS_EDIT);
+Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENU_ITEM_TCARS_EDIT_TESTDRIVE});
+Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENU_ITEM_TCARS_EDIT_IMPORT});
+Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENU_ITEM_TCARS_EDIT_EXPORT});
+Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENU_ITEM_TCARS_EDIT_DELETE});
+Menu.addMenu(MENU_TCARS_EDIT_CHECKPOINTS);
+Menu.addMenuItem({menuName: MENU_TCARS_EDIT, menuItemName: MENU_ITEM_TCARS_GET_LOCAL_POS});
+
+Menu.menuItemEvent.connect(function(menuItem) {
+    if (menuItem === MENU_ITEM_TCARS_EDIT_EXPORT) {
+        trackZoneEditingTools.exportTrack();
+    } else if (menuItem === MENU_ITEM_TCARS_EDIT_IMPORT) {
+        trackZoneEditingTools.importTrack();
+    } else if (menuItem === MENU_ITEM_TCARS_GET_LOCAL_POS) {
+        print(JSON.stringify(trackZoneEditingTools.getRelativePosition(MyAvatar.position)));
+    } else if (menuItem === MENU_ITEM_TCARS_EDIT_DELETE) {
+        trackZoneEditingTools.deleteTrack();
+    } else if (menuItem === MENU_ITEM_TCARS_EDIT_TESTDRIVE) {
+        trackZoneEditingTools.testDrive();
+    }
+});
+
+Script.scriptEnding.connect(function() {
+    Menu.removeMenu(MENU_TCARS_EDIT);
+});

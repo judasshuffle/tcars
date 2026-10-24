@@ -1,0 +1,6 @@
+# Cached assets must retain their manifest byte hashes on every platform.
+assets/cache/** -text
+*.js text eol=lf
+*.html text eol=lf
+*.md text eol=lf
+*.json text eol=lf

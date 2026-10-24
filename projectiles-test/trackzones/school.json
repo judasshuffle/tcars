@@ -1,0 +1,1877 @@
+{
+    "name": "SchoolTrack",
+    "entities": [
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 706.5808715820312,
+                "y": 1.4055662155151367,
+                "z": 761.902099609375
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "invisible classroom floor",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": 7.98046875,
+                "y": -101.27734375,
+                "z": -12.34521484375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 732.3599853515625,
+                "y": 3.75,
+                "z": 351.4649963378906
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "modelURL": "https://dl.dropboxusercontent.com/u/96759331/fbx/collision_track.obj",
+            "shapeType": "compound",
+            "compoundShapeURL": "https://dl.dropboxusercontent.com/u/96759331/fbx/collision_track.obj",
+            "localPosition": {
+                "x": 175.27587890625,
+                "y": -3.9599609375,
+                "z": -429.830078125
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 730.38037109375,
+                "y": 413.2546081542969,
+                "z": 1259.7528076171875
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "TABLES AND STUFF",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/test.fbx",
+            "shapeType": "none",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": 0.93017578125,
+                "y": 93.5498046875,
+                "z": 240.990234375
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 92.10722351074219,
+                "y": 0.20000000298023224,
+                "z": 74.94071960449219
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.027054250240325928,
+                "z": -0.0000152587890625,
+                "w": 0.9996337890625
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "Table1",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": 62.09033203125,
+                "y": -6.650390625,
+                "z": -56.3798828125
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 92.00125885009766,
+                "y": 0.20000000298023224,
+                "z": 73.09794616699219
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "Table2",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": -58.23486328125,
+                "y": -6.650390625,
+                "z": -55.78125
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 16.017719268798828,
+                "y": 1.4412109851837158,
+                "z": 24.14969253540039
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "small chalkboard12",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": 78.26611328125,
+                "y": -5.44970703125,
+                "z": -68.876953125
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 20,
+                "y": 20,
+                "z": 20
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": 0.99755859375,
+                "z": 0.0000152587890625,
+                "w": -0.06977951526641846
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "driverseat",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": -55.01611328125,
+                "y": -39.6669921875,
+                "z": -114.318359375
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 20,
+                "y": 20,
+                "z": 20
+            },
+            "rotation": {
+                "x": -0.0000457763671875,
+                "y": 0.99810791015625,
+                "z": -0.0000152587890625,
+                "w": 0.061051368713378906
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "driverseat",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": 62.845703125,
+                "y": -39.6669921875,
+                "z": -123.96337890625
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 91.73905944824219,
+                "y": 0.20000000298023224,
+                "z": 72.79228210449219
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "Table3",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": -58.65625,
+                "y": -6.650390625,
+                "z": 38.984375
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 91.92558288574219,
+                "y": 0.20000000298023224,
+                "z": 73.93681335449219
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "Table4",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": 61.6103515625,
+                "y": -6.650390625,
+                "z": 43.8203125
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 35.75627517700195,
+                "y": 11.897265434265137,
+                "z": 21.73680877685547
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.3671168088912964,
+                "z": -0.0000152587890625,
+                "w": 0.930174708366394
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "bookcollider1",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": 74.923828125,
+                "y": -0.0908203125,
+                "z": 36.78125
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 35.75627517700195,
+                "y": 11.897265434265137,
+                "z": 21.73680877685547
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.2850843071937561,
+                "z": -0.0000152587890625,
+                "w": 0.9584954977035522
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "bookcollider2",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": 74.55810546875,
+                "y": -0.0908203125,
+                "z": 37.39404296875
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 46.90613555908203,
+                "y": 0.20795059204101562,
+                "z": 4.580682754516602
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000457763671875,
+                "z": 0.3826504945755005,
+                "w": 0.9238879680633545
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -36.6875,
+                "y": -85.310546875,
+                "z": 113.51416015625
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 20,
+                "y": 20,
+                "z": 20
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "driverseat",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": -57.4052734375,
+                "y": -39.6669921875,
+                "z": 112.94189453125
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 13.680805206298828,
+                "y": 13.680805206298828,
+                "z": 40
+            },
+            "rotation": {
+                "x": 0.9733577966690063,
+                "y": -0.0156404972076416,
+                "z": 0.22023344039916992,
+                "w": 0.061753273010253906
+            },
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 255,
+                "green": 255,
+                "blue": 255
+            },
+            "isSpotlight": 1,
+            "intensity": 2,
+            "exponent": 0.30000001192092896,
+            "cutoff": 20,
+            "localPosition": {
+                "x": -21.28515625,
+                "y": -100.205078125,
+                "z": 174.52392578125
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 4.173603057861328,
+                "y": 0.20000000298023224,
+                "z": 27.29325294494629
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": -79.3798828125,
+                "y": -6.650390625,
+                "z": -6.08984375
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 29.11299705505371,
+                "y": 0.20000000298023224,
+                "z": 9.199549674987793
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": 1.93017578125,
+                "y": -6.650390625,
+                "z": 36.990234375
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 4.037402153015137,
+                "y": 0.20000000298023224,
+                "z": 38.41142654418945
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "ruler going to 1st table",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": 63.40576171875,
+                "y": -6.75634765625,
+                "z": -3.12109375
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 4.317675590515137,
+                "y": 0.20000000298023224,
+                "z": 33.76152420043945
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "ruler going to 1st table",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": 63.05029296875,
+                "y": -6.650390625,
+                "z": -5.76953125
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 34.290000915527344,
+                "y": 4,
+                "z": 22.329999923706055
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": 0.9588006734848022,
+                "z": -0.0000152587890625,
+                "w": 0.28398561477661133
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "bookcollider3",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": 75.52001953125,
+                "y": -5.4501953125,
+                "z": 37.990234375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 38.324188232421875,
+                "y": 0.20794236660003662,
+                "z": 4.580680847167969
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "Ruler 1 Loose",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -0.06982421875,
+                "y": -6.55029296875,
+                "z": 67.990234375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 38.324188232421875,
+                "y": 0.20794236660003662,
+                "z": 4.580680847167969
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "Ruler 1 Loose",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -0.07470703125,
+                "y": -6.55029296875,
+                "z": 60.5771484375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 38.684722900390625,
+                "y": 0.20794236660003662,
+                "z": 4.5806884765625
+            },
+            "rotation": {
+                "x": 0.22694742679595947,
+                "y": -0.965697705745697,
+                "z": 0.060837745666503906,
+                "w": 0.11055159568786621
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "Ruler 1 Loose",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": 39.32421875,
+                "y": -1.4775390625,
+                "z": 37.3359375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 24.410415649414062,
+                "y": 2.9350571632385254,
+                "z": 14.466445922851562
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": 0.461722731590271,
+                "z": -0.0000152587890625,
+                "w": 0.8869917392730713
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "FranBook",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chalkboardfran.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": 31.345703125,
+                "y": -4.6240234375,
+                "z": 60.26513671875
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 20,
+                "y": 20,
+                "z": 20
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "driverseat",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": 60.7265625,
+                "y": -39.6669921875,
+                "z": 102.8095703125
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 38.324188232421875,
+                "y": 0.20794236660003662,
+                "z": 4.580680847167969
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "Ruler 1 Loose",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -0.9521484375,
+                "y": -6.55029296875,
+                "z": 49.15185546875
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 4,
+                "y": 4,
+                "z": 4
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "visible": 1,
+            "userData": "",
+            "name": "traffic light light",
+            "color": {
+                "red": 255,
+                "green": 250,
+                "blue": 250
+            },
+            "isSpotlight": 0,
+            "intensity": 3,
+            "exponent": 15,
+            "cutoff": 90,
+            "localPosition": {
+                "x": -31.98291015625,
+                "y": -4.958984375,
+                "z": 46.572265625
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 13.680805206298828,
+                "y": 13.680805206298828,
+                "z": 40
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.8549477458000183,
+                "z": 0.0000457763671875,
+                "w": 0.5187609195709229
+            },
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 255,
+                "green": 255,
+                "blue": 255
+            },
+            "isSpotlight": 1,
+            "intensity": 2,
+            "exponent": 0.30000001192092896,
+            "cutoff": 20,
+            "localPosition": {
+                "x": -24.7373046875,
+                "y": -5.84814453125,
+                "z": 31.4833984375
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 35.84013748168945,
+                "y": 0.20000000298023224,
+                "z": 4.796679496765137
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "ruler 3",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": 4.8232421875,
+                "y": -6.650390625,
+                "z": -31.90673828125
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 19.118457794189453,
+                "y": 2.6067380905151367,
+                "z": 0.6966848373413086
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.04417484998703003,
+                "z": -0.0000152587890625,
+                "w": 0.9990234375
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "pencil case side 1",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": -37.20849609375,
+                "y": -4.58935546875,
+                "z": -23.37109375
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 19.118457794189453,
+                "y": 2.6067380905151367,
+                "z": 0.6966848373413086
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.04417484998703003,
+                "z": -0.0000152587890625,
+                "w": 0.9990234375
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "pencil case side 3",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": -36.94970703125,
+                "y": -4.58935546875,
+                "z": -30.21826171875
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 1.0423192977905273,
+                "y": 2.6067380905151367,
+                "z": 6.999722480773926
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.04417484998703003,
+                "z": -0.0000152587890625,
+                "w": 0.9990234375
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "pencil case side 4",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": -27.6669921875,
+                "y": -4.58935546875,
+                "z": -26.1728515625
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 20.43171501159668,
+                "y": 0.9905580878257751,
+                "z": 15.367411613464355
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/chalkboardfran.fbx",
+            "shapeType": "none",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -38.82470703125,
+                "y": -6.111328125,
+                "z": -54.29931640625
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 1.0423192977905273,
+                "y": 2.6067380905151367,
+                "z": 6.999722480773926
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.04417484998703003,
+                "z": -0.0000152587890625,
+                "w": 0.9990234375
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "pencil case side 2",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": -46.064453125,
+                "y": -4.58935546875,
+                "z": -28.00390625
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 19.99040412902832,
+                "y": 9.983871459960938,
+                "z": 1.634186863899231
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": 0.5555657148361206,
+                "z": -0.0000152587890625,
+                "w": 0.8314487934112549
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/chequeredflag/CHEQUEREDFLAG.fbx",
+            "shapeType": "none",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -21.3447265625,
+                "y": -1.5234375,
+                "z": 34.615234375
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 6.840402603149414,
+                "y": 6.840402603149414,
+                "z": 20
+            },
+            "rotation": {
+                "x": -0.0000762939453125,
+                "y": -0.8646524548530579,
+                "z": 0.0000457763671875,
+                "w": 0.5023727416992188
+            },
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
+            "isSpotlight": 1,
+            "intensity": 2,
+            "exponent": 0.30000001192092896,
+            "cutoff": 20,
+            "localPosition": {
+                "x": -22.32373046875,
+                "y": -5.66015625,
+                "z": 29.60546875
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 4,
+                "y": 4,
+                "z": 4
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 150,
+                "green": 150,
+                "blue": 150
+            },
+            "isSpotlight": 0,
+            "intensity": 1,
+            "exponent": 0,
+            "cutoff": 90,
+            "localPosition": {
+                "x": -18.50830078125,
+                "y": -5.2998046875,
+                "z": 37.0546875
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 0.25,
+                "y": 0.25,
+                "z": 0.25
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.8549477458000183,
+                "z": 0.0000457763671875,
+                "w": 0.5187609195709229
+            },
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 255,
+                "green": 255,
+                "blue": 255
+            },
+            "isSpotlight": 0,
+            "intensity": 1,
+            "exponent": 0,
+            "cutoff": 90,
+            "localPosition": {
+                "x": -24.7373046875,
+                "y": -5.84814453125,
+                "z": 31.4833984375
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 0.25,
+                "y": 0.25,
+                "z": 0.25
+            },
+            "rotation": {
+                "x": -0.0000762939453125,
+                "y": -0.8646524548530579,
+                "z": 0.0000457763671875,
+                "w": 0.5023727416992188
+            },
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
+            "isSpotlight": 0,
+            "intensity": 1,
+            "exponent": 0,
+            "cutoff": 90,
+            "localPosition": {
+                "x": -22.32373046875,
+                "y": -5.66015625,
+                "z": 29.60546875
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 5.584373474121094,
+                "y": 10.388030052185059,
+                "z": 9.104318618774414
+            },
+            "rotation": {
+                "x": -0.0000457763671875,
+                "y": 0.9832456111907959,
+                "z": -0.0000152587890625,
+                "w": 0.18223845958709717
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/pencilsharpne.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": 37.576171875,
+                "y": -1.52197265625,
+                "z": -52.1708984375
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 6.840402603149414,
+                "y": 6.840402603149414,
+                "z": 20
+            },
+            "rotation": {
+                "x": -0.054276347160339355,
+                "y": 0.9920042753219604,
+                "z": 0.09251546859741211,
+                "w": -0.06651407480239868
+            },
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
+            "isSpotlight": 1,
+            "intensity": 2,
+            "exponent": 0.30000001192092896,
+            "cutoff": 20,
+            "localPosition": {
+                "x": 34.388671875,
+                "y": -16.56591796875,
+                "z": 1.03173828125
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 9.256808280944824,
+                "y": 8.728320121765137,
+                "z": 4.69627571105957
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": 0.22493326663970947,
+                "z": -0.0000152587890625,
+                "w": 0.9743648767471313
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 0,
+            "userData": "",
+            "name": "bottle",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": 43.9580078125,
+                "y": -2.13916015625,
+                "z": 20.537109375
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 0.25,
+                "y": 0.25,
+                "z": 0.25
+            },
+            "rotation": {
+                "x": -0.054276347160339355,
+                "y": 0.9920042753219604,
+                "z": 0.09251546859741211,
+                "w": -0.06651407480239868
+            },
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
+            "isSpotlight": 0,
+            "intensity": 1,
+            "exponent": 0,
+            "cutoff": 90,
+            "localPosition": {
+                "x": 34.388671875,
+                "y": -16.56591796875,
+                "z": 1.03173828125
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 0.20000000298023224,
+                "y": 0.20000000298023224,
+                "z": 0.20000000298023224
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": 23.02099609375,
+                "y": 12.74072265625,
+                "z": 34.19970703125
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 38.684722900390625,
+                "y": 0.20795059204101562,
+                "z": 4.580682754516602
+            },
+            "rotation": {
+                "x": 0.2705577611923218,
+                "y": 0.6532540321350098,
+                "z": 0.2705882787704468,
+                "w": 0.6532845497131348
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": 35.16552734375,
+                "y": -19.34765625,
+                "z": 94.62451171875
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 38.684722900390625,
+                "y": 0.20795059204101562,
+                "z": 4.580682754516602
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
+            "shapeType": "none",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -0.2861328125,
+                "y": -5.94189453125,
+                "z": 70.3115234375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 38.684722900390625,
+                "y": 0.20795059204101562,
+                "z": 4.580682754516602
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000457763671875,
+                "z": 0.2503547668457031,
+                "w": 0.9681391716003418
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": 18.474609375,
+                "y": -39.82080078125,
+                "z": 111.56103515625
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 38.684722900390625,
+                "y": 0.20795059204101562,
+                "z": 4.580682754516602
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000457763671875,
+                "z": 0.3826504945755005,
+                "w": 0.9238879680633545
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -9.244140625,
+                "y": -59.2548828125,
+                "z": 111.07080078125
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 0.25,
+                "y": 0.25,
+                "z": 0.25
+            },
+            "rotation": {
+                "x": 0.0011749267578125,
+                "y": 0.8555886745452881,
+                "z": -0.0001678466796875,
+                "w": 0.5176317691802979
+            },
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
+            "isSpotlight": 0,
+            "intensity": 1,
+            "exponent": 0,
+            "cutoff": 90,
+            "localPosition": {
+                "x": -39.23681640625,
+                "y": -99.6787109375,
+                "z": 150.91162109375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 38.324188232421875,
+                "y": 0.20794236660003662,
+                "z": 4.580680847167969
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.737331211566925,
+                "z": -0.0000457763671875,
+                "w": 0.6755626201629639
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "Ruler 1 Loose",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/classroom/ruler.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": 88.33056640625,
+                "y": -6.47607421875,
+                "z": -5.19970703125
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 0.20000000298023224,
+                "y": 0.20000000298023224,
+                "z": 0.20000000298023224
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 3,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0,
+            "restitution": 0.9900000095367432,
+            "friction": 0,
+            "density": 1000,
+            "angularDamping": 1,
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": 79.52490234375,
+                "y": 0.57080078125,
+                "z": 66.46142578125
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 6.840402603149414,
+                "y": 6.840402603149414,
+                "z": 20
+            },
+            "rotation": {
+                "x": 0.37804222106933594,
+                "y": -0.05760282278060913,
+                "z": -0.5976501107215881,
+                "w": 0.7046463489532471
+            },
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
+            "isSpotlight": 1,
+            "intensity": 2,
+            "exponent": 0.30000001192092896,
+            "cutoff": 20,
+            "localPosition": {
+                "x": 236.56396484375,
+                "y": -99.8681640625,
+                "z": -70.46923828125
+            }
+        }
+    ],
+    "zoneProperties": {
+        "type": "Zone",
+        "rotation": {
+            "x": -0.0000152587890625,
+            "y": -0.0000152587890625,
+            "z": -0.0000152587890625,
+            "w": 1
+        },
+        "visible": 1,
+        "userData": "{\n    \"TCars\": {\n            \"type\": \"track\"\n     }\n}",
+        "name": "SchoolTrack",
+        "shapeType": "box",
+        "keyLight": {
+            "color": {
+                "red": 255,
+                "green": 255,
+                "blue": 255
+            },
+            "intensity": 1,
+            "ambientIntensity": 0.5,
+            "direction": {
+                "x": 0,
+                "y": -1,
+                "z": 0
+            },
+            "ambientUrl": ""
+        },
+        "backgroundMode": "skybox",
+        "stage": {
+            "sunModelEnabled": 0,
+            "latitude": 37.777000427246094,
+            "longitude": 122.40699768066406,
+            "altitude": 0.029999999329447746,
+            "day": 60,
+            "hour": 12,
+            "automaticHourDay": 0
+        },
+        "skybox": {
+            "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
+            "url": ""
+        }
+    }
+}

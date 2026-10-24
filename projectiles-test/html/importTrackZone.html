@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Import window</title>
+        <style type="text/css">
+        #import_json {
+            width: 100%;
+            height: 90%;
+        }
+        </style>
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="qrc:///qtwebchannel/qwebchannel.js"></script>
+        <script type="text/javascript" src="eventBridgeLoader.js"></script>
+        <script type="text/javascript">
+            function sendWebEvent(data) {
+                EventBridge.emitWebEvent(JSON.stringify(data));
+            }
+
+            function importTrackZoneJSON() {
+                alert('pling');
+                sendWebEvent({
+                    action: 'import_json',
+                    data: $('#import_json').val()
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <div>Import TrackZone JSON</div>
+        <div>
+            <textarea id="import_json" title="import json"></textarea>
+        </div>
+        <div>
+            <button onclick="importTrackZoneJSON()">Import JSON</button>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<meta charset="utf-8" /> 
+<title>WebSocket Test</title> 
+<script language="javascript" type="text/javascript">
+var wsUri = "ws://toycars.highfidelity.io:18000/";
+var output;
+var websocket;
+
+const ACTION = {
+    JOIN_REQUEST:           1,
+    JOIN_REQUEST_ACCEPTED:  2,
+    UPDATE:                 3,
+    MESSAGE:                4,
+    PLAYER_JOIN:            5,
+    PLAYER_LEFT:            6,
+    GAME_STATE:             7,
+    SPECTATE:               8
+    //START_HIDING:           7,
+    //COUNTING:               8,
+    //START_SEEKING:          9,
+    //GAMEOVER:               10,
+    //PING_PLAYER:            11,
+    //FOUND:                  12
+};
+
+const GAME_STATE = {
+    WAITING:            1,
+    VOTE_TRACK:         2
+
+};
+
+function init() {
+    output = document.getElementById("output");
+    testWebSocket();
+} 
+
+function testWebSocket() {
+    websocket = new WebSocket(wsUri);
+    websocket.onopen = function(evt) { onOpen(evt) };
+    websocket.onclose = function(evt) { onClose(evt) };
+    websocket.onmessage = function(evt) { onMessage(evt) };
+    websocket.onerror = function(evt) { onError(evt) };
+}
+
+function onOpen(evt) {
+    writeToScreen("CONNECTED");
+    //doSend("WebSocket rocks");
+} 
+
+function onClose(evt) {
+    writeToScreen("DISCONNECTED");
+}
+
+function onMessage(evt) {
+    writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data + '</span>');
+    var data = JSON.parse(evt.data);
+    switch (data.action) {
+        case ACTION.JOIN_REQUEST:
+            writeToScreen('ha');
+            websocket.send(JSON.stringify({
+                action: ACTION.JOIN_REQUEST_ACCEPTED,
+                name: prompt("Enter ur name", "User#" + Math.floor(Math.random() * 10000))
+            }));
+            break;
+        case ACTION.MESSAGE:
+            // Once a new message is receive we add it to our message viewer.
+            writeToScreen(data.message);
+            break;
+        case ACTION.PLAYER_JOIN:
+            // A player joined, we log it.
+            writeToScreen(data.name + " joined.");
+            //playerList.addPlayer(data.id, data.name);
+            break;
+    }
+    //websocket.close();
+}
+
+function onError(evt) {
+    writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+}
+
+function doSend(message) {
+    writeToScreen("SENT: " + message);
+    websocket.send(message);
+}
+
+function writeToScreen(message) {
+    var pre = document.createElement("p");
+    pre.style.wordWrap = "break-word";
+    pre.innerHTML = message;
+    output.appendChild(pre);
+}
+
+window.addEventListener("load", init, false);
+
+</script> 
+<h2>WebSocket Test</h2>
+<div id="output"></div>

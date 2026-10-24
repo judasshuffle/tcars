@@ -1,0 +1,607 @@
+{
+  "id": "practice",
+  "name": "Practice circuit (offline)",
+  "description": "New primitive circuit, not an original recovered TCARS track. Four ordered checkpoints.",
+  "startPosition": {
+    "x": -30,
+    "y": 0,
+    "z": 3
+  },
+  "startOrientation": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "w": 1
+  },
+  "data": {
+    "entities": [
+      {
+        "type": "Box",
+        "name": "Practice circuit road",
+        "localPosition": {
+          "x": 0,
+          "y": -0.5,
+          "z": -40
+        },
+        "dimensions": {
+          "x": 80,
+          "y": 1,
+          "z": 100
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 65,
+          "green": 70,
+          "blue": 78
+        },
+        "friction": 0.85,
+        "restitution": 0
+      },
+      {
+        "type": "Box",
+        "name": "Centre island",
+        "localPosition": {
+          "x": 0,
+          "y": 0.35,
+          "z": -40
+        },
+        "dimensions": {
+          "x": 40,
+          "y": 0.7,
+          "z": 60
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 65,
+          "green": 125,
+          "blue": 70
+        },
+        "friction": 0.85,
+        "restitution": 0
+      },
+      {
+        "type": "Box",
+        "name": "Left barrier",
+        "localPosition": {
+          "x": -40,
+          "y": 0.7,
+          "z": -40
+        },
+        "dimensions": {
+          "x": 1,
+          "y": 1.4,
+          "z": 100
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 230,
+          "green": 125,
+          "blue": 35
+        },
+        "friction": 0.85,
+        "restitution": 0
+      },
+      {
+        "type": "Box",
+        "name": "Right barrier",
+        "localPosition": {
+          "x": 40,
+          "y": 0.7,
+          "z": -40
+        },
+        "dimensions": {
+          "x": 1,
+          "y": 1.4,
+          "z": 100
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 230,
+          "green": 125,
+          "blue": 35
+        },
+        "friction": 0.85,
+        "restitution": 0
+      },
+      {
+        "type": "Box",
+        "name": "Far barrier",
+        "localPosition": {
+          "x": 0,
+          "y": 0.7,
+          "z": -90
+        },
+        "dimensions": {
+          "x": 80,
+          "y": 1.4,
+          "z": 1
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 230,
+          "green": 125,
+          "blue": 35
+        },
+        "friction": 0.85,
+        "restitution": 0
+      },
+      {
+        "type": "Box",
+        "name": "Near barrier",
+        "localPosition": {
+          "x": 0,
+          "y": 0.7,
+          "z": 10
+        },
+        "dimensions": {
+          "x": 80,
+          "y": 1.4,
+          "z": 1
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 230,
+          "green": 125,
+          "blue": 35
+        },
+        "friction": 0.85,
+        "restitution": 0
+      },
+      {
+        "type": "Box",
+        "name": "Start stripe",
+        "localPosition": {
+          "x": -39,
+          "y": 0.012,
+          "z": -3
+        },
+        "dimensions": {
+          "x": 2,
+          "y": 0.024,
+          "z": 1
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 15,
+          "green": 15,
+          "blue": 15
+        },
+        "friction": 0.85,
+        "restitution": 0
+      },
+      {
+        "type": "Box",
+        "name": "Start stripe",
+        "localPosition": {
+          "x": -37,
+          "y": 0.012,
+          "z": -3
+        },
+        "dimensions": {
+          "x": 2,
+          "y": 0.024,
+          "z": 1
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 255,
+          "green": 255,
+          "blue": 255
+        },
+        "friction": 0.85,
+        "restitution": 0
+      },
+      {
+        "type": "Box",
+        "name": "Start stripe",
+        "localPosition": {
+          "x": -35,
+          "y": 0.012,
+          "z": -3
+        },
+        "dimensions": {
+          "x": 2,
+          "y": 0.024,
+          "z": 1
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 15,
+          "green": 15,
+          "blue": 15
+        },
+        "friction": 0.85,
+        "restitution": 0
+      },
+      {
+        "type": "Box",
+        "name": "Start stripe",
+        "localPosition": {
+          "x": -33,
+          "y": 0.012,
+          "z": -3
+        },
+        "dimensions": {
+          "x": 2,
+          "y": 0.024,
+          "z": 1
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 255,
+          "green": 255,
+          "blue": 255
+        },
+        "friction": 0.85,
+        "restitution": 0
+      },
+      {
+        "type": "Box",
+        "name": "Start stripe",
+        "localPosition": {
+          "x": -31,
+          "y": 0.012,
+          "z": -3
+        },
+        "dimensions": {
+          "x": 2,
+          "y": 0.024,
+          "z": 1
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 15,
+          "green": 15,
+          "blue": 15
+        },
+        "friction": 0.85,
+        "restitution": 0
+      },
+      {
+        "type": "Box",
+        "name": "Start stripe",
+        "localPosition": {
+          "x": -29,
+          "y": 0.012,
+          "z": -3
+        },
+        "dimensions": {
+          "x": 2,
+          "y": 0.024,
+          "z": 1
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 255,
+          "green": 255,
+          "blue": 255
+        },
+        "friction": 0.85,
+        "restitution": 0
+      },
+      {
+        "type": "Box",
+        "name": "Start stripe",
+        "localPosition": {
+          "x": -27,
+          "y": 0.012,
+          "z": -3
+        },
+        "dimensions": {
+          "x": 2,
+          "y": 0.024,
+          "z": 1
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 15,
+          "green": 15,
+          "blue": 15
+        },
+        "friction": 0.85,
+        "restitution": 0
+      },
+      {
+        "type": "Box",
+        "name": "Start stripe",
+        "localPosition": {
+          "x": -25,
+          "y": 0.012,
+          "z": -3
+        },
+        "dimensions": {
+          "x": 2,
+          "y": 0.024,
+          "z": 1
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 255,
+          "green": 255,
+          "blue": 255
+        },
+        "friction": 0.85,
+        "restitution": 0
+      },
+      {
+        "type": "Box",
+        "name": "Start stripe",
+        "localPosition": {
+          "x": -23,
+          "y": 0.012,
+          "z": -3
+        },
+        "dimensions": {
+          "x": 2,
+          "y": 0.024,
+          "z": 1
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 15,
+          "green": 15,
+          "blue": 15
+        },
+        "friction": 0.85,
+        "restitution": 0
+      },
+      {
+        "type": "Box",
+        "name": "Start stripe",
+        "localPosition": {
+          "x": -21,
+          "y": 0.012,
+          "z": -3
+        },
+        "dimensions": {
+          "x": 2,
+          "y": 0.024,
+          "z": 1
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 255,
+          "green": 255,
+          "blue": 255
+        },
+        "friction": 0.85,
+        "restitution": 0
+      },
+      {
+        "type": "Box",
+        "name": "Checkpoint 2",
+        "localPosition": {
+          "x": -30,
+          "y": 0.018,
+          "z": -75
+        },
+        "dimensions": {
+          "x": 18,
+          "y": 0.036,
+          "z": 0.5
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 65,
+          "green": 210,
+          "blue": 220
+        },
+        "friction": 0.85,
+        "restitution": 0
+      },
+      {
+        "type": "Box",
+        "name": "Checkpoint 3",
+        "localPosition": {
+          "x": 30,
+          "y": 0.018,
+          "z": -75
+        },
+        "dimensions": {
+          "x": 18,
+          "y": 0.036,
+          "z": 0.5
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 65,
+          "green": 210,
+          "blue": 220
+        },
+        "friction": 0.85,
+        "restitution": 0
+      },
+      {
+        "type": "Box",
+        "name": "Checkpoint 4",
+        "localPosition": {
+          "x": 30,
+          "y": 0.018,
+          "z": 0
+        },
+        "dimensions": {
+          "x": 18,
+          "y": 0.036,
+          "z": 0.5
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        },
+        "color": {
+          "red": 65,
+          "green": 210,
+          "blue": 220
+        },
+        "friction": 0.85,
+        "restitution": 0
+      }
+    ]
+  },
+  "checkpoints": [
+    {
+      "position": {
+        "x": -30,
+        "y": 2,
+        "z": -3
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "dimensions": {
+        "x": 18,
+        "y": 6,
+        "z": 2
+      }
+    },
+    {
+      "position": {
+        "x": -30,
+        "y": 2,
+        "z": -75
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "dimensions": {
+        "x": 18,
+        "y": 6,
+        "z": 12
+      }
+    },
+    {
+      "position": {
+        "x": 30,
+        "y": 2,
+        "z": -75
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "dimensions": {
+        "x": 18,
+        "y": 6,
+        "z": 12
+      }
+    },
+    {
+      "position": {
+        "x": 30,
+        "y": 2,
+        "z": 0
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "dimensions": {
+        "x": 18,
+        "y": 6,
+        "z": 12
+      }
+    }
+  ]
+}
