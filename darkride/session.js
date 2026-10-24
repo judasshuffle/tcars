@@ -8,7 +8,7 @@ function Session(env, catalog, manifest, rootURL, notify) {
     this.pending=null;this.race=new C.Race([]);this.cameraPosition=null;this.cameraMode='chase';
     this.sound=null;this.injector=null;this.soundMode=null;this.muted=false;this.accumulator=0;this.lease=0;
     this.status='Ready. Build a track, then spawn a car.';this.keys={};this.errors=[];
-    this.inputPaused=false;
+    this.inputPaused=false;this.fireCooldown=0;
 }
 Session.prototype.say=function(message){this.status=message;this.env.print('[TCARS] '+message);this.notify();};
 Session.prototype.asset=function(url,localOnly){
@@ -34,7 +34,7 @@ Session.prototype.checkRez=function(){
 Session.prototype.add=function(properties,kind,list){
     var p=C.copy(properties);p.name='TCARS / '+(p.name || kind);
     p.userData=JSON.stringify({tcars:{version:1,session:this.token,owner:String(this.env.MyAvatar.sessionUUID),kind:kind}});
-    p.lifetime=7200;p.grab={grabbable:false};
+    p.lifetime=kind==='projectile'?5:7200;p.grab={grabbable:false};
     var id=this.env.Entities.addEntity(p,'domain');
     if(!id || String(id)===String(this.env.Uuid.NULL)){throw new Error('Entity creation failed. Check domain rez permissions.');}
     this.owned[id]=kind;if(list){list.push(id);}return id;
@@ -168,7 +168,7 @@ Session.prototype.enter=function(){
             roles.forEach(function(r){a.overrideRoleAnimation(r,'https://s3-us-west-1.amazonaws.com/hifi-content/clement/production/animations/sitting_idle.fbx',30,true,1,350);});
         }
         this.env.Camera.mode='independent';this.cameraPosition=null;this.keys={};
-        this.say('Driving: W/S throttle and reverse; A/D steer; Space brake; F exit; R recover; T start.');
+        this.say('Driving: W/S throttle and reverse; A/D steer; Space fire; Shift handbrake; F exit; R recover; T start.');
     }catch(error){this.exit();throw error;}
 };
 Session.prototype.exit=function(){
@@ -201,6 +201,17 @@ Session.prototype.reset=function(toStart){
     this.env.Entities.editEntity(this.car.id,{position:position,rotation:rotation,velocity:C.ZERO,angularVelocity:C.ZERO});
     this.race.reset();this.cameraPosition=null;this.say(toStart?'Returned to start; timer reset.':'Car upright; timer reset.');
 };
+// Original TCARS ballistic projectile, owned independently by this session.
+Session.prototype.fire=function(p){
+    if(!this.seated || !this.car || this.fireCooldown>0){return;}
+    this.fireCooldown=0.5;
+    this.add({type:'Box',name:'Projectile',dimensions:{x:1.25,y:1.45,z:2.56},
+        color:{red:255,green:150,blue:35},shapeType:'sphere',density:8000,
+        dynamic:true,collisionless:false,gravity:C.ZERO,
+        position:C.add(p.position,C.rotate(p.rotation,{x:0,y:0,z:-7})),rotation:p.rotation,
+        velocity:C.add(p.velocity,C.rotate(p.rotation,{x:0,y:0,z:-10})),
+        angularVelocity:C.rotate(p.rotation,{x:0,y:0,z:20}),damping:0,angularDamping:0},'projectile');
+};
 Session.prototype.stopSound=function(){if(this.injector){this.injector.stop();this.injector=null;}this.soundMode=null;};
 Session.prototype.audio=function(p,speed){
     if(this.muted || !this.env.SoundCache || !this.env.Audio){this.stopSound();return;}
@@ -212,10 +223,12 @@ Session.prototype.audio=function(p,speed){
 };
 Session.prototype.update=function(dt){
     if(this.closed){return;}
-    this.accumulator+=dt;this.lease+=dt;
+    this.accumulator+=dt;this.lease+=dt;this.fireCooldown=Math.max(0,this.fireCooldown-dt);
     if(this.lease>60){
         this.lease=0;var self=this;
-        Object.keys(this.owned).forEach(function(id){if(self.isOwned(id)){
+        Object.keys(this.owned).forEach(function(id){
+            if(self.owned[id]==='projectile'){if(!self.isOwned(id)){delete self.owned[id];}return;}
+            if(self.isOwned(id)){
             var p=self.env.Entities.getEntityProperties(id,['age']);self.env.Entities.editEntity(id,{lifetime:(p.age || 0)+7200});
         }});
     }
@@ -232,8 +245,11 @@ Session.prototype.update=function(dt){
         // Tablet focus/chat must never leave a latched throttle. Qt keyboard values are read every frame.
         var focused=!this.env.Window || this.env.Window.hasFocus();
         var paused=this.inputPaused || !focused;
-        var input=paused?{throttle:0,steering:0,brake:1,handBrake:1}:C.controls(forward,steer,val('Space')>0.5?1:0,p.velocity,p.rotation);
+        var input=paused?{throttle:0,steering:0,brake:1,handBrake:1}:C.controls(forward,steer,val('Shift')>0.5?1:0,p.velocity,p.rotation);
         if(this.env.Entities.setVehicleControls(this.car.id,input)===false){this.exit();this.say('Native vehicle controls rejected this entity.');return;}
+        if(!paused && val('Space')>0.5){
+            try{this.fire(p);}catch(error){this.say('Cannot fire: '+error.message);}
+        }
         var speed=C.length(p.velocity);this.car.speed=speed*3.6;
         this.race.update(p.position,Date.now()/1000);
         var front=C.rotate(p.rotation,{x:0,y:0,z:-1}), target;

@@ -7,8 +7,8 @@ function fixture(){
         collisionsEnabled:true,hmdLeanRecenterEnabled:false,disableDriveKey(){},enableDriveKey(){},
         goToLocation(p){this.position=p;}};
     const env={Uuid:{NULL},MyAvatar:a,Camera:{mode:'first person'},DriveKeys:{TRANSLATE_X:1,YAW:2},print(){},
-        Quat:{lookAtSimple:()=>C.IDENTITY},Controller:{Hardware:{Keyboard:{W:'W',S:'S',A:'A',D:'D',Space:'Space'}},getValue:k=>k==='W'?1:0},
-        Entities:{canRez:()=>true,addEntity(p){if(++seq===failAt){return NULL;}const id='E'+seq;entities[id]={id,...C.copy(p)};return id;},
+        Quat:{lookAtSimple:()=>C.IDENTITY},Controller:{Hardware:{Keyboard:{W:'W',S:'S',A:'A',D:'D',Space:'Space',Shift:'Shift'}},getValue:k=>k==='W'?1:0},
+        Entities:{canRez:()=>true,addEntity(p,host){assert.equal(host,'domain');if(++seq===failAt){return NULL;}const id='E'+seq;entities[id]={id,...C.copy(p)};return id;},
             getEntityProperties:id=>entities[id]?C.copy(entities[id]):{id:NULL},
             editEntity(id,p){if(!entities[id]){return NULL;}edits.push([id,C.copy(p)]);const vehicle=p.vehicle?{...entities[id].vehicle,...p.vehicle}:entities[id].vehicle;
                 Object.assign(entities[id],C.copy(p),{vehicle});return id;},
@@ -84,4 +84,40 @@ test('remote physics never receives client-only collision URLs',()=>{
     assert.equal(f.s.asset(url,true),'file:///C:/tcars/assets/cache/track.obj');
     f.s.rootURL='http://127.0.0.1:8765/';assert.equal(f.s.asset(url),'https://example.org/track.obj');
     f.s.rootURL='https://assets.example.org/tcars/';assert.equal(f.s.asset(url),'https://assets.example.org/tcars/assets/cache/track.obj');
+});
+
+test('projectile ballistics, cooldown, Shift brake and five-second lease',()=>{
+    const f=fixture(),s=f.s;s.spawn(0);s.enter();const car=f.entities[s.car.id];
+    car.velocity={x:3,y:1,z:-4};car.rotation={x:0,y:Math.SQRT1_2,z:0,w:Math.SQRT1_2};
+    let pressed='Space';f.env.Controller.getValue=k=>k===pressed?1:0;
+    const shots=()=>Object.values(f.entities).filter(p=>JSON.parse(p.userData).tcars.kind==='projectile');
+    s.update(0.01);assert.equal(shots().length,1);const p=shots()[0];
+    assert.deepEqual(p.position,C.add(car.position,C.rotate(car.rotation,{x:0,y:0,z:-7})));
+    assert.deepEqual(p.velocity,C.add(car.velocity,C.rotate(car.rotation,{x:0,y:0,z:-10})));
+    assert.deepEqual(p.angularVelocity,C.rotate(car.rotation,{x:0,y:0,z:20}));
+    assert.equal(p.lifetime,5);assert.equal(p.dynamic,true);assert.equal(p.collisionless,false);
+    assert.equal(f.controls.at(-1)[1].handBrake,0);
+    s.update(0.49);assert.equal(shots().length,1);s.update(0.02);assert.equal(shots().length,2);
+    pressed='Shift';s.update(61);assert.equal(shots().length,2);assert.equal(p.lifetime,5);
+    assert.equal(f.controls.at(-1)[1].handBrake,1);
+    delete f.entities[p.id];s.update(61);assert.equal(s.owned[p.id],undefined);
+});
+test('HUD, focus and driver guards prevent firing; failed rez preserves driving',()=>{
+    const f=fixture(),s=f.s;s.spawn(0);s.enter();f.entities[s.car.id].velocity=C.ZERO;
+    f.env.Controller.getValue=k=>k==='Space'?1:0;const count=Object.keys(f.entities).length;
+    s.inputPaused=true;s.update(1);s.inputPaused=false;
+    f.env.Window={hasFocus:()=>false};s.update(1);assert.equal(Object.keys(f.entities).length,count);
+    f.env.Window.hasFocus=()=>true;f.setFail(count+1);s.update(1);assert(s.seated);
+    f.entities[s.car.id].vehicle.driver='OTHER';s.update(1);s.update(1);
+    assert.equal(Object.keys(f.entities).length,count);
+});
+test('players own independent projectiles and cooldowns',()=>{
+    const f=fixture(),a=f.s;a.spawn(0);a.enter();const car=f.entities[a.car.id];car.velocity=C.ZERO;
+    const env={...f.env,MyAvatar:{...f.env.MyAvatar,sessionUUID:'OTHER',parentID:'NULL'}};
+    const b=new Session(env,a.catalog,a.manifest,a.rootURL,()=>{});b.spawn(0);b.enter();
+    const other=f.entities[b.car.id];other.velocity=C.ZERO;
+    a.fire(car);b.fire(other);a.fire(car);b.fire(other);
+    const ids=Object.keys(f.entities).filter(id=>JSON.parse(f.entities[id].userData).tcars.kind==='projectile');
+    assert.equal(ids.length,2);assert.notEqual(f.entities[ids[0]].userData,f.entities[ids[1]].userData);
+    a.cleanup();assert(!f.entities[ids[0]]);assert(f.entities[ids[1]]);assert(f.entities[b.car.id]);b.cleanup();
 });
