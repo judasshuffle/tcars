@@ -206,7 +206,7 @@ Session.prototype.fire=function(p){
     if(!this.seated || !this.car || this.fireCooldown>0){return;}
     this.fireCooldown=0.5;
     var id=this.add({type:'Box',name:'Projectile',dimensions:{x:1.25,y:1.45,z:2.56},
-        color:{red:255,green:150,blue:35},shapeType:'sphere',density:8000,
+        color:{red:255,green:150,blue:35},visible:false,shapeType:'sphere',density:8000,
         dynamic:true,collisionless:false,gravity:C.ZERO,
         position:C.add(p.position,C.rotate(p.rotation,{x:0,y:0,z:-7})),rotation:p.rotation,
         velocity:C.add(p.velocity,C.rotate(p.rotation,{x:0,y:0,z:-10})),
@@ -236,7 +236,7 @@ Session.prototype.update=function(dt){
         var model=self.projectileModels[id], e=self.env.Entities;
         var loaded=self.isOwned(model) && typeof e.isLoaded==='function' && e.isLoaded(model);
         var visible=e.getEntityProperties(id,['visible']).visible;
-        if(visible!==!loaded){e.editEntity(id,{visible:!loaded});}
+        /* Rocket test: cube stays invisible. */
     });
     this.accumulator+=dt;this.lease+=dt;this.fireCooldown=Math.max(0,this.fireCooldown-dt);
     if(this.lease>60){
