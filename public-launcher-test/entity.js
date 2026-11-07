@@ -11,7 +11,7 @@
             for (var i = 0; i < running.length; i++) {
                 var url = String(running[i].url || '').split('?')[0];
                 // Reuse an already-running TCARS launcher, including the existing test builds.
-                if (/\/tcars\/(?:[^/]+\/)?launch-tcars\.js$/i.test(url) ||
+                if (/\/tcars\/(?:[^\/]+\/)?launch-tcars\.js$/i.test(url) ||
                     /\/tcars-darkride\/launch-tcars\.js$/i.test(url)) {
                     Settings.setValue(PENDING_KEY, 0);
                     Tablet.getTablet('com.highfidelity.interface.tablet.system')
