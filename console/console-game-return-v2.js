@@ -140,7 +140,7 @@
             catalog.tracks.forEach(function (track) {
                 loadJSON('trackzones/' + track.file, function (error, data) {
                     if (error) { failed.push(error); }
-                    else { track.data = data; }
+                    else { if (track.file === 'space.json') { data.entities = data.entities.filter(function (e) { return !(e.modelURL && /\/cars\/spaceship\.fbx(?:\?|$)/i.test(e.modelURL)); }); } track.data = data; }
                     completed();
                 });
             });
