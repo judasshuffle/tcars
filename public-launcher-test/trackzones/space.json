@@ -1,0 +1,313 @@
+{
+    "name": "space zone",
+    "entities": [
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 300,
+                "y": 300,
+                "z": 300
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "isSpotlight": 0,
+            "intensity": 1,
+            "exponent": 0,
+            "cutoff": 90,
+            "localPosition": {
+                "x": 68.165771484375,
+                "y": -75.216796875,
+                "z": 30.14013671875
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 300,
+                "y": 300,
+                "z": 300
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "isSpotlight": 0,
+            "intensity": 1,
+            "exponent": 0,
+            "cutoff": 90,
+            "localPosition": {
+                "x": 1.01025390625,
+                "y": -75.216796875,
+                "z": 40.308837890625
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 327.0225830078125,
+                "y": 205.71221923828125,
+                "z": 312.3404846191406
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "{}",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/Space/spacetrack.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/Space/tubecollision.obj",
+            "localPosition": {
+                "x": 5.006103515625,
+                "y": -100.009765625,
+                "z": 6.899658203125
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 13.680805206298828,
+                "y": 13.680805206298828,
+                "z": 40
+            },
+            "rotation": {
+                "x": -0.038651108741760254,
+                "y": 0.7578088045120239,
+                "z": 0.049271345138549805,
+                "w": 0.6494392156600952
+            },
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 255,
+                "green": 255,
+                "blue": 255
+            },
+            "isSpotlight": 1,
+            "intensity": 2,
+            "exponent": 0.30000001192092896,
+            "cutoff": 20,
+            "localPosition": {
+                "x": -19.175048828125,
+                "y": -88.7265625,
+                "z": 93.1845703125
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 0.25,
+                "y": 0.25,
+                "z": 0.25
+            },
+            "rotation": {
+                "x": -0.038651108741760254,
+                "y": 0.7578088045120239,
+                "z": 0.049271345138549805,
+                "w": 0.6494392156600952
+            },
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 255,
+                "green": 255,
+                "blue": 255
+            },
+            "isSpotlight": 0,
+            "intensity": 1,
+            "exponent": 0,
+            "cutoff": 90,
+            "localPosition": {
+                "x": -19.175048828125,
+                "y": -88.7265625,
+                "z": 93.1845703125
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 3.0162997245788574,
+                "y": 2.4744372367858887,
+                "z": 5.443283557891846
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.7071488499641418,
+                "z": -0.0000152587890625,
+                "w": 0.7070878744125366
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/cars/spaceship.fbx?v37",
+            "shapeType": "none",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": 0.997802734375,
+                "y": -84.357421875,
+                "z": 96.674560546875
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 0.25,
+                "y": 0.25,
+                "z": 0.25
+            },
+            "rotation": {
+                "x": 0.4773784875869751,
+                "y": 0.534904956817627,
+                "z": -0.45067518949508667,
+                "w": 0.531822681427002
+            },
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
+            "isSpotlight": 0,
+            "intensity": 1,
+            "exponent": 0,
+            "cutoff": 90,
+            "localPosition": {
+                "x": 4.084228515625,
+                "y": -84.73828125,
+                "z": 93.841064453125
+            }
+        },
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 0.20000000298023224,
+                "y": 0.20000000298023224,
+                "z": 0.20000000298023224
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "visible": 1,
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": 86.67822265625,
+                "y": -60.1064453125,
+                "z": -116.354736328125
+            }
+        }
+    ],
+    "zoneProperties": {
+        "type": "Zone",
+        "rotation": {
+            "x": -0.0000152587890625,
+            "y": -0.0000152587890625,
+            "z": -0.0000152587890625,
+            "w": 1
+        },
+        "visible": 1,
+        "userData": "{\n    \"ProceduralEntity\": {\n        \"shaderUrl\": \"http://hifi-external.s3.amazonaws.com/tcars/models/tracks/shaders/space.fs\"\n    },\n    \"TCars\": {\n            \"type\": \"track\"\n     }\n}",
+        "name": "space zone",
+        "shapeType": "box",
+        "keyLight": {
+            "color": {
+                "red": 255,
+                "green": 255,
+                "blue": 255
+            },
+            "intensity": 1,
+            "ambientIntensity": 0.5,
+            "direction": {
+                "x": 0,
+                "y": -1,
+                "z": 0
+            },
+            "ambientUrl": ""
+        },
+        "backgroundMode": "skybox",
+        "stage": {
+            "sunModelEnabled": 0,
+            "latitude": 37.777000427246094,
+            "longitude": 122.40699768066406,
+            "altitude": 0.029999999329447746,
+            "day": 60,
+            "hour": 12,
+            "automaticHourDay": 0
+        },
+        "skybox": {
+            "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
+            "url": ""
+        }
+    }
+}
