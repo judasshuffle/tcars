@@ -8,7 +8,7 @@
         list.forEach(function(item){var option=document.createElement('option');option.textContent=item.name;select.appendChild(option);});}
     function time(n){return n===null?'—':n.toFixed(2)+' s';}
     function selection(){if(!state){return;}var t=state.tracks[el('track').selectedIndex];if(!t){return;}
-        el('trackInfo').textContent=t.description+(t.available?'':' Unavailable: '+t.reason+'. Choose Practice circuit.');
+        el('trackInfo').textContent=t.description+(t.available?'':' Unavailable: '+t.reason+'. Choose another track.');
         el('build').disabled=!state.ready||state.busy||state.seated||!t.available;}
     function receive(raw){var s;try{s=JSON.parse(raw);}catch(e){return;}if(s.channel!=='tcars-darkride-v1'||s.type!=='state'){return;}state=s;
         options('track',s.tracks);options('vehicle',s.vehicles);el('status').textContent=s.status;el('speed').textContent=s.speed;

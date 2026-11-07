@@ -36,14 +36,30 @@ function practice() {
 function make(originalVehicles,originalTracks){
     var cars=[vehicle('TCARS Roadster (offline)',1.8,0.8,4)];
     Object.keys(originalVehicles).forEach(function(id){
-        var old=originalVehicles[id], car=vehicle(old.name,old.dimensions.x,old.dimensions.y,old.dimensions.z);
+        var old=originalVehicles[id], scale=['BBCAR','WOLF','CAT','HANDVAN','SHOE'].indexOf(id)>=0?0.25:1;
+        var car=vehicle(old.name,old.dimensions.x,old.dimensions.y,old.dimensions.z);
+        if(scale!==1){
+            car.dimensions={x:old.dimensions.x*scale,y:old.dimensions.y*scale,z:old.dimensions.z*scale};car.seat={x:0,y:0.18*scale,z:-0.2*scale};
+            var wheels=JSON.parse(car.spec.wheels); wheels.forEach(function(w){w.radius*=scale;w.width*=scale;w.suspensionDistance*=scale;w.center=w.center.map(function(n){return n*scale;});});
+            car.spec.wheels=JSON.stringify(wheels);car.rideHeight*=scale;car.spec.centerOfMass.y*=scale;
+        }
+        if(id==='SHOE'){car.spec.centerOfMass.y=-car.dimensions.y*0.45;}
         car.id=id;car.modelURL='http://hifi-external.s3.amazonaws.com/tcars/models/'+old.modelFile;
         // Original geometry is visual only; the native chassis is centred and uses Jolt wheels.
         car.description='Original body; new native Jolt chassis. Primitive body if asset unavailable.';
         cars.push(car);
     });
-    var tracks=[practice()];
-    originalTracks.forEach(function(t){tracks.push({id:t.trackJSON,name:t.name+' (original)',description:'Original layout and scale. No saved checkpoints. '+
+    var newModels=[
+        {path:'texture-rescue-final-20261021T070855Z-v2/b41b3e4a8495c34f6fbf',dimensions:{x:2,y:1.5,z:4.5},rotation:{x:0,y:0,z:0,w:1}},
+        {path:'texture-rescue-final-20261021T070855Z-v2/e533be549255a8b6e6ab',dimensions:{x:2,y:1.5,z:4.5},rotation:{x:0,y:0,z:0,w:1}},
+        {path:'texture-repair-20261020/931d35c864b7e761616a',dimensions:{x:2,y:1.5,z:4.5},rotation:{x:0,y:0,z:0,w:1}},
+        {path:'texture-rescue-final-20261021T070855Z-v2/446723d942f05df61e2f',dimensions:{x:2,y:1.5,z:4.5},rotation:{x:0,y:0,z:0,w:1}}
+    ];
+    newModels.forEach(function(model,i){var d=model.dimensions,car=vehicle('New Vehicle '+(i+1),d.x,d.y,d.z);
+        car.id='NEW'+(i+1);car.modelURL='https://raw.githubusercontent.com/judasshuffle/robotdolly-world-assets/main/assets/texture-repair/'+model.path+'/model.fbx';
+        car.modelDimensions=C.copy(d);car.modelRotation=C.copy(model.rotation);cars.push(car);});
+    var tracks=[];
+    originalTracks.filter(function(t){return t.trackJSON!=='school.json';}).forEach(function(t){tracks.push({id:t.trackJSON,name:t.name+' (original)',description:'Original layout and scale. No saved checkpoints. '+
         (t.trackJSON==='school.json'?'Missing old collision hull: uses the recovered visual mesh for static collision.':
             t.trackJSON==='street.json'?'Two unavailable phone props and one flashlight omitted.':'Recovered geometry; textures may be incomplete.'),
         file:t.trackJSON,startPosition:t.startPosition,startOrientation:t.startOrientation,checkpoints:[]});});

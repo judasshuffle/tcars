@@ -12,6 +12,7 @@ function Session(env, catalog, manifest, rootURL, notify) {
 }
 Session.prototype.say=function(message){this.status=message;this.env.print('[TCARS] '+message);this.notify();};
 Session.prototype.asset=function(url,localOnly){
+    if(/^https:\/\/raw\.githubusercontent\.com\/judasshuffle\/robotdolly-world-assets\/main\/assets\/texture-repair\//.test(url)){return url;}
     var entry=this.manifest.assets[url];
     if(!entry || !entry.available){return null;}
     // Collision resources must resolve on the domain physics server, not only on this client.
@@ -108,7 +109,7 @@ Session.prototype.spawn=function(index){
             color:def.color,visible:!bodyURL,dynamic:true,collisionless:false,gravity:{x:0,y:-9.8,z:0},
             damping:0.02,angularDamping:0.1,friction:0.6,restitution:0,vehicle:C.copy(def.spec)},'car',ids);
         if(bodyURL){this.add({type:'Model',name:def.name+' original body',modelURL:bodyURL,parentID:id,
-            localPosition:C.ZERO,localRotation:C.IDENTITY,dimensions:def.dimensions,collisionless:true,dynamic:false},'car',ids);}
+            localPosition:C.ZERO,localRotation:def.modelRotation || C.IDENTITY,dimensions:def.modelDimensions || def.dimensions,collisionless:true,dynamic:false},'car',ids);}
         else{
             this.add({type:'Box',name:'Windscreen',parentID:id,localPosition:{x:0,y:def.dimensions.y*0.65,z:-0.2},
                 dimensions:{x:def.dimensions.x*0.78,y:0.42,z:def.dimensions.z*0.36},color:{red:55,green:110,blue:135},

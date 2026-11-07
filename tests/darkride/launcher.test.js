@@ -15,7 +15,7 @@ test('actual launcher boots catalog, handles HUD actions, and disconnects on sto
             hmdLeanRecenterEnabled:true,disableDriveKey(){},enableDriveKey(){},goToLocation(){}},
         Overlays:{addOverlay:()=>1,editOverlay(){},deleteOverlay(){}},
         Controller:{keyPressEvent:signal(),Hardware:{Keyboard:{}},getValue:()=>0},
-        Entities:{canRez:()=>true,findRayIntersection:()=>({intersects:true,distance:3,intersection:C.ZERO}),
+        Entities:{mousePressOnEntity:signal(),canRez:()=>true,findRayIntersection:()=>({intersects:true,distance:3,intersection:C.ZERO}),
             setVehicleControls:()=>true,clearVehicleControls(){},addEntity(p){const id='E'+(++entity);entities[id]={id,...C.copy(p)};return id;},
             getEntityProperties:id=>entities[id]?C.copy(entities[id]):{id:'NULL'},deleteEntity:id=>delete entities[id],
             editEntity(id,p){const v={...entities[id].vehicle,...p.vehicle};Object.assign(entities[id],C.copy(p),{vehicle:v});return id;}}};
@@ -32,8 +32,9 @@ test('actual launcher boots catalog, handles HUD actions, and disconnects on sto
     vm.runInNewContext(fs.readFileSync(path.join(root,'launch-tcars.js'),'utf8'),context);
     // Run only resource callbacks first (timeout entries are cancelled by their callback).
     for(const [id,fn] of [...timers]){if(id%2===0 && timers.has(id)){timers.delete(id);fn();}}
-    assert.equal(sent.at(-1).ready,true);assert.equal(sent.at(-1).tracks.length,6);assert(sent.at(-1).tracks.every(t=>t.available));
+    assert.equal(sent.at(-1).ready,true);assert.equal(sent.at(-1).tracks.length,4);assert(sent.at(-1).tracks.every(t=>t.available));
     function action(action,index=0){tablet.webEventReceived.emit(JSON.stringify({channel:'tcars-darkride-v1',action,index}));}
+    action('placeControl'); const control=Object.keys(entities)[0]; action('placeControl'); assert.equal(Object.keys(entities).length,1); tablet.gotoHomeScreen(); context.Entities.mousePressOnEntity.emit(control); assert.equal(sent.at(-1).tracks.length,4);
     action('build');while(timers.size){const [id,fn]=timers.entries().next().value;timers.delete(id);fn();}
     assert.equal(sent.at(-1).hasTrack,true);action('spawn');assert.equal(sent.at(-1).hasCar,true);
     action('enter');assert.notEqual(context.MyAvatar.parentID,'NULL');context.Controller.keyPressEvent.emit({text:'f'});

@@ -8,7 +8,7 @@
     var Catalog=Script.require('./darkride/catalog.js');
     var Session=Script.require('./darkride/session.js');
     var catalog=Catalog.make(Script.require('./modules/vehicles.js'),Script.require('./modules/tracks.js'));
-    var manifest={assets:{}}, loadErrors=[];
+    var manifest={assets:{}}, loadErrors=[], controlID=null;
     function log(text){print('[TCARS] '+text);}
     function send(){
         if(!session || !tablet){return;}
@@ -46,6 +46,11 @@
             case 'sound':session.muted=!session.muted;session.stopSound();break;
             case 'close':tablet.gotoHomeScreen();break;
             case 'stop':Script.stop();break;
+            case 'placeControl':
+                if(controlID && session.isOwned(controlID)){session.say('Your TCARS control is already placed.');break;}
+                session.checkRez();var pose=session.front(2);pose.position.y+=0.6;
+                controlID=session.add({type:'Text',name:'TCARS menu control',text:'TCARS',lineHeight:0.12,textColor:{red:20,green:24,blue:32},backgroundColor:{red:243,green:186,blue:116},position:pose.position,rotation:pose.rotation,dimensions:{x:0.6,y:0.3,z:0.02}},'control');
+                Entities.editEntity(controlID,{grab:{grabbable:true}});session.say('TCARS control placed. Click it to open the menu while this script runs.');break;
             case 'diagnostics':
                 var stats=typeof Entities.getVehicleStats==='function'?Entities.getVehicleStats():{};
                 var loading=0,models=0;
@@ -63,7 +68,8 @@
     function toggle(){if(pageOpen){tablet.gotoHomeScreen();}else{tablet.gotoWebScreen(page);}}
     function screen(type,url){pageOpen=type==='Web' && String(url).split('?')[0]===page;
         if(session){session.inputPaused=pageOpen;}button.editProperties({isActive:pageOpen});if(pageOpen){send();}}
-    function domainChanged(){if(session){session.removeTrack();session.say('Domain changed; previous session released. Build a new track here.');}}
+    function worldClick(id){if(controlID && String(id)===String(controlID) && session && session.isOwned(controlID)){if(!pageOpen){tablet.gotoWebScreen(page);}}}
+    function domainChanged(){controlID=null;if(session){session.removeTrack();session.say('Domain changed; previous session released. Build a new track here.');}}
     function key(event){
         if(!session || !session.seated || event.isAutoRepeat || event.isControl || event.isAlt || !event.text){return;}
         var k=event.text.toLowerCase();
@@ -78,7 +84,7 @@
         if(shuttingDown){return;}shuttingDown=true;
         requests.forEach(function(r){r.abort();});
         if(session){session.cleanup();}
-        Script.update.disconnect(update);Controller.keyPressEvent.disconnect(key);
+        Script.update.disconnect(update);Controller.keyPressEvent.disconnect(key);Entities.mousePressOnEntity.disconnect(worldClick);
         Window.domainChanged.disconnect(domainChanged);
         if(tablet){tablet.webEventReceived.disconnect(onWeb);tablet.screenChanged.disconnect(screen);
             if(pageOpen){tablet.gotoHomeScreen();}if(button){button.clicked.disconnect(toggle);tablet.removeButton(button);}}
@@ -104,23 +110,23 @@
         session=new Session({Entities:Entities,MyAvatar:MyAvatar,Camera:Camera,Controller:Controller,DriveKeys:DriveKeys,
             Quat:Quat,Uuid:Uuid,Script:Script,SoundCache:SoundCache,Audio:Audio,Window:Window,print:print},catalog,manifest,root,send);
         button.clicked.connect(toggle);tablet.webEventReceived.connect(onWeb);tablet.screenChanged.connect(screen);
-        Controller.keyPressEvent.connect(key);Script.update.connect(update);Script.scriptEnding.connect(cleanup);
+        Controller.keyPressEvent.connect(key);Entities.mousePressOnEntity.connect(worldClick);Script.update.connect(update);Script.scriptEnding.connect(cleanup);
         Window.domainChanged.connect(domainChanged);
         if(typeof Overlays!=='undefined'){
             overlay=Overlays.addOverlay('text',{x:20,y:20,width:650,height:42,text:'TCARS',font:{size:16},
                 color:{red:245,green:245,blue:245},backgroundColor:{red:20,green:24,blue:32},backgroundAlpha:0.85,visible:false});
         }
         tablet.gotoWebScreen(page);session.say('Loading track exports and asset manifest...');
-        var remaining=6;
+        var remaining=1+catalog.tracks.length;
         function loaded(){if(--remaining===0){ready=true;
-            try{session.checkAPI();session.say('Ready. Build Practice circuit for an offline first drive.');}
+            try{session.checkAPI();session.say('Ready. Choose a track and build it in front of you.');}
             catch(error){session.say(error.message);}send();}}
         loadJSON('assets/manifest.json',function(error,data){
             if(error){loadErrors.push(error);}else{manifest.assets=data.assets || {};}
             loaded();
         });
         catalog.tracks.forEach(function(track){if(!track.file){return;}
-            loadJSON('trackzones/'+track.file,function(error,data){if(error){loadErrors.push(error);}else{track.data=data;}loaded();});
+            loadJSON('trackzones/'+track.file,function(error,data){if(error){loadErrors.push(error);}else{if(track.file==='space.json'){data.entities=data.entities.filter(function(e){return !(e.modelURL && /\/cars\/spaceship\.fbx(?:\?|$)/i.test(e.modelURL));});}track.data=data;}loaded();});
         });
     }catch(error){log('Launcher failed: '+error.message);cleanup();Window.alert('TCARS: '+error.message);Script.stop();}
 }());
