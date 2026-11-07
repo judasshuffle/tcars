@@ -1,0 +1,727 @@
+{
+    "name": "toy zone",
+    "entities": [
+        {
+            "type": "Box",
+            "dimensions": {
+                "x": 788.8800048828125,
+                "y": 0.44999998807907104,
+                "z": 968
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "userData": "{\n    \"ProceduralEntity\": {\n        \"shaderUrl\": \"https://dl.dropboxusercontent.com/u/10483952/shaders/waves.fs?123\"\n    }\n}",
+            "name": "toywater",
+            "color": {
+                "red": 255,
+                "green": 0,
+                "blue": 0
+            },
+            "localPosition": {
+                "x": -102.021484375,
+                "y": -52.8486328125,
+                "z": -51.455078125
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 762.552978515625,
+                "y": 288.33819580078125,
+                "z": 782.095458984375
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "userData": "{}",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/toytrackoct.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/ttmk2col.obj",
+            "localPosition": {
+                "x": -65.8720703125,
+                "y": 53.146484375,
+                "z": -164.228515625
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 186.21221923828125,
+                "y": 129.31947326660156,
+                "z": 76.6502685546875
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": 0.7070878744125366,
+                "z": -0.0000152587890625,
+                "w": 0.7070878744125366
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "userData": "{}",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/towerbridge.fbx",
+            "shapeType": "none",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -119.8349609375,
+                "y": 6.8525390625,
+                "z": 33.9580078125
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 13.792047500610352,
+                "y": 6.888206481933594,
+                "z": 1.1274800300598145
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.3828336000442505,
+                "z": -0.0000152587890625,
+                "w": 0.9238269329071045
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/chequeredflag/CHEQUEREDFLAG.fbx",
+            "shapeType": "none",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -153.919921875,
+                "y": -32.701171875,
+                "z": -197.3310546875
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 3.5640158653259277,
+                "y": 2.050893783569336,
+                "z": 0.4378400146961212
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/plasticroadbarrier.fbx",
+            "shapeType": "none",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -181.2021484375,
+                "y": -29.5625,
+                "z": -155.060546875
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 3.44748854637146,
+                "y": 4.09310245513916,
+                "z": 6.849971771240234
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.878843367099762,
+                "z": -0.0000152587890625,
+                "w": 0.4771038293838501
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ramp.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/ramp.obj",
+            "localPosition": {
+                "x": -245.4326171875,
+                "y": -33.4833984375,
+                "z": 6.1162109375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 10.801250457763672,
+                "y": 0.8529021739959717,
+                "z": 14.8428316116333
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": 0.3826810121536255,
+                "z": -0.0000152587890625,
+                "w": 0.9238574504852295
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/bumpzebra.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/bumpzebra.obj",
+            "localPosition": {
+                "x": -114.0966796875,
+                "y": -37.6123046875,
+                "z": -242.3291015625
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 0.49099308252334595,
+                "y": 0.9626891016960144,
+                "z": 0.5315155386924744
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/trafficcone.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -107.189453125,
+                "y": -37.6533203125,
+                "z": -248.6767578125
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 0.49099308252334595,
+                "y": 0.8894469141960144,
+                "z": 0.5315155386924744
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/trafficcone.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -108.29296875,
+                "y": -37.662109375,
+                "z": -248.59375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 0.49099308252334595,
+                "y": 0.9626891016960144,
+                "z": 0.5315155386924744
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/trafficcone.fbx",
+            "shapeType": "box",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": -108.283203125,
+                "y": -37.6533203125,
+                "z": -249.236328125
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 6.840402603149414,
+                "y": 6.840402603149414,
+                "z": 20
+            },
+            "rotation": {
+                "x": -0.0009002685546875,
+                "y": -0.6000610589981079,
+                "z": 0.0022125244140625,
+                "w": 0.7999236583709717
+            },
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
+            "isSpotlight": 1,
+            "intensity": 2,
+            "exponent": 0.30000001192092896,
+            "cutoff": 20,
+            "localPosition": {
+                "x": -52.2265625,
+                "y": -37.3974609375,
+                "z": -162.8798828125
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 13.680805206298828,
+                "y": 13.680805206298828,
+                "z": 40
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.08607614040374756,
+                "z": -0.0000152587890625,
+                "w": 0.99627685546875
+            },
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
+            "isSpotlight": 1,
+            "intensity": 2,
+            "exponent": 0.30000001192092896,
+            "cutoff": 20,
+            "localPosition": {
+                "x": -99.4931640625,
+                "y": -27.904296875,
+                "z": -167.3798828125
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 3.685683250427246,
+                "y": 1.1973936557769775,
+                "z": 0.9272940158843994
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000457763671875,
+                "z": 0.043595075607299805,
+                "w": 0.9990234375
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/barrier.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/toy/barriercol.obj",
+            "localPosition": {
+                "x": -90.8515625,
+                "y": -35.2890625,
+                "z": -181.0009765625
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 0.25,
+                "y": 0.25,
+                "z": 0.25
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.08607614040374756,
+                "z": -0.0000152587890625,
+                "w": 0.99627685546875
+            },
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
+            "isSpotlight": 0,
+            "intensity": 1,
+            "exponent": 0,
+            "cutoff": 90,
+            "localPosition": {
+                "x": -99.4931640625,
+                "y": -27.904296875,
+                "z": -167.3798828125
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 3.685683250427246,
+                "y": 1.1973936557769775,
+                "z": 0.9272940158843994
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/barrier.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/barriercol.obj",
+            "localPosition": {
+                "x": -63.6689453125,
+                "y": -35.4697265625,
+                "z": -202.8115234375
+            }
+        },
+        {
+            "type": "Light",
+            "dimensions": {
+                "x": 0.25,
+                "y": 0.25,
+                "z": 0.25
+            },
+            "rotation": {
+                "x": -0.0009002685546875,
+                "y": -0.6000610589981079,
+                "z": 0.0022125244140625,
+                "w": 0.7999236583709717
+            },
+            "userData": "",
+            "name": "",
+            "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+            },
+            "isSpotlight": 0,
+            "intensity": 1,
+            "exponent": 0,
+            "cutoff": 90,
+            "localPosition": {
+                "x": -52.2265625,
+                "y": -37.3974609375,
+                "z": -162.8798828125
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 0.3304175138473511,
+                "y": 0.5985600352287292,
+                "z": 0.35768741369247437
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/trafficcone.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/trafficconecol.obj",
+            "localPosition": {
+                "x": 67.09765625,
+                "y": -35.0634765625,
+                "z": -190.4677734375
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 0.3304175138473511,
+                "y": 0.5985600352287292,
+                "z": 0.35768741369247437
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.0000152587890625,
+                "z": -0.0000152587890625,
+                "w": 1
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/trafficcone.fbx",
+            "shapeType": "compound",
+            "compoundShapeURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/trafficconecol.obj",
+            "localPosition": {
+                "x": 66.0693359375,
+                "y": -34.93359375,
+                "z": -189.5517578125
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 4.376210689544678,
+                "y": 2.5182666778564453,
+                "z": 0.5376182794570923
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.999664306640625,
+                "z": 0.026138663291931152,
+                "w": -0.0000152587890625
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/plasticroadbarrier.fbx",
+            "shapeType": "none",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": 98.73828125,
+                "y": -29.353515625,
+                "z": -137.3486328125
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 4.376210689544678,
+                "y": 2.5182666778564453,
+                "z": 0.5376182794570923
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.21651023626327515,
+                "z": -0.0000152587890625,
+                "w": 0.9762569665908813
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/plasticroadbarrier.fbx",
+            "shapeType": "none",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": 94.857421875,
+                "y": -28.783203125,
+                "z": -112.041015625
+            }
+        },
+        {
+            "type": "Model",
+            "dimensions": {
+                "x": 4.376210689544678,
+                "y": 2.5182666778564453,
+                "z": 0.5376182794570923
+            },
+            "rotation": {
+                "x": -0.0000152587890625,
+                "y": -0.21651023626327515,
+                "z": -0.0000152587890625,
+                "w": 0.9762569665908813
+            },
+            "gravity": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "damping": 0.39346998929977417,
+            "restitution": 0.5,
+            "friction": 0.5,
+            "density": 1000,
+            "angularDamping": 0.39346998929977417,
+            "userData": "",
+            "name": "",
+            "modelURL": "http://hifi-external.s3.amazonaws.com/tcars/models/tracks/sharedassets/plasticroadbarrier.fbx",
+            "shapeType": "none",
+            "compoundShapeURL": "",
+            "localPosition": {
+                "x": 97.3115234375,
+                "y": -28.783203125,
+                "z": -109.6396484375
+            }
+        }
+    ],
+    "zoneProperties": {
+        "type": "Zone",
+        "rotation": {
+            "x": -0.0000152587890625,
+            "y": 0.061020851135253906,
+            "z": -0.0000152587890625,
+            "w": 0.99810791015625
+        },
+        "userData": "{\n    \"TCars\": {\n        \"type\": \"track\"\n    }\n}",
+        "name": "toy zone",
+        "shapeType": "box",
+        "backgroundMode": "skybox",
+        "stage": {
+            "sunModelEnabled": 0,
+            "latitude": 37.777000427246094,
+            "longitude": 122.40699768066406,
+            "altitude": 0.029999999329447746,
+            "day": 60,
+            "hour": 12,
+            "automaticHourDay": 0
+        }
+    }
+}
