@@ -1,0 +1,10 @@
+{
+  "source_url": "https://raw.githubusercontent.com/judasshuffle/ass/e010a42db7cd70cedf0f6ae1b2c822f718180a4a/photiz/testingaoland.fbx",
+  "source_sha256": "cd886fa8a3cf47201c4fa72fa20db678d7416a7561926478e3a9cc1f70143e41",
+  "entity_id": "b789f186-b80e-497d-ac42-d5ae6abd75e1",
+  "position": [10138.637, 10000.222, 10070.400],
+  "rotation_degrees": [0, 0, 0],
+  "inspector_scale_informational_only": [1, 0.882, 1],
+  "final_dimensions": [249.121, 38.880, 180.920],
+  "registration_point": [0.5, 0.5, 0.5]
+}
